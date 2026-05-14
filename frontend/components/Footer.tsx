@@ -8,81 +8,90 @@ const Footer = () => {
   const { footer } = siteContent;
 
   return (
-    <footer className="bg-brand-dark text-brand-cream pt-24 pb-12">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+    <footer className="bg-brand-dark text-brand-cream pt-32 pb-12 relative overflow-hidden">
+      {/* Subtle Texture */}
+      <div className="absolute inset-0 bg-bamboo opacity-[0.02] pointer-events-none" />
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
           {/* Brand Col */}
-          <div className="md:col-span-2">
-            <Link href="/" className="text-3xl md:text-4xl font-editorial font-bold tracking-tight mb-8 block">
-              SIO MEI BABAH SAPI<span className="text-brand-peanut">.</span>
+          <div className="md:col-span-5">
+            <Link href="/" className="text-4xl md:text-5xl font-editorial font-bold tracking-tight mb-8 block">
+              {footer.brand}<span className="text-brand-peanut">.</span>
             </Link>
-            <p className="text-xl text-brand-cream/60 max-w-sm mb-12 font-light italic leading-relaxed">
-              “Hangat, gurih, dan selalu bikin balik lagi.”
+            <p className="text-xl text-brand-cream/60 max-w-sm mb-12 font-light leading-relaxed italic">
+              {footer.description}
             </p>
-            <div className="space-y-4 mb-12 text-sm text-brand-cream/60">
-              <p>📍 Jl. Rasa Nikmat No. 88, Jakarta Selatan</p>
-              <p>📞 WhatsApp: +62 812-3456-7890</p>
-              <p>📸 @siomeibabahsapi</p>
+            <div className="space-y-4 mb-12 text-sm text-brand-cream/40">
+              <p>{footer.address}</p>
+              <p>{footer.phone}</p>
             </div>
-            <div className="flex gap-6">
+            <div className="flex gap-8">
               {footer.social.map((s) => (
                 <a
-                  key={s}
-                  href="#"
-                  className="text-xs font-bold uppercase tracking-widest hover:text-brand-peanut transition-colors"
+                  key={s.label}
+                  href={s.href}
+                  className="text-[10px] font-bold uppercase tracking-widest hover:text-brand-peanut transition-colors"
                 >
-                  {s}
+                  {s.label}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Links Col */}
-          <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-peanut mb-8">Navigasi</h4>
-            <div className="flex flex-col space-y-4">
-              {siteContent.navigation.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="text-lg font-editorial hover:text-brand-peanut transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <a href="#" className="text-lg font-editorial hover:text-brand-peanut transition-colors">WhatsApp Order</a>
+          {/* Right Columns Container */}
+          <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-12">
+            {/* Menu Col */}
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-peanut mb-8">Menu</h4>
+              <ul className="space-y-4">
+                {footer.menu.map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-brand-cream/60 hover:text-brand-cream transition-colors text-sm font-light">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
 
-          {/* Newsletter Col */}
-          <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-peanut mb-8">Kabar Terbaru</h4>
-            <p className="text-sm text-brand-cream/60 mb-6 font-light">
-              Dapatkan info menu baru, promo, dan cerita dari Sio Mei Babah Sapi.
-            </p>
-            <form className="relative">
-              <input
-                type="email"
-                placeholder="Email address"
-                className="w-full bg-transparent border-b border-brand-cream/20 py-4 focus:outline-none focus:border-brand-peanut transition-colors"
-              />
-              <button
-                type="submit"
-                className="absolute right-0 bottom-4 text-[10px] font-bold uppercase tracking-widest hover:text-brand-peanut transition-colors"
-              >
-                Gabung
+            {/* Eksplorasi Col */}
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-peanut mb-8">Eksplorasi</h4>
+              <ul className="space-y-4">
+                {footer.exploration.map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-brand-cream/60 hover:text-brand-cream transition-colors text-sm font-light">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Pesan Col */}
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-peanut mb-8">Pesan</h4>
+              <p className="text-sm text-brand-cream/60 mb-8 font-light leading-relaxed">
+                Pesan siomay hangat untuk camilan, makan siang, atau acara keluarga.
+              </p>
+              <button className="w-full bg-brand-peanut text-brand-cream px-6 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-brand-cream hover:text-brand-dark transition-all duration-500 shadow-xl">
+                {footer.cta}
               </button>
-            </form>
+            </div>
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-brand-cream/10">
-          <p className="text-xs text-brand-cream/40 uppercase tracking-widest mb-4 md:mb-0">
-            © 2026 Sio Mei Babah Sapi. All rights reserved.
+          <p className="text-[10px] text-brand-cream/30 uppercase tracking-[0.2em] mb-4 md:mb-0">
+            {footer.copyright}
           </p>
-          <p className="text-xs text-brand-cream/40 uppercase tracking-widest">
-            Dibuat dengan Rasa, Disajikan dengan Hati
-          </p>
+          <div className="flex items-center gap-4">
+            <span className="h-[1px] w-8 bg-brand-cream/10" />
+            <p className="text-[10px] text-brand-cream/40 uppercase tracking-[0.2em]">
+              {footer.statement}
+            </p>
+          </div>
         </div>
       </div>
     </footer>

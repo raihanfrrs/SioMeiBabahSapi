@@ -4,31 +4,32 @@ export const siteContent = {
     { label: "Menu", href: "/foods" },
     { label: "Cerita Kami", href: "/mission" },
     { label: "Journal", href: "/journal" },
+    { label: "Kontak", href: "/contact" },
   ],
   hero: {
     title: "Siomay Sapi Premium, Gurihnya Bikin Balik Lagi.",
     subtitle: "Dibuat dari bahan pilihan, racikan bumbu khas, dan tekstur lembut yang siap menemani setiap momen makan Anda.",
     cta: "Lihat Menu Kami",
-    videoPlaceholder: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=1920", // Indonesian street food vibe
+    videoPlaceholder: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=1920",
   },
   scrollStoryItems: [
     {
       id: "step-1",
       title: "Bahan Pilihan",
       description: "Kami memilih bahan berkualitas untuk menghasilkan siomay sapi yang gurih, lembut, dan terasa nikmat di setiap gigitan.",
-      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=1200", // Quality ingredients
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=1200",
     },
     {
       id: "step-2",
       title: "Racikan Bumbu Khas",
       description: "Bumbu kacang diracik dengan rasa seimbang: gurih, sedikit manis, dan cocok dipadukan dengan siomay hangat.",
-      image: "https://images.unsplash.com/photo-1596797038530-2c39bb059a11?auto=format&fit=crop&q=80&w=1200", // Peanut sauce/spices
+      image: "https://images.unsplash.com/photo-1596797038530-2c39bb059a11?auto=format&fit=crop&q=80&w=1200",
     },
     {
       id: "step-3",
       title: "Siap Dinikmati",
       description: "Disajikan hangat dengan pelengkap pilihan agar pengalaman makan terasa lebih lengkap dan memuaskan.",
-      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=1200", // Steamy food
+      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=1200",
     },
   ],
   processSteps: [
@@ -80,33 +81,50 @@ export const siteContent = {
       { label: "Bahan", value: "Pilihan" },
     ],
   },
-  journalPosts: [
-    {
-      date: "Mei 12, 2026",
-      title: "Kenapa Siomay Sapi Punya Rasa yang Lebih Gurih?",
-      excerpt: "Mengenal karakter rasa siomay sapi dan alasan teksturnya terasa lebih mantap.",
-      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&q=80&w=600",
-    },
-    {
-      date: "April 28, 2026",
-      title: "Rahasia Bumbu Kacang yang Seimbang",
-      excerpt: "Bumbu kacang yang enak harus gurih, harum, sedikit manis, dan tidak berlebihan.",
-      image: "https://images.unsplash.com/photo-1532187875605-7fe3b05443d4?auto=format&fit=crop&q=80&w=600",
-    },
-    {
-      date: "Maret 15, 2026",
-      title: "Siomay sebagai Comfort Food Indonesia",
-      excerpt: "Mengapa siomay selalu cocok untuk camilan, makan siang, hingga acara keluarga.",
-      image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=600",
-    },
-  ],
-  footer: {
-    links: [
-      { label: "Kontak", href: "/contact" },
-      { label: "Pesan Sekarang", href: "/contact" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
+  journal: {
+    title: "Cerita dari Dapur Babah",
+    subtitle: "Inspirasi rasa, proses pembuatan, dan cerita di balik siomay sapi premium kami.",
+    posts: [
+      {
+        id: "post-1",
+        date: "Mei 12, 2026",
+        title: "Kenapa Siomay Sapi Punya Rasa yang Lebih Gurih?",
+        excerpt: "Siomay sapi punya karakter rasa yang lebih dalam, gurih, dan cocok dipadukan dengan bumbu kacang khas.",
+        image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&q=80&w=600",
+        alt: "Siomay sapi premium dengan bumbu kacang"
+      },
+      {
+        id: "post-2",
+        date: "April 28, 2026",
+        title: "Rahasia Bumbu Kacang yang Seimbang",
+        excerpt: "Bumbu kacang yang enak harus punya rasa gurih, sedikit manis, harum, dan tidak menutupi rasa siomay.",
+        image: "https://images.unsplash.com/photo-1532187875605-7fe3b05443d4?auto=format&fit=crop&q=80&w=600",
+        alt: "Bumbu kacang khas Sio Mei Babah Sapi"
+      },
+      {
+        id: "post-3",
+        date: "Maret 15, 2026",
+        title: "Siomay sebagai Comfort Food Indonesia",
+        excerpt: "Dari camilan sore sampai sajian keluarga, siomay selalu punya tempat khusus di lidah orang Indonesia.",
+        image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=600",
+        alt: "Paket siomay komplit siap disantap"
+      },
     ],
-    social: ["Instagram", "LinkedIn", "Twitter"],
+  },
+  footer: {
+    brand: "SIO MEI BABAH SAPI",
+    description: "Siomay sapi premium dengan rasa gurih, tekstur lembut, dan bumbu kacang khas yang dibuat untuk dinikmati kapan saja.",
+    address: "📍 Jl. Rasa Nikmat No. 88, Jakarta Selatan",
+    phone: "📞 WhatsApp: +62 812-3456-7890",
+    social: [
+      { label: "Instagram", href: "#" },
+      { label: "TikTok", href: "#" },
+      { label: "WhatsApp", href: "#" },
+    ],
+    menu: ["Siomay Sapi Original", "Paket Komplit Babah", "Siomay Sapi Spesial", "Bumbu Kacang Khas"],
+    exploration: ["Proses", "Menu", "Cerita Kami", "Journal", "Kontak"],
+    cta: "Pesan via WhatsApp",
+    statement: "Dibuat hangat, disajikan dengan hati.",
+    copyright: "© 2026 Sio Mei Babah Sapi. All rights reserved."
   },
 };

@@ -8,21 +8,29 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const JournalGrid = () => {
-  const { journalPosts } = siteContent;
+  const { journal } = siteContent;
 
   return (
-    <section className="py-24 bg-brand-cream border-t border-brand-dark/5">
-      <div className="container mx-auto px-6">
-        <div className="flex justify-between items-end mb-16">
-          <div>
-            <h2 className="text-5xl md:text-7xl font-editorial mb-4">Cerita dari Dapur Babah</h2>
-            <p className="text-xl text-brand-dark/60">Inspirasi, cerita rasa, dan proses di balik siomay favorit Anda.</p>
+    <section className="py-32 bg-brand-cream relative overflow-hidden">
+      {/* Subtle Bamboo Texture */}
+      <div className="absolute inset-0 bg-bamboo opacity-[0.03] z-0" />
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-5xl md:text-8xl font-editorial mb-6 text-brand-dark leading-none">
+              {journal.title}
+            </h2>
+            <p className="text-xl text-brand-dark/60 font-light leading-relaxed">
+              {journal.subtitle}
+            </p>
           </div>
           <Link
             href="/journal"
-            className="hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-brand-yellow transition-colors"
+            className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-peanut hover:text-brand-brown transition-colors group"
           >
-            Baca semua cerita <ArrowRight size={18} />
+            Baca Semua Cerita 
+            <ArrowRight size={16} className="transform group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>
 
@@ -31,28 +39,32 @@ const JournalGrid = () => {
           whileInView="animate"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3 gap-12"
+          className="grid grid-cols-1 md:grid-cols-3 gap-16"
         >
-          {journalPosts.map((post, i) => (
-            <motion.div key={i} variants={fadeInUp} className="group cursor-pointer">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl mb-6">
+          {journal.posts.map((post) => (
+            <motion.div key={post.id} variants={fadeInUp} className="group cursor-pointer">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[32px] mb-8 shadow-[0_20px_40px_rgba(42,33,28,0.05)] group-hover:shadow-[0_30px_60px_rgba(199,146,62,0.15)] transition-all duration-700">
                 <img
                   src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  alt={post.alt}
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/10 transition-colors duration-500" />
               </div>
-              <span className="text-xs font-bold text-brand-yellow uppercase tracking-widest mb-3 block">
-                {post.date}
-              </span>
-              <h3 className="text-2xl font-editorial mb-4 group-hover:text-brand-yellow transition-colors">
+              <div className="flex items-center gap-4 mb-4">
+                <span className="h-[1px] w-8 bg-brand-peanut/30" />
+                <span className="text-[10px] font-bold text-brand-peanut uppercase tracking-widest">
+                  {post.date}
+                </span>
+              </div>
+              <h3 className="text-3xl font-editorial mb-4 text-brand-dark group-hover:text-brand-peanut transition-colors duration-300 leading-tight">
                 {post.title}
               </h3>
-              <p className="text-brand-dark/60 font-light mb-6">
+              <p className="text-brand-dark/60 font-light mb-8 line-clamp-2 leading-relaxed">
                 {post.excerpt}
               </p>
-              <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest group-hover:gap-4 transition-all">
-                Selengkapnya <ArrowRight size={14} />
+              <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-brown group-hover:gap-4 transition-all duration-300">
+                Baca Cerita <ArrowRight size={14} />
               </span>
             </motion.div>
           ))}
