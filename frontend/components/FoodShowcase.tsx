@@ -37,24 +37,26 @@ const FoodShowcase = () => {
               variants={fadeInUp}
               className="group cursor-pointer"
             >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl mb-8">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] mb-8 shadow-[0_20px_50px_rgba(42,33,28,0.1)] group-hover:shadow-[0_40px_80px_rgba(199,146,62,0.2)] transition-all duration-500">
                 <img
                   src={food.image}
                   alt={food.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/20 transition-colors duration-500" />
-                <div className="absolute bottom-8 left-8 right-8">
-                  <span className="bg-brand-yellow text-brand-dark text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <span className="glass-card text-brand-dark text-xs font-bold uppercase tracking-widest px-8 py-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     Lihat Detail
                   </span>
                 </div>
               </div>
-              <h3 className="text-3xl font-editorial mb-2">{food.name}</h3>
-              <p className="text-brand-yellow font-bold uppercase tracking-widest text-xs mb-4">
+              <h3 className="text-4xl font-editorial mb-2 text-brand-dark group-hover:text-brand-peanut transition-colors duration-300">
+                {food.name}
+              </h3>
+              <p className="text-brand-peanut font-bold uppercase tracking-widest text-[10px] mb-4">
                 {food.tagline}
               </p>
-              <p className="text-brand-dark/70 font-light">
+              <p className="text-brand-dark/60 font-light leading-relaxed">
                 {food.description}
               </p>
             </motion.div>

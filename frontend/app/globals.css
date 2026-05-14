@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-cream: #FFF9EB;
-  --color-brand-yellow: #F7E47D;
-  --color-brand-dark: #1A1A1A;
-  --font-editorial: "Outfit", sans-serif;
+  --color-brand-cream: #FDF8EE;
+  --color-brand-peanut: #C7923E;
+  --color-brand-brown: #5B3A29;
+  --color-brand-dark: #2A211C;
+  --font-editorial: "Cormorant Garamond", serif;
   --font-body: "Inter", sans-serif;
 }
 
 :root {
-  --background: #FFF9EB;
-  --foreground: #1A1A1A;
+  --background: #FDF8EE;
+  --foreground: #2A211C;
 }
 
 * {
@@ -29,8 +30,31 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-editorial);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.1;
+}
+
+/* Subtle Bamboo Texture */
+.bg-bamboo {
+  background-image: radial-gradient(#C7923E 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.05;
+}
+
+/* Steam Animation */
+@keyframes steam {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+}
+
+.steam-particle {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  filter: blur(8px);
+  animation: steam 4s infinite linear;
 }
 
 .text-reveal {
@@ -49,23 +73,21 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-.parallax-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120%;
-  object-fit: cover;
-  z-index: -1;
+.glass-card {
+  background: rgba(253, 248, 238, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(199, 146, 62, 0.1);
 }
 
-.glass-nav {
-  background: rgba(255, 249, 235, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(26, 26, 26, 0.05);
+.section-gradient-top {
+  background: linear-gradient(to bottom, var(--background), transparent);
+}
+
+.section-gradient-bottom {
+  background: linear-gradient(to top, var(--background), transparent);
 }
 
 ::selection {
-  background-color: #F7E47D;
-  color: #1A1A1A;
+  background-color: #C7923E;
+  color: #FDF8EE;
 }

@@ -81,7 +81,7 @@ const ScrollStory = () => {
   return (
     <section ref={containerRef} className="bg-brand-dark text-brand-cream overflow-hidden">
       <div ref={triggerRef} className="h-screen flex flex-col md:flex-row relative">
-        {/* Left Side: Images */}
+        {/* Left Side: Images with Parallax overlay */}
         <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
           {items.map((item, i) => (
             <div
@@ -97,23 +97,31 @@ const ScrollStory = () => {
               <div className="absolute inset-0 bg-brand-dark/40" />
             </div>
           ))}
+          {/* Bamboo Overlay subtle */}
+          <div className="absolute inset-0 bg-bamboo opacity-[0.05] pointer-events-none" />
         </div>
 
-        {/* Right Side: Text */}
-        <div className="w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center p-8 md:p-24 relative">
+        {/* Right Side: Text with Cinematic Reveal */}
+        <div className="w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center p-8 md:p-24 relative bg-brand-dark">
           {items.map((item, i) => (
             <div
               key={item.id}
               id={`story-text-${i}`}
               className={`absolute max-w-lg ${i === 0 ? "opacity-100" : "opacity-0"}`}
             >
-              <span className="text-brand-yellow font-bold uppercase tracking-widest mb-4 block">
-                0{i + 1} / 0{items.length}
-              </span>
-              <h2 className="text-5xl md:text-7xl font-editorial mb-8">
+              <div className="overflow-hidden mb-6">
+                <span className="text-brand-peanut font-bold uppercase tracking-[0.3em] text-[10px] block mb-2">
+                  Babah Sapi Story
+                </span>
+                <div className="flex items-center gap-4">
+                  <span className="h-[1px] w-12 bg-brand-peanut/30" />
+                  <span className="text-brand-peanut font-editorial italic">0{i + 1}</span>
+                </div>
+              </div>
+              <h2 className="text-5xl md:text-8xl font-editorial mb-8 leading-none">
                 {item.title}
               </h2>
-              <p className="text-xl md:text-2xl font-light leading-relaxed text-brand-cream/80">
+              <p className="text-xl md:text-2xl font-light leading-relaxed text-brand-cream/70">
                 {item.description}
               </p>
             </div>

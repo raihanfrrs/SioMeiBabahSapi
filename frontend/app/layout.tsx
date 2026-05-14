@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Outfit, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-cormorant",
 });
 
 const inter = Inter({
@@ -14,7 +15,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Sio Mei Babah Sapi | Siomay Sapi Premium",
-  description: "Siomay sapi premium dengan rasa gurih, lembut, dan bumbu kacang khas yang dibuat untuk dinikmati kapan saja.",
+  description: "Siomay sapi premium dengan rasa gurih, lembut, dan bumbu kacang khas. Hangat, gurih, dan selalu bikin balik lagi.",
+  keywords: ["siomay sapi", "siomay premium", "kuliner indonesia", "babah sapi"],
+  themeColor: "#FDF8EE",
 };
 
 export default function RootLayout({
@@ -23,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${inter.variable}`}>
-      <body className="antialiased">
+    <html lang="id" className={`${cormorant.variable} ${inter.variable}`}>
+      <body className="antialiased selection:bg-brand-peanut selection:text-brand-cream">
         {children}
       </body>
     </html>

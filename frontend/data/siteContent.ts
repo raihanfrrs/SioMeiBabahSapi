@@ -16,19 +16,19 @@ export const siteContent = {
       id: "step-1",
       title: "Bahan Pilihan",
       description: "Kami memilih bahan berkualitas untuk menghasilkan siomay sapi yang gurih, lembut, dan terasa nikmat di setiap gigitan.",
-      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800", // Quality ingredients
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=1200", // Quality ingredients
     },
     {
       id: "step-2",
       title: "Racikan Bumbu Khas",
       description: "Bumbu kacang diracik dengan rasa seimbang: gurih, sedikit manis, dan cocok dipadukan dengan siomay hangat.",
-      image: "https://images.unsplash.com/photo-1596797038530-2c39bb059a11?auto=format&fit=crop&q=80&w=800", // Peanut sauce/spices
+      image: "https://images.unsplash.com/photo-1596797038530-2c39bb059a11?auto=format&fit=crop&q=80&w=1200", // Peanut sauce/spices
     },
     {
       id: "step-3",
       title: "Siap Dinikmati",
       description: "Disajikan hangat dengan pelengkap pilihan agar pengalaman makan terasa lebih lengkap dan memuaskan.",
-      image: "https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=800", // Steamy food
+      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=1200", // Steamy food
     },
   ],
   processSteps: [
@@ -53,21 +53,21 @@ export const siteContent = {
       id: "siomay-original",
       name: "Siomay Sapi Original",
       tagline: "Gurih, lembut, dan klasik.",
-      image: "https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600",
+      image: "https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=800",
       description: "Siomay sapi premium dengan rasa khas yang cocok untuk semua suasana.",
     },
     {
       id: "siomay-spesial",
       name: "Siomay Sapi Spesial",
       tagline: "Lebih kaya rasa, lebih puas.",
-      image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=600",
+      image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=800",
       description: "Porsi spesial dengan tambahan pelengkap dan bumbu kacang yang melimpah.",
     },
     {
       id: "paket-komplit",
       name: "Paket Komplit Babah",
       tagline: "Lengkap dalam satu porsi.",
-      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600",
+      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800",
       description: "Siomay, tahu, kentang, kol, telur, dan bumbu kacang khas.",
     },
   ],
@@ -85,19 +85,19 @@ export const siteContent = {
       date: "Mei 12, 2026",
       title: "Kenapa Siomay Sapi Punya Rasa yang Lebih Gurih?",
       excerpt: "Mengenal karakter rasa siomay sapi dan alasan teksturnya terasa lebih mantap.",
-      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&q=80&w=400",
+      image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&q=80&w=600",
     },
     {
       date: "April 28, 2026",
       title: "Rahasia Bumbu Kacang yang Seimbang",
       excerpt: "Bumbu kacang yang enak harus gurih, harum, sedikit manis, dan tidak berlebihan.",
-      image: "https://images.unsplash.com/photo-1532187875605-7fe3b05443d4?auto=format&fit=crop&q=80&w=400",
+      image: "https://images.unsplash.com/photo-1532187875605-7fe3b05443d4?auto=format&fit=crop&q=80&w=600",
     },
     {
       date: "Maret 15, 2026",
       title: "Siomay sebagai Comfort Food Indonesia",
       excerpt: "Mengapa siomay selalu cocok untuk camilan, makan siang, hingga acara keluarga.",
-      image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=400",
+      image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=600",
     },
   ],
   footer: {

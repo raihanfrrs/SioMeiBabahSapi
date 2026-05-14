@@ -21,12 +21,12 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "glass-nav py-4" : "bg-transparent py-6"
+        isScrolled ? "bg-brand-cream/80 backdrop-blur-md py-4 border-b border-brand-peanut/10" : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link href="/" className="text-xl md:text-2xl font-editorial font-bold tracking-tight">
-          SIO MEI BABAH SAPI<span className="text-brand-yellow">.</span>
+        <Link href="/" className="text-xl md:text-2xl font-editorial font-bold tracking-tight text-brand-dark">
+          SIO MEI BABAH SAPI<span className="text-brand-peanut">.</span>
         </Link>
 
         {/* Desktop Menu */}
@@ -35,14 +35,14 @@ const Navbar = () => {
             <Link
               key={item.label}
               href={item.href}
-              className="text-sm font-medium uppercase tracking-widest hover:text-brand-yellow transition-colors"
+              className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-dark/60 hover:text-brand-peanut transition-colors"
             >
               {item.label}
             </Link>
           ))}
           <Link
             href="/contact"
-            className="bg-brand-dark text-brand-cream px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-brand-yellow hover:text-brand-dark transition-all duration-300"
+            className="bg-brand-brown text-brand-cream px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-brand-peanut transition-all duration-300 shadow-lg"
           >
             Pesan Sekarang
           </Link>
@@ -71,7 +71,7 @@ const Navbar = () => {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-3xl font-editorial font-bold hover:text-brand-yellow"
+                className="text-4xl font-editorial font-bold text-brand-dark hover:text-brand-peanut"
               >
                 {item.label}
               </Link>
@@ -79,7 +79,7 @@ const Navbar = () => {
             <Link
               href="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="bg-brand-dark text-brand-cream px-10 py-4 rounded-full text-lg font-bold uppercase tracking-widest"
+              className="bg-brand-brown text-brand-cream px-10 py-4 rounded-full text-lg font-bold uppercase tracking-widest shadow-xl"
             >
               Pesan Sekarang
             </Link>
