@@ -13,8 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Sio Mei Babah Sapi | Real Fats. No Animals.",
-  description: "Deliciously sustainable fats created through carbon transformation, not agriculture. Inspired by Savor.",
+  title: "Sio Mei Babah Sapi | Siomay Sapi Premium",
+  description: "Siomay sapi premium dengan rasa gurih, lembut, dan bumbu kacang khas yang dibuat untuk dinikmati kapan saja.",
 };
 
 export default function RootLayout({

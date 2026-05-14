@@ -15,7 +15,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black/30 z-10" />
         <img
           src={hero.videoPlaceholder}
-          alt="Sustainability Visual"
+          alt="Siomay Sapi Premium"
           className="w-full h-full object-cover"
         />
       </div>

@@ -15,14 +15,14 @@ const JournalGrid = () => {
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-end mb-16">
           <div>
-            <h2 className="text-5xl md:text-7xl font-editorial mb-4">Journal</h2>
-            <p className="text-xl text-brand-dark/60">Stories from the frontier of food tech.</p>
+            <h2 className="text-5xl md:text-7xl font-editorial mb-4">Cerita dari Dapur Babah</h2>
+            <p className="text-xl text-brand-dark/60">Inspirasi, cerita rasa, dan proses di balik siomay favorit Anda.</p>
           </div>
           <Link
             href="/journal"
             className="hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-brand-yellow transition-colors"
           >
-            Read all posts <ArrowRight size={18} />
+            Baca semua cerita <ArrowRight size={18} />
           </Link>
         </div>
 
@@ -52,7 +52,7 @@ const JournalGrid = () => {
                 {post.excerpt}
               </p>
               <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest group-hover:gap-4 transition-all">
-                Read More <ArrowRight size={14} />
+                Selengkapnya <ArrowRight size={14} />
               </span>
             </motion.div>
           ))}

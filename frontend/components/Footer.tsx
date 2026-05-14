@@ -13,11 +13,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
           {/* Brand Col */}
           <div className="md:col-span-2">
-            <Link href="/" className="text-4xl font-editorial font-bold tracking-tight mb-8 block">
-              SAVOR<span className="text-brand-yellow">.</span>
+            <Link href="/" className="text-3xl md:text-4xl font-editorial font-bold tracking-tight mb-8 block">
+              SIO MEI BABAH SAPI<span className="text-brand-yellow">.</span>
             </Link>
             <p className="text-xl text-brand-cream/60 max-w-sm mb-12 font-light">
-              Designing the future of food, one molecule at a time. Join us in our mission to save the planet without losing the flavor.
+              Siomay sapi premium dengan rasa gurih, lembut, dan bumbu kacang khas yang dibuat untuk dinikmati kapan saja.
             </p>
             <div className="flex gap-6">
               {footer.social.map((s) => (
@@ -81,10 +81,10 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-brand-cream/10">
           <p className="text-xs text-brand-cream/40 uppercase tracking-widest mb-4 md:mb-0">
-            © {new Date().getFullYear()} Savor Food Technologies Inc.
+            © 2026 Sio Mei Babah Sapi. All rights reserved.
           </p>
           <p className="text-xs text-brand-cream/40 uppercase tracking-widest">
-            Handcrafted with Care for the Planet
+            Dibuat dengan Rasa, Disajikan dengan Hati
           </p>
         </div>
       </div>

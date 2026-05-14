@@ -25,8 +25,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-editorial font-bold tracking-tight">
-          SAVOR<span className="text-brand-yellow">.</span>
+        <Link href="/" className="text-xl md:text-2xl font-editorial font-bold tracking-tight">
+          SIO MEI BABAH SAPI<span className="text-brand-yellow">.</span>
         </Link>
 
         {/* Desktop Menu */}
@@ -44,7 +44,7 @@ const Navbar = () => {
             href="/contact"
             className="bg-brand-dark text-brand-cream px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-brand-yellow hover:text-brand-dark transition-all duration-300"
           >
-            Get in touch
+            Pesan Sekarang
           </Link>
         </div>
 
@@ -81,7 +81,7 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
               className="bg-brand-dark text-brand-cream px-10 py-4 rounded-full text-lg font-bold uppercase tracking-widest"
             >
-              Get in touch
+              Pesan Sekarang
             </Link>
           </motion.div>
         )}

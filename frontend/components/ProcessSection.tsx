@@ -20,13 +20,13 @@ const ProcessSection = () => {
             className="w-full md:w-1/2"
           >
             <h2 className="text-5xl md:text-7xl font-editorial mb-8">
-              From everyday ingredients to future-ready foods.
+              Dari resep sederhana menjadi rasa yang selalu dirindukan.
             </h2>
             <p className="text-xl text-brand-dark/70 mb-12 font-light leading-relaxed">
-              We've reimagined the way food is made. By using science to mirror nature, we create fats that are identical in every way, except for the footprint they leave behind.
+              Sio Mei Babah Sapi hadir untuk membawa siomay ke level yang lebih premium, tetap familiar, tapi punya karakter rasa yang kuat dan berbeda.
             </p>
             <button className="border-2 border-brand-dark px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-brand-dark hover:text-brand-cream transition-all duration-300">
-              Learn the science
+              Kenali Proses Kami
             </button>
           </motion.div>
 

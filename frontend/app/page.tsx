@@ -15,7 +15,7 @@ export default function Home() {
       <Hero />
       
       <section className="bg-brand-cream">
-        <MarqueeText text="No Animals • No Antibiotics • No Hormones • No Farmland • No Fertilizers" />
+        <MarqueeText text="Siomay Sapi • Bumbu Kacang Gurih • Tekstur Lembut • Rasa Premium • Fresh Setiap Hari" />
       </section>
 
       <ScrollStory />
@@ -27,10 +27,10 @@ export default function Home() {
       <section className="py-24 bg-brand-yellow flex items-center justify-center text-center">
         <div className="container mx-auto px-6">
           <h2 className="text-5xl md:text-8xl font-editorial mb-12 max-w-5xl mx-auto">
-            Made without animals, farmland, or fertilizers.
+            Dibuat dengan rasa, disajikan dengan hati.
           </h2>
           <button className="bg-brand-dark text-brand-cream px-12 py-5 rounded-full text-lg font-bold uppercase tracking-widest hover:scale-105 transition-all">
-            Join the Revolution
+            Pesan Sekarang
           </button>
         </div>
       </section>
