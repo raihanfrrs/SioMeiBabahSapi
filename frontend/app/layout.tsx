@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "Sio Mei Babah Sapi | Siomay Sapi Premium",
   description: "Siomay sapi premium dengan rasa gurih, lembut, dan bumbu kacang khas. Hangat, gurih, dan selalu bikin balik lagi.",
   keywords: ["siomay sapi", "siomay premium", "kuliner indonesia", "babah sapi"],
+};
+
+export const viewport: Viewport = {
   themeColor: "#FDF8EE",
 };
 
