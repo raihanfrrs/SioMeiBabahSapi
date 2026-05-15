@@ -13,8 +13,10 @@ export default function Home() {
       <Hero />
       <div className="h-[40px] md:h-[75px] bg-brand-cream w-full" />
       <CraftSection />
+      <div className="h-[50px] w-full bg-brand-cream" />
       <CinematicProcess />
       <FoodShowcase />
+      <div className="h-[50px] w-full bg-brand-cream" />
       <Footer />
     </main>
   );
