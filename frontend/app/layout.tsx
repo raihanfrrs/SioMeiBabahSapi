@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="id" className={`${cormorant.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="antialiased selection:bg-brand-peanut selection:text-brand-cream">
         <CustomCursor />
         <SmoothScroll>
