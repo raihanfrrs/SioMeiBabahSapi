@@ -68,18 +68,21 @@ export const siteContent = {
       title: "Materi Terbaik",
       description: "Hanya daging sapi segar dari peternakan lokal yang terpilih.",
       image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200",
+      video: "",
     },
     {
       id: 2,
       title: "Tanpa Pengawet",
       description: "Kami percaya pada kemurnian rasa tanpa bahan kimia tambahan.",
       image: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&q=80&w=1200",
+      video: "",
     },
     {
       id: 3,
       title: "Resep Warisan",
       description: "Kombinasi rempah yang diturunkan selama tiga generasi.",
       image: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&q=80&w=1200",
+      video: "",
     }
   ],
   journal: {
