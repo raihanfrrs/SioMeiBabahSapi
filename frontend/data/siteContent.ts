@@ -36,6 +36,32 @@ export const siteContent = {
       description: "Bumbu kacang rahasia Babah Sapi dengan rempah pilihan.",
     },
   ],
+  processSteps: [
+    {
+      number: "01",
+      title: "Seleksi Daging Sapi",
+      text: "Kami hanya menggunakan daging sapi premium dengan proporsi lemak yang tepat untuk tekstur juicy.",
+      video: "https://player.vimeo.com/external/494163965.sd.mp4?s=52127de9a30f38b556b106411d940b54060b9333&profile_id=165",
+    },
+    {
+      number: "02",
+      title: "Pengadonan Tradisional",
+      text: "Daging dicincang kasar dan dicampur dengan bumbu rahasia Babah Sapi secara perlahan.",
+      video: "https://player.vimeo.com/external/494163965.sd.mp4?s=52127de9a30f38b556b106411d940b54060b9333&profile_id=165",
+    },
+    {
+      number: "03",
+      title: "Teknik Melipat Tangan",
+      text: "Setiap butir siomay dibentuk dan dilipat secara manual untuk menjaga kualitas tekstur kulit.",
+      video: "https://player.vimeo.com/external/494163965.sd.mp4?s=52127de9a30f38b556b106411d940b54060b9333&profile_id=165",
+    },
+    {
+      number: "04",
+      title: "Pengukusan Presisi",
+      text: "Dikukus dalam suhu yang dikontrol ketat untuk memastikan kematangan merata tanpa merusak nutrisi.",
+      video: "https://player.vimeo.com/external/494163965.sd.mp4?s=52127de9a30f38b556b106411d940b54060b9333&profile_id=165",
+    },
+  ],
   footer: {
     social: [
       { label: "Instagram", href: "#" },
