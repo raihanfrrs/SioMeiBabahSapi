@@ -43,6 +43,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
+.editorial-xl {
+  font-family: var(--font-editorial);
+  font-size: clamp(2.5rem, 6vw, 7rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
 .ui-label {
   font-family: var(--font-body);
   font-size: 10px;

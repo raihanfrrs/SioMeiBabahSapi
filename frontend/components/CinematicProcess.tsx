@@ -54,31 +54,53 @@ const CinematicProcess = () => {
   }, [processSteps]);
 
   return (
-    <section id="proses" ref={containerRef} className="relative py-32 bg-brand-cream overflow-hidden">
-      <div className="container mx-auto px-6 relative">
+    <section id="proses" ref={containerRef} className="relative py-32 bg-brand-cream overflow-hidden flex justify-center">
+      <div className="max-w-7xl w-full px-6 md:px-12 lg:px-20 relative">
         <div className="max-w-6xl mx-auto text-center mb-64">
           <span className="ui-label mb-8 block">Our Craftsmanship</span>
-          <h2 className="editorial-xl text-brand-dark">
+          <h2 className="font-editorial text-6xl md:text-8xl text-brand-dark leading-[0.95] tracking-tight">
             Seni Membuat <br /> <span className="italic text-brand-peanut">Siomay Sempurna.</span>
           </h2>
         </div>
 
         <div className="relative max-w-6xl mx-auto">
-          {/* Central Connecting Line */}
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1px] h-full bg-brand-peanut/20 z-0 hidden md:block">
-            <div className="process-line w-full bg-brand-peanut origin-top" />
+          {/* Winding Connecting Line (SVG) */}
+          <div className="absolute left-0 top-0 w-full h-full z-0 hidden md:block pointer-events-none">
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 400 1200"
+              fill="none"
+              preserveAspectRatio="none"
+              className="opacity-30"
+            >
+              <motion.path
+                d="M 350 80 
+                   C 350 250, 50 250, 50 400 
+                   C 50 550, 350 550, 350 700 
+                   C 350 850, 50 850, 50 1000"
+                stroke="#C7923E"
+                strokeWidth="1.5"
+                strokeDasharray="8 12"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: false, amount: 0.1 }}
+                transition={{ duration: 3, ease: "easeInOut" }}
+              />
+            </svg>
           </div>
 
-          <div className="space-y-64 md:space-y-96">
+          <div>
             {processSteps.map((step, i) => (
               <div 
                 key={step.number} 
+                style={{ marginBottom: '60vh' }}
                 className={`process-step-${i} relative flex flex-col md:flex-row items-center gap-12 md:gap-24 z-10 ${
                   i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
                 {/* Media Container */}
-                <div className="w-full md:w-3/5 aspect-video md:aspect-[16/10] rounded-[60px] overflow-hidden shadow-2xl relative group">
+                <div className="w-full md:w-3/5 aspect-video md:aspect-[16/10] rounded-[60px] overflow-hidden shadow-2xl relative group z-20">
                   <video
                     src={step.video}
                     autoPlay
