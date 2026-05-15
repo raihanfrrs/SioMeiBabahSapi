@@ -62,6 +62,56 @@ export const siteContent = {
       video: "https://player.vimeo.com/external/494163965.sd.mp4?s=52127de9a30f38b556b106411d940b54060b9333&profile_id=165",
     },
   ],
+  scrollStoryItems: [
+    {
+      id: 1,
+      title: "Materi Terbaik",
+      description: "Hanya daging sapi segar dari peternakan lokal yang terpilih.",
+      image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200",
+    },
+    {
+      id: 2,
+      title: "Tanpa Pengawet",
+      description: "Kami percaya pada kemurnian rasa tanpa bahan kimia tambahan.",
+      image: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&q=80&w=1200",
+    },
+    {
+      id: 3,
+      title: "Resep Warisan",
+      description: "Kombinasi rempah yang diturunkan selama tiga generasi.",
+      image: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&q=80&w=1200",
+    }
+  ],
+  journal: {
+    title: "Jurnal Babah Sapi",
+    subtitle: "Cerita tentang dedikasi, warisan rasa, dan filosofi di balik setiap butir siomay kami.",
+    posts: [
+      {
+        id: 1,
+        title: "Perjalanan Menemukan Tekstur Sempurna",
+        excerpt: "Bagaimana kami bereksperimen selama berbulan-bulan untuk mendapatkan kekenyalan yang pas.",
+        date: "15 MEI 2026",
+        image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=800",
+        alt: "Proses pembuatan siomay",
+      },
+      {
+        id: 2,
+        title: "Rahasia di Balik Saus Kacang yang Autentik",
+        excerpt: "Mengapa kacang tanah sangrai dan rempah pilihan adalah kunci dari kelezatan saus kami.",
+        date: "10 MEI 2026",
+        image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=800",
+        alt: "Saus kacang tradisional",
+      },
+      {
+        id: 3,
+        title: "Warisan Resep dari Generasi ke Generasi",
+        excerpt: "Menjaga keaslian rasa di tengah gempuran tren kuliner modern.",
+        date: "05 MEI 2026",
+        image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=800",
+        alt: "Resep warisan keluarga",
+      },
+    ],
+  },
   footer: {
     social: [
       { label: "Instagram", href: "#" },
