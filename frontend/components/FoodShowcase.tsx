@@ -10,7 +10,7 @@ const FoodShowcase = () => {
   const { foods } = siteContent;
 
   return (
-    <section id="foods" className="py-48 bg-brand-cream border-t border-brand-dark/5 flex justify-center">
+    <section id="foods" className="pt-48 pb-32 bg-brand-cream border-t border-brand-dark/5 flex justify-center mb-20">
       <div className="max-w-7xl w-full px-6 md:px-12 lg:px-20">
         {/* Header */}
         <div className="flex justify-between items-baseline mb-24 border-b border-brand-dark/5 pb-8">

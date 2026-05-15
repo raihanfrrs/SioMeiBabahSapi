@@ -16,7 +16,7 @@ export default function Home() {
       <div className="h-[50px] w-full bg-brand-cream" />
       <CinematicProcess />
       <FoodShowcase />
-      <div className="h-[50px] w-full bg-brand-cream" />
+      <div className="h-[100px] w-full bg-brand-cream" />
       <Footer />
     </main>
   );

@@ -88,12 +88,9 @@ const CinematicProcess = () => {
                 >
                   {/* Media Container */}
                   <div className="w-full md:w-3/5 aspect-video md:aspect-[16/10] rounded-[60px] overflow-hidden shadow-2xl relative group z-20">
-                    <video
-                      src={step.video}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
+                    <img
+                      src={step.image}
+                      alt={step.title}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-brand-dark/0 transition-colors duration-500" />

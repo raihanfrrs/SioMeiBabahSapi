@@ -8,10 +8,13 @@ const Footer = () => {
   const { footer, navigation } = siteContent;
 
   return (
-    <footer className="bg-brand-cream pt-32 pb-12 flex justify-center">
-      <div className="max-w-7xl w-full px-6 md:px-12 lg:px-20 flex flex-col gap-24">
+    <footer className="bg-brand-beige pb-12 flex flex-col items-center">
+      {/* Explicit Top Spacer to avoid content sticking to the edge */}
+      <div className="h-[150px] w-full" />
+      
+      <div className="max-w-7xl w-full px-6 md:px-12 lg:px-20 flex flex-col gap-24 pt-[25px]">
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-16 pt-20">
           {/* Brand Column */}
           <div className="lg:col-span-2 flex flex-col gap-10">
             <h2 className="text-5xl md:text-6xl font-editorial font-medium text-brand-dark">babah sapi</h2>
