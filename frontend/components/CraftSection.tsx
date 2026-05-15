@@ -6,8 +6,8 @@ import Link from "next/link";
 
 const CraftSection = () => {
   return (
-    <section className="bg-brand-cream pt-24 pb-48 border-t border-brand-dark/5 flex justify-center">
-      <div className="max-w-7xl w-full px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+    <section className="bg-brand-cream pt-24 md:pt-24 pb-32 md:pb-48 border-t border-brand-dark/5 flex justify-center">
+      <div className="max-w-7xl w-full px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}

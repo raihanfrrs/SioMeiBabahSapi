@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-16">
           {/* Brand Column */}
           <div className="lg:col-span-2 flex flex-col gap-10">
-            <h2 className="text-6xl font-editorial font-medium text-brand-dark">Savor</h2>
+            <h2 className="text-5xl md:text-6xl font-editorial font-medium text-brand-dark">babah sapi</h2>
             <p className="text-sm text-brand-dark/40 leading-relaxed max-w-xs font-medium">
               {footer.statement}
             </p>

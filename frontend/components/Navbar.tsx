@@ -19,11 +19,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 py-10 flex justify-center">
+    <nav className="fixed top-0 left-0 w-full z-50 py-6 md:py-10 flex justify-center">
       <div className="max-w-7xl w-full px-6 md:px-12 lg:px-20 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="text-3xl font-editorial font-medium tracking-tight text-brand-dark">
-          savor
+        <Link href="/" className="text-2xl md:text-3xl font-editorial font-medium tracking-tight text-brand-dark">
+          babah sapi
         </Link>
 
         {/* Desktop Menu - Centered */}

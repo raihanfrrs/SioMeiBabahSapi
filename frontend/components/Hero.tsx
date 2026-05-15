@@ -8,7 +8,7 @@ const Hero = () => {
   const { hero } = siteContent;
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden mb-80">
+    <section className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden mb-20 md:mb-80">
       {/* Background Image Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -19,7 +19,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
-      <div className="relative z-10 max-w-7xl w-full px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-12 items-end gap-12 pb-48">
+      <div className="relative z-10 max-w-7xl w-full px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-12 items-center md:items-end gap-16 md:gap-12 pb-32 md:pb-48">
         {/* Left Side - Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

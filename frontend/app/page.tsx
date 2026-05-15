@@ -11,7 +11,7 @@ export default function Home() {
       <Navbar />
       
       <Hero />
-      <div style={{ height: '75px' }} className="bg-brand-cream w-full" />
+      <div className="h-[40px] md:h-[75px] bg-brand-cream w-full" />
       <CraftSection />
       <CinematicProcess />
       <FoodShowcase />

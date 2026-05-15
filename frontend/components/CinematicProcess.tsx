@@ -16,21 +16,6 @@ const CinematicProcess = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Dashed line animation
-      gsap.fromTo(
-        ".process-line",
-        { height: 0 },
-        {
-          height: "100%",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 20%",
-            end: "bottom 80%",
-            scrub: 1,
-          },
-        }
-      );
-
       // Card reveals
       processSteps.forEach((_, i) => {
         gsap.fromTo(
@@ -94,8 +79,7 @@ const CinematicProcess = () => {
             {processSteps.map((step, i) => (
               <div 
                 key={step.number} 
-                style={{ marginBottom: '60vh' }}
-                className={`process-step-${i} relative flex flex-col md:flex-row items-center gap-12 md:gap-24 z-10 ${
+                className={`process-step-${i} pb-20 md:pb-[100px] relative flex flex-col md:flex-row items-center gap-12 md:gap-24 z-10 ${
                   i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
