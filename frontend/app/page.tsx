@@ -11,12 +11,17 @@ export default function Home() {
       <Navbar />
       
       <Hero />
-      <div className="h-[40px] md:h-[75px] bg-brand-cream w-full" />
+      <div className="h-[40px] md:h-[80px] bg-brand-cream w-full" />
+      
       <CraftSection />
-      <div className="h-[50px] w-full bg-brand-cream" />
+      <div className="h-[40px] md:h-[80px] bg-brand-cream w-full" />
+      
       <CinematicProcess />
+      <div className="h-[60px] md:h-[120px] bg-brand-cream w-full" />
+      
       <FoodShowcase />
-      <div className="h-[100px] w-full bg-brand-cream" />
+      <div className="h-[40px] md:h-[80px] bg-brand-cream w-full" />
+      
       <Footer />
     </main>
   );

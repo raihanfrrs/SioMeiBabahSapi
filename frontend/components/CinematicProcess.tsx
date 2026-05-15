@@ -39,28 +39,28 @@ const CinematicProcess = () => {
   }, [processSteps]);
 
   return (
-    <section id="proses" ref={containerRef} className="relative py-32 bg-brand-cream overflow-hidden flex justify-center">
+    <section id="proses" ref={containerRef} className="relative py-24 md:py-32 bg-brand-cream overflow-hidden flex justify-center">
       <div className="max-w-7xl w-full px-6 md:px-12 lg:px-20 relative">
         <div className="max-w-6xl mx-auto text-center">
-          <span className="ui-label mb-8 block">Our Craftsmanship</span>
-          <h2 className="font-editorial text-6xl md:text-8xl text-brand-dark leading-[0.95] tracking-tight">
+          <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-dark/30 mb-6 block">Our Craftsmanship</span>
+          <h2 className="font-editorial text-4xl sm:text-5xl md:text-8xl text-brand-dark leading-[1] tracking-tight">
             Seni Membuat <br /> <span className="italic text-brand-peanut">Siomay Sempurna.</span>
           </h2>
         </div>
 
         {/* Dedicated Header Spacer */}
-        <div className="h-[100px] w-full" />
+        <div className="h-[60px] md:h-[100px] w-full" />
 
         <div className="relative max-w-6xl mx-auto">
-          {/* Winding Connecting Line (SVG) */}
-          <div className="absolute left-0 top-0 w-full h-full z-0 hidden md:block pointer-events-none">
+          {/* Winding Connecting Line (SVG) - Hidden on Mobile */}
+          <div className="absolute left-0 top-0 w-full h-full z-0 hidden lg:block pointer-events-none">
             <svg
               width="100%"
               height="100%"
               viewBox="0 0 400 1200"
               fill="none"
               preserveAspectRatio="none"
-              className="opacity-30"
+              className="opacity-20"
             >
               <motion.path
                 d="M 350 80 
@@ -68,7 +68,7 @@ const CinematicProcess = () => {
                    C 50 550, 350 550, 350 700 
                    C 350 850, 50 850, 50 1000"
                 stroke="#C7923E"
-                strokeWidth="1.5"
+                strokeWidth="1"
                 strokeDasharray="8 12"
                 initial={{ pathLength: 0 }}
                 whileInView={{ pathLength: 1 }}
@@ -78,48 +78,47 @@ const CinematicProcess = () => {
             </svg>
           </div>
 
-          <div>
+          <div className="space-y-12 md:space-y-0">
             {processSteps.map((step, i) => (
               <React.Fragment key={step.number}>
                 <div 
-                  className={`process-step-${i} relative flex flex-col md:flex-row items-center gap-12 md:gap-24 z-10 ${
+                  className={`process-step-${i} relative flex flex-col md:flex-row items-center gap-8 md:gap-24 z-10 ${
                     i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
                   {/* Media Container */}
-                  <div className="w-full md:w-3/5 aspect-video md:aspect-[16/10] rounded-[60px] overflow-hidden shadow-2xl relative group z-20">
+                  <div className="w-full md:w-3/5 aspect-square md:aspect-[16/10] rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl relative group z-20">
                     <img
                       src={step.image}
                       alt={step.title}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-brand-dark/0 transition-colors duration-500" />
-                    <div className="absolute top-10 left-10 bg-brand-cream/90 backdrop-blur-md px-8 py-3 rounded-full text-brand-peanut font-bold text-sm tracking-widest shadow-2xl">
+                    <div className="absolute top-6 left-6 md:top-10 md:left-10 bg-brand-cream/90 backdrop-blur-md px-6 md:px-8 py-2 md:py-3 rounded-full text-brand-peanut font-bold text-[10px] md:text-sm tracking-widest shadow-2xl">
                       Step {step.number}
                     </div>
                   </div>
 
                   {/* Text Content */}
-                  <div className="w-full md:w-2/5 text-left space-y-10 px-6">
-                    <h3 className="text-5xl md:text-7xl font-editorial text-brand-dark leading-tight">
+                  <div className="w-full md:w-2/5 text-center md:text-left space-y-6 md:space-y-10 px-4 md:px-6">
+                    <h3 className="text-3xl sm:text-4xl md:text-7xl font-editorial text-brand-dark leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-2xl text-brand-dark/50 font-light leading-relaxed">
+                    <p className="text-base sm:text-lg md:text-2xl text-brand-dark/50 font-light leading-relaxed max-w-md mx-auto md:mx-0">
                       {step.text}
                     </p>
                     <motion.div 
                       initial={{ width: 0 }}
-                      whileInView={{ width: "100px" }}
-                      className="h-[1px] bg-brand-peanut/40" 
+                      whileInView={{ width: "80px" }}
+                      className="h-[1px] bg-brand-peanut/40 mx-auto md:mx-0" 
                     />
                   </div>
                   
                   {/* Visual anchor point for the line */}
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-brand-peanut rounded-full z-20 hidden md:block shadow-[0_0_20px_rgba(199,146,62,0.5)]" />
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-brand-peanut rounded-full z-20 hidden lg:block shadow-[0_0_20px_rgba(199,146,62,0.5)]" />
                 </div>
                 {/* Guaranteed Vertical Spacer */}
-                <div className="h-[150px] w-full hidden md:block" />
-                <div className="h-[80px] w-full md:hidden" />
+                <div className="h-[80px] md:h-[150px] w-full" />
               </React.Fragment>
             ))}
           </div>
