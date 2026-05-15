@@ -19,12 +19,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 flex justify-center ${
-      isScrolled ? "bg-brand-cream/80 backdrop-blur-lg py-4 shadow-sm" : "py-6 md:py-10"
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      isScrolled ? "bg-brand-cream/90 backdrop-blur-lg py-4 shadow-sm text-brand-dark" : "pt-5 px-5 lg:py-10 text-white lg:text-brand-dark"
     }`}>
-      <div className="max-w-7xl w-full px-6 md:px-12 lg:px-20 flex justify-between items-center">
+      <div className="w-full lg:max-w-7xl mx-auto lg:px-20 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="text-xl md:text-3xl font-editorial font-medium tracking-tight text-brand-dark">
+        <Link href="/" className={`text-3xl lg:text-3xl font-editorial font-medium tracking-tight ${isScrolled ? "text-brand-dark" : "text-white lg:text-brand-dark"}`}>
           babah sapi
         </Link>
 
@@ -34,30 +34,33 @@ const Navbar = () => {
             <Link
               key={item.label}
               href={item.href}
-              className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-dark/60 hover:text-brand-dark transition-colors"
+              className={`text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors ${isScrolled ? "text-brand-dark/60 hover:text-brand-dark" : "text-brand-dark/60 hover:text-brand-dark"}`}
             >
               {item.label}
             </Link>
           ))}
         </div>
 
-        {/* Right Action */}
-        <div className="hidden md:block">
-          <Link
-            href="/#episode"
-            className="border border-brand-dark/20 px-6 py-2.5 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-brand-dark hover:text-brand-cream transition-all duration-300"
-          >
-            Watch Episode
-          </Link>
-        </div>
+        {/* Right Action - Mobile Menu & Desktop Button */}
+        <div className="flex items-center gap-4">
+          <div className="hidden lg:block">
+            <Link
+              href="/#episode"
+              className={`border px-6 py-2.5 rounded-sm text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${isScrolled ? "border-brand-dark/20 hover:bg-brand-dark hover:text-brand-cream" : "border-brand-dark/20 hover:bg-brand-dark hover:text-brand-cream"}`}
+            >
+              Watch Episode
+            </Link>
+          </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="lg:hidden p-2 -mr-2 text-brand-dark focus:outline-none"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+          {/* Mobile Menu Toggle */}
+          <button
+            className={`lg:hidden focus:outline-none flex items-center gap-2 ${isScrolled ? "text-brand-dark" : "text-white"}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <span className="text-sm font-semibold tracking-wide">Menu</span>
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}

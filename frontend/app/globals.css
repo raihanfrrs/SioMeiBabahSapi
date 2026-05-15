@@ -136,3 +136,13 @@ body::after {
   background-color: #C7923E;
   color: #FDF8EE;
 }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

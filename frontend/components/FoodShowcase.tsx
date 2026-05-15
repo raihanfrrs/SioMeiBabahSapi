@@ -25,34 +25,38 @@ const FoodShowcase = () => {
           </Link>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-12">
-          {foods.map((food) => (
-            <motion.div
-              key={food.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="flex flex-col gap-6 md:gap-10 group cursor-pointer"
-            >
-              <div className="relative aspect-[4/5] rounded-[30px] md:rounded-none overflow-hidden bg-brand-beige">
-                <img
-                  src={food.image}
-                  alt={food.name}
-                  className="w-full h-full object-cover grayscale-[0.2] transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
-                />
-              </div>
-              <div className="flex flex-col gap-2 md:gap-3 px-2 md:px-0">
-                <h3 className="text-2xl md:text-3xl font-editorial font-medium text-brand-dark">
-                  {food.name}
-                </h3>
-                <p className="text-[10px] md:text-[11px] font-bold text-brand-dark/30 uppercase tracking-[0.2em]">
-                  {food.price}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+        {/* Grid / Carousel Container */}
+        <div className="relative -mx-6 md:-mx-12 lg:mx-0 overflow-hidden">
+          <div className="flex lg:grid lg:grid-cols-3 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory no-scrollbar gap-6 md:gap-12 pb-12 px-6 md:px-12 lg:px-0 scroll-px-6 md:scroll-px-12 lg:scroll-px-0">
+            {foods.map((food) => (
+              <motion.div
+                key={food.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="min-w-[82%] sm:min-w-[46%] lg:min-w-0 snap-start flex flex-col gap-6 md:gap-10 group cursor-pointer"
+              >
+                <div className="relative aspect-[4/5] rounded-[40px] md:rounded-none overflow-hidden bg-brand-beige">
+                  <img
+                    src={food.image}
+                    alt={food.name}
+                    className="w-full h-full object-cover grayscale-[0.2] transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-col gap-2 md:gap-3 px-2 md:px-0">
+                  <h3 className="text-2xl md:text-3xl font-editorial font-medium text-brand-dark">
+                    {food.name}
+                  </h3>
+                  <p className="text-[10px] md:text-[11px] font-bold text-brand-dark/30 uppercase tracking-[0.2em]">
+                    {food.price}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+            {/* End spacer for carousel on mobile/tablet to ensure final item doesn't cut off */}
+            <div className="min-w-[1px] h-full lg:hidden" aria-hidden="true" />
+          </div>
         </div>
 
         {/* Mobile View Shop Link */}
