@@ -30,16 +30,18 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-10">
-          {siteContent.navigation.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-dark/60 hover:text-brand-peanut transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="hidden md:flex items-center gap-12">
+          <div className="flex items-center gap-10">
+            {siteContent.navigation.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="ui-label text-brand-dark/60 hover:text-brand-peanut transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
           <Link
             href="/contact"
             className="bg-brand-brown text-brand-cream px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-brand-peanut transition-all duration-300 shadow-lg"

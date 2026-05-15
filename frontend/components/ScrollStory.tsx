@@ -3,6 +3,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 import { siteContent } from "@/data/siteContent";
 
 if (typeof window !== "undefined") {
@@ -16,31 +17,29 @@ const ScrollStory = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Pinning the section
       const pin = gsap.to(triggerRef.current, {
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top top",
-          end: `+=${items.length * 100}%`,
+          end: `+=${items.length * 150}%`,
           pin: true,
           scrub: 1,
         },
       });
 
-      // Animating images and text
       items.forEach((item, index) => {
-        if (index === 0) return; // Skip first item as it's visible
+        if (index === 0) return;
 
         gsap.fromTo(
           `#story-image-${index}`,
-          { opacity: 0, scale: 1.2 },
+          { opacity: 0, scale: 1.1 },
           {
             opacity: 1,
             scale: 1,
             scrollTrigger: {
               trigger: triggerRef.current,
-              start: `${(index / items.length) * 100}% top`,
-              end: `${((index + 1) / items.length) * 100}% top`,
+              start: `${(index / items.length) * 150}% top`,
+              end: `${((index + 0.8) / items.length) * 150}% top`,
               scrub: true,
             },
           }
@@ -48,27 +47,26 @@ const ScrollStory = () => {
 
         gsap.fromTo(
           `#story-text-${index}`,
-          { y: 50, opacity: 0 },
+          { y: 100, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             scrollTrigger: {
               trigger: triggerRef.current,
-              start: `${(index / items.length) * 100}% top`,
-              end: `${((index + 1) / items.length) * 100}% top`,
+              start: `${(index / items.length) * 150}% top`,
+              end: `${((index + 0.8) / items.length) * 150}% top`,
               scrub: true,
             },
           }
         );
 
-        // Fade out previous text
         gsap.to(`#story-text-${index - 1}`, {
           opacity: 0,
-          y: -50,
+          y: -100,
           scrollTrigger: {
             trigger: triggerRef.current,
-            start: `${(index / items.length) * 100}% top`,
-            end: `${((index + 0.2) / items.length) * 100}% top`,
+            start: `${(index / items.length) * 150}% top`,
+            end: `${((index + 0.3) / items.length) * 150}% top`,
             scrub: true,
           },
         });
@@ -80,9 +78,9 @@ const ScrollStory = () => {
 
   return (
     <section ref={containerRef} className="bg-brand-dark text-brand-cream overflow-hidden">
-      <div ref={triggerRef} className="h-screen flex flex-col md:flex-row relative">
-        {/* Left Side: Images with Parallax overlay */}
-        <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
+      <div ref={triggerRef} className="h-screen w-full relative">
+        {/* Background Images */}
+        <div className="absolute inset-0 z-0">
           {items.map((item, i) => (
             <div
               key={item.id}
@@ -92,38 +90,56 @@ const ScrollStory = () => {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover opacity-80"
               />
-              <div className="absolute inset-0 bg-brand-dark/40" />
+              {item.video && (
+                <video
+                  src={item.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay"
+                />
+              )}
+              <div className="absolute inset-0 bg-brand-dark/20" />
             </div>
           ))}
-          {/* Bamboo Overlay subtle */}
-          <div className="absolute inset-0 bg-bamboo opacity-[0.05] pointer-events-none" />
         </div>
 
-        {/* Right Side: Text with Cinematic Reveal */}
-        <div className="w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center p-8 md:p-24 relative bg-brand-dark">
+        {/* Floating Asymmetrical Content */}
+        <div className="relative z-10 h-full container mx-auto px-6 md:px-24 pt-32">
           {items.map((item, i) => (
             <div
               key={item.id}
               id={`story-text-${i}`}
-              className={`absolute max-w-lg ${i === 0 ? "opacity-100" : "opacity-0"}`}
+              className={`absolute inset-0 flex flex-col justify-center ${
+                i % 2 === 0 ? "items-start text-left" : "items-end text-right"
+              } ${i === 0 ? "opacity-100" : "opacity-0"}`}
             >
-              <div className="overflow-hidden mb-6">
-                <span className="text-brand-peanut font-bold uppercase tracking-[0.3em] text-[10px] block mb-2">
-                  Babah Sapi Story
-                </span>
-                <div className="flex items-center gap-4">
-                  <span className="h-[1px] w-12 bg-brand-peanut/30" />
-                  <span className="text-brand-peanut font-editorial italic">0{i + 1}</span>
-                </div>
+              <div className="max-w-xl">
+                <span className="ui-label text-brand-peanut mb-8 block">Story {i + 1}</span>
+                <h2 className="editorial-xl text-brand-cream mb-10 leading-none">
+                  {item.title}
+                </h2>
+                <p className="text-xl md:text-2xl font-light leading-relaxed text-brand-cream/80">
+                  {item.description}
+                </p>
               </div>
-              <h2 className="text-5xl md:text-8xl font-editorial mb-8 leading-none">
-                {item.title}
-              </h2>
-              <p className="text-xl md:text-2xl font-light leading-relaxed text-brand-cream/70">
-                {item.description}
-              </p>
+            </div>
+          ))}
+        </div>
+        
+        {/* Progress Indicator */}
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-4 z-20">
+          {items.map((_, i) => (
+            <div key={i} className="h-[2px] w-8 bg-brand-cream/20 relative overflow-hidden">
+              <motion.div 
+                className="absolute inset-0 bg-brand-peanut"
+                initial={{ x: "-100%" }}
+                whileInView={{ x: "0%" }}
+                transition={{ duration: 1 }}
+              />
             </div>
           ))}
         </div>

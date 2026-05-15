@@ -11,17 +11,18 @@ const JournalGrid = () => {
   const { journal } = siteContent;
 
   return (
-    <section className="py-32 bg-brand-cream relative overflow-hidden">
+    <section id="journal" className="py-64 bg-brand-cream relative overflow-hidden">
       {/* Subtle Bamboo Texture */}
       <div className="absolute inset-0 bg-bamboo opacity-[0.03] z-0" />
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
-          <div className="max-w-2xl">
-            <h2 className="text-5xl md:text-8xl font-editorial mb-6 text-brand-dark leading-none">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-48 gap-12">
+          <div className="max-w-4xl">
+            <span className="ui-label mb-10 block">Cerita Kami</span>
+            <h2 className="editorial-xl text-brand-dark mb-10">
               {journal.title}
             </h2>
-            <p className="text-xl text-brand-dark/60 font-light leading-relaxed">
+            <p className="text-2xl text-brand-dark/50 font-light leading-relaxed max-w-2xl">
               {journal.subtitle}
             </p>
           </div>
@@ -39,7 +40,7 @@ const JournalGrid = () => {
           whileInView="animate"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3 gap-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-24"
         >
           {journal.posts.map((post) => (
             <motion.div key={post.id} variants={fadeInUp} className="group cursor-pointer">

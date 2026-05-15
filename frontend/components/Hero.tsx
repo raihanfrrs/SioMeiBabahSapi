@@ -3,120 +3,107 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { siteContent } from "@/data/siteContent";
-import { fadeInUp, textReveal } from "@/lib/animations";
-
-const SteamEffect = () => {
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
-  return (
-    <div className="absolute inset-0 pointer-events-none">
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          className="steam-particle"
-          style={{
-            left: `${30 + Math.random() * 40}%`,
-            top: `${60 + Math.random() * 20}%`,
-            animationDelay: `${i * 0.8}s`,
-            animationDuration: `${3 + Math.random() * 2}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-};
 
 const Hero = () => {
   const { hero } = siteContent;
 
   return (
-    <section className="relative min-h-screen w-full flex items-center bg-brand-cream overflow-hidden">
-      {/* Background Texture */}
-      <div className="absolute inset-0 bg-bamboo z-0" />
-      
-      <div className="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12 pt-20">
-        {/* Left: Text Content */}
-        <div className="w-full md:w-1/2 text-left">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="inline-block px-4 py-1 rounded-full bg-brand-peanut/10 text-brand-peanut text-xs font-bold uppercase tracking-widest mb-6"
-          >
-            Fresh dibuat setiap hari
-          </motion.div>
+    <section className="relative h-[110vh] w-full bg-brand-dark overflow-hidden flex flex-col justify-between py-32 px-6 md:px-24">
+      {/* 1. Cinematic Background (Video + Image Fallback) */}
+      <div className="absolute inset-0 z-0">
+        <motion.div 
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 20, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
+          className="w-full h-full"
+        >
+          <img
+            src="/images/hero-siomay.png"
+            alt="Hero Siomay"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <video
+            src={hero.videoPlaceholder}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay"
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/40 via-transparent to-brand-dark/80" />
+      </div>
 
-          <div className="overflow-hidden mb-6">
-            <motion.h1
-              variants={textReveal}
-              initial="initial"
-              animate="animate"
-              className="text-6xl md:text-8xl font-editorial text-brand-dark leading-[0.9]"
-            >
-              Siomay Sapi <br />
-              <span className="text-brand-peanut">Premium.</span>
-            </motion.h1>
-          </div>
-          
+      {/* 2. Top Header (Subtle Brand Label) */}
+      <div className="relative z-10 flex justify-between items-start w-full">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          <span className="ui-label text-brand-cream/40">Established 2024</span>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="text-right"
+        >
+          <span className="ui-label text-brand-cream/40 tracking-[0.6em]">Sio Mei Babah Sapi</span>
+        </motion.div>
+      </div>
+
+      {/* 3. Middle - White Space (Editorial Pacing) */}
+      <div className="flex-grow" />
+
+      {/* 4. Bottom Section - Asymmetrical Content */}
+      <div className="relative z-10 w-full flex flex-col md:flex-row justify-between items-end gap-12">
+        <div className="md:w-2/3">
+          <h1 className="editorial-xl text-brand-cream leading-[0.85]">
+            {hero.headline.split(", ").map((part, i) => (
+              <React.Fragment key={i}>
+                <motion.span
+                  initial={{ opacity: 0, y: 100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 1.2, 
+                    delay: 0.5 + i * 0.2,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className="block"
+                >
+                  {part}{i === 0 ? "," : ""}
+                </motion.span>
+              </React.Fragment>
+            ))}
+          </h1>
+        </div>
+
+        <div className="md:w-1/3 flex flex-col items-start md:items-end gap-10">
           <motion.p
-            variants={fadeInUp}
-            initial="initial"
-            animate="animate"
-            transition={{ delay: 0.4 }}
-            className="text-xl text-brand-dark/80 max-w-lg mb-10 font-light leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            className="text-lg text-brand-cream/50 max-w-xs md:text-right font-light leading-relaxed"
           >
-            {hero.subtitle}
+            {hero.subheadline}
           </motion.p>
-
+          
           <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            animate="animate"
-            transition={{ delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.8 }}
           >
-            <button className="bg-brand-brown text-brand-cream px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-brand-peanut transition-all duration-500 shadow-2xl">
-              {hero.cta}
+            <button className="group flex items-center gap-6 text-brand-cream hover:text-brand-peanut transition-all duration-500">
+              <span className="h-[1px] w-12 bg-brand-cream/30 group-hover:w-20 group-hover:bg-brand-peanut transition-all duration-500" />
+              <span className="ui-label tracking-[0.3em]">{hero.cta} — MENU</span>
             </button>
           </motion.div>
         </div>
-
-        {/* Right: Cinematic Visual */}
-        <div className="w-full md:w-1/2 relative h-[500px] md:h-[700px]">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="relative w-full h-full rounded-[40px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(42,33,28,0.3)]"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=1200"
-              alt="Siomay Sapi Premium Close-up"
-              className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 via-transparent to-transparent" />
-            
-            {/* Steam Effect Component */}
-            <SteamEffect />
-          </motion.div>
-          
-          {/* Floating Elements (Sauce/Particles) */}
-          <motion.div
-            animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="absolute -top-10 -right-10 w-32 h-32 bg-brand-peanut/20 rounded-full blur-3xl"
-          />
-        </div>
       </div>
 
-      {/* Decorative Overlay */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-brand-cream to-transparent z-10" />
+      {/* 5. Curved Transition Mask (The Savor Secret) */}
+      <div className="absolute bottom-0 left-0 w-full h-[20vh] bg-brand-cream curve-mask z-20" />
     </section>
   );
 };

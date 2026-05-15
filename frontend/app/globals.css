@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-cream: #FDF8EE;
+  --color-brand-cream: #F9F5F1;
   --color-brand-peanut: #C7923E;
-  --color-brand-brown: #5B3A29;
-  --color-brand-dark: #2A211C;
+  --color-brand-brown: #1A1A1A;
+  --color-brand-dark: #0A0A0A;
   --font-editorial: "Cormorant Garamond", serif;
   --font-body: "Inter", sans-serif;
 }
 
 :root {
-  --background: #FDF8EE;
-  --foreground: #2A211C;
+  --background: #F9F5F1;
+  --foreground: #0A0A0A;
 }
 
 * {
@@ -31,7 +31,44 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-editorial);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.editorial-xl {
+  font-size: clamp(2.5rem, 6vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ui-label {
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  color: var(--color-brand-peanut);
+}
+
+.curve-mask {
+  clip-path: ellipse(150% 100% at 50% 0%);
+}
+
+/* Luxury Grain Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 9999;
+  filter: contrast(150%) brightness(100%);
 }
 
 /* Subtle Bamboo Texture */

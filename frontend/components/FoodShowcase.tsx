@@ -9,17 +9,18 @@ const FoodShowcase = () => {
   const { foods } = siteContent;
 
   return (
-    <section className="py-24 bg-brand-cream">
+    <section id="menu" className="py-64 bg-brand-cream">
       <div className="container mx-auto px-6">
         <motion.div
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="text-center mb-20"
+          className="text-center mb-48"
         >
-          <h2 className="text-5xl md:text-7xl font-editorial mb-6">Menu Andalan Kami</h2>
-          <p className="text-xl text-brand-dark/60 max-w-2xl mx-auto">
+          <span className="ui-label mb-8 block">Daftar Menu</span>
+          <h2 className="editorial-xl mb-10">Menu Andalan Kami</h2>
+          <p className="text-2xl text-brand-dark/50 max-w-2xl mx-auto font-light leading-relaxed">
             Pilihan siomay dan pelengkap favorit untuk berbagai selera.
           </p>
         </motion.div>
@@ -43,20 +44,22 @@ const FoodShowcase = () => {
                   alt={food.name}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
+                <div className="absolute top-6 right-6 z-10">
+                  <span className="bg-brand-cream/90 backdrop-blur-md px-6 py-2 rounded-full text-brand-peanut font-bold text-sm shadow-xl">
+                    {food.price}
+                  </span>
+                </div>
                 <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/20 transition-colors duration-500" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <span className="glass-card text-brand-dark text-xs font-bold uppercase tracking-widest px-8 py-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    Lihat Detail
+                  <span className="bg-brand-cream text-brand-dark text-[10px] font-bold uppercase tracking-widest px-8 py-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 shadow-2xl">
+                    Pesan via WhatsApp
                   </span>
                 </div>
               </div>
-              <h3 className="text-4xl font-editorial mb-2 text-brand-dark group-hover:text-brand-peanut transition-colors duration-300">
+              <h3 className="text-4xl font-editorial mb-3 text-brand-dark group-hover:text-brand-peanut transition-colors duration-300">
                 {food.name}
               </h3>
-              <p className="text-brand-peanut font-bold uppercase tracking-widest text-[10px] mb-4">
-                {food.tagline}
-              </p>
-              <p className="text-brand-dark/60 font-light leading-relaxed">
+              <p className="text-brand-dark/60 font-light leading-relaxed text-lg">
                 {food.description}
               </p>
             </motion.div>

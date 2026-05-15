@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -31,7 +33,10 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${cormorant.variable} ${inter.variable}`}>
       <body className="antialiased selection:bg-brand-peanut selection:text-brand-cream">
-        {children}
+        <CustomCursor />
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
