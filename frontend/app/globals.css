@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-cream: #F2F0E9;
-  --color-brand-beige: #E6E2D3;
-  --color-brand-dark: #1A1A1A;
+  --color-brand-cream: #F5F2EA;
+  --color-brand-beige: #EBE7D9;
+  --color-brand-dark: #1F140F;
+  --color-brand-peanut: #4A2B1F;
   --color-brand-accent: #C7923E;
   --font-editorial: "Cormorant Garamond", serif;
   --font-body: "Inter", sans-serif;
 }
 
 :root {
-  --background: #F2F0E9;
-  --foreground: #1A1A1A;
+  --background: #F5F2EA;
+  --foreground: #1F140F;
 }
 
 * {
@@ -57,10 +58,11 @@ h1, h2, h3, h4, h5, h6 {
 .ui-label {
   font-family: var(--font-body);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.4em;
   color: var(--color-brand-dark);
+  opacity: 0.8;
 }
 
 .curve-mask {
@@ -162,12 +164,26 @@ body::after {
   .grid-editorial {
     @apply grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16;
   }
+
+  /* Editorial Borders */
+  .border-editorial {
+    @apply border-brand-dark/10;
+  }
+  
+  .border-t-editorial {
+    @apply border-t border-brand-dark/10;
+  }
+
+  .border-b-editorial {
+    @apply border-b border-brand-dark/10;
+  }
 }
 
 /* Image Reveal Base */
 .reveal-img-container {
   overflow: hidden;
   background-color: var(--color-brand-beige);
+  @apply border border-brand-dark/5;
 }
 
 .reveal-img {
@@ -179,4 +195,27 @@ body::after {
 .reveal-img.is-visible {
   opacity: 1;
   transform: scale(1);
+}
+
+/* Luxury Grain Overlay */
+.noise-overlay::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+  filter: contrast(150%) brightness(120%);
+}
+
+.btn-premium {
+  @apply inline-flex items-center justify-center rounded-sm bg-brand-cream px-10 py-5 text-sm font-bold uppercase tracking-[0.3em] text-brand-dark transition-all duration-500 hover:bg-white hover:scale-105 active:scale-95 shadow-xl;
+}
+
+.btn-premium-dark {
+  @apply inline-flex items-center justify-center rounded-sm bg-brand-dark px-10 py-5 text-sm font-bold uppercase tracking-[0.3em] text-brand-cream transition-all duration-500 hover:bg-brand-peanut hover:scale-105 active:scale-95 shadow-xl;
 }

@@ -12,7 +12,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 export default function Home() {
   return (
     <SmoothScroll>
-      <main className="min-h-screen bg-brand-cream relative overflow-hidden">
+      <main className="min-h-screen bg-brand-cream relative overflow-hidden noise-overlay">
         <Navbar />
         
         {/* Storytelling Sequence */}

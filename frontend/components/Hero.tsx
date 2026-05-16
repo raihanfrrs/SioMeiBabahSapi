@@ -50,34 +50,34 @@ const Hero = () => {
           <img 
             src={hero.imagePlaceholder} 
             alt="Siomay Babah Sapi" 
-            className="hero-bg w-full h-full object-cover object-[65%_center] lg:object-center brightness-[0.85] scale-105"
+            className="hero-bg w-full h-full object-cover object-[65%_center] lg:object-center brightness-[0.8] scale-105"
             loading="eager"
           />
         </picture>
         
         {/* Refined Gradient Overlays */}
-        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-black/50 via-black/10 to-transparent pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
       </div>
 
       {/* --- CONTENT AREAS --- */}
       
       {/* Mobile & Tablet Content */}
-      <div className="relative z-20 px-6 pb-16 md:px-12 md:pb-24 lg:hidden">
-        <div className="flex flex-col items-start gap-8 max-w-lg">
+      <div className="relative z-20 px-8 pb-20 md:px-16 md:pb-32 lg:hidden">
+        <div className="flex flex-col items-start gap-12 max-w-lg">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col gap-4"
+            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col gap-6"
           >
-            <h1 className="text-[58px] leading-[0.88] tracking-[-0.03em] font-editorial text-white md:text-[88px]">
+            <h1 className="text-[62px] leading-[0.85] tracking-[-0.03em] font-editorial text-white md:text-[100px]">
               Siomay Sapi <br /> 
               <span className="italic opacity-90">Resep Warisan</span>
             </h1>
             
-            <p className="text-base md:text-lg text-white/80 max-w-[280px] md:max-w-md font-medium leading-relaxed">
+            <p className="text-lg md:text-xl text-white/70 max-w-[300px] md:max-w-md font-medium leading-relaxed">
               Gurih, lembut, dan dibuat dengan daging sapi pilihan serta bumbu kacang autentik.
             </p>
           </motion.div>
@@ -85,11 +85,11 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
+            transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <Link
               href="/#menu"
-              className="inline-flex items-center justify-center rounded-sm bg-brand-cream px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-brand-dark transition-all hover:scale-105 active:scale-95 shadow-2xl"
+              className="btn-premium"
             >
               Pesan Sekarang
             </Link>
@@ -98,16 +98,16 @@ const Hero = () => {
       </div>
 
       {/* Desktop Content */}
-      <div className="relative z-20 hidden lg:flex container-custom h-full items-end pb-32">
-        <div className="grid grid-cols-12 w-full gap-12 items-end">
+      <div className="relative z-20 hidden lg:flex container-custom h-full items-end pb-40">
+        <div className="grid grid-cols-12 w-full gap-16 items-end">
           {/* Left: Heading & Subheadline grouped */}
-          <div className="col-span-8 flex flex-col gap-10">
+          <div className="col-span-8 flex flex-col gap-12">
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h1 className="text-[140px] font-editorial text-white leading-[0.85] tracking-tighter drop-shadow-2xl">
+              <h1 className="text-[150px] font-editorial text-white leading-[0.82] tracking-tighter drop-shadow-2xl">
                 Siomay Sapi <br />
                 <span className="italic text-brand-cream/90">Resep Warisan</span>
               </h1>
@@ -116,8 +116,8 @@ const Hero = () => {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.6 }}
-              className="text-lg text-white/80 max-w-md leading-relaxed font-medium"
+              transition={{ duration: 1.5, delay: 0.6 }}
+              className="text-xl text-white/70 max-w-lg leading-relaxed font-medium"
             >
               {hero.subheadline}
             </motion.p>
@@ -125,17 +125,17 @@ const Hero = () => {
 
           {/* Right: CTA aligned with text flow */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.9 }}
-            className="col-span-4 flex justify-end pb-4"
+            transition={{ duration: 1.2, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="col-span-4 flex justify-end pb-6"
           >
             <Link 
               href="/#menu"
-              className="group relative inline-flex items-center justify-center bg-brand-cream text-brand-dark px-16 py-6 rounded-sm text-[10px] font-bold uppercase tracking-[0.4em] transition-all duration-500 hover:bg-brand-dark hover:text-brand-cream shadow-2xl overflow-hidden"
+              className="group relative inline-flex items-center justify-center bg-brand-cream text-brand-dark px-20 py-7 rounded-sm text-[11px] font-bold uppercase tracking-[0.4em] transition-all duration-700 hover:bg-white shadow-2xl overflow-hidden"
             >
               <span className="relative z-10">{hero.cta}</span>
-              <div className="absolute inset-0 bg-brand-dark translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
+              <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
             </Link>
           </motion.div>
         </div>

@@ -17,7 +17,7 @@ const MacroTexture = () => {
       
       panels.forEach((panel, i) => {
         const img = panel.querySelector('.macro-img');
-        const text = panel.querySelector('.macro-text');
+        const content = panel.querySelector('.macro-content');
         
         // Pinned effect for each panel
         ScrollTrigger.create({
@@ -31,7 +31,7 @@ const MacroTexture = () => {
 
         // Smooth fade/scale for image
         gsap.fromTo(img, 
-          { scale: 1.1, opacity: 0.8 },
+          { scale: 1.15, opacity: 0.6 },
           { 
             scale: 1, 
             opacity: 1,
@@ -45,17 +45,17 @@ const MacroTexture = () => {
           }
         );
 
-        // Text synchronization
-        gsap.fromTo(text,
-          { y: 50, opacity: 0 },
+        // Content reveal
+        gsap.fromTo(content,
+          { y: 80, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 1,
-            ease: "power3.out",
+            duration: 1.5,
+            ease: "expo.out",
             scrollTrigger: {
               trigger: panel,
-              start: "top 40%",
+              start: "top 35%",
               toggleActions: "play reverse play reverse",
             }
           }
@@ -74,20 +74,31 @@ const MacroTexture = () => {
             <img 
               src={macro.image} 
               alt={macro.label} 
-              className="macro-img w-full h-full object-cover object-center"
+              className="macro-img w-full h-full object-cover object-center brightness-75 contrast-125"
               loading={idx === 0 ? "eager" : "lazy"}
             />
-            <div className="absolute inset-0 bg-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
           </div>
           
-          <div className="relative z-10 macro-text text-center px-6">
-            <h2 className="text-white font-editorial text-4xl md:text-7xl lg:text-8xl tracking-tight leading-tight">
+          <div className="relative z-10 macro-content text-center px-6 flex flex-col items-center gap-10">
+            <div className="flex flex-col items-center gap-6">
+              <div className="h-[1px] w-12 bg-brand-accent/60" />
+              <span className="ui-label text-brand-accent tracking-[0.6em]">
+                {idx === 0 ? "Signature Sauce" : "Slow Steamed"}
+              </span>
+            </div>
+            
+            <h2 className="text-white font-editorial text-5xl md:text-8xl lg:text-[140px] tracking-tighter leading-[0.85] max-w-5xl">
               {macro.label.split('─').map((part, i) => (
-                <span key={i} className={i === 1 ? "italic opacity-80 block md:inline" : ""}>
+                <span key={i} className={i === 1 ? "italic text-brand-cream/90 block mt-4" : ""}>
                   {part} {i === 0 && <br className="md:hidden" />}
                 </span>
               ))}
             </h2>
+            
+            <div className="mt-8">
+              <div className="w-1 h-1 bg-brand-accent rounded-full animate-pulse" />
+            </div>
           </div>
         </div>
       ))}

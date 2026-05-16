@@ -18,28 +18,28 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 ${
-      isScrolled ? "bg-brand-cream/95 backdrop-blur-md py-5 shadow-sm" : "py-8 md:py-12"
+    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-1000 ${
+      isScrolled ? "bg-brand-cream/95 backdrop-blur-md py-6 shadow-sm border-b border-brand-dark/5" : "py-10 md:py-16"
     }`}>
       <div className="container-custom flex justify-between items-center">
         {/* Logo */}
         <Link 
           href="/" 
-          className={`text-3xl md:text-4xl font-editorial font-medium tracking-tight transition-colors duration-500 ${
-            isScrolled ? "text-brand-dark" : "text-white"
+          className={`text-3xl md:text-5xl font-editorial tracking-tighter transition-all duration-1000 ${
+            isScrolled ? "text-brand-dark scale-90" : "text-white scale-100"
           }`}
         >
           babah sapi
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-10">
+        <div className="hidden lg:flex items-center gap-12">
           {siteContent.navigation.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className={`text-[11px] font-bold uppercase tracking-[0.25em] transition-colors duration-500 ${
-                isScrolled ? "text-brand-dark/70 hover:text-brand-dark" : "text-white/70 hover:text-white"
+              className={`ui-label text-[10px] tracking-[0.4em] transition-colors duration-700 ${
+                isScrolled ? "text-brand-dark/80 hover:text-brand-accent" : "text-white/80 hover:text-white"
               }`}
             >
               {item.label}
@@ -48,26 +48,28 @@ const Navbar = () => {
           
           <Link
             href="/#episode"
-            className={`border px-8 py-3 rounded-sm text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 ${
+            className={`group relative overflow-hidden border px-10 py-3 rounded-sm text-[10px] font-bold uppercase tracking-[0.4em] transition-all duration-700 ${
               isScrolled 
-                ? "border-brand-dark/20 text-brand-dark hover:bg-brand-dark hover:text-brand-cream" 
-                : "border-white/20 text-white hover:bg-white hover:text-brand-dark"
+                ? "border-brand-dark/20 text-brand-dark hover:border-brand-dark" 
+                : "border-white/20 text-white hover:border-white"
             }`}
           >
-            Watch
+            <span className="relative z-10">Watch</span>
+            <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ${isScrolled ? "bg-brand-dark" : "bg-white"}`} />
+            <span className={`absolute inset-0 flex items-center justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-700 font-bold z-20 ${isScrolled ? "text-brand-cream" : "text-brand-dark"}`}>Watch</span>
           </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
-          className={`lg:hidden focus:outline-none flex flex-col gap-1.5 transition-colors duration-500 ${
+          className={`lg:hidden focus:outline-none flex flex-col gap-2 transition-colors duration-700 ${
             isScrolled ? "text-brand-dark" : "text-white"
           }`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <div className={`h-[1.5px] w-8 bg-current transition-transform duration-500 ${isMobileMenuOpen ? "rotate-45 translate-y-[7.5px]" : ""}`} />
-          <div className={`h-[1.5px] w-8 bg-current transition-opacity duration-500 ${isMobileMenuOpen ? "opacity-0" : "opacity-100"}`} />
-          <div className={`h-[1.5px] w-8 bg-current transition-transform duration-500 ${isMobileMenuOpen ? "-rotate-45 -translate-y-[7.5px]" : ""}`} />
+          <div className={`h-[1px] w-8 bg-current transition-transform duration-700 ${isMobileMenuOpen ? "rotate-45 translate-y-[9px]" : ""}`} />
+          <div className={`h-[1px] w-6 ml-auto bg-current transition-opacity duration-700 ${isMobileMenuOpen ? "opacity-0" : "opacity-100"}`} />
+          <div className={`h-[1px] w-8 bg-current transition-transform duration-700 ${isMobileMenuOpen ? "-rotate-45 -translate-y-[9px]" : ""}`} />
         </button>
       </div>
 
@@ -75,24 +77,24 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 bg-brand-cream z-[90] flex flex-col p-8 pt-32 lg:hidden"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 bg-brand-cream z-[90] flex flex-col p-10 pt-40 lg:hidden"
           >
-            <div className="flex flex-col space-y-10">
+            <div className="flex flex-col space-y-12">
               {siteContent.navigation.map((item, i) => (
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + i * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1, duration: 1, ease: [0.22, 1, 0.36, 1] }}
                   key={item.label}
                 >
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-5xl md:text-7xl font-editorial font-medium text-brand-dark hover:italic transition-all"
+                    className="text-6xl md:text-8xl font-editorial text-brand-dark hover:italic hover:text-brand-accent transition-all leading-none tracking-tighter"
                   >
                     {item.label}
                   </Link>
@@ -103,15 +105,16 @@ const Navbar = () => {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="mt-auto pb-12"
+              transition={{ delay: 0.8 }}
+              className="mt-auto pb-12 flex flex-col gap-12"
             >
+              <div className="h-[1px] w-full bg-brand-dark/10" />
               <Link
                 href="/#episode"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-center border border-brand-dark py-6 text-xs font-bold uppercase tracking-[0.4em] text-brand-dark"
+                className="btn-premium-dark w-full"
               >
-                Watch Episode
+                Watch Film
               </Link>
             </motion.div>
           </motion.div>
