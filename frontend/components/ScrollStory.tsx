@@ -13,7 +13,7 @@ if (typeof window !== "undefined") {
 const ScrollStory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
-  const items = siteContent.scrollStoryItems;
+  const items = siteContent.processSteps;
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -83,7 +83,7 @@ const ScrollStory = () => {
         <div className="absolute inset-0 z-0">
           {items.map((item, i) => (
             <div
-              key={item.id}
+              key={i}
               id={`story-image-${i}`}
               className={`absolute inset-0 w-full h-full ${i === 0 ? "opacity-100" : "opacity-0"}`}
             >
@@ -92,16 +92,6 @@ const ScrollStory = () => {
                 alt={item.title}
                 className="absolute inset-0 w-full h-full object-cover opacity-80"
               />
-              {item.video && (
-                <video
-                  src={item.video}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay"
-                />
-              )}
               <div className="absolute inset-0 bg-brand-dark/20" />
             </div>
           ))}
@@ -111,7 +101,7 @@ const ScrollStory = () => {
         <div className="relative z-10 h-full container mx-auto px-6 md:px-24 pt-32">
           {items.map((item, i) => (
             <div
-              key={item.id}
+              key={i}
               id={`story-text-${i}`}
               className={`absolute inset-0 flex flex-col justify-center ${
                 i % 2 === 0 ? "items-start text-left" : "items-end text-right"
@@ -123,7 +113,7 @@ const ScrollStory = () => {
                   {item.title}
                 </h2>
                 <p className="text-xl md:text-2xl font-light leading-relaxed text-brand-cream/80">
-                  {item.description}
+                  {item.text}
                 </p>
               </div>
             </div>
