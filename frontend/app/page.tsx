@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import ProcessScrollStory from "@/components/ProcessScrollStory";
+import MacroTexture from "@/components/MacroTexture";
+import ProcessStory from "@/components/ProcessStory";
 import EditorialStory from "@/components/EditorialStory";
 import GalleryStack from "@/components/GalleryStack";
 import FoodShowcase from "@/components/FoodShowcase";
@@ -11,23 +12,33 @@ import SmoothScroll from "@/components/SmoothScroll";
 export default function Home() {
   return (
     <SmoothScroll>
-      <main className="min-h-screen bg-brand-cream relative">
+      <main className="min-h-screen bg-brand-cream relative overflow-hidden">
         <Navbar />
         
-        {/* The Cinematic Scroll Journey */}
-        <Hero />
-        <ProcessScrollStory />
-        <EditorialStory />
-        <GalleryStack />
+        {/* Storytelling Sequence */}
+        <div className="relative z-10">
+          <Hero />
+        </div>
         
-        {/* Product Carousel */}
-        <div className="bg-brand-cream py-24 md:py-48">
+        <div className="relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
+          <MacroTexture />
+          <ProcessStory />
+        </div>
+        
+        <div className="relative z-30 bg-brand-cream">
+          <EditorialStory />
+          <GalleryStack />
+        </div>
+        
+        {/* Menu & Closing */}
+        <div className="relative z-40 bg-brand-cream section-py-lg">
           <FoodShowcase />
         </div>
         
-        {/* Closing & Footer */}
-        <ClosingCTA />
-        <FooterLuxury />
+        <div className="relative z-50">
+          <ClosingCTA />
+          <FooterLuxury />
+        </div>
       </main>
     </SmoothScroll>
   );

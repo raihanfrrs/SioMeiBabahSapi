@@ -20,12 +20,15 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  width: 100%;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -72,11 +75,11 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  /* background-image: url("https://grainy-gradients.vercel.app/noise.svg"); */
-  opacity: 0.05;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
   pointer-events: none;
   z-index: 9999;
-  filter: contrast(150%) brightness(100%);
+  filter: contrast(150%) brightness(120%);
 }
 
 /* Subtle Bamboo Texture */
@@ -145,4 +148,35 @@ body::after {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  
+  /* Global Spacing System */
+  .section-py-sm { @apply py-20 md:py-28; }
+  .section-py-lg { @apply py-28 md:py-40; }
+  .section-mt-lg { @apply mt-28 md:mt-40; }
+  .section-mb-lg { @apply mb-28 md:mb-40; }
+  
+  .container-custom {
+    @apply max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16;
+  }
+
+  .grid-editorial {
+    @apply grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16;
+  }
+}
+
+/* Image Reveal Base */
+.reveal-img-container {
+  overflow: hidden;
+  background-color: var(--color-brand-beige);
+}
+
+.reveal-img {
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-img.is-visible {
+  opacity: 1;
+  transform: scale(1);
 }

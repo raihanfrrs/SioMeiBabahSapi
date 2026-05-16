@@ -80,9 +80,9 @@ export const siteContent = {
   ],
   gallery: [
     { id: 1, image: "/images/editorial-artisan.png", caption: "The art of folding" },
-    { id: 2, image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200", caption: "Premium beef selection" },
-    { id: 3, image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=800", caption: "Authentic peanut sauce" },
-    { id: 4, image: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&q=80&w=1200", caption: "Heritage recipe" },
+    { id: 2, image: "/images/process-beef.png", caption: "Premium beef selection" },
+    { id: 3, image: "/images/macro-sauce.png", caption: "Authentic peanut sauce" },
+    { id: 4, image: "/images/process-dough.png", caption: "Heritage recipe" },
   ],
   closingCta: {
     headline: "Rasa warisan, dibuat untuk hari ini",

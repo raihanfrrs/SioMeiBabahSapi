@@ -11,24 +11,31 @@ const EditorialStory = () => {
     gsap.registerPlugin(ScrollTrigger);
     
     const ctx = gsap.context(() => {
-      gsap.fromTo(".editorial-text", 
-        { y: 50, opacity: 0 },
+      gsap.fromTo(".editorial-reveal", 
+        { y: 60, opacity: 0 },
         { 
-          y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: "power3.out",
+          y: 0, 
+          opacity: 1, 
+          duration: 1.5, 
+          stagger: 0.15, 
+          ease: "power4.out",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 60%",
+            start: "top 70%",
           }
         }
       );
       
-      gsap.fromTo(".editorial-image",
-        { scale: 0.9, opacity: 0 },
+      gsap.fromTo(".editorial-img-reveal",
+        { clipPath: "inset(0% 100% 0% 0%)", scale: 1.2 },
         {
-          scale: 1, opacity: 1, duration: 1.5, ease: "power2.out",
+          clipPath: "inset(0% 0% 0% 0%)",
+          scale: 1,
+          duration: 2,
+          ease: "expo.out",
           scrollTrigger: {
-            trigger: ".editorial-image",
-            start: "top 75%",
+            trigger: ".editorial-img-reveal",
+            start: "top 80%",
           }
         }
       );
@@ -38,38 +45,42 @@ const EditorialStory = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="w-full bg-brand-cream py-32 md:py-64 px-6 md:px-12 flex flex-col items-center justify-center min-h-[100dvh]">
-      <div className="max-w-5xl w-full flex flex-col md:flex-row items-center justify-between gap-16 md:gap-32">
-        
-        {/* Left: Large Editorial Heading */}
-        <div className="w-full md:w-5/12 flex justify-start">
-          <h2 className="editorial-text text-[64px] md:text-[100px] leading-[0.85] font-editorial text-brand-dark tracking-tighter">
-            Terinspirasi <br /> dari <br />
-            <span className="italic text-brand-accent">resep warisan</span>
-          </h2>
-        </div>
-
-        {/* Middle: Small Minimal Image */}
-        <div className="w-2/3 md:w-3/12 flex justify-center">
-          <div className="editorial-image relative aspect-[3/4] w-full max-w-[240px] overflow-hidden">
-            <img 
-              src="/images/process-step-1.png" 
-              alt="Artisan making siomay" 
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-            />
+    <section ref={containerRef} className="w-full bg-brand-cream section-py-lg overflow-hidden">
+      <div className="container-custom">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+          
+          {/* Left: Large Editorial Heading */}
+          <div className="md:col-span-5 flex flex-col items-start editorial-reveal">
+            <h2 className="text-[64px] md:text-[90px] lg:text-[110px] leading-[0.85] font-editorial text-brand-dark tracking-tighter">
+              Terinspirasi <br /> dari <br />
+              <span className="italic text-brand-accent">resep warisan</span>
+            </h2>
           </div>
-        </div>
 
-        {/* Right: Small text block */}
-        <div className="w-full md:w-4/12 flex flex-col items-start md:items-end text-left md:text-right">
-          <p className="editorial-text text-brand-dark/80 font-medium leading-relaxed max-w-[240px] mb-8">
-            Dibuat dari bahan pilihan dan racikan autentik untuk menjaga rasa yang hangat, gurih, dan berkesan.
-          </p>
-          <button className="editorial-text text-xs font-bold uppercase tracking-[0.2em] border-b border-brand-dark pb-1 text-brand-dark hover:text-brand-accent hover:border-brand-accent transition-colors">
-            Lihat Proses
-          </button>
-        </div>
+          {/* Middle: Elevated Image */}
+          <div className="md:col-span-3 flex justify-center editorial-reveal">
+            <div className="editorial-img-reveal relative aspect-[3/4] w-full max-w-[320px] overflow-hidden shadow-2xl reveal-img-container">
+              <img 
+                src="/images/editorial-artisan.png" 
+                alt="Artisan making siomay" 
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
 
+          {/* Right: Small text block */}
+          <div className="md:col-span-4 flex flex-col items-start md:items-end text-left md:text-right editorial-reveal">
+            <p className="text-brand-dark/80 text-lg md:text-xl font-medium leading-relaxed max-w-[280px] mb-10">
+              Dibuat dari bahan pilihan dan racikan autentik untuk menjaga rasa yang hangat, gurih, dan berkesan.
+            </p>
+            <button className="group relative text-xs font-bold uppercase tracking-[0.3em] text-brand-dark">
+              <span className="relative z-10">Lihat Proses</span>
+              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-brand-accent scale-x-100 group-hover:scale-x-50 transition-transform duration-500 origin-left" />
+            </button>
+          </div>
+
+        </div>
       </div>
     </section>
   );
