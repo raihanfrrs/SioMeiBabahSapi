@@ -57,7 +57,8 @@ const Hero = () => {
         
         {/* Refined Gradient Overlays */}
         <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-        <div className="absolute top-0 left-0 w-full h-[40%] bg-gradient-to-b from-black/50 via-black/10 to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-[30%] bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
+        <div className="absolute top-0 left-0 w-full h-[50%] bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
       </div>
 
@@ -89,7 +90,7 @@ const Hero = () => {
           >
             <Link
               href="/#menu"
-              className="btn-premium"
+              className="inline-flex items-center justify-center rounded-md bg-[#f4eadc] px-10 py-5 text-sm font-medium tracking-[0.08em] text-[#2a140d] shadow-sm transition-all hover:scale-[1.05] active:scale-[0.95]"
             >
               Pesan Sekarang
             </Link>
@@ -132,10 +133,9 @@ const Hero = () => {
           >
             <Link 
               href="/#menu"
-              className="group relative inline-flex items-center justify-center bg-brand-cream text-brand-dark px-20 py-7 rounded-sm text-[11px] font-bold uppercase tracking-[0.4em] transition-all duration-700 hover:bg-white shadow-2xl overflow-hidden"
+              className="inline-flex items-center justify-center rounded-md bg-[#f4eadc] px-12 py-6 text-sm font-medium tracking-[0.08em] text-[#2a140d] shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
-              <span className="relative z-10">{hero.cta}</span>
-              <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+              {hero.cta}
             </Link>
           </motion.div>
         </div>

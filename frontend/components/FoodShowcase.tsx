@@ -9,18 +9,18 @@ const FoodShowcase = () => {
   const { foods } = siteContent;
 
   return (
-    <section id="foods" className="bg-brand-cream border-t-editorial flex justify-center section-py-lg">
+    <section id="foods" className="bg-brand-cream border-t border-[#2a140d]/10 flex justify-center pt-28 md:pt-36 lg:pt-44 pb-28 md:pb-36 lg:pb-44">
       <div className="container-custom">
         {/* Editorial Marker */}
         <div className="flex flex-col items-center mb-24">
           <div className="h-16 w-[1px] bg-brand-accent/30 mb-8" />
-          <span className="ui-label text-brand-accent">Savor Selections</span>
+          <span className="ui-label text-brand-accent tracking-[0.4em] uppercase text-[10px]">Pilihan Menu</span>
         </div>
         
         {/* Header */}
-        <div className="flex justify-between items-end mb-24 md:mb-40 border-b-editorial pb-12">
+        <div className="flex justify-between items-end mb-24 md:mb-32 border-b border-[#2a140d]/10 pb-12">
           <div className="flex flex-col gap-6">
-            <h2 className="text-6xl md:text-8xl lg:text-[100px] font-editorial text-brand-dark tracking-tighter leading-none">
+            <h2 className="text-6xl md:text-8xl lg:text-[100px] font-editorial text-brand-dark tracking-tighter leading-[0.85]">
               The Babah Sapi <br /><span className="italic text-brand-accent">Collection</span>
             </h2>
           </div>

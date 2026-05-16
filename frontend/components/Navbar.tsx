@@ -19,14 +19,16 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-1000 ${
-      isScrolled ? "bg-brand-cream/95 backdrop-blur-md py-6 shadow-sm border-b border-brand-dark/5" : "py-10 md:py-16"
+      isScrolled 
+        ? "bg-[#f4eadc]/95 backdrop-blur-md py-5 shadow-sm border-b border-[#24110b]/10" 
+        : "bg-transparent py-10 md:py-16 border-transparent"
     }`}>
       <div className="container-custom flex justify-between items-center">
         {/* Logo */}
         <Link 
           href="/" 
           className={`text-3xl md:text-5xl font-editorial tracking-tighter transition-all duration-1000 ${
-            isScrolled ? "text-brand-dark scale-90" : "text-white scale-100"
+            isScrolled ? "text-[#24110b] scale-90" : "text-white scale-100"
           }`}
         >
           babah sapi
@@ -39,7 +41,7 @@ const Navbar = () => {
               key={item.label}
               href={item.href}
               className={`ui-label text-[10px] tracking-[0.4em] transition-colors duration-700 ${
-                isScrolled ? "text-brand-dark/80 hover:text-brand-accent" : "text-white/80 hover:text-white"
+                isScrolled ? "text-[#24110b]/80 hover:text-[#24110b]" : "text-white/80 hover:text-white"
               }`}
             >
               {item.label}
@@ -50,20 +52,20 @@ const Navbar = () => {
             href="/#episode"
             className={`group relative overflow-hidden border px-10 py-3 rounded-sm text-[10px] font-bold uppercase tracking-[0.4em] transition-all duration-700 ${
               isScrolled 
-                ? "border-brand-dark/20 text-brand-dark hover:border-brand-dark" 
+                ? "border-[#24110b]/20 text-[#24110b] hover:border-[#24110b]" 
                 : "border-white/20 text-white hover:border-white"
             }`}
           >
             <span className="relative z-10">Watch</span>
-            <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ${isScrolled ? "bg-brand-dark" : "bg-white"}`} />
-            <span className={`absolute inset-0 flex items-center justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-700 font-bold z-20 ${isScrolled ? "text-brand-cream" : "text-brand-dark"}`}>Watch</span>
+            <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ${isScrolled ? "bg-[#24110b]" : "bg-white"}`} />
+            <span className={`absolute inset-0 flex items-center justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-700 font-bold z-20 ${isScrolled ? "text-[#f4eadc]" : "text-[#24110b]"}`}>Watch</span>
           </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
           className={`lg:hidden focus:outline-none flex flex-col gap-2 transition-colors duration-700 ${
-            isScrolled ? "text-brand-dark" : "text-white"
+            isScrolled ? "text-[#24110b]" : "text-white"
           }`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >

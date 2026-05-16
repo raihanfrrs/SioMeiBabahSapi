@@ -76,26 +76,25 @@ const ProcessStory = () => {
         <span className="ui-label opacity-20 text-[80px] leading-none select-none">Method</span>
       </div>
 
-      <div className="container-custom relative process-steps-container">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 relative process-steps-container">
         
         {/* Vertical Timeline Line */}
         <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[1px] bg-brand-dark/5 hidden md:block origin-top process-timeline-line" />
 
-        <div className="flex flex-col gap-40 md:gap-64">
+        <div className="flex flex-col gap-32 md:gap-48 lg:gap-64">
           {processSteps.map((step, idx) => (
             <div 
               key={step.number} 
-              className="process-step grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 items-center min-h-[70vh] md:min-h-[80vh] relative"
+              className="process-step grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20 items-center min-h-[70vh] md:min-h-[80vh] relative"
             >
               {/* Timeline Dot */}
               <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-4 z-10">
                 <div className="w-2 h-2 rounded-full bg-brand-accent shadow-[0_0_15px_rgba(199,146,62,0.5)]" />
-                <div className="h-12 w-[1px] bg-brand-accent/20" />
               </div>
 
-              {/* Image Section - 4 Columns */}
-              <div className={`order-1 ${idx % 2 === 0 ? 'md:col-span-4 md:col-start-1' : 'md:col-span-4 md:col-start-9'} w-full`}>
-                <div className="process-img-container relative aspect-[3/4] w-full overflow-hidden shadow-2xl">
+              {/* Image Section - 5 Columns */}
+              <div className={`order-1 ${idx % 2 === 0 ? 'md:col-span-5 md:col-start-1' : 'md:col-span-5 md:col-start-8'} w-full`}>
+                <div className="process-img-container relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden shadow-2xl rounded-sm">
                   <img 
                     src={step.image} 
                     alt={step.title} 
@@ -104,19 +103,19 @@ const ProcessStory = () => {
                   />
                   <div className="absolute inset-0 bg-brand-dark/5" />
                 </div>
-                <p className="mt-6 ui-label text-[9px] opacity-40 text-brand-dark tracking-[0.3em]">
+                <p className="mt-6 ui-label text-[9px] opacity-40 text-brand-dark tracking-[0.3em] uppercase">
                   {step.annotation.split('─')[1]?.trim() || step.annotation}
                 </p>
               </div>
               
               {/* Content Section - 4 Columns */}
-              <div className={`order-2 ${idx % 2 === 0 ? 'md:col-span-4 md:col-start-8' : 'md:col-span-4 md:col-start-2'} flex flex-col items-start process-content`}>
-                <div className="flex items-center gap-6 mb-10 group">
+              <div className={`order-2 ${idx % 2 === 0 ? 'md:col-span-4 md:col-start-8' : 'md:col-span-4 md:col-start-2'} flex flex-col items-start process-content py-10 md:py-0`}>
+                <div className="flex items-center gap-6 mb-8 group">
                   <span className="text-brand-accent font-bold tracking-[0.4em] text-xs uppercase">{step.number}</span>
                   <div className="h-[1px] w-16 bg-brand-accent/40 transition-all duration-700 group-hover:w-24" />
                 </div>
                 
-                <h3 className="text-4xl md:text-5xl lg:text-7xl font-editorial text-brand-dark mb-10 leading-[0.85] tracking-tighter">
+                <h3 className="text-4xl md:text-5xl lg:text-6xl font-editorial text-brand-dark mb-8 leading-[0.9] tracking-tighter">
                   {step.title.split(' ').map((word, i) => (
                     <span key={i} className={i % 3 === 2 ? "italic text-brand-accent" : ""}>
                       {word}{" "}
@@ -124,7 +123,7 @@ const ProcessStory = () => {
                   ))}
                 </h3>
                 
-                <div className="max-w-sm space-y-8">
+                <div className="max-w-md space-y-8">
                   <p className="text-brand-dark/70 text-lg leading-relaxed">
                     {step.text}
                   </p>
@@ -132,8 +131,8 @@ const ProcessStory = () => {
                   <div className="flex flex-col gap-4">
                     <div className="h-[1px] w-full bg-brand-dark/5" />
                     <div className="flex items-center justify-between">
-                      <span className="ui-label text-[9px] text-brand-accent">Traditional Method</span>
-                      <span className="ui-label text-[9px] text-brand-dark/40 italic">Handcrafted</span>
+                      <span className="ui-label text-[9px] text-brand-accent tracking-[0.2em] uppercase">Traditional Method</span>
+                      <span className="ui-label text-[9px] text-brand-dark/40 italic tracking-[0.1em]">Handcrafted</span>
                     </div>
                   </div>
                 </div>

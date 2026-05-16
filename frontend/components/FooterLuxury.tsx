@@ -33,7 +33,7 @@ const FooterLuxury = () => {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-brand-dark text-brand-cream pt-32 md:pt-48 overflow-hidden relative border-t border-white/5">
+    <footer ref={footerRef} className="bg-brand-dark text-brand-cream pt-32 md:pt-48 overflow-hidden relative border-t border-[#2a140d]/10">
       
       {/* Top Section */}
       <div className="container-custom">
@@ -42,7 +42,7 @@ const FooterLuxury = () => {
           {/* Brand Info */}
           <div className="md:col-span-4 flex flex-col gap-10">
             <h3 className="text-4xl font-editorial tracking-tighter">babah sapi</h3>
-            <p className="text-brand-cream/50 text-base leading-relaxed max-w-[320px]">
+            <p className="text-brand-cream/40 text-base leading-relaxed max-w-[320px] font-medium">
               {footer.statement}
             </p>
             <div className="flex gap-10 mt-6">
@@ -56,9 +56,9 @@ const FooterLuxury = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="md:col-span-3 flex flex-col gap-8 md:pl-12">
-            <h4 className="ui-label text-brand-accent tracking-[0.5em] mb-4">Explore</h4>
-            <div className="flex flex-col space-y-5">
+          <div className="md:col-span-3 flex flex-col gap-10 md:pl-12">
+            <h4 className="ui-label text-brand-accent tracking-[0.5em] mb-4 uppercase text-[10px] font-bold">Explore</h4>
+            <div className="flex flex-col space-y-6">
               {footer.navigation.map((link, idx) => (
                 <Link key={idx} href={`/#${link.toLowerCase()}`} className="text-brand-cream/80 text-2xl font-editorial hover:italic hover:text-brand-cream transition-all tracking-tight">
                   {link}
@@ -68,18 +68,18 @@ const FooterLuxury = () => {
           </div>
 
           {/* Newsletter */}
-          <div className="md:col-span-5 flex flex-col gap-8">
-            <h4 className="ui-label text-brand-accent tracking-[0.5em] mb-4">The Journal</h4>
-            <p className="text-brand-cream/50 text-base leading-relaxed max-w-[380px]">
+          <div className="md:col-span-5 flex flex-col gap-10">
+            <h4 className="ui-label text-brand-accent tracking-[0.5em] mb-4 uppercase text-[10px] font-bold">The Journal</h4>
+            <p className="text-brand-cream/40 text-base leading-relaxed max-w-[380px] font-medium">
               Dapatkan pembaruan terbaru tentang menu musiman dan cerita dari dapur warisan kami.
             </p>
-            <form className="flex w-full max-w-[450px] border-b border-white/10 pb-6 mt-6 group focus-within:border-brand-accent transition-colors duration-700">
+            <form className="flex w-full max-w-[450px] border-b border-white/10 pb-8 mt-6 group focus-within:border-brand-accent transition-colors duration-700">
               <input 
                 type="email" 
                 placeholder="Join our mailing list" 
                 className="bg-transparent w-full outline-none text-brand-cream placeholder-white/20 text-sm font-medium tracking-wide"
               />
-              <button className="text-brand-cream text-[10px] font-bold uppercase tracking-[0.4em] hover:text-brand-accent transition-colors duration-500">
+              <button className="text-brand-cream text-[10px] font-bold uppercase tracking-[0.5em] hover:text-brand-accent transition-colors duration-500 whitespace-nowrap">
                 Subscribe
               </button>
             </form>
@@ -90,18 +90,18 @@ const FooterLuxury = () => {
 
       {/* Giant Logo Section */}
       <div className="w-full flex flex-col items-center relative px-6">
-        <h1 className="footer-logo text-[25vw] leading-[0.7] font-editorial text-white/[0.03] tracking-tighter w-full text-center whitespace-nowrap select-none pointer-events-none mb-[-2vw]">
+        <h1 className="footer-logo text-[28vw] leading-[0.7] font-editorial text-white/[0.02] tracking-tighter w-full text-center whitespace-nowrap select-none pointer-events-none mb-[-2vw]">
           babah sapi
         </h1>
         
         {/* Absolute Copyright Overlay */}
-        <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center py-12 gap-8 border-t border-white/5 z-10">
-          <p className="ui-label text-[9px] text-white/20">
+        <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center py-16 gap-8 border-t border-white/5 z-10">
+          <p className="ui-label text-[10px] text-white/20 font-bold uppercase tracking-[0.2em]">
             {footer.copyright}
           </p>
-          <div className="flex gap-10">
+          <div className="flex gap-12">
             {footer.legal.map((item, idx) => (
-              <a key={idx} href="#" className="ui-label text-[9px] text-white/20 hover:text-brand-accent transition-colors duration-500">
+              <a key={idx} href="#" className="ui-label text-[10px] text-white/20 font-bold uppercase tracking-[0.2em] hover:text-brand-accent transition-colors duration-500">
                 {item}
               </a>
             ))}

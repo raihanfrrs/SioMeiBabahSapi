@@ -74,11 +74,11 @@ const GalleryStack = () => {
   ];
 
   return (
-    <section ref={containerRef} className="w-full bg-brand-cream section-py-lg overflow-hidden relative">
-      <div className="container-custom mb-32 md:mb-48 gallery-title">
-        <div className="flex flex-col gap-6">
-          <span className="ui-label text-brand-accent">Behind the scene</span>
-          <h2 className="text-6xl md:text-8xl lg:text-[110px] font-editorial text-brand-dark tracking-tighter leading-none">
+    <section ref={containerRef} className="w-full bg-brand-cream pt-24 md:pt-32 lg:pt-40 pb-32 md:pb-40 lg:pb-48 overflow-hidden relative border-t border-[#2a140d]/10">
+      <div className="container-custom mb-32 md:mb-56 gallery-title">
+        <div className="flex flex-col gap-8">
+          <span className="ui-label text-brand-accent tracking-[0.4em] uppercase text-[10px]">Behind the scene</span>
+          <h2 className="text-6xl md:text-8xl lg:text-[110px] font-editorial text-brand-dark tracking-tighter leading-[0.85]">
             The Making of <br/><span className="italic text-brand-accent">Babah Sapi</span>
           </h2>
         </div>

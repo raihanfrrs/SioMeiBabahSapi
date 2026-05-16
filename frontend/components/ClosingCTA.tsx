@@ -44,24 +44,24 @@ const ClosingCTA = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[100dvh] overflow-hidden flex items-center justify-center">
+    <section ref={containerRef} className="relative w-full h-[100dvh] overflow-hidden flex items-center justify-center mt-12 md:mt-20">
       <div className="absolute inset-0 z-0">
         <img 
           src={closingCta.image} 
           alt="Closing Food Visual" 
-          className="closing-bg w-full h-full object-cover brightness-[0.8] contrast-[1.1]"
+          className="closing-bg w-full h-full object-cover brightness-[0.75] contrast-[1.05]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/40 pointer-events-none" />
       </div>
 
       <div className="closing-content relative z-10 flex flex-col items-center text-center px-6 max-w-6xl">
         <div className="flex flex-col items-center gap-6 mb-12">
-          <div className="h-12 w-[1px] bg-brand-cream/40" />
-          <span className="ui-label text-brand-cream tracking-[0.6em]">A Taste of Tradition</span>
+          <div className="h-16 w-[1px] bg-brand-cream/40" />
+          <span className="ui-label text-brand-cream tracking-[0.6em] uppercase text-[10px]">Rasa Warisan, Dibuat Untuk Hari Ini</span>
         </div>
 
-        <h2 className="text-[62px] md:text-[110px] lg:text-[150px] font-editorial text-brand-cream leading-[0.82] tracking-tighter mb-20 drop-shadow-2xl">
+        <h2 className="text-[58px] md:text-[110px] lg:text-[140px] font-editorial text-brand-cream leading-[0.82] tracking-tighter mb-24 drop-shadow-2xl">
           {closingCta.headline.split(',').map((part, idx) => (
             <React.Fragment key={idx}>
               {idx === 0 ? part + "," : <span className="italic block mt-4 text-brand-cream/90">{part}</span>}
@@ -71,10 +71,9 @@ const ClosingCTA = () => {
         
         <Link
           href="/#menu"
-          className="group relative inline-flex items-center justify-center bg-brand-cream text-brand-dark px-24 py-8 rounded-sm text-xs font-bold uppercase tracking-[0.4em] transition-all duration-700 hover:bg-white shadow-2xl overflow-hidden"
+          className="inline-flex items-center justify-center rounded-md bg-[#f4eadc] px-16 py-7 text-sm font-medium tracking-[0.1em] text-[#2a140d] shadow-2xl transition-all hover:scale-[1.05] active:scale-[0.95] uppercase"
         >
-          <span className="relative z-10">{closingCta.ctaText}</span>
-          <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+          {closingCta.ctaText}
         </Link>
       </div>
       

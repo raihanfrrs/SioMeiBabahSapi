@@ -45,18 +45,18 @@ const EditorialStory = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="w-full bg-brand-cream section-py-lg overflow-hidden border-t-editorial">
+    <section ref={containerRef} className="w-full bg-brand-cream pt-28 md:pt-36 lg:pt-44 pb-28 md:pb-36 lg:pb-44 overflow-hidden border-t border-[#2a140d]/10">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-20 items-center">
           
           {/* Left: Large Editorial Heading */}
-          <div className="md:col-span-6 flex flex-col items-start editorial-reveal pl-4 md:pl-0">
-            <div className="flex items-center gap-4 mb-8">
+          <div className="md:col-span-6 flex flex-col items-start editorial-reveal px-6 md:px-0">
+            <div className="flex items-center gap-4 mb-10">
               <div className="h-[1px] w-8 bg-brand-accent/40" />
-              <span className="ui-label text-brand-accent tracking-[0.5em]">Our Philosophy</span>
+              <span className="ui-label text-brand-accent tracking-[0.5em] uppercase text-[10px]">Our Philosophy</span>
             </div>
             
-            <h2 className="text-[58px] md:text-[80px] lg:text-[100px] leading-[0.82] font-editorial text-brand-dark tracking-tighter">
+            <h2 className="text-[52px] md:text-[72px] lg:text-[90px] leading-[0.85] font-editorial text-brand-dark tracking-tighter">
               Terinspirasi <br /> dari <br />
               <span className="italic text-brand-accent">resep warisan</span>
             </h2>
