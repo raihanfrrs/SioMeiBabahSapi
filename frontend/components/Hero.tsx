@@ -1,15 +1,47 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { siteContent } from "@/data/siteContent";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Hero = () => {
   const { hero } = siteContent;
+  const containerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const ctx = gsap.context(() => {
+      // Pin the hero section so the next section slides over it
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom top",
+        pin: true,
+        pinSpacing: false, // Essential for the next section to slide over
+      });
+      
+      // Subtle parallax on the background image
+      gsap.to(".hero-bg", {
+        yPercent: 20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className="relative min-h-[100dvh] w-full overflow-hidden flex flex-col justify-end lg:justify-center lg:items-center lg:mb-80">
+    <section ref={containerRef} className="relative min-h-[100dvh] w-full overflow-hidden flex flex-col justify-end lg:justify-center lg:items-center">
       
       {/* --- BACKGROUND VISUALS --- */}
       {/* Mobile/Tablet Savor Background */}
@@ -17,7 +49,7 @@ const Hero = () => {
         <img 
           src={hero.imagePlaceholder} 
           alt="Siomay Babah Sapi" 
-          className="w-full h-full object-cover object-[58%_center] md:object-center"
+          className="hero-bg w-full h-full object-cover object-[58%_center] md:object-center"
         />
         <div className="absolute inset-0 bg-black/25 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-black/45 via-transparent to-transparent pointer-events-none" />
@@ -29,7 +61,7 @@ const Hero = () => {
         <img 
           src={hero.imagePlaceholder} 
           alt="Hero Background" 
-          className="w-full h-full object-cover brightness-75"
+          className="hero-bg w-full h-full object-cover brightness-75 scale-105"
         />
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
       </div>

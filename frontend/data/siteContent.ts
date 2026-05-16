@@ -11,84 +11,84 @@ export const siteContent = {
     headline: "Siomay Sapi Premium dari Resep Warisan",
     subheadline: "Gurih, lembut, dan bumbu kacang yang autentik.",
     cta: "PESAN SEKARANG",
-    imagePlaceholder: "/images/siomay-hero.png",
+    imagePlaceholder: "/images/siomay-hero-premium.png",
   },
   foods: [
     {
       id: 1,
       name: "Siomay Sapi Original",
       price: "Rp 45.000 — 5 Pcs",
-      image: "/images/siomay-original.png",
+      image: "/images/siomay-steamed.png",
       description: "Siomay sapi murni dengan tekstur lembut dan rasa gurih alami.",
     },
     {
       id: 2,
       name: "Siomay Sapi Goreng",
       price: "Rp 48.000 — 5 Pcs",
-      image: "/images/siomay-goreng.png",
+      image: "/images/siomay-fried-gold.png",
       description: "Varian goreng yang krispi di luar namun tetap juicy di dalam.",
     },
     {
       id: 3,
       name: "Bumbu Kacang Spesial",
       price: "Rp 25.000 — 250ml",
-      image: "/images/siomay-sauce.png",
+      image: "/images/macro-sauce.png",
       description: "Bumbu kacang rahasia Babah Sapi dengan rempah pilihan.",
     },
   ],
   processSteps: [
     {
       number: "01",
-      title: "Seleksi Daging Sapi",
-      text: "Kami hanya menggunakan daging sapi premium dengan proporsi lemak yang tepat untuk tekstur juicy.",
-      image: "/images/process-step-1.png",
-      video: "/videos/process-1.mp4",
+      title: "Dari Daging Sapi Pilihan",
+      text: "Hanya menggunakan daging sapi premium dengan proporsi lemak yang tepat untuk tekstur juicy.",
+      image: "/images/process-beef.png",
+      annotation: "Daging sapi pilihan ─ tekstur lembut"
     },
     {
       number: "02",
-      title: "Peracikan Bumbu Rahasia",
-      text: "Rempah-rempah pilihan diolah secara tradisional untuk menciptakan aroma yang khas dan mendalam.",
-      image: "/images/process-step-2.png",
-      video: "/videos/process-2.mp4",
+      title: "Ke Adonan Lembut",
+      text: "Diolah dan diuleni secara hati-hati untuk menghasilkan kekenyalan yang pas tanpa menghilangkan serat daging.",
+      image: "/images/process-dough.png",
+      annotation: "Adonan kalis ─ kenyal & juicy"
     },
     {
       number: "03",
-      title: "Seni Melipat Tangan",
-      text: "Setiap butir siomay dilipat secara manual dengan presisi tinggi untuk estetika dan kualitas rasa.",
-      image: "/images/process-step-3.png",
-      video: "/videos/process-3.mp4",
+      title: "Dikukus Perlahan",
+      text: "Proses pengukusan dilakukan dengan suhu terkontrol untuk menjaga kelembutan dan kesegaran daging.",
+      image: "/images/macro-steamer.png",
+      annotation: "Suhu stabil ─ aroma khas"
     },
     {
       number: "04",
-      title: "Pengukusan Sempurna",
-      text: "Proses pengukusan dilakukan dengan suhu terkontrol untuk menjaga kelembutan dan kesegaran daging.",
-      image: "/images/process-step-4.png",
-      video: "/videos/process-4.mp4",
+      title: "Disajikan Autentik",
+      text: "Kombinasi rempah dan bumbu kacang rahasia yang disiram kental, menyempurnakan rasa warisan.",
+      image: "/images/process-plating.png",
+      annotation: "Bumbu kacang ─ racikan autentik"
     },
   ],
-  scrollStoryItems: [
+  macroTextures: [
     {
       id: 1,
-      title: "Materi Terbaik",
-      description: "Hanya daging sapi segar dari peternakan lokal yang terpilih.",
-      image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200",
-      video: "",
+      image: "/images/macro-sauce.png", // Using the generated artifact placeholder
+      label: "From perfectly roasted peanuts"
     },
     {
       id: 2,
-      title: "Tanpa Pengawet",
-      description: "Kami percaya pada kemurnian rasa tanpa bahan kimia tambahan.",
-      image: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&q=80&w=1200",
-      video: "",
-    },
-    {
-      id: 3,
-      title: "Resep Warisan",
-      description: "Kombinasi rempah yang diturunkan selama tiga generasi.",
-      image: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&q=80&w=1200",
-      video: "",
+      image: "/images/macro-steamer.png", // Using the generated artifact placeholder
+      label: "Steamed to tender perfection"
     }
   ],
+  gallery: [
+    { id: 1, image: "/images/editorial-artisan.png", caption: "The art of folding" },
+    { id: 2, image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200", caption: "Premium beef selection" },
+    { id: 3, image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=800", caption: "Authentic peanut sauce" },
+    { id: 4, image: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&q=80&w=1200", caption: "Heritage recipe" },
+  ],
+  closingCta: {
+    headline: "Rasa warisan, dibuat untuk hari ini",
+    image: "/images/siomay-closing.png",
+    ctaText: "Pesan Sekarang"
+  },
   journal: {
     title: "Jurnal Babah Sapi",
     subtitle: "Cerita tentang dedikasi, warisan rasa, dan filosofi di balik setiap butir siomay kami.",
