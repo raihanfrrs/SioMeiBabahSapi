@@ -41,7 +41,11 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-[100dvh] w-full overflow-hidden flex flex-col justify-end">
+    <section 
+      ref={containerRef} 
+      data-nav-theme="dark"
+      className="relative min-h-[100dvh] w-full overflow-hidden flex flex-col justify-end"
+    >
       
       {/* --- BACKGROUND VISUALS --- */}
       <div className="absolute inset-0 z-0">
@@ -50,16 +54,15 @@ const Hero = () => {
           <img 
             src={hero.imagePlaceholder} 
             alt="Siomay Babah Sapi" 
-            className="hero-bg w-full h-full object-cover object-[65%_center] lg:object-center brightness-[0.8] scale-105"
+            className="hero-bg w-full h-full object-cover object-[65%_center] lg:object-center brightness-[0.75] scale-105"
             loading="eager"
           />
         </picture>
         
         {/* Refined Gradient Overlays */}
-        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-        <div className="absolute top-0 left-0 w-full h-[30%] bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
-        <div className="absolute top-0 left-0 w-full h-[50%] bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-[35%] bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
+        <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
       </div>
 
       {/* --- CONTENT AREAS --- */}
@@ -90,7 +93,7 @@ const Hero = () => {
           >
             <Link
               href="/#menu"
-              className="inline-flex items-center justify-center rounded-md bg-[#f4eadc] px-10 py-5 text-sm font-medium tracking-[0.08em] text-[#2a140d] shadow-sm transition-all hover:scale-[1.05] active:scale-[0.95]"
+              className="inline-flex items-center justify-center rounded-md bg-[#f4eadc] px-12 py-5 text-sm font-medium tracking-[0.08em] text-[#2a140d] shadow-xl transition-all hover:scale-[1.05] active:scale-[0.95]"
             >
               Pesan Sekarang
             </Link>
@@ -99,7 +102,7 @@ const Hero = () => {
       </div>
 
       {/* Desktop Content */}
-      <div className="relative z-20 hidden lg:flex container-custom h-full items-end pb-40">
+      <div className="relative z-20 hidden lg:flex container-custom h-full items-end pb-48">
         <div className="grid grid-cols-12 w-full gap-16 items-end">
           {/* Left: Heading & Subheadline grouped */}
           <div className="col-span-8 flex flex-col gap-12">
@@ -107,21 +110,17 @@ const Hero = () => {
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col gap-10"
             >
               <h1 className="text-[150px] font-editorial text-white leading-[0.82] tracking-tighter drop-shadow-2xl">
                 Siomay Sapi <br />
                 <span className="italic text-brand-cream/90">Resep Warisan</span>
               </h1>
+              
+              <p className="text-2xl text-white/70 max-w-lg leading-relaxed font-medium">
+                {hero.subheadline}
+              </p>
             </motion.div>
-            
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, delay: 0.6 }}
-              className="text-xl text-white/70 max-w-lg leading-relaxed font-medium"
-            >
-              {hero.subheadline}
-            </motion.p>
           </div>
 
           {/* Right: CTA aligned with text flow */}
@@ -129,11 +128,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="col-span-4 flex justify-end pb-6"
+            className="col-span-4 flex justify-end pb-10"
           >
             <Link 
               href="/#menu"
-              className="inline-flex items-center justify-center rounded-md bg-[#f4eadc] px-12 py-6 text-sm font-medium tracking-[0.08em] text-[#2a140d] shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center justify-center rounded-md bg-[#f4eadc] px-16 py-7 text-sm font-medium tracking-[0.08em] text-[#2a140d] shadow-2xl transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
               {hero.cta}
             </Link>
