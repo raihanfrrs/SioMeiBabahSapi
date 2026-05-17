@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter, Gloock } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
@@ -13,6 +13,12 @@ const cormorant = Cormorant_Garamond({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const gloock = Gloock({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-gloock",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${cormorant.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="id" className={`${cormorant.variable} ${inter.variable} ${gloock.variable}`} suppressHydrationWarning>
       <body className="antialiased selection:bg-brand-peanut selection:text-brand-cream">
         <CustomCursor />
         <SmoothScroll>

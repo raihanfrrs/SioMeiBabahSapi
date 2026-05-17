@@ -8,6 +8,7 @@
   --color-brand-accent: #C7923E;
   --font-editorial: "Cormorant Garamond", serif;
   --font-body: "Inter", sans-serif;
+  --font-gloock: var(--font-gloock);
 }
 
 :root {

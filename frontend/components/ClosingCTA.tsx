@@ -81,13 +81,6 @@ const ClosingCTA = () => {
         </Link>
       </div>
       
-      {/* Editorial Marker Footer Blend */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
-        <div className="flex flex-col items-center gap-4 opacity-30">
-          <div className="w-[1px] h-12 bg-white" />
-          <span className="ui-label text-[8px] text-white">Scroll to explore</span>
-        </div>
-      </div>
     </section>
   );
 };

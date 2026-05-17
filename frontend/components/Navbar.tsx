@@ -11,11 +11,42 @@ const Navbar = () => {
   const [navTheme, setNavTheme] = useState<"light" | "dark">("dark");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const footerElement = document.getElementById("footer");
+    if (!footerElement) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFooterVisible(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.02, // trigger early when footer enters the screen
+      }
+    );
+
+    observer.observe(footerElement);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
+      // Bulletproof Footer Detection to prevent dark bar and PESAN button overlays
+      const footerElement = document.getElementById("footer");
+      if (footerElement) {
+        const rect = footerElement.getBoundingClientRect();
+        if (rect.top <= window.innerHeight - 10) {
+          setIsFooterVisible(true);
+        } else {
+          setIsFooterVisible(false);
+        }
+      }
+
       // Deep Analysis Fix: Use elementsFromPoint to see THROUGH the navbar
       // and detect the theme of the section exactly at the navbar's position.
       const checkY = isScrolled ? 40 : 80; // Vertical center of navbar
@@ -31,7 +62,14 @@ const Navbar = () => {
           if (theme && theme !== navTheme) {
             setNavTheme(theme);
           }
+          // Hide navbar when user enters the footer
+          const isFooter = section.tagName.toLowerCase() === "footer" || section.id === "footer";
+          setIsVisible(!isFooter);
+        } else {
+          setIsVisible(true);
         }
+      } else {
+        setIsVisible(true);
       }
     };
 
@@ -48,9 +86,12 @@ const Navbar = () => {
   }, [navTheme, isScrolled]);
 
   const isLight = navTheme === "light";
+  const showNavbar = isVisible && !isFooterVisible;
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-[10001] transition-all duration-700 ease-out ${
+      showNavbar ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+    } ${
       isScrolled 
         ? isLight 
           ? "bg-[#f4eadc]/98 backdrop-blur-md py-6 md:py-7 shadow-md border-b border-[#24110b]/10" 
