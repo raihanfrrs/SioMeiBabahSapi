@@ -12,7 +12,7 @@ const FoodShowcase = () => {
     <section 
       id="foods" 
       data-nav-theme="light"
-      className="bg-brand-cream border-t border-[#2a140d]/10 flex justify-center pt-28 md:pt-36 lg:pt-44 pb-32 md:pb-48 lg:pb-64"
+      className="bg-brand-cream border-t border-[#2a140d]/10 flex justify-center pt-28 md:pt-36 lg:pt-44 pb-32 md:pb-40 lg:pb-52"
     >
       <div className="container-custom">
         {/* Editorial Marker */}
@@ -39,7 +39,7 @@ const FoodShowcase = () => {
             </div>
           </Link>
         </div>
-
+ 
         {/* Grid / Carousel Container */}
         <div className="relative -mx-6 md:-mx-10 lg:mx-0 overflow-hidden">
           <div className="flex lg:grid lg:grid-cols-3 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory no-scrollbar gap-12 md:gap-16 lg:gap-20 pb-12 px-6 md:px-10 lg:px-0">
@@ -83,11 +83,11 @@ const FoodShowcase = () => {
             ))}
           </div>
         </div>
-
+ 
         {/* Mobile View Shop Link */}
         <div className="mt-16 md:hidden flex justify-center">
           <Link 
-            href="/#shop" 
+            href="/#menu" 
             className="w-full text-center border border-brand-dark/20 py-6 text-[11px] font-bold uppercase tracking-[0.3em] text-brand-dark rounded-md bg-[#f4eadc] shadow-md"
           >
             View Full Menu

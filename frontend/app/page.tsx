@@ -31,7 +31,7 @@ export default function Home() {
         </div>
         
         {/* Menu & Closing */}
-        <div className="relative z-40 bg-brand-cream section-py-lg">
+        <div className="relative z-40 bg-brand-cream">
           <FoodShowcase />
         </div>
         

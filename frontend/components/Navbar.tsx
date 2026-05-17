@@ -53,16 +53,16 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 w-full z-[10001] transition-all duration-700 ease-out ${
       isScrolled 
         ? isLight 
-          ? "bg-[#f4eadc]/95 backdrop-blur-md py-5 shadow-sm border-b border-[#24110b]/10" 
-          : "bg-black/40 backdrop-blur-md py-5 border-b border-white/10"
-        : "bg-transparent py-10 md:py-14 border-transparent"
+          ? "bg-[#f4eadc]/98 backdrop-blur-md py-6 md:py-7 shadow-md border-b border-[#24110b]/10" 
+          : "bg-black/50 backdrop-blur-md py-6 md:py-7 border-b border-white/10"
+        : "bg-transparent py-12 md:py-16 border-transparent"
     }`}>
       <div className="container-custom grid grid-cols-2 lg:grid-cols-3 items-center">
         {/* Logo - Left Col */}
         <div className="flex justify-start">
           <Link 
             href="/" 
-            className={`text-3xl md:text-5xl font-editorial tracking-tighter transition-all duration-700 ease-out ${
+            className={`text-3.5xl md:text-5.5xl font-editorial tracking-tighter transition-all duration-700 ease-out ${
               isLight ? "!text-[#24110b]" : "!text-white"
             } ${isScrolled ? "scale-90" : "scale-100"}`}
           >
@@ -71,12 +71,12 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu - Center Col */}
-        <div className="hidden lg:flex justify-center items-center gap-12">
+        <div className="hidden lg:flex justify-center items-center gap-14">
           {siteContent.navigation.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className={`ui-label text-[11px] tracking-[0.4em] font-bold transition-all duration-500 ease-out ${
+              className={`ui-label text-[12px] tracking-[0.45em] font-bold transition-all duration-500 ease-out ${
                 isLight 
                   ? "!text-[#24110b] hover:opacity-70" 
                   : "!text-white hover:opacity-70"
@@ -91,7 +91,7 @@ const Navbar = () => {
         <div className="flex justify-end items-center gap-8">
           <Link
             href="/#menu"
-            className={`hidden lg:block group relative overflow-hidden border px-10 py-3 rounded-sm text-[11px] font-bold uppercase tracking-[0.3em] transition-all duration-700 ${
+            className={`hidden lg:block group relative overflow-hidden border px-12 py-4 rounded-md text-[13px] font-bold uppercase tracking-[0.3em] transition-all duration-700 ${
               isLight 
                 ? "border-[#24110b]/30 !text-[#24110b] hover:border-[#24110b]" 
                 : "border-white/30 !text-white hover:border-white"

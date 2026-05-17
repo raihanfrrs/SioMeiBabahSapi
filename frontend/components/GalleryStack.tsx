@@ -15,12 +15,12 @@ const GalleryStack = () => {
     const ctx = gsap.context(() => {
       // Sync Title Reveal
       gsap.fromTo(".gallery-title",
-        { y: 60, opacity: 0 },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.5,
-          ease: "expo.out",
+          duration: 1.2,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
@@ -30,36 +30,21 @@ const GalleryStack = () => {
 
       // Collage Items Reveal - Staggered
       const items = gsap.utils.toArray<HTMLElement>('.gallery-item');
-      items.forEach((item, i) => {
-        const img = item.querySelector('img');
-        
+      items.forEach((item) => {
         gsap.fromTo(item,
-          { y: 80, opacity: 0, scale: 0.96 },
+          { y: 40, opacity: 0, scale: 0.97 },
           {
             y: 0,
             opacity: 1,
             scale: 1,
-            duration: 1.8,
-            delay: i * 0.12,
-            ease: "expo.out",
+            duration: 1.0,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: item,
-              start: "top 90%",
+              start: "top 85%",
             }
           }
         );
-
-        // Subtle Parallax
-        gsap.to(img, {
-          yPercent: 10,
-          ease: "none",
-          scrollTrigger: {
-            trigger: item,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.8,
-          }
-        });
       });
     }, containerRef);
 
@@ -67,67 +52,116 @@ const GalleryStack = () => {
   }, []);
 
   const galleryLabels = [
-    "The art of folding",
-    "Premium beef selection",
-    "Authentic peanut sauce",
-    "Handcrafted heritage"
+    "THE ART OF FOLDING",
+    "PREMIUM BEEF SELECTION",
+    "AUTHENTIC PEANUT SAUCE",
+    "HANDCRAFTED HERITAGE"
   ];
 
   return (
     <section 
       ref={containerRef} 
       data-nav-theme="light"
-      className="w-full bg-brand-cream pt-28 md:pt-40 lg:pt-56 pb-44 md:pb-64 lg:pb-80 overflow-hidden relative border-t border-[#2a140d]/10"
+      className="w-full bg-[#f4eadc] pt-28 md:pt-36 lg:pt-44 pb-36 md:pb-44 lg:pb-56 overflow-hidden relative border-t border-[#2a140d]/10"
     >
-      <div className="container-custom mb-32 md:mb-56 gallery-title">
-        <div className="flex flex-col gap-8">
-          <span className="ui-label text-brand-accent tracking-[0.4em] uppercase text-[10px] font-bold">Behind the scene</span>
-          <h2 className="text-6xl md:text-8xl lg:text-[110px] font-editorial text-brand-dark tracking-tighter leading-[0.85]">
-            The Making of <br/><span className="italic text-brand-accent">Babah Sapi</span>
+      {/* Header Container */}
+      <div className="container-custom mb-16 md:mb-20 gallery-title">
+        <div className="flex flex-col items-center text-center gap-4">
+          <div className="flex items-center gap-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
+            <span className="ui-label text-brand-accent tracking-[0.4em] uppercase text-[10px] font-bold">Behind The Scene</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
+          </div>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-editorial text-brand-dark tracking-tight leading-[0.9] max-w-4xl">
+            The Making of <span className="italic text-brand-accent font-normal">Babah Sapi</span>
           </h2>
         </div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto h-[1000px] md:h-[1400px] w-full px-6">
-        {/* Image 1: Primary Large & Dominant */}
-        {gallery[0] && (
-          <div className="gallery-item absolute top-[0%] left-[5%] md:left-[10%] w-[80vw] md:w-[45vw] aspect-[4/5] z-10 overflow-hidden shadow-2xl border border-brand-dark/5 rounded-sm">
-            <img src={gallery[0].image} alt={gallery[0].caption} className="w-full h-full object-cover scale-110" />
-            <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 bg-brand-cream/90 backdrop-blur-md px-6 py-3 border border-brand-dark/5 shadow-xl">
-              <p className="ui-label text-[10px] text-brand-dark font-bold uppercase tracking-wider">{galleryLabels[0]}</p>
+      <div className="container-custom">
+        {/* Responsive Mobile Layout (Stacked list, clean, no overflow) */}
+        <div className="flex flex-col gap-10 md:hidden">
+          {gallery.map((item, idx) => (
+            <div key={item.id} className="gallery-item w-full flex flex-col gap-3">
+              <div className="relative aspect-[3/4] w-full overflow-hidden shadow-xl border border-brand-dark/10 rounded-sm">
+                <img 
+                  src={item.image} 
+                  alt={item.caption} 
+                  className="w-full h-full object-cover" 
+                  loading="lazy"
+                />
+                <div className="absolute top-4 left-4 bg-[#f4eadc]/90 text-[#2a140d] px-3 py-1 text-[10px] tracking-[0.2em] font-semibold uppercase rounded-sm shadow-sm">
+                  {galleryLabels[idx] || item.caption}
+                </div>
+              </div>
             </div>
-          </div>
-        )}
+          ))}
+        </div>
 
-        {/* Image 2: Secondary Overlap Top Right */}
-        {gallery[1] && (
-          <div className="gallery-item absolute top-[10%] right-[0%] md:right-[5%] w-[55vw] md:w-[30vw] aspect-square z-20 overflow-hidden shadow-2xl border border-brand-dark/5 rounded-sm">
-            <img src={gallery[1].image} alt={gallery[1].caption} className="w-full h-full object-cover scale-110" />
-            <div className="absolute top-6 right-6 md:top-10 md:right-10 bg-brand-cream/90 backdrop-blur-md px-5 py-2 border border-brand-dark/5 shadow-xl">
-              <p className="ui-label text-[10px] text-brand-dark font-bold uppercase tracking-wider">{galleryLabels[1]}</p>
+        {/* Desktop Collage Layout (Premium, controlled, absolute magazine composition) */}
+        <div className="hidden md:block relative w-full max-w-6xl mx-auto min-h-[760px]">
+          
+          {/* Image 1: Primary Large (Left) */}
+          {gallery[0] && (
+            <div className="gallery-item absolute left-0 top-0 w-[38%] aspect-[3/4] overflow-hidden shadow-xl border border-brand-dark/10 rounded-sm">
+              <img 
+                src={gallery[0].image} 
+                alt={gallery[0].caption} 
+                className="w-full h-full object-cover" 
+                loading="lazy"
+              />
+              <div className="absolute top-4 left-4 bg-[#f4eadc]/90 text-[#2a140d] px-3 py-1 text-[10px] tracking-[0.2em] font-semibold uppercase rounded-sm shadow-sm">
+                {galleryLabels[0]}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Image 3: Wide Detail Overlap Center */}
-        {gallery[2] && (
-          <div className="gallery-item absolute top-[45%] left-[10%] md:left-[20%] w-[75vw] md:w-[42vw] aspect-[16/9] z-30 overflow-hidden shadow-2xl border border-brand-dark/5 rounded-sm">
-            <img src={gallery[2].image} alt={gallery[2].caption} className="w-full h-full object-cover scale-110" />
-            <div className="absolute top-6 left-6 md:top-10 md:left-10 bg-brand-cream/90 backdrop-blur-md px-5 py-2 border border-brand-dark/5 shadow-xl">
-              <p className="ui-label text-[10px] text-brand-dark font-bold uppercase tracking-wider">{galleryLabels[2]}</p>
+          {/* Image 2: Secondary Overlap (Right-Center) */}
+          {gallery[1] && (
+            <div className="gallery-item absolute left-[42%] top-[8%] w-[30%] aspect-[4/3] overflow-hidden shadow-xl border border-brand-dark/10 rounded-sm">
+              <img 
+                src={gallery[1].image} 
+                alt={gallery[1].caption} 
+                className="w-full h-full object-cover" 
+                loading="lazy"
+              />
+              <div className="absolute top-4 left-4 bg-[#f4eadc]/90 text-[#2a140d] px-3 py-1 text-[10px] tracking-[0.2em] font-semibold uppercase rounded-sm shadow-sm">
+                {galleryLabels[1]}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Image 4: Tall Detail Bottom Right */}
-        {gallery[3] && (
-          <div className="gallery-item absolute top-[65%] right-[5%] md:right-[10%] w-[50vw] md:w-[26vw] aspect-[3/4] z-40 overflow-hidden shadow-2xl border border-brand-dark/5 rounded-sm">
-            <img src={gallery[3].image} alt={gallery[3].caption} className="w-full h-full object-cover scale-110" />
-            <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 bg-brand-cream/90 backdrop-blur-md px-5 py-2 border border-brand-dark/5 shadow-xl">
-              <p className="ui-label text-[10px] text-brand-dark font-bold uppercase tracking-wider">{galleryLabels[3]}</p>
+          {/* Image 3: Wide Detail Overlap (Center-Left) */}
+          {gallery[2] && (
+            <div className="gallery-item absolute left-[30%] top-[48%] w-[28%] aspect-[4/3] overflow-hidden shadow-xl border border-brand-dark/10 rounded-sm">
+              <img 
+                src={gallery[2].image} 
+                alt={gallery[2].caption} 
+                className="w-full h-full object-cover" 
+                loading="lazy"
+              />
+              <div className="absolute top-4 left-4 bg-[#f4eadc]/90 text-[#2a140d] px-3 py-1 text-[10px] tracking-[0.2em] font-semibold uppercase rounded-sm shadow-sm">
+                {galleryLabels[2]}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+
+          {/* Image 4: Tall Detail (Right) */}
+          {gallery[3] && (
+            <div className="gallery-item absolute right-0 top-[35%] w-[28%] aspect-[3/4] overflow-hidden shadow-xl border border-brand-dark/10 rounded-sm">
+              <img 
+                src={gallery[3].image} 
+                alt={gallery[3].caption} 
+                className="w-full h-full object-cover" 
+                loading="lazy"
+              />
+              <div className="absolute top-4 left-4 bg-[#f4eadc]/90 text-[#2a140d] px-3 py-1 text-[10px] tracking-[0.2em] font-semibold uppercase rounded-sm shadow-sm">
+                {galleryLabels[3]}
+              </div>
+            </div>
+          )}
+
+        </div>
       </div>
     </section>
   );

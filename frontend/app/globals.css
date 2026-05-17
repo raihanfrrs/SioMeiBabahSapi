@@ -155,9 +155,7 @@ body::after {
   .section-mt-lg { @apply mt-28 md:mt-40; }
   .section-mb-lg { @apply mb-28 md:mb-40; }
   
-  .container-custom {
-    @apply max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16;
-  }
+
 
   .grid-editorial {
     @apply grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16;
@@ -216,4 +214,44 @@ body::after {
 
 .btn-premium-dark {
   @apply inline-flex items-center justify-center rounded-sm bg-brand-dark px-10 py-5 text-sm font-bold uppercase tracking-[0.3em] text-brand-cream transition-all duration-500 hover:bg-brand-peanut hover:scale-105 active:scale-95 shadow-xl;
+}
+
+/* Hide Next.js Dev Badge and other dev overlays if injected */
+#nextjs-hud,
+nextjs-portal,
+.__next-indicator,
+[id^="__next-indicator"],
+[data-nextjs-dialog-overlay-container] {
+  display: none !important;
+}
+
+/* Root Centering Rules with highest specificity to override any layout/responsive anomalies */
+.container-custom {
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  display: block !important;
+}
+
+@media (min-width: 768px) {
+  .container-custom {
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
+.process-step {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  max-width: 1050px !important;
 }

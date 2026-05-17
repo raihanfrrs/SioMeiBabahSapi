@@ -13,48 +13,48 @@ const ProcessStory = () => {
     gsap.registerPlugin(ScrollTrigger);
     
     const ctx = gsap.context(() => {
-      // Timeline Line Animation
-      gsap.fromTo(".process-timeline-line", 
-        { scaleY: 0 },
-        { 
-          scaleY: 1, 
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".process-steps-container",
-            start: "top 70%",
-            end: "bottom 80%",
-            scrub: true,
-          }
-        }
-      );
-
-      // Reveal images and text
+      // Step content reveals
       const steps = gsap.utils.toArray<HTMLElement>('.process-step');
       steps.forEach((step) => {
         const img = step.querySelector('.process-img-container');
         const content = step.querySelector('.process-content');
+        const timelineItem = step.querySelector('.process-timeline-item');
         
         gsap.fromTo(img, 
-          { clipPath: "inset(100% 0% 0% 0%)", scale: 1.1 },
+          { opacity: 0, scale: 1.05 },
           { 
-            clipPath: "inset(0% 0% 0% 0%)", 
+            opacity: 1, 
             scale: 1,
-            duration: 1.8,
-            ease: "expo.out",
+            duration: 1.5,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: step,
-              start: "top 80%",
+              start: "top 75%",
             }
           }
         );
 
         gsap.fromTo(content,
-          { opacity: 0 },
+          { opacity: 0, y: 30 },
           {
             opacity: 1,
-            duration: 1.5,
-            delay: 0.2,
-            ease: "expo.out",
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: step,
+              start: "top 75%",
+            }
+          }
+        );
+
+        gsap.fromTo(timelineItem,
+          { scale: 0, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 1,
+            ease: "back.out(1.7)",
             scrollTrigger: {
               trigger: step,
               start: "top 75%",
@@ -72,94 +72,96 @@ const ProcessStory = () => {
       ref={containerRef} 
       id="process" 
       data-nav-theme="light"
-      className="relative w-full bg-brand-cream z-20"
+      className="relative bg-[#f4eadc] overflow-hidden py-28 md:py-36 lg:py-44 pb-32 md:pb-40 lg:pb-48 z-20"
     >
       
       {/* Background Section Label */}
       <div className="absolute top-20 left-10 md:left-20 hidden lg:block overflow-hidden">
-        <span className="ui-label opacity-20 text-[80px] leading-none select-none">Method</span>
+        <span className="ui-label opacity-10 text-[80px] leading-none select-none text-brand-dark">Method</span>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 relative process-steps-container">
-        
-        {/* Vertical Timeline Line */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[1px] bg-brand-dark/5 hidden md:block origin-top process-timeline-line" />
-
-        <div className="flex flex-col">
+      <div className="container-custom relative">
+        <div className="flex flex-col gap-12 md:gap-0">
           {processSteps.map((step, idx) => {
-            const isTextLeft = (idx + 1) % 2 === 0; // Even steps (02, 04) text left
+            const isTextLeft = (idx + 1) % 2 === 0;
+
+            const imageBlock = (
+              <div className="w-full max-w-[460px] mx-auto">
+                <div className="process-img-container relative aspect-[4/5] w-full overflow-hidden shadow-xl rounded-sm">
+                  <img 
+                    src={step.image} 
+                    alt={step.title} 
+                    className="absolute w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-brand-dark/5" />
+                </div>
+                <p className="mt-4 ui-label text-[9px] opacity-40 text-brand-dark tracking-[0.2em] uppercase font-bold text-center md:text-left">
+                  {step.annotation.split('─')[1]?.trim() || step.annotation}
+                </p>
+              </div>
+            );
+
+            const timelineBlock = (
+              <div className="hidden md:flex h-full flex-col items-center justify-center relative py-6">
+                <div className="absolute top-0 bottom-0 w-[1px] bg-[#2a140d]/15" />
+                <div className="process-timeline-item w-12 h-12 rounded-full border border-[#2a140d]/20 bg-[#f4eadc] flex items-center justify-center z-10 shadow-sm">
+                  <span className="text-[12px] font-bold text-brand-dark tracking-widest">{step.number}</span>
+                </div>
+              </div>
+            );
+
+            const textBlock = (
+              <div className="w-full max-w-[420px] mx-auto">
+                <div className="process-content flex flex-col justify-center">
+                  <div className="flex items-center gap-6 mb-4 md:hidden">
+                    <span className="text-brand-accent font-bold tracking-[0.5em] text-sm uppercase">{step.number}</span>
+                    <div className="h-[1px] w-12 bg-brand-accent/40" />
+                  </div>
+                  
+                  <h3 className="text-4xl md:text-5xl lg:text-[54px] font-editorial text-brand-dark leading-[1.0] tracking-tighter">
+                    {step.title.split(' ').map((word, i) => (
+                      <span key={i} className={i % 3 === 2 ? "italic text-brand-accent font-normal" : ""}>
+                        {word}{" "}
+                      </span>
+                    ))}
+                  </h3>
+                  
+                  <div className="mt-6 space-y-6">
+                    <p className="text-brand-dark/70 text-base md:text-lg leading-relaxed font-medium">
+                      {step.text}
+                    </p>
+                    <div className="flex flex-col gap-4 pt-4 border-t border-brand-dark/5">
+                      <div className="flex items-center justify-between">
+                        <span className="ui-label text-[9px] text-brand-accent uppercase font-bold">Traditional Method</span>
+                        <span className="ui-label text-[9px] text-brand-dark/40 italic font-bold">Handcrafted</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
 
             return (
               <div 
                 key={step.number} 
-                className="process-step relative min-h-[100vh] w-full flex items-center justify-center py-20 md:py-32"
+                className={`process-step flex w-full max-w-[1050px] mx-auto items-center justify-center min-h-[72vh] gap-10 lg:gap-14 py-12 md:py-20 md:grid md:grid-cols-[minmax(0,420px)_72px_minmax(0,460px)] ${
+                  isTextLeft ? "flex-col-reverse" : "flex-col"
+                }`}
               >
-                {/* Timeline Dot - Exact Viewport Midpoint */}
-                <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 hidden md:flex items-center justify-center z-50">
-                  <div className="w-4 h-4 rounded-full bg-brand-accent shadow-[0_0_20px_rgba(199,146,62,0.6)]" />
-                </div>
-
-                <div className={`w-full flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-32 ${isTextLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                  
-                  {/* Left/Right Container - The Heading Axis */}
-                  <div className="w-full md:w-[45%] flex flex-col justify-center order-2 md:order-none relative">
-                    <div className="process-content">
-                      {/* Step Header */}
-                      <div className="flex items-center gap-6 mb-6">
-                        <span className="text-brand-accent font-bold tracking-[0.5em] text-sm uppercase">{step.number}</span>
-                        <div className="h-[1px] w-12 bg-brand-accent/40" />
-                      </div>
-                      
-                      {/* The Heading - The absolute anchor for centering */}
-                      <h3 className="text-5xl md:text-6xl lg:text-[70px] font-editorial text-brand-dark leading-[0.8] tracking-tighter">
-                        {step.title.split(' ').map((word, i) => (
-                          <span key={i} className={i % 3 === 2 ? "italic text-brand-accent" : ""}>
-                            {word}{" "}
-                          </span>
-                        ))}
-                      </h3>
-                      
-                      {/* The Narrative - Positioned BELOW the heading, but we'll use a negative margin or specific container to keep the heading centered */}
-                      <div className="md:absolute md:top-[calc(100%+3rem)] md:left-0 w-full max-w-sm space-y-6 hidden md:block">
-                        <p className="text-brand-dark/70 text-lg leading-relaxed font-medium">
-                          {step.text}
-                        </p>
-                        <div className="flex flex-col gap-4 pt-4 border-t border-brand-dark/5">
-                          <div className="flex items-center justify-between">
-                            <span className="ui-label text-[10px] text-brand-accent uppercase font-bold">Traditional Method</span>
-                            <span className="ui-label text-[10px] text-brand-dark/40 italic font-bold">Handcrafted</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right/Left Container - The Image Anchor */}
-                  <div className="w-full md:w-[45%] flex flex-col items-center justify-center order-1 md:order-none">
-                    <div className="relative w-full">
-                      <div className="process-img-container relative aspect-[4/5] w-full overflow-hidden shadow-2xl rounded-sm">
-                        <img 
-                          src={step.image} 
-                          alt={step.title} 
-                          className="absolute w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-brand-dark/5" />
-                      </div>
-                      <p className={`mt-8 ui-label text-[10px] opacity-40 text-brand-dark tracking-[0.2em] uppercase font-bold w-full ${isTextLeft ? 'text-left' : 'text-right'}`}>
-                        {step.annotation.split('─')[1]?.trim() || step.annotation}
-                      </p>
-                    </div>
-                  </div>
-
-                </div>
-                
-                {/* Mobile Narrative */}
-                <div className="w-full mt-10 md:hidden px-4">
-                  <p className="text-brand-dark/70 text-base leading-relaxed font-medium">
-                    {step.text}
-                  </p>
-                </div>
+                {isTextLeft ? (
+                  <>
+                    {textBlock}
+                    {timelineBlock}
+                    {imageBlock}
+                  </>
+                ) : (
+                  <>
+                    {imageBlock}
+                    {timelineBlock}
+                    {textBlock}
+                  </>
+                )}
               </div>
             );
           })}
