@@ -86,7 +86,7 @@ const Navbar = () => {
   }, [navTheme, isScrolled]);
 
   const isLight = navTheme === "light";
-  const showNavbar = isVisible && !isFooterVisible;
+  const showNavbar = isVisible && !isFooterVisible && isScrolled;
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-[10001] transition-all duration-700 ease-out ${

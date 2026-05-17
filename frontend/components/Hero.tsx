@@ -1,21 +1,43 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const localVideos = [
+  "/videos/hero-1.mp4",
+  "/videos/hero-2.mp4",
+  "/videos/hero-3.mp4",
+  "/videos/hero-4.mp4",
+];
+
+const cdnVideos = [
+  "https://player.vimeo.com/external/435674703.sd.mp4?s=7fdf21ed7e96b1b22e1b12b596f2e825a07c1328&profile_id=165&oauth2_token_id=57447761",
+  "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c02cba73e1dd1d0fd2e70b18c2424b34&profile_id=165&oauth2_token_id=57447761",
+  "https://player.vimeo.com/external/430023405.sd.mp4?s=d0046522c09c2ef361955b23d902d207f2bd5f4a&profile_id=165&oauth2_token_id=57447761",
+  "https://player.vimeo.com/external/554988775.sd.mp4?s=08ab066d8b9d311fa5c4d0a1b65e23cc28e3b5e4&profile_id=165&oauth2_token_id=57447761",
+];
+
+const activeVideos = localVideos;
 
 const Hero = () => {
   const { hero } = siteContent;
   const containerRef = useRef<HTMLElement>(null);
 
+  // Video Carousel State
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [nextIdx, setNextIdx] = useState<number | null>(null);
+  const [fadeNext, setFadeNext] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // GSAP Pinning
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
     const ctx = gsap.context(() => {
-      // Pin the hero section so the next section slides over it
       ScrollTrigger.create({
         trigger: containerRef.current,
         start: "top top",
@@ -23,122 +45,211 @@ const Hero = () => {
         pin: true,
         pinSpacing: false,
       });
-      
-      // Subtle parallax on the background image
-      gsap.to(".hero-bg", {
-        yPercent: 15,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        }
-      });
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
+  // Video Carousel Interval
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const next = (currentIdx + 1) % activeVideos.length;
+      setNextIdx(next);
+      setFadeNext(true);
+
+      const timer = setTimeout(() => {
+        setCurrentIdx(next);
+        setNextIdx(null);
+        setFadeNext(false);
+      }, 1200); // 1200ms crossfade transition duration
+
+      return () => clearTimeout(timer);
+    }, 6000); // Rotate video every 6 seconds
+
+    return () => clearInterval(interval);
+  }, [currentIdx, activeVideos.length]);
+
   return (
     <section 
       ref={containerRef} 
+      id="hero"
       data-nav-theme="dark"
-      className="relative min-h-[100dvh] w-full overflow-hidden flex flex-col justify-end"
+      className="relative min-h-screen w-full overflow-hidden bg-black text-white flex justify-center"
     >
       
-      {/* --- BACKGROUND VISUALS --- */}
-      <div className="absolute inset-0 z-0">
-        <picture>
-          <source srcSet={hero.imagePlaceholder} media="(min-width: 1024px)" />
-          <img 
-            src={hero.imagePlaceholder} 
-            alt="Siomay Babah Sapi" 
-            className="hero-bg w-full h-full object-cover object-[65%_center] lg:object-center brightness-[0.75] scale-105"
-            loading="eager"
-          />
-        </picture>
+      {/* --- BACKGROUND VIDEO CAROUSEL WITH IMAGE FALLBACK --- */}
+      <div className="absolute inset-0 z-0 select-none pointer-events-none">
         
-        {/* Refined Gradient Overlays */}
-        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
-        <div className="absolute top-0 left-0 w-full h-[35%] bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
-        <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
+        {/* Ground Fallback Image (always underneath) */}
+        <img 
+          src={hero.imagePlaceholder} 
+          alt="Siomay Babah Sapi Background" 
+          className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.4] scale-100"
+          loading="eager"
+        />
+
+        {/* Video Layer 1: Current Active Video */}
+        <video
+          key={`current-${currentIdx}`}
+          src={activeVideos[currentIdx]}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.55]"
+        />
+
+        {/* Video Layer 2: Next Video (Fading In above Layer 1) */}
+        {nextIdx !== null && (
+          <video
+            key={`next-${nextIdx}`}
+            src={activeVideos[nextIdx]}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className={`absolute inset-0 w-full h-full object-cover brightness-[0.55] transition-opacity ease-out`}
+            style={{ 
+              opacity: fadeNext ? 1 : 0,
+              transitionDuration: "1200ms"
+            }}
+          />
+        )}
+
+        {/* Refined Luxury Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35 pointer-events-none" />
+        
+        {/* Bottom Left radial focus gradient to ensure extreme text legibility */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_75%,rgba(0,0,0,0.5),transparent_55%)] pointer-events-none" />
       </div>
 
-      {/* --- CONTENT AREAS --- */}
-      
-      {/* Mobile & Tablet Content */}
-      <div className="relative z-20 px-8 pb-28 md:px-16 md:pb-40 lg:hidden">
-        <div className="flex flex-col items-start gap-8 max-w-lg">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col gap-4"
+      {/* --- ABSOLUTE HEADER NAVIGATION (Savor-Style) --- */}
+      <header className="absolute top-0 left-0 right-0 z-30 h-24 pt-6 select-none w-full flex justify-center">
+        <div 
+          className="px-6 md:px-10 lg:px-16 flex items-start justify-between w-full"
+          style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}
+        >
+          {/* Logo */}
+          <Link 
+            href="/" 
+            className="font-editorial text-white text-4xl md:text-5xl lg:text-6xl leading-none tracking-[-0.05em] hover:opacity-90 transition-opacity"
           >
-            <h1 className="text-[62px] leading-[0.85] tracking-[-0.03em] font-editorial text-white md:text-[100px]">
-              Siomay Sapi <br /> 
-              <span className="italic opacity-90">Resep Warisan</span>
-            </h1>
-            
-            <p className="text-base md:text-lg text-white/80 max-w-[280px] md:max-w-md font-medium leading-relaxed">
-              Gurih, lembut, dan dibuat dengan daging sapi pilihan serta bumbu kacang autentik.
-            </p>
-          </motion.div>
+            babah sapi
+          </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          {/* Desktop Navigation Links (Centered bounds layout) */}
+          <nav className="hidden lg:flex items-center gap-10 font-sans text-base font-semibold text-white normal-case tracking-normal pt-4">
+            {["Proses", "Menu", "Kualitas", "Misi", "Jurnal", "Kontak"].map((link) => (
+              <Link 
+                key={link} 
+                href={`/#${link.toLowerCase()}`}
+                className="hover:opacity-70 transition-opacity duration-300"
+              >
+                {link}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="lg:hidden text-white font-sans text-base font-semibold hover:opacity-75 transition-opacity pt-2"
           >
-            <Link
-              href="/#menu"
-              className="inline-flex items-center justify-center rounded-md bg-[#f4eadc] px-8 py-4 text-sm font-medium tracking-[0.08em] text-[#2a140d] shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
-            >
-              Pesan Sekarang
-            </Link>
-          </motion.div>
+            Menu
+          </button>
         </div>
-      </div>
+      </header>
 
-      {/* Desktop Content */}
-      <div className="relative z-20 hidden lg:flex container-custom h-full items-end pb-64">
-        <div className="grid grid-cols-12 w-full gap-16 items-end">
-          {/* Left: Heading & Subheadline grouped */}
-          <div className="col-span-8 flex flex-col gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col gap-6"
+      {/* --- CONTENT CONTAINER (Savor-Style Grid - Bottom Aligned) --- */}
+      <div 
+        className="relative z-20 flex min-h-screen w-full flex-col justify-end px-6 md:px-10 lg:px-16 pb-16 md:pb-20 lg:pb-24 pointer-events-none"
+        style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}
+      >
+        
+        <div className="grid grid-cols-12 items-end gap-8 w-full pointer-events-auto">
+          
+          {/* Left Column: Headline (col-span-12 lg:col-span-7) */}
+          <div className="col-span-12 lg:col-span-7 flex flex-col items-start">
+            <motion.h1 
+              initial={{ opacity: 0, filter: "blur(8px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="font-editorial text-white text-[15vw] sm:text-[12vw] md:text-[9.5vw] lg:text-[7.8vw] leading-[0.82] tracking-[-0.06em] font-normal text-left"
             >
-              <h1 className="text-[140px] font-editorial text-white leading-[0.82] tracking-tighter drop-shadow-2xl">
-                Siomay Sapi <br />
-                <span className="italic text-brand-cream/90">Resep Warisan</span>
-              </h1>
-              
-              <p className="text-xl text-white/80 max-w-lg leading-relaxed font-medium">
-                {hero.subheadline}
+              Siomay sapi<br />
+              resep<br />
+              warisan
+            </motion.h1>
+          </div>
+
+          {/* Right Column: Subtitle & Large CTA Button (col-span-12 lg:col-span-4 lg:col-start-9) */}
+          <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col items-start mb-2 md:mb-4 lg:mb-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="flex flex-col items-start w-full"
+            >
+              <p className="font-sans text-lg md:text-xl font-semibold leading-snug text-white max-w-[280px] text-left">
+                Gurih, lembut,<br />
+                dan bumbu kacang autentik.
               </p>
+
+              <Link
+                href="/#menu"
+                className="mt-8 inline-flex items-center justify-center rounded-md bg-[#f3eadc] px-9 py-5 text-base font-semibold text-[#4a0907] shadow-sm transition hover:scale-[1.02] active:scale-[0.98] w-full sm:w-fit"
+              >
+                Pesan — Sekarang
+              </Link>
             </motion.div>
           </div>
 
-          {/* Right: CTA aligned with text flow */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="col-span-4 flex justify-end pb-4"
-          >
-            <Link 
-              href="/#menu"
-              className="inline-flex items-center justify-center rounded-md bg-[#f4eadc] px-10 py-5 text-base font-semibold tracking-[0.08em] text-[#2a140d] shadow-md transition-transform hover:scale-[1.02] active:scale-[0.98]"
-            >
-              {hero.cta}
-            </Link>
-          </motion.div>
         </div>
+
       </div>
+
+      {/* --- LUXURIOUS FULL-SCREEN MOBILE OVERLAY --- */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(20px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 z-[10000] bg-black/85 flex flex-col p-10 pt-32 lg:hidden"
+          >
+            {/* Close Button */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute top-8 right-8 text-white font-sans text-lg font-medium hover:opacity-75 transition-opacity"
+            >
+              Tutup
+            </button>
+
+            {/* Menu Links */}
+            <div className="flex flex-col space-y-8 mt-12">
+              {["Proses", "Menu", "Kualitas", "Misi", "Jurnal", "Kontak"].map((link, idx) => (
+                <motion.div
+                  key={link}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.08, duration: 0.5 }}
+                >
+                  <Link 
+                    href={`/#${link.toLowerCase()}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="font-editorial text-white text-5xl hover:opacity-70 transition-opacity"
+                  >
+                    {link}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </section>
   );
