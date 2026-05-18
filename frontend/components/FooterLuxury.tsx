@@ -58,7 +58,7 @@ const FooterLuxury = () => {
       >
         
         {/* Top Area: Grid Cols-12 (Exact Savor Styles - Centered, No Uppercase Labels) */}
-        <div className="grid grid-cols-12 gap-12 pt-20 md:pt-24 lg:pt-28">
+        <div className="grid grid-cols-12 gap-12 footer-top-grid">
           
           {/* Column 1: Navigation Links (col-span-3) */}
           <div className="col-span-12 md:col-span-3 flex flex-col items-start">

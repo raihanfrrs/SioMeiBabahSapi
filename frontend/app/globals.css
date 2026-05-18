@@ -174,6 +174,52 @@ body::after {
   .border-b-editorial {
     @apply border-b border-brand-dark/10;
   }
+
+  /* Global Editorial Spacing Utilities - Forced with !important to bypass Next.js dynamic compilation/caching issues */
+  .section-editorial-philosophy {
+    padding-top: clamp(6rem, 10vw, 11rem) !important;
+    padding-bottom: clamp(6rem, 10vw, 11rem) !important;
+  }
+
+  .section-editorial-making {
+    padding-top: clamp(6rem, 10vw, 11rem) !important;
+    padding-bottom: clamp(8rem, 12vw, 14rem) !important;
+  }
+
+  .section-editorial-collection {
+    padding-top: clamp(6rem, 10vw, 11rem) !important;
+    padding-bottom: clamp(8rem, 12vw, 14rem) !important;
+  }
+  
+  .section-inner {
+    width: 100% !important;
+    max-width: 1280px !important;
+    margin-inline: auto !important;
+  }
+
+  /* Luxury Product Card Spacing - Forced with !important to bypass compiler caching anomalies */
+  .premium-product-card {
+    background: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(31, 20, 15, 0.05) !important;
+    border-radius: 4px !important;
+    padding: 24px 24px 28px 24px !important; /* Top, Right, Bottom, Left */
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  .premium-product-card:hover {
+    background: rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
+    border-color: rgba(199, 146, 62, 0.15) !important;
+  }
+
+  /* Luxury Footer Top Area Spacing - Forced with !important to bypass compiler caching anomalies */
+  .footer-top-grid {
+    padding-top: clamp(6rem, 10vw, 12rem) !important;
+  }
 }
 
 /* Image Reveal Base */

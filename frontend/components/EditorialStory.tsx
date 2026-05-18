@@ -48,27 +48,25 @@ const EditorialStory = () => {
     <section 
       ref={containerRef} 
       data-nav-theme="light"
-      className="w-full bg-[#f4eadc] pt-28 md:pt-36 lg:pt-44 pb-32 md:pb-40 lg:pb-48 overflow-hidden"
+      className="w-full bg-[#f4eadc] border-y border-brand-dark/10 section-editorial-philosophy overflow-hidden flex justify-center"
     >
-      <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="section-inner px-6 md:px-10 lg:px-16 w-full flex flex-col justify-center">
+        <div className="grid grid-cols-12 gap-10 md:gap-14 lg:gap-20 xl:gap-24 items-center w-full">
           
-          {/* Left: Large Editorial Heading (col-span-5) */}
-          <div className="col-span-12 md:col-span-5 flex flex-col items-start editorial-reveal">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="h-[1px] w-8 bg-brand-accent/40" />
-              <span className="ui-label text-brand-accent tracking-[0.5em] uppercase text-[10px] font-bold">Our Philosophy</span>
-            </div>
-            
-            <h2 className="text-[54px] md:text-[64px] lg:text-[82px] leading-[0.9] font-editorial text-brand-dark tracking-tight">
+          {/* Left: Large Editorial Heading (col-span-12 lg:col-span-4) */}
+          <div className="col-span-12 lg:col-span-4 flex flex-col items-start editorial-reveal mb-8 lg:mb-0">
+            <span className="text-brand-accent tracking-[0.35em] uppercase text-xs font-bold mb-4">
+              OUR PHILOSOPHY
+            </span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] xl:text-[72px] leading-[0.95] font-editorial text-brand-dark tracking-tight">
               Terinspirasi <br /> dari <br />
               <span className="italic text-brand-accent font-normal">resep warisan</span>
             </h2>
           </div>
 
-          {/* Middle: Elevated Image (col-span-3) */}
-          <div className="col-span-12 md:col-span-3 flex justify-center editorial-reveal">
-            <div className="editorial-img-reveal relative aspect-[3/4] w-full max-w-[320px] overflow-hidden shadow-xl rounded-sm border border-brand-dark/10">
+          {/* Middle: Elevated Artisan Portrait Image (col-span-12 md:col-span-6 lg:col-span-3) */}
+          <div className="col-span-12 md:col-span-6 lg:col-span-3 flex justify-center editorial-reveal w-full mb-8 md:mb-0">
+            <div className="editorial-img-reveal relative aspect-[3/4] w-full max-w-[280px] lg:max-w-full overflow-hidden shadow-md rounded-sm border border-brand-dark/10 transition-transform duration-500 ease-out hover:scale-[1.02] cursor-pointer">
               <img 
                 src="/images/editorial-artisan.png" 
                 alt="Artisan making siomay" 
@@ -79,18 +77,21 @@ const EditorialStory = () => {
             </div>
           </div>
 
-          {/* Right: Small text block (col-span-4) */}
-          <div className="col-span-12 md:col-span-4 flex flex-col items-start md:col-start-9 editorial-reveal">
-            <p className="text-brand-dark/70 text-base md:text-lg font-medium leading-relaxed max-w-[280px] mb-8">
-              Setiap butir adalah janji kualitas, dibuat dari bahan pilihan dan racikan autentik untuk menjaga rasa yang hangat.
+          {/* Right: Small text block (col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-9) */}
+          <div className="col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-9 flex flex-col items-start justify-center editorial-reveal">
+            <p className="text-brand-dark/80 text-base md:text-[17px] font-sans leading-relaxed max-w-[320px]">
+              Setiap butir adalah janji kualitas, dibuat dari bahan pilihan dan racikan autentik untuk menjaga kehangatan rasa warisan leluhur.
             </p>
-            <button className="group relative py-4 px-2 overflow-hidden">
-              <span className="relative z-10 text-xs font-bold uppercase tracking-[0.4em] text-brand-dark group-hover:text-brand-accent transition-colors duration-500">
+            <a
+              href="/#process"
+              className="group relative inline-flex items-center text-xs font-bold uppercase tracking-[0.25em] text-[#4a0907] transition-all py-3 px-1 mt-6"
+            >
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#c48b58]">
                 Lihat Proses
               </span>
-              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-brand-accent scale-x-100 group-hover:scale-x-0 transition-transform duration-700 origin-left" />
-              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-brand-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-right" />
-            </button>
+              <span className="absolute bottom-0 left-0 h-[1.5px] bg-[#c48b58] w-full transform origin-left transition-transform duration-500 scale-x-100 group-hover:scale-x-0" />
+              <span className="absolute bottom-0 left-0 h-[1.5px] bg-[#4a0907] w-full transform origin-right transition-transform duration-500 scale-x-0 group-hover:scale-x-100" />
+            </a>
           </div>
 
         </div>
