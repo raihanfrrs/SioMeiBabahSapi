@@ -18,12 +18,12 @@ const FooterLuxury = () => {
 
   const brandText = "babah sapi";
 
-  // Stagger Animation Variants (No 'y' movement, pure fade & blur)
+  // Logo animation variants (fade-in per letter, left-to-right, no translateY)
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.055
+        staggerChildren: 0.035
       }
     }
   };
@@ -31,77 +31,130 @@ const FooterLuxury = () => {
   const letterVariants = {
     hidden: {
       opacity: 0,
-      filter: "blur(8px)"
+      transform: "none"
     },
     visible: {
       opacity: 1,
-      filter: "blur(0px)",
+      transform: "none",
       transition: {
-        duration: 0.65,
-        ease: [0.22, 1, 0.36, 1] as any
+        duration: 0.45,
+        ease: "easeOut"
       }
     }
   };
 
+  // Inline styles are used for critical layout parameters to guarantee they render
+  // perfectly across all devices even if Tailwind's JIT compiler is cached/frozen.
   return (
     <footer 
       ref={footerRef} 
       id="footer"
       data-nav-theme="light"
-      className="bg-[#f3eadc] text-[#4a0907] overflow-hidden w-full flex flex-col justify-between"
-      style={{ minHeight: "100vh" }}
+      style={{ backgroundColor: "#F4EBDD", color: "#5A0906", overflowX: "hidden", width: "100%" }}
     >
-      {/* Centered Container wrapper - exactly centered, Max Width 1280px */}
       <div 
-        className="w-full flex-1 flex flex-col justify-between px-6 md:px-10 lg:px-16"
-        style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}
+        style={{ 
+          maxWidth: "100%", 
+          margin: "0 auto", 
+          padding: "40px 24px 24px", 
+          width: "100%" 
+        }}
+        className="md:max-w-[860px] md:px-[40px] md:pt-[72px] md:pb-[28px] xl:max-w-[1180px]"
       >
         
-        {/* Top Area: Grid Cols-12 (Exact Savor Styles - Centered, No Uppercase Labels) */}
-        <div className="grid grid-cols-12 gap-12 footer-top-grid">
+        {/* Top Footer Area */}
+        <div className="flex flex-col md:grid md:grid-cols-3 gap-[48px] items-start w-full">
           
-          {/* Column 1: Navigation Links (col-span-3) */}
-          <div className="col-span-12 md:col-span-3 flex flex-col items-start">
-            <div className="flex flex-col space-y-2 text-sm md:text-base leading-relaxed font-sans text-[#4a0907]">
-              {["Home", "Proses", "Menu", "Kualitas", "Misi", "Jurnal", "Kontak"].map((link, idx) => (
-                <Link 
-                  key={idx} 
-                  href={link === "Home" ? "/" : `/#${link.toLowerCase()}`} 
-                  className="text-[#4a0907] hover:opacity-60 transition-all duration-300 block font-medium"
-                >
-                  {link}
-                </Link>
-              ))}
+          {/* Mobile Grid Wrapper for Navigation & Socials */}
+          <div 
+            className="grid grid-cols-2 gap-[24px] w-full col-span-1 md:col-span-2 md:contents"
+          >
+            {/* Column 1: Navigation Links */}
+            <div className="flex flex-col w-full">
+              <h5 
+                style={{ fontSize: "9px", letterSpacing: "0.18em", marginBottom: "10px", opacity: 0.65, fontWeight: 700 }}
+                className="font-sans uppercase text-[#5A0906]"
+              >
+                Navigasi
+              </h5>
+              <div 
+                style={{ display: "flex", flexDirection: "column", gap: "8px" }}
+                className="text-[14px] md:text-[15px] leading-[1.65] font-sans font-medium text-left"
+              >
+                {["Home", "Proses", "Menu", "Kualitas", "Misi", "Jurnal", "Kontak"].map((link, idx) => (
+                  <Link 
+                    key={idx} 
+                    href={link === "Home" ? "/" : `/#${link.toLowerCase()}`} 
+                    className="text-[#5A0906] hover:opacity-60 focus-visible:outline-none focus-visible:underline transition-opacity block w-fit"
+                  >
+                    {link}
+                  </Link>
+                ))}
+              </div>
             </div>
+
+            {/* Column 2: Social Links */}
+            <div className="flex flex-col w-full">
+              <h5 
+                style={{ fontSize: "9px", letterSpacing: "0.18em", marginBottom: "10px", opacity: 0.65, fontWeight: 700 }}
+                className="font-sans uppercase text-[#5A0906]"
+              >
+                Sosial
+              </h5>
+              <div 
+                style={{ display: "flex", flexDirection: "column", gap: "8px" }}
+                className="text-[14px] md:text-[15px] leading-[1.65] font-sans font-medium text-left"
+              >
+                {footer.social.map((link, idx) => (
+                  <a 
+                    key={idx} 
+                    href={link.href} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#5A0906] hover:opacity-60 focus-visible:outline-none focus-visible:underline transition-opacity block w-fit"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
           </div>
 
-          {/* Column 2: Social Links (col-span-3) */}
-          <div className="col-span-12 md:col-span-3 flex flex-col items-start">
-            <div className="flex flex-col space-y-2 text-sm md:text-base leading-relaxed font-sans text-[#4a0907]">
-              {footer.social.map((link, idx) => (
-                <a 
-                  key={idx} 
-                  href={link.href} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#4a0907] hover:opacity-60 transition-all duration-300 block font-medium"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 3: Newsletter CTA (col-span-5 col-start-8) */}
-          <div className="col-span-12 md:col-span-5 lg:col-start-8 flex flex-col items-start">
-            <h4 className="font-sans text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-[#4a0907] max-w-[460px] tracking-tight">
-              Dapatkan kabar menu musiman<br />dan cerita dapur Babah Sapi.
+          {/* Column 3: Mailing List */}
+          <div 
+            className="flex flex-col w-full md:col-span-1 md:items-start"
+            style={{ marginTop: "36px" }}
+          >
+            <h5 
+              className="hidden md:block font-sans uppercase text-[#5A0906]"
+              style={{ fontSize: "9px", letterSpacing: "0.18em", marginBottom: "10px", opacity: 0.65, fontWeight: 700 }}
+            >
+              Newsletter
+            </h5>
+            <h4 
+              className={`${gloock.className} text-[#5A0906] text-left`}
+              style={{ fontSize: "clamp(28px, 8vw, 40px)", lineHeight: 1.05, maxWidth: "430px", marginBottom: "16px" }}
+            >
+              Dapatkan kabar menu musiman dan cerita dapur Babah Sapi.
             </h4>
             
             <a 
               href="/#contact" 
-              className="mt-8 inline-flex items-center justify-center rounded-md bg-[#4a0907] text-sm font-medium text-[#f3eadc] transition hover:opacity-85 shadow-sm"
-              style={{ padding: "16px 32px", fontSize: "14px", borderRadius: "6px" }}
+              style={{ 
+                display: "inline-flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                minHeight: "44px", 
+                padding: "0 22px", 
+                borderRadius: "6px", 
+                backgroundColor: "#5A0906", 
+                color: "#F4EBDD", 
+                fontSize: "13px", 
+                fontWeight: 600,
+                marginTop: "8px" 
+              }}
+              className="transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#5A0906] w-fit"
             >
               Gabung — Sekarang
             </a>
@@ -109,71 +162,99 @@ const FooterLuxury = () => {
 
         </div>
 
-        {/* Middle/Bottom Area: Super Large Typographic Brand Title with Stagger Animation */}
-        <div className="mt-auto mb-6 md:mb-8 w-full overflow-visible flex justify-center items-center pointer-events-none select-none">
-          
+        {/* Big Logo Area */}
+        <div 
+          className="flex flex-col justify-center items-center pointer-events-none select-none w-full"
+          style={{ marginTop: "56px", marginBottom: "44px", overflow: "visible" }}
+        >
           {/* Mobile Stacking Version */}
           <motion.h2 
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-            className={`${gloock.className} lg:hidden text-[#4a0907] font-normal text-[20vw] md:text-[17vw] lg:text-[15vw] leading-[0.78] tracking-[-0.06em] text-center flex flex-col items-center w-full`}
+            viewport={{ once: true, amount: 0.1 }}
+            className={`${gloock.className} md:hidden text-[#5A0906] text-center flex flex-col items-center w-full break-normal`}
+            style={{ fontSize: "clamp(86px, 28vw, 150px)", lineHeight: 0.78, letterSpacing: "-0.045em" }}
           >
             <span className="flex">
               {"babah".split("").map((char, index) => (
-                <motion.span 
-                  key={index} 
-                  variants={letterVariants} 
-                  className="inline-block"
-                >
+                <motion.span key={index} variants={letterVariants} className="inline-block motion-reduce:!opacity-100">
                   {char}
                 </motion.span>
               ))}
             </span>
             <span className="flex">
               {"sapi".split("").map((char, index) => (
-                <motion.span 
-                  key={index} 
-                  variants={letterVariants} 
-                  className="inline-block"
-                >
+                <motion.span key={index} variants={letterVariants} className="inline-block motion-reduce:!opacity-100">
                   {char}
                 </motion.span>
               ))}
             </span>
           </motion.h2>
 
-          {/* Desktop Single Line Version */}
+          {/* Tablet/Desktop Single Line Version */}
           <motion.h2 
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.35 }}
-            className={`${gloock.className} hidden lg:block w-full text-center text-[#4a0907] font-normal text-[12vw] md:text-[11.5vw] lg:text-[11vw] leading-none tracking-[-0.055em] whitespace-nowrap overflow-visible`}
+            viewport={{ once: true, amount: 0.1 }}
+            className={`${gloock.className} hidden md:flex flex-wrap justify-center text-[#5A0906] text-center w-full`}
+            style={{ fontSize: "clamp(140px, 18vw, 260px)", lineHeight: 0.82, letterSpacing: "-0.06em" }}
           >
             {brandText.split("").map((char, index) => (
               <motion.span 
                 key={index} 
                 variants={letterVariants} 
-                className="inline-block"
+                className="inline-block motion-reduce:!opacity-100"
               >
                 {char === " " ? "\u00A0" : char}
               </motion.span>
             ))}
           </motion.h2>
-
         </div>
 
-        {/* Bottom Bar: Legal / Copyright (Natural Flow-based Placement - Close to Wordmark) */}
-        <div className="border-t border-[#4a0907]/10 py-6 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 text-sm tracking-normal normal-case text-[#4a0907] font-medium w-full">
-          <div className="flex gap-8">
-            <a href="#" className="hover:opacity-60 transition-opacity duration-300">Press Kit</a>
-            <a href="#" className="hover:opacity-60 transition-opacity duration-300">Kebijakan Privasi</a>
-            <a href="#" className="hover:opacity-60 transition-opacity duration-300">Syarat & Ketentuan</a>
+        {/* Bottom Meta */}
+        <div 
+          className="text-[#5A0906] font-sans font-medium w-full"
+          style={{ borderTop: "1px solid rgba(90, 9, 6, 0.18)", paddingTop: "18px", paddingBottom: "20px" }}
+        >
+          {/* Legal Links (Wrapped, Centered) */}
+          <div 
+            style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px 18px" }}
+            className="md:justify-between md:items-center"
+          >
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px 18px" }}>
+              <a href="#" className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>Press Kit</a>
+              <a href="#" className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>Kebijakan Privasi</a>
+              <a href="#" className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>Syarat & Ketentuan</a>
+            </div>
+
+            {/* Tablet/Desktop Only Side Meta */}
+            <div className="hidden md:flex items-center gap-6">
+              <a href="mailto:hello@babahsapi.com" className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
+                hello@babahsapi.com
+              </a>
+              <span className="uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>© Babah Sapi 2026</span>
+            </div>
           </div>
-          <a href="https://wa.me/628123456789" className="hover:opacity-60 transition-opacity duration-300">hello@babahsapi.com</a>
-          <p>© Babah Sapi 2026</p>
+
+          {/* Mobile Only Center Meta */}
+          <div className="flex flex-col items-center md:hidden w-full text-center">
+            <a 
+              href="mailto:hello@babahsapi.com" 
+              className="hover:opacity-60 transition-opacity uppercase" 
+              style={{ fontSize: "10px", letterSpacing: "0.08em", marginTop: "18px" }}
+            >
+              hello@babahsapi.com
+            </a>
+            <span 
+              className="uppercase" 
+              style={{ fontSize: "10px", letterSpacing: "0.08em", marginTop: "10px" }}
+            >
+              © Babah Sapi 2026
+            </span>
+          </div>
+          
         </div>
 
       </div>
