@@ -13,31 +13,38 @@ const ClosingCTA = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
+    // Respect user's motion preferences
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
     const ctx = gsap.context(() => {
-      gsap.to(".closing-bg", {
-        scale: 1.2,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        }
-      });
-      
-      gsap.fromTo(".closing-content",
-        { y: 100, opacity: 0 },
-        {
-          y: 0, 
-          opacity: 1, 
-          duration: 2, 
-          ease: "expo.out",
+      if (!prefersReducedMotion) {
+        gsap.to(".closing-bg", {
+          scale: 1.05,
+          ease: "none",
           scrollTrigger: {
-            trigger: ".closing-content",
-            start: "top 85%",
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
           }
-        }
-      );
+        });
+        
+        gsap.fromTo(".closing-item",
+          { y: 15, opacity: 0, filter: "blur(4px)" },
+          {
+            y: 0, 
+            opacity: 1, 
+            filter: "blur(0px)",
+            duration: 0.8, 
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: ".closing-content",
+              start: "top 80%",
+            }
+          }
+        );
+      }
     }, containerRef);
 
     return () => ctx.revert();
@@ -47,38 +54,113 @@ const ClosingCTA = () => {
     <section 
       ref={containerRef} 
       data-nav-theme="dark"
-      className="relative w-full min-h-[100dvh] overflow-hidden flex items-center justify-center pb-28 md:pb-36 lg:pb-44"
+      className="relative w-full overflow-hidden flex items-center justify-center"
+      style={{
+        minHeight: "clamp(78svh, 85vh, 90vh)",
+        paddingTop: "clamp(72px, 10vw, 120px)",
+        paddingBottom: "clamp(72px, 10vw, 120px)"
+      }}
     >
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-[#1a0b08]">
         <img 
           src={closingCta.image} 
           alt="Closing Food Visual" 
-          className="closing-bg w-full h-full object-cover brightness-[0.35] contrast-[1.05]"
+          className="closing-bg w-full h-full object-cover"
+          style={{ objectPosition: "center", opacity: 0.95 }}
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/30 pointer-events-none" />
+        {/* Layer 1: Linear gradient overall darkening */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(rgba(0,0,0,0.38), rgba(0,0,0,0.38))" }} />
+        {/* Layer 2: Radial gradient at center bottom to darken text area without killing edges */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(circle at center 65%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 65%)" }} />
       </div>
 
-      <div className="closing-content relative z-10 flex flex-col items-center text-center px-6 max-w-6xl">
-        <div className="flex flex-col items-center gap-6 mb-16">
-          <div className="h-20 w-[1px] bg-brand-cream/40" />
-          <span className="ui-label text-brand-cream tracking-[0.6em] uppercase text-[12px] font-bold">Rasa Warisan, Dibuat Untuk Hari Ini</span>
+      <div 
+        className="closing-content relative z-10 flex flex-col items-center text-center w-full mx-auto"
+        style={{ 
+          maxWidth: "980px",
+          paddingLeft: "clamp(24px, 4vw, 32px)",
+          paddingRight: "clamp(24px, 4vw, 32px)"
+        }}
+      >
+        {/* Decor & Eyebrow */}
+        <div className="closing-item flex flex-col items-center" style={{ marginBottom: "22px" }}>
+          {/* Subtle line + dot decor */}
+          <div className="flex flex-col items-center opacity-45 mb-4">
+            <div className="h-8 w-[1px] bg-[#F4E9D8]" />
+            <div className="h-[3px] w-[3px] rounded-full bg-[#F4E9D8] mt-1.5" />
+          </div>
+          <span 
+            className="text-[#F4E9D8] uppercase font-bold"
+            style={{ fontSize: "11px", letterSpacing: "0.3em" }}
+          >
+            DIBUAT HARIAN • DIKIRIM HANGAT
+          </span>
         </div>
 
-        <h2 className="text-[58px] md:text-[100px] lg:text-[130px] font-editorial text-brand-cream leading-[0.82] tracking-tighter mb-24 drop-shadow-2xl">
-          {closingCta.headline.split(',').map((part, idx) => (
-            <React.Fragment key={idx}>
-              {idx === 0 ? part + "," : <span className="italic block mt-6 text-brand-cream/90">{part}</span>}
-            </React.Fragment>
-          ))}
+        {/* Headline */}
+        <h2 
+          className="closing-item font-editorial text-[#F4E9D8] drop-shadow-xl"
+          style={{ 
+            fontSize: "clamp(46px, 9vw, 128px)", 
+            lineHeight: 0.92,
+            letterSpacing: "-0.03em",
+            maxWidth: "1000px",
+            marginBottom: "28px"
+          }}
+        >
+          Rasa warisan, <br />
+          <span className="italic opacity-90">dibuat untuk hari ini</span>
         </h2>
         
-        <Link
-          href="/#menu"
-          className="inline-flex items-center justify-center rounded-md bg-[#f4eadc] px-12 py-5 text-base font-semibold tracking-[0.08em] text-[#2a140d] shadow-md transition-transform hover:scale-[1.02] active:scale-[0.98] uppercase"
+        {/* Subheadline */}
+        <p 
+          className="closing-item font-sans text-[#F4E9D8]/90 font-medium mx-auto drop-shadow-md"
+          style={{ 
+            fontSize: "clamp(15px, 2vw, 20px)", 
+            lineHeight: 1.6,
+            maxWidth: "clamp(340px, 80%, 620px)",
+            marginBottom: "32px"
+          }}
         >
-          {closingCta.ctaText}
-        </Link>
+          Siomay sapi premium dengan saus kacang khas Babah Sapi, siap dipesan dan dikirim hangat ke lokasi Anda.
+        </p>
+        
+        {/* CTA Button */}
+        <div className="closing-item flex w-full justify-center" style={{ marginBottom: "24px" }}>
+          <Link
+            href="https://wa.me/628123456789"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center justify-center bg-[#F4E9D8] text-[#5A0B08] font-bold transition-all duration-300 hover:bg-white hover:-translate-y-[2px] shadow-lg hover:shadow-xl w-full max-w-[320px] md:max-w-none md:w-auto"
+            style={{ 
+              minHeight: "clamp(56px, 6vw, 64px)", 
+              padding: "0 clamp(36px, 4vw, 48px)", 
+              borderRadius: "12px",
+              fontSize: "16px",
+              letterSpacing: "normal",
+              gap: "10px"
+            }}
+          >
+            Pesan via WhatsApp
+            <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+          </Link>
+        </div>
+
+        {/* Trust Signals */}
+        <div 
+          className="closing-item flex flex-wrap items-center justify-center text-[#F4E9D8]/85 font-sans font-medium mx-auto max-w-[330px] md:max-w-none"
+          style={{ 
+            fontSize: "clamp(13px, 1.5vw, 14px)", 
+            gap: "8px 24px",
+          }}
+        >
+          <span>Dibuat terbatas setiap hari</span>
+          <span className="opacity-50 text-[10px] hidden md:inline-block">•</span>
+          <span>Tanpa pengawet</span>
+          <span className="opacity-50 text-[10px] hidden md:inline-block">•</span>
+          <span>Pesan langsung via WhatsApp</span>
+        </div>
       </div>
       
     </section>

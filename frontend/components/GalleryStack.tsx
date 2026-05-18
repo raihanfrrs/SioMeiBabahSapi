@@ -62,82 +62,153 @@ const GalleryStack = () => {
     <section 
       ref={containerRef} 
       data-nav-theme="light"
-      className="w-full bg-[#f4eadc] border-t border-brand-dark/10 section-editorial-making overflow-hidden relative flex justify-center"
+      className="w-full bg-[#f4eadc] overflow-hidden flex justify-center"
+      style={{
+        paddingTop: "clamp(80px, 10vw, 140px)",
+        paddingBottom: "clamp(80px, 10vw, 140px)"
+      }}
     >
-      <div className="section-inner px-6 md:px-10 lg:px-16 w-full flex flex-col items-center">
+      <div 
+        className="w-full mx-auto flex flex-col items-center" 
+        style={{ 
+          maxWidth: "1280px", 
+          paddingLeft: "clamp(20px, 4vw, 32px)", 
+          paddingRight: "clamp(20px, 4vw, 32px)" 
+        }}
+      >
         
         {/* Header Container */}
-        <div className="gallery-title w-full flex flex-col items-center text-center mb-16 md:mb-20">
-          <span className="text-brand-accent tracking-[0.35em] uppercase text-xs font-bold mb-4">
+        <div 
+          className="gallery-title w-full flex flex-col items-center text-center" 
+          style={{ marginBottom: "clamp(48px, 6vw, 64px)" }}
+        >
+          <span 
+            className="text-[#4a0907]/70 uppercase font-bold"
+            style={{ fontSize: "11px", letterSpacing: "0.4em", marginBottom: "18px" }}
+          >
             BEHIND THE SCENE
           </span>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-editorial text-brand-dark tracking-tight leading-[1.02] max-w-4xl">
-            The Making of <span className="italic text-brand-accent font-normal">Babah Sapi</span>
+          <h2 
+            className="font-editorial text-brand-dark tracking-tight max-w-4xl"
+            style={{ fontSize: "clamp(42px, 6vw, 76px)", lineHeight: 1.02 }}
+          >
+            The Making of <span className="italic text-[#C7923E] font-normal">Babah Sapi</span>
           </h2>
         </div>
 
-        {/* Responsive Grid Collage Layout (No overlaps, pure mathematical alignment) */}
-        <div className="grid grid-cols-12 gap-6 md:gap-8 lg:gap-10 w-full">
+        {/* Editorial Asymmetric Collage */}
+        <div 
+          className="flex flex-col md:flex-row items-center md:items-center justify-between w-full" 
+          style={{ gap: "clamp(24px, 3vw, 48px)" }}
+        >
           
-          {/* Image 1: Primary Main Portrait (Left Anchor) - spans 5 columns, 2 rows */}
-          {gallery[0] && (
-            <div className="gallery-item col-span-12 md:col-span-5 md:row-span-2 relative aspect-[3/4] overflow-hidden shadow-md border border-brand-dark/10 rounded-sm group transition-transform duration-500 hover:scale-[1.02]">
+          {/* Left Column (Main Hero Image) */}
+          <div className="gallery-item w-full md:w-[40%]">
+            <div 
+              className="relative aspect-[3/4] w-full overflow-hidden group transition-transform duration-500 hover:-translate-y-1"
+              style={{ 
+                borderRadius: "6px", 
+                boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
+                border: "1px solid rgba(60,35,20,0.08)"
+              }}
+            >
               <img 
-                src={gallery[0].image} 
-                alt={gallery[0].caption} 
+                src={gallery[0]?.image} 
+                alt={gallery[0]?.caption} 
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
-                loading="lazy"
+                loading="lazy" 
               />
-              <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[#4a0907] px-2 py-1 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm shadow-sm border border-[#4a0907]/5 z-20">
+              <div 
+                className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
+                style={{ top: "16px", left: "16px", fontSize: "9px", letterSpacing: "0.25em", padding: "6px 12px", borderRadius: "4px", border: "1px solid rgba(60,35,20,0.05)" }}
+              >
                 {galleryLabels[0]}
               </div>
             </div>
-          )}
+          </div>
 
-          {/* Image 2: Secondary Horizontal (Center Top Support) - spans 3 columns */}
-          {gallery[1] && (
-            <div className="gallery-item col-span-12 sm:col-span-6 md:col-span-3 relative aspect-[4/3] overflow-hidden shadow-md border border-brand-dark/10 rounded-sm group transition-transform duration-500 hover:scale-[1.02]">
-              <img 
-                src={gallery[1].image} 
-                alt={gallery[1].caption} 
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
-                loading="lazy"
-              />
-              <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[#4a0907] px-2 py-1 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm shadow-sm border border-[#4a0907]/5 z-20">
-                {galleryLabels[1]}
+          {/* Center Column (Floating Stacked Images) */}
+          <div 
+            className="w-full md:w-[26%] flex flex-col justify-center relative z-10" 
+            style={{ gap: "clamp(20px, 3vw, 36px)" }}
+          >
+            
+            {/* Top Center Image */}
+            <div className="gallery-item w-full md:-translate-y-6">
+              <div 
+                className="relative aspect-[4/3] w-full overflow-hidden group transition-transform duration-500 hover:-translate-y-1"
+                style={{ 
+                  borderRadius: "6px", 
+                  boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
+                  border: "1px solid rgba(60,35,20,0.08)"
+                }}
+              >
+                <img 
+                  src={gallery[1]?.image} 
+                  alt={gallery[1]?.caption} 
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                  loading="lazy" 
+                />
+                <div 
+                  className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
+                  style={{ top: "12px", left: "12px", fontSize: "9px", letterSpacing: "0.25em", padding: "6px 12px", borderRadius: "4px", border: "1px solid rgba(60,35,20,0.05)" }}
+                >
+                  {galleryLabels[1]}
+                </div>
               </div>
             </div>
-          )}
 
-          {/* Image 4: Tall Portrait (Far Right Anchor) - spans 4 columns, 2 rows */}
-          {gallery[3] && (
-            <div className="gallery-item col-span-12 sm:col-span-6 md:col-span-4 md:row-span-2 relative aspect-[3/4] overflow-hidden shadow-md border border-brand-dark/10 rounded-sm group transition-transform duration-500 hover:scale-[1.02]">
+            {/* Bottom Center Image (Overlap Offset) */}
+            <div className="gallery-item w-full md:-mt-8 md:-ml-5 relative z-20">
+              <div 
+                className="relative aspect-[4/3] md:aspect-[1/1] w-full overflow-hidden group transition-transform duration-500 hover:-translate-y-1"
+                style={{ 
+                  borderRadius: "6px", 
+                  boxShadow: "0 16px 40px rgba(0,0,0,0.12)",
+                  border: "1px solid rgba(60,35,20,0.08)"
+                }}
+              >
+                <img 
+                  src={gallery[2]?.image} 
+                  alt={gallery[2]?.caption} 
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                  loading="lazy" 
+                />
+                <div 
+                  className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
+                  style={{ top: "12px", left: "12px", fontSize: "9px", letterSpacing: "0.25em", padding: "6px 12px", borderRadius: "4px", border: "1px solid rgba(60,35,20,0.05)" }}
+                >
+                  {galleryLabels[2]}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Column (Secondary Tall Image) */}
+          <div className="gallery-item w-full md:w-[34%]">
+            <div 
+              className="relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden group transition-transform duration-500 hover:-translate-y-1"
+              style={{ 
+                borderRadius: "6px", 
+                boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
+                border: "1px solid rgba(60,35,20,0.08)"
+              }}
+            >
               <img 
-                src={gallery[3].image} 
-                alt={gallery[3].caption} 
+                src={gallery[3]?.image} 
+                alt={gallery[3]?.caption} 
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
-                loading="lazy"
+                loading="lazy" 
               />
-              <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[#4a0907] px-2 py-1 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm shadow-sm border border-[#4a0907]/5 z-20">
+              <div 
+                className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
+                style={{ top: "16px", left: "16px", fontSize: "9px", letterSpacing: "0.25em", padding: "6px 12px", borderRadius: "4px", border: "1px solid rgba(60,35,20,0.05)" }}
+              >
                 {galleryLabels[3]}
               </div>
             </div>
-          )}
-
-          {/* Image 3: Peanut Sauce Card (Center Bottom) - spans 3 columns */}
-          {gallery[2] && (
-            <div className="gallery-item col-span-12 sm:col-span-6 md:col-span-3 relative aspect-[4/3] overflow-hidden shadow-md border border-brand-dark/10 rounded-sm group transition-transform duration-500 hover:scale-[1.02]">
-              <img 
-                src={gallery[2].image} 
-                alt={gallery[2].caption} 
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
-                loading="lazy"
-              />
-              <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-[#4a0907] px-2 py-1 text-[10px] tracking-[0.2em] font-bold uppercase rounded-sm shadow-sm border border-[#4a0907]/5 z-20">
-                {galleryLabels[2]}
-              </div>
-            </div>
-          )}
+          </div>
 
         </div>
       </div>
