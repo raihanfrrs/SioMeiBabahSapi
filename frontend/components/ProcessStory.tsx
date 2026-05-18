@@ -72,7 +72,11 @@ const ProcessStory = () => {
       ref={containerRef} 
       id="process" 
       data-nav-theme="light"
-      className="relative bg-[#f4eadc] overflow-hidden py-28 md:py-36 lg:py-44 pb-32 md:pb-40 lg:pb-48 z-20"
+      style={{
+        paddingTop: "var(--process-pt, 112px)",
+        paddingBottom: "var(--process-pb, 128px)"
+      }}
+      className="relative bg-[#f4eadc] overflow-hidden z-20"
     >
       
       {/* Background Section Label */}
@@ -102,9 +106,18 @@ const ProcessStory = () => {
               </div>
             );
 
+            const isFirst = idx === 0;
+            const isLast = idx === processSteps.length - 1;
+
             const timelineBlock = (
               <div className="hidden md:flex h-full flex-col items-center justify-center relative py-6">
-                <div className="absolute top-0 bottom-0 w-[1px] bg-[#2a140d]/15" />
+                <div 
+                  className="absolute w-[1px] bg-[#d6cab9] left-1/2 -translate-x-1/2"
+                  style={{
+                    top: isFirst ? "24px" : "-160px",
+                    bottom: isLast ? "24px" : "-160px",
+                  }}
+                />
                 <div className="process-timeline-item w-12 h-12 rounded-full border border-[#2a140d]/20 bg-[#f4eadc] flex items-center justify-center z-10 shadow-sm">
                   <span className="text-[12px] font-bold text-brand-dark tracking-widest">{step.number}</span>
                 </div>
@@ -145,8 +158,16 @@ const ProcessStory = () => {
             return (
               <div 
                 key={step.number} 
-                className={`process-step flex w-full max-w-[1050px] mx-auto items-center justify-center min-h-[72vh] gap-10 lg:gap-14 py-12 md:py-20 md:grid md:grid-cols-[minmax(0,420px)_72px_minmax(0,460px)] ${
+                style={idx === 0 ? {
+                  paddingTop: "var(--step-01-pt, 128px)",
+                  paddingBottom: "var(--step-01-pb, 48px)"
+                } : undefined}
+                className={`process-step flex w-full max-w-[1050px] mx-auto items-center justify-center min-h-[72vh] gap-10 lg:gap-14 md:grid md:grid-cols-[minmax(0,420px)_72px_minmax(0,460px)] ${
                   isTextLeft ? "flex-col-reverse" : "flex-col"
+                } ${
+                  idx === 0 
+                    ? "" 
+                    : "py-12 md:py-20"
                 }`}
               >
                 {isTextLeft ? (

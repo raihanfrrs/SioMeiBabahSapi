@@ -14,6 +14,26 @@
 :root {
   --background: #F5F2EA;
   --foreground: #1F140F;
+  --process-pt: 112px;
+  --process-pb: 128px;
+  --step-01-pt: 128px;
+  --step-01-pb: 48px;
+}
+@media (min-width: 768px) {
+  :root {
+    --process-pt: 144px;
+    --process-pb: 160px;
+    --step-01-pt: 144px;
+    --step-01-pb: 80px;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --process-pt: 176px;
+    --process-pb: 192px;
+    --step-01-pt: 80px;
+    --step-01-pb: 80px;
+  }
 }
 
 * {
