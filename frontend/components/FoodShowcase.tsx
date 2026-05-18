@@ -8,95 +8,155 @@ import { siteContent } from "@/data/siteContent";
 const FoodShowcase = () => {
   const { foods } = siteContent;
 
+  const badges = ["Best Seller", "Favorit", "Saus Rahasia"];
+  const microInfos = ["Dibuat harian", "Pesan via WhatsApp", "Stok terbatas"];
+  const prices = ["Rp45.000 / 5 pcs", "Rp48.000 / 5 pcs", "Rp25.000 / 250ml"];
+
   return (
     <section 
       id="foods" 
       data-nav-theme="light"
-      className="bg-brand-cream border-t border-brand-dark/10 section-editorial-collection flex justify-center w-full"
+      className="bg-brand-cream border-t border-brand-dark/10 w-full flex justify-center"
+      style={{
+        paddingTop: "max(56px, 8vw)", // scales nicely to ~96px on desktop
+        paddingBottom: "max(64px, 9vw)" // scales nicely to ~112px on desktop
+      }}
     >
-      <div className="section-inner px-6 md:px-10 lg:px-16 w-full flex flex-col">
+      <div 
+        className="w-full mx-auto flex flex-col"
+        style={{
+          maxWidth: "1180px",
+          paddingLeft: "clamp(20px, 4vw, 32px)",
+          paddingRight: "clamp(20px, 4vw, 32px)"
+        }}
+      >
         
         {/* Header Section */}
-        <div className="flex flex-col mb-12 md:mb-16 w-full">
-          <span className="text-brand-accent tracking-[0.35em] uppercase text-xs font-bold mb-4">
+        <div className="flex flex-col w-full" style={{ marginBottom: "20px" }}>
+          {/* Label PREMIUM MENU */}
+          <span 
+            className="text-brand-accent uppercase text-xs font-bold"
+            style={{ letterSpacing: "0.35em", marginBottom: "14px" }}
+          >
             PREMIUM MENU
           </span>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 w-full pb-6 border-b border-brand-dark/10">
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-editorial text-brand-dark tracking-tighter leading-[0.9] space-y-2">
-              The Babah Sapi <br />
-              <span className="italic text-brand-accent font-normal">Collection</span>
-            </h2>
+          
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 w-full">
+            <div className="flex flex-col">
+              <h2 
+                className="text-5xl md:text-7xl lg:text-[80px] font-editorial text-brand-dark tracking-tighter leading-[0.85]"
+                style={{ marginBottom: "20px" }}
+              >
+                The Babah Sapi <br className="hidden md:block" />
+                <span className="italic text-brand-accent font-normal">Collection</span>
+              </h2>
+              <p 
+                className="text-[#4b0705]/80 font-medium text-[15px] md:text-[16px] max-w-md leading-relaxed"
+                style={{ marginBottom: "24px" }}
+              >
+                Dipilih dari bahan terbaik, dibuat harian, dan siap dipesan hangat melalui WhatsApp.
+              </p>
+            </div>
+            
             <Link 
               href="/#menu" 
-              className="flex flex-col items-start md:items-end group pb-2"
+              className="inline-flex items-center justify-center border border-[#4b0705]/30 hover:border-[#4b0705] text-[#4b0705] px-6 py-3 rounded-md text-[11px] font-bold uppercase tracking-[0.25em] transition-colors duration-300 w-full md:w-auto text-center"
+              style={{ marginBottom: "24px" }}
             >
-              <span className="text-[10px] mb-2 group-hover:text-brand-accent transition-colors font-bold uppercase tracking-widest text-brand-dark/60">Digital Menu</span>
-              <div className="relative text-xs font-bold uppercase tracking-[0.3em] text-brand-dark flex items-center gap-4">
-                <span className="whitespace-nowrap">View Full Menu</span>
-                <div className="h-[1px] w-8 bg-brand-dark transition-all duration-300 group-hover:w-12 group-hover:bg-brand-accent" />
-              </div>
+              Lihat Menu Lengkap
             </Link>
           </div>
         </div>
+
+        {/* Small Strip */}
+        <div 
+          className="flex items-center justify-center w-full border-y border-[#4b0705]/10"
+          style={{ paddingTop: "16px", paddingBottom: "16px", marginTop: "8px", marginBottom: "28px" }}
+        >
+          <span className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#4b0705]/70 text-center">
+            Dibuat terbatas setiap hari • Pesan sebelum habis
+          </span>
+        </div>
  
-        {/* Product Grid (Responsive, mathematical alignment, no overlaps) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 w-full mt-4">
+        {/* Product Grid */}
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full"
+          style={{ gap: "32px", marginTop: "24px" }}
+        >
           {foods.map((food, i) => (
             <motion.div
               key={food.id}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 1, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="premium-product-card group"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
+              className="group flex flex-col bg-[#FDF8EE] border border-[#4b0705]/10 rounded-[8px] hover:-translate-y-1 hover:shadow-xl hover:border-[#4b0705]/25 transition-all duration-300 h-full overflow-hidden"
+              style={{ padding: "clamp(18px, 2.5vw, 24px)" }}
             >
-              {/* Product Image */}
-              <div className="relative aspect-[4/5] overflow-hidden bg-brand-beige border border-brand-dark/5 rounded-sm mb-6">
+              {/* Product Image with Badge */}
+              <div 
+                className="relative overflow-hidden rounded-[6px] bg-brand-beige"
+                style={{ aspectRatio: "4/5", marginBottom: "24px" }}
+              >
+                <div 
+                  className="absolute top-3 left-3 z-10 bg-[#4b0705] text-[#F4EBDD] font-bold uppercase tracking-wider rounded-full shadow-sm"
+                  style={{ fontSize: "10px", padding: "6px 12px" }}
+                >
+                  {badges[i % badges.length]}
+                </div>
                 <img
                   src={food.image}
                   alt={food.name}
-                  className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 brightness-[0.95] group-hover:brightness-100"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-700" />
               </div>
               
               {/* Product Title */}
-              <h3 className="text-3xl md:text-4xl font-editorial text-brand-dark leading-none tracking-tight mb-3">
+              <h3 
+                className="text-3xl md:text-[32px] font-editorial text-brand-dark leading-[1.1] tracking-tight"
+                style={{ marginBottom: "8px" }}
+              >
                 {food.name}
               </h3>
               
               {/* Product Price */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-[1px] w-6 bg-brand-accent/40" />
-                <p className="text-brand-accent font-bold tracking-widest text-sm uppercase">
-                  {food.price}
+              <div className="flex items-center" style={{ marginBottom: "16px" }}>
+                <p className="text-[#C7923E] font-bold text-[16px] md:text-[18px] tracking-wide">
+                  {prices[i % prices.length]}
                 </p>
               </div>
               
               {/* Product Description */}
-              <p className="text-brand-dark/70 text-base leading-relaxed font-medium flex-grow mb-6">
+              <p 
+                className="text-brand-dark/75 text-[14px] md:text-[15px] leading-relaxed font-medium"
+                style={{ marginBottom: "24px" }}
+              >
                 {food.description}
               </p>
 
-              {/* Product CTA */}
-              <div className="pt-2">
-                <span className="inline-flex items-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#4a0907] transition-all group-hover:text-brand-accent">
-                  Order Now <span className="ml-2 transform transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </span>
+              {/* Push Button to Bottom */}
+              <div className="flex flex-col" style={{ marginTop: "auto", paddingTop: "8px" }}>
+                <div 
+                  className="flex items-center text-[#4b0705]/60 font-bold uppercase tracking-wider"
+                  style={{ gap: "8px", fontSize: "11px", marginBottom: "16px" }}
+                >
+                  <span className="rounded-full bg-[#4b0705]/40" style={{ width: "6px", height: "6px" }} />
+                  {microInfos[i % microInfos.length]}
+                </div>
+                
+                <a 
+                  href="https://wa.me/628123456789" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center bg-[#4b0705] text-[#F4EBDD] font-bold tracking-wide rounded-[8px] transition-colors duration-300 hover:bg-[#3a0504]"
+                  style={{ fontSize: "13px", padding: "14px 18px", minHeight: "48px" }}
+                >
+                  Pesan via WhatsApp
+                </a>
               </div>
             </motion.div>
           ))}
-        </div>
- 
-        {/* Mobile View Shop Link */}
-        <div className="mt-12 sm:hidden flex justify-center w-full">
-          <Link 
-            href="/#menu" 
-            className="w-full text-center border border-brand-dark/20 py-4 text-[11px] font-bold uppercase tracking-[0.3em] text-brand-dark rounded-md bg-[#f4eadc] shadow-md animate-pulse"
-          >
-            View Full Menu
-          </Link>
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import { siteContent } from "@/data/siteContent";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Gloock } from "next/font/google";
 
 const gloock = Gloock({
@@ -19,7 +19,7 @@ const FooterLuxury = () => {
   const brandText = "babah sapi";
 
   // Logo animation variants (fade-in per letter, left-to-right, no translateY)
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     visible: {
       transition: {
@@ -28,7 +28,7 @@ const FooterLuxury = () => {
     }
   };
 
-  const letterVariants = {
+  const letterVariants: Variants = {
     hidden: {
       opacity: 0,
       transform: "none"
