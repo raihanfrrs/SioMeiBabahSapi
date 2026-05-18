@@ -278,46 +278,41 @@ body::after {
   }
 
   .hero-content-forced {
-    padding-bottom: 0px !important;
+    padding-bottom: 40px !important; /* Mobile safe bottom spacing (button floats exactly 40px from screen bottom) */
+    padding-left: 24px !important; /* Aligns content perfectly with Logo on the left */
+    padding-right: 24px !important;
+  }
+  @media (min-width: 768px) {
+    .hero-content-forced {
+      padding-bottom: 48px !important; /* Tablet safe bottom spacing */
+      padding-left: 40px !important; /* Aligns content perfectly with Logo on tablet */
+      padding-right: 40px !important;
+    }
   }
   @media (min-width: 1024px) {
     .hero-content-forced {
-      padding-bottom: 25px !important; /* Pristine safety bottom padding on desktop */
+      padding-bottom: 25px !important; /* Desktop safety bottom padding */
+      padding-left: 64px !important; /* Matches desktop bounds */
+      padding-right: 64px !important;
     }
   }
 
-  /* 4. Absolute Content Layout for Mobile & Tablet */
+  /* 4. Normal Flow Content Layout for Mobile, Tablet & Desktop (Bulletproof & Responsive) */
   .hero-content-container {
-    position: absolute !important;
-    left: 70px !important;
-    right: 24px !important;
-    bottom: auto !important;
+    position: relative !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
-    max-width: calc(100% - 48px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
     pointer-events: auto !important;
-  }
-  @media (min-width: 768px) {
-    .hero-content-container {
-      left: 40px !important;
-      right: 40px !important;
-      bottom: 190px !important;
-      max-width: calc(100% - 80px) !important;
-    }
   }
   @media (min-width: 1024px) {
     .hero-content-container {
-      position: relative !important;
-      left: auto !important;
-      right: auto !important;
-      bottom: auto !important;
       display: grid !important;
       grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
       gap: 2rem !important;
       align-items: flex-end !important;
-      width: 100% !important;
-      max-width: none !important;
     }
   }
 
