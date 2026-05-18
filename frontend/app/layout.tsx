@@ -38,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className={`${cormorant.variable} ${inter.variable} ${gloock.variable}`} suppressHydrationWarning>
-      <body className="antialiased selection:bg-brand-peanut selection:text-brand-cream">
+      <body className="antialiased selection:bg-brand-peanut selection:text-brand-cream" suppressHydrationWarning>
         <CustomCursor />
         <SmoothScroll>
           {children}

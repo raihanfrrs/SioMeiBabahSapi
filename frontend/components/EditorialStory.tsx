@@ -54,7 +54,7 @@ const EditorialStory = () => {
         <div className="grid grid-cols-12 gap-10 md:gap-14 lg:gap-20 xl:gap-24 items-center w-full">
           
           {/* Left: Large Editorial Heading (col-span-12 lg:col-span-4) */}
-          <div className="col-span-12 lg:col-span-4 flex flex-col items-start editorial-reveal mb-8 lg:mb-0">
+          <div className="col-span-12 lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left editorial-reveal mb-8 lg:mb-0">
             <span className="text-brand-accent tracking-[0.35em] uppercase text-xs font-bold mb-4">
               OUR PHILOSOPHY
             </span>
@@ -65,8 +65,8 @@ const EditorialStory = () => {
           </div>
 
           {/* Middle: Elevated Artisan Portrait Image (col-span-12 md:col-span-6 lg:col-span-3) */}
-          <div className="col-span-12 md:col-span-6 lg:col-span-3 flex justify-center editorial-reveal w-full mb-8 md:mb-0">
-            <div className="editorial-img-reveal relative aspect-[3/4] w-full max-w-[280px] lg:max-w-full overflow-hidden shadow-md rounded-sm border border-brand-dark/10 transition-transform duration-500 ease-out hover:scale-[1.02] cursor-pointer">
+          <div className="col-span-12 md:col-span-6 lg:col-span-3 flex justify-center lg:justify-center editorial-reveal w-full mb-8 md:mb-0">
+            <div className="editorial-img-reveal relative aspect-[3/4] w-full max-w-[320px] md:max-w-[280px] lg:max-w-full overflow-hidden shadow-md rounded-sm border border-brand-dark/10 transition-transform duration-500 ease-out hover:scale-[1.02] cursor-pointer">
               <img 
                 src="/images/editorial-artisan.png" 
                 alt="Artisan making siomay" 
@@ -78,8 +78,8 @@ const EditorialStory = () => {
           </div>
 
           {/* Right: Small text block (col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-9) */}
-          <div className="col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-9 flex flex-col items-start justify-center editorial-reveal">
-            <p className="text-brand-dark/80 text-base md:text-[17px] font-sans leading-relaxed max-w-[320px]">
+          <div className="col-span-12 md:col-span-6 lg:col-span-4 lg:col-start-9 flex flex-col items-center lg:items-start text-center lg:text-left justify-center editorial-reveal">
+            <p className="text-brand-dark/80 text-base md:text-[17px] font-sans leading-relaxed max-w-[320px] mx-auto lg:mx-0">
               Setiap butir adalah janji kualitas, dibuat dari bahan pilihan dan racikan autentik untuk menjaga kehangatan rasa warisan leluhur.
             </p>
             <a

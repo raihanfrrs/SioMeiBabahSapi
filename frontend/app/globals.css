@@ -254,67 +254,7 @@ body::after {
     ) !important;
   }
 
-  /* 3. Rock-Solid Consistent Navbar Height Wrapper */
-  .hero-navbar-container {
-    height: 64px !important;
-    display: flex !important;
-    align-items: center !important;
-    padding-left: 24px !important;
-    padding-right: 24px !important;
-  }
-  @media (min-width: 768px) {
-    .hero-navbar-container {
-      height: 72px !important;
-      padding-left: 40px !important;
-      padding-right: 40px !important;
-    }
-  }
-  @media (min-width: 1024px) {
-    .hero-navbar-container {
-      height: auto !important;
-      padding-left: 0px !important;
-      padding-right: 0px !important;
-    }
-  }
 
-  .hero-content-forced {
-    padding-bottom: 40px !important; /* Mobile safe bottom spacing (button floats exactly 40px from screen bottom) */
-    padding-left: 24px !important; /* Aligns content perfectly with Logo on the left */
-    padding-right: 24px !important;
-  }
-  @media (min-width: 768px) {
-    .hero-content-forced {
-      padding-bottom: 48px !important; /* Tablet safe bottom spacing */
-      padding-left: 40px !important; /* Aligns content perfectly with Logo on tablet */
-      padding-right: 40px !important;
-    }
-  }
-  @media (min-width: 1024px) {
-    .hero-content-forced {
-      padding-bottom: 25px !important; /* Desktop safety bottom padding */
-      padding-left: 64px !important; /* Matches desktop bounds */
-      padding-right: 64px !important;
-    }
-  }
-
-  /* 4. Normal Flow Content Layout for Mobile, Tablet & Desktop (Bulletproof & Responsive) */
-  .hero-content-container {
-    position: relative !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    pointer-events: auto !important;
-  }
-  @media (min-width: 1024px) {
-    .hero-content-container {
-      display: grid !important;
-      grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
-      gap: 2rem !important;
-      align-items: flex-end !important;
-    }
-  }
 
   /* 5. Fluid Responsive Headline Typography (Savor Clamps) */
   .hero-headline-responsive {
@@ -508,4 +448,89 @@ nextjs-portal,
   margin-right: auto !important;
   width: 100% !important;
   max-width: 1050px !important;
+}
+
+/* ==========================================================================
+   STANDARD STATIC OVERRIDES (IMMUNE TO TAILWIND COMPILER STRIPPING)
+   ========================================================================== */
+
+/* 1. Global Section Inner Padding Axis (Ensures perfect alignment with navbar) */
+.section-inner {
+  padding-left: 24px !important; /* Mobile safe horizontal spacing (matches logo bounds perfectly) */
+  padding-right: 24px !important;
+}
+@media (min-width: 768px) {
+  .section-inner {
+    padding-left: 40px !important; /* Tablet safe spacing */
+    padding-right: 40px !important;
+  }
+}
+@media (min-width: 1024px) {
+  .section-inner {
+    padding-left: 64px !important; /* Desktop spacing matching the container grids */
+    padding-right: 64px !important;
+  }
+}
+
+/* 2. Hero Content Forced Heights & Spacing */
+.hero-content-forced {
+  padding-bottom: 40px !important; /* Mobile bottom spacing */
+  padding-left: 24px !important; /* Mobile left/right alignment matching navbar bounds */
+  padding-right: 24px !important;
+}
+@media (min-width: 768px) {
+  .hero-content-forced {
+    padding-bottom: 48px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-content-forced {
+    padding-bottom: 25px !important;
+    padding-left: 64px !important;
+    padding-right: 64px !important;
+  }
+}
+
+/* 3. Hero Navbar Safe Padding Axis */
+.hero-navbar-container {
+  height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+@media (min-width: 768px) {
+  .hero-navbar-container {
+    height: 72px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-navbar-container {
+    height: auto !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
+/* 4. Normal Flow Content Layout for Mobile, Tablet & Desktop (Bulletproof & Responsive) */
+.hero-content-container {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  pointer-events: auto !important;
+}
+@media (min-width: 1024px) {
+  .hero-content-container {
+    display: grid !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    gap: 2rem !important;
+    align-items: flex-end !important;
+  }
 }
