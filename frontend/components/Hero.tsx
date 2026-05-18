@@ -50,6 +50,50 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      document.body.style.overscrollBehavior = 'contain';
+      document.body.style.touchAction = 'none';
+      document.body.setAttribute('data-scroll', scrollY.toString());
+    } else {
+      const scrollY = document.body.getAttribute('data-scroll');
+      if (scrollY !== null) {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        document.body.style.overscrollBehavior = '';
+        document.body.style.touchAction = '';
+        window.scrollTo(0, parseInt(scrollY || '0'));
+        document.body.removeAttribute('data-scroll');
+      }
+    }
+    return () => {
+      const scrollY = document.body.getAttribute('data-scroll');
+      if (scrollY !== null) {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        document.body.style.overscrollBehavior = '';
+        document.body.style.touchAction = '';
+        window.scrollTo(0, parseInt(scrollY || '0'));
+        document.body.removeAttribute('data-scroll');
+      }
+    };
+  }, [isMobileMenuOpen]);
+
   // Video Carousel Interval
   useEffect(() => {
     const interval = setInterval(() => {
@@ -221,38 +265,221 @@ const Hero = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(20px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-[10000] bg-black/85 flex flex-col p-10 pt-32 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="fixed inset-0 overflow-hidden lg:hidden"
+            style={{
+              width: "100vw",
+              height: "100dvh",
+              zIndex: 9999,
+              overscrollBehavior: "contain"
+            }}
           >
-            {/* Close Button */}
-            <button 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="absolute top-8 right-8 text-white font-sans text-lg font-medium hover:opacity-75 transition-opacity"
+            {/* Background Image Layer */}
+            <motion.div 
+              initial={{ scale: 1.03 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="absolute inset-0 w-full h-full pointer-events-none"
             >
-              Tutup
-            </button>
+              <img
+                src="/assets/images/mobile-menu-bg.png"
+                alt="Menu Background"
+                className="absolute inset-0 w-full h-full"
+                style={{ 
+                  objectFit: 'cover', 
+                  objectPosition: 'center right',
+                  filter: 'blur(2px) brightness(0.8)' 
+                }}
+              />
+              <div 
+                className="absolute inset-0"
+                style={{
+                  background: "linear-gradient(90deg, rgba(8, 5, 3, 0.92) 0%, rgba(8, 5, 3, 0.78) 48%, rgba(8, 5, 3, 0.55) 100%)"
+                }}
+              />
+              <div className="absolute inset-0 bg-[rgba(8,5,3,0.68)] mix-blend-multiply" />
+            </motion.div>
 
-            {/* Menu Links */}
-            <div className="flex flex-col space-y-8 mt-12">
-              {["Proses", "Menu", "Kualitas", "Misi", "Jurnal", "Kontak"].map((link, idx) => (
-                <motion.div
-                  key={link}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.08, duration: 0.5 }}
-                >
-                  <Link 
-                    href={`/#${link.toLowerCase()}`}
+            {/* Content Container */}
+            <div 
+              className="relative z-10 w-full h-full mx-auto overflow-y-auto"
+              style={{
+                maxWidth: "100%",
+                paddingTop: "calc(env(safe-area-inset-top) + 28px)",
+                paddingBottom: "calc(env(safe-area-inset-bottom) + 24px)",
+                msOverflowStyle: "none",
+                scrollbarWidth: "none",
+              }}
+            >
+              <div 
+                className="w-full h-full mx-auto flex flex-col"
+                style={{
+                  maxWidth: "860px",
+                  paddingLeft: "clamp(24px, 6vw, 72px)",
+                  paddingRight: "clamp(24px, 6vw, 72px)",
+                }}
+              >
+                {/* Header */}
+                <div className="flex justify-between items-start w-full">
+                  <div className="flex flex-col">
+                    <Link
+                      href="/"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="font-editorial text-[#f7ead7]"
+                      style={{ fontSize: "clamp(28px, 8vw, 42px)", lineHeight: 1 }}
+                    >
+                      babah sapi
+                    </Link>
+                    <span 
+                      className="text-[#c99745] font-sans font-medium" 
+                      style={{ fontSize: "9px", letterSpacing: "0.22em", marginTop: "6px" }}
+                    >
+                      PREMIUM BEEF, HONESTLY CRAFTED
+                    </span>
+                  </div>
+                  <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="font-editorial text-white text-5xl hover:opacity-70 transition-opacity"
+                    className="flex items-center gap-[14px] text-[#f7ead7] hover:text-white transition-colors"
                   >
-                    {link}
+                    <span className="font-sans" style={{ fontSize: "clamp(16px, 4vw, 18px)" }}>Tutup</span>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d49a3a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "clamp(28px, 6vw, 34px)", height: "clamp(28px, 6vw, 34px)" }}>
+                      <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Navigation List */}
+                <div 
+                  className="w-full flex flex-col flex-1"
+                  style={{ marginTop: "clamp(72px, 10vh, 120px)" }}
+                >
+                  {siteContent.navigation.map((item, i) => (
+                    <motion.div
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 + (i * 0.07), duration: 0.4, ease: "easeOut" }}
+                      key={item.label}
+                      className="w-full flex flex-col"
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="grid w-full transition-transform duration-300 ease-out hover:translate-x-1"
+                        style={{
+                          gridTemplateColumns: "38px 1fr",
+                          alignItems: "baseline",
+                          padding: "clamp(14px, 3vh, 18px) 0 clamp(16px, 3vh, 20px)"
+                        }}
+                      >
+                        <span 
+                          className="text-[#d49a3a] font-medium" 
+                          style={{ fontSize: "16px", lineHeight: "normal", fontVariantNumeric: "tabular-nums" }}
+                        >
+                          {`0${i + 1}`}
+                        </span>
+                        <span 
+                          className="font-editorial text-[#f7ead7] font-normal" 
+                          style={{ 
+                            fontSize: "clamp(42px, 13vw, 72px)", 
+                            lineHeight: 0.95, 
+                            letterSpacing: "-0.03em" 
+                          }}
+                        >
+                          {item.label}
+                        </span>
+                      </Link>
+                      {/* Inner Divider */}
+                      <div className="w-full flex">
+                        <div className="w-[38px] flex-shrink-0" />
+                        <div className="flex-1 h-[1px]" style={{ background: "rgba(201, 151, 69, 0.32)" }} />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Social Area */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
+                  className="flex justify-center items-center font-sans text-[#f7ead7]"
+                  style={{ marginTop: "22px" }}
+                >
+                  <a href="#" className="flex items-center gap-2 hover:text-white transition-colors">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "clamp(20px, 5vw, 24px)", height: "clamp(20px, 5vw, 24px)" }}>
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    <span style={{ fontSize: "16px" }}>Instagram</span>
+                  </a>
+                  
+                  {/* Subtle Separator */}
+                  <div className="w-[1px] h-[14px] mx-[clamp(20px,5vw,28px)]" style={{ background: "rgba(201,151,69,0.4)" }} />
+
+                  <a href="https://wa.me/628123456789" className="flex items-center gap-2 hover:text-white transition-colors">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "clamp(20px, 5vw, 24px)", height: "clamp(20px, 5vw, 24px)" }}>
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <span style={{ fontSize: "16px" }}>WhatsApp</span>
+                  </a>
+                </motion.div>
+
+                {/* Large CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.4 }}
+                  className="w-full"
+                  style={{ marginTop: "24px" }}
+                >
+                  <Link
+                    href="https://wa.me/628123456789"
+                    target="_blank"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between mx-auto text-[#fff4e8] transition-all duration-300 hover:brightness-110 shadow-lg"
+                    style={{
+                      width: "100%",
+                      maxWidth: "clamp(340px, 70vw, 520px)",
+                      height: "clamp(54px, 8vw, 84px)",
+                      borderRadius: "clamp(18px, 3vw, 22px)",
+                      background: "linear-gradient(135deg, #7a120d 0%, #a91f18 100%)",
+                      border: "1px solid rgba(212, 154, 58, 0.8)",
+                      paddingLeft: "clamp(26px, 4vw, 34px)",
+                      paddingRight: "clamp(26px, 4vw, 34px)",
+                    }}
+                  >
+                    <div className="flex items-center gap-[14px]">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ width: "clamp(24px, 5vw, 28px)", height: "clamp(24px, 5vw, 28px)" }}>
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                      </svg>
+                      <span className="font-editorial" style={{ fontSize: "clamp(18px, 5vw, 26px)", letterSpacing: "0.01em", paddingTop: "2px" }}>
+                        Pesan via WhatsApp
+                      </span>
+                    </div>
+                    <span className="font-light" style={{ fontSize: "clamp(20px, 5vw, 28px)" }}>→</span>
                   </Link>
                 </motion.div>
-              ))}
+
+                {/* Copyright */}
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7, duration: 0.4 }}
+                  className="w-full text-center font-sans uppercase"
+                  style={{
+                    marginTop: "22px",
+                    fontSize: "10px",
+                    letterSpacing: "0.18em",
+                    color: "#c99745"
+                  }}
+                >
+                  © 2026 BABAH SAPI. SEMUA HAK DILINDUNGI.
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         )}
