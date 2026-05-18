@@ -126,9 +126,9 @@ const Hero = () => {
       </div>
 
       {/* --- ABSOLUTE HEADER NAVIGATION (Savor-Style) --- */}
-      <header className="absolute top-0 left-0 right-0 z-30 h-24 pt-6 select-none w-full flex justify-center">
+      <header className="absolute top-0 left-0 right-0 z-30 hero-navbar-forced select-none w-full flex justify-center">
         <div 
-          className="px-6 md:px-10 lg:px-16 flex items-start justify-between w-full"
+          className="px-6 md:px-10 lg:px-16 flex items-center justify-between w-full"
           style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}
         >
           {/* Logo */}
@@ -138,20 +138,20 @@ const Hero = () => {
           >
             babah sapi
           </Link>
-
+ 
           {/* Desktop Navigation Links (Centered bounds layout) */}
           <nav className="hidden lg:flex items-center gap-10 font-sans text-base font-semibold text-white normal-case tracking-normal pt-4">
-            {["Proses", "Menu", "Kualitas", "Misi", "Jurnal", "Kontak"].map((link) => (
+            {siteContent.navigation.map((item) => (
               <Link 
-                key={link} 
-                href={`/#${link.toLowerCase()}`}
-                className="hover:opacity-70 transition-opacity duration-300"
+                key={item.label} 
+                href={item.href}
+                className="transition-all duration-500 ease-out text-white hover:opacity-70"
               >
-                {link}
+                {item.label}
               </Link>
             ))}
           </nav>
-
+ 
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(true)}
@@ -162,9 +162,9 @@ const Hero = () => {
         </div>
       </header>
 
-      {/* --- CONTENT CONTAINER (Savor-Style Grid - Bottom Aligned) --- */}
+      {/* --- CONTENT CONTAINER (Savor-Style Grid - Bottom Aligned with Forced safe padding) --- */}
       <div 
-        className="relative z-20 flex min-h-screen w-full flex-col justify-end px-6 md:px-10 lg:px-16 pb-16 md:pb-20 lg:pb-24 pointer-events-none"
+        className="relative z-20 flex min-h-screen w-full flex-col justify-end px-6 md:px-10 lg:px-16 hero-content-forced pointer-events-none"
         style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}
       >
         
@@ -185,7 +185,7 @@ const Hero = () => {
           </div>
 
           {/* Right Column: Subtitle & Large CTA Button (col-span-12 lg:col-span-4 lg:col-start-9) */}
-          <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col items-start mb-2 md:mb-4 lg:mb-6">
+          <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col items-start">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -199,9 +199,13 @@ const Hero = () => {
 
               <Link
                 href="/#menu"
-                className="mt-8 inline-flex items-center justify-center rounded-md bg-[#f3eadc] px-9 py-5 text-base font-semibold text-[#4a0907] shadow-sm transition hover:scale-[1.02] active:scale-[0.98] w-full sm:w-fit"
+                className="hero-premium-btn group"
               >
-                Pesan — Sekarang
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-white flex items-center gap-3">
+                  Pesan Sekarang
+                  <span className="transform transition-transform duration-500 group-hover:translate-x-2">→</span>
+                </span>
+                <span className="absolute inset-0 bg-[#4a0907] transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
               </Link>
             </motion.div>
           </div>

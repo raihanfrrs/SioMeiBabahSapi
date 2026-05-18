@@ -89,7 +89,7 @@ const Navbar = () => {
   const showNavbar = isVisible && !isFooterVisible && isScrolled;
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-[10001] transition-all duration-700 ease-out ${
+    <nav className={`fixed top-0 left-0 w-full z-[10001] transition-all duration-700 ease-out hero-navbar-forced ${
       showNavbar ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
     } ${
       isScrolled 
@@ -98,26 +98,27 @@ const Navbar = () => {
           : "bg-black/50 backdrop-blur-md py-6 md:py-7 border-b border-white/10"
         : "bg-transparent py-12 md:py-16 border-transparent"
     }`}>
-      <div className="container-custom grid grid-cols-2 lg:grid-cols-3 items-center">
-        {/* Logo - Left Col */}
-        <div className="flex justify-start">
-          <Link 
-            href="/" 
-            className={`text-3.5xl md:text-5.5xl font-editorial tracking-tighter transition-all duration-700 ease-out ${
-              isLight ? "!text-[#24110b]" : "!text-white"
-            } ${isScrolled ? "scale-90" : "scale-100"}`}
-          >
-            babah sapi
-          </Link>
-        </div>
-
-        {/* Desktop Menu - Center Col */}
-        <div className="hidden lg:flex justify-center items-center gap-14">
+      <div 
+        className="px-6 md:px-10 lg:px-16 flex items-center justify-between w-full"
+        style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}
+      >
+        {/* Logo - Left (Matches Hero.tsx exactly in font and styling) */}
+        <Link 
+          href="/" 
+          className={`font-editorial transition-all duration-700 ease-out ${
+            isLight ? "!text-[#24110b]" : "!text-white"
+          } text-4xl md:text-5xl lg:text-6xl leading-none tracking-[-0.05em] hover:opacity-90`}
+        >
+          babah sapi
+        </Link>
+ 
+        {/* Desktop Menu - Right (Matches Hero.tsx exactly in font and layout placement) */}
+        <nav className="hidden lg:flex items-center gap-10 font-sans text-base font-semibold normal-case tracking-normal pt-4">
           {siteContent.navigation.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className={`ui-label text-[12px] tracking-[0.45em] font-bold transition-all duration-500 ease-out ${
+              className={`transition-all duration-500 ease-out ${
                 isLight 
                   ? "!text-[#24110b] hover:opacity-70" 
                   : "!text-white hover:opacity-70"
@@ -126,35 +127,19 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-        </div>
-
-        {/* Button & Mobile Toggle - Right Col */}
-        <div className="flex justify-end items-center gap-8">
-          <Link
-            href="/#menu"
-            className={`hidden lg:block group relative overflow-hidden border px-12 py-4 rounded-md text-[13px] font-bold uppercase tracking-[0.3em] transition-all duration-700 ${
-              isLight 
-                ? "border-[#24110b]/30 !text-[#24110b] hover:border-[#24110b]" 
-                : "border-white/30 !text-white hover:border-white"
-            }`}
-          >
-            <span className="relative z-10">PESAN</span>
-            <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ${isLight ? "bg-[#24110b]" : "bg-white"}`} />
-            <span className={`absolute inset-0 flex items-center justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-700 font-bold z-20 ${isLight ? "text-[#f4eadc]" : "text-[#24110b]"}`}>PESAN</span>
-          </Link>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className={`lg:hidden focus:outline-none flex flex-col gap-2 transition-colors duration-500 ease-out ${
-              isLight ? "!text-[#24110b]" : "!text-white"
-            }`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <div className={`h-[1px] w-8 bg-current transition-transform duration-500 ${isMobileMenuOpen ? "rotate-45 translate-y-[9px]" : ""}`} />
-            <div className={`h-[1px] w-6 ml-auto bg-current transition-opacity duration-500 ${isMobileMenuOpen ? "opacity-0" : "opacity-100"}`} />
-            <div className={`h-[1px] w-8 bg-current transition-transform duration-500 ${isMobileMenuOpen ? "-rotate-45 -translate-y-[9px]" : ""}`} />
-          </button>
-        </div>
+        </nav>
+ 
+        {/* Mobile Menu Toggle - Right (Only visible on mobile/tablet) */}
+        <button
+          className={`lg:hidden focus:outline-none flex flex-col gap-2 transition-colors duration-500 ease-out ${
+            isLight ? "!text-[#24110b]" : "!text-white"
+          } pt-2`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <div className={`h-[1px] w-8 bg-current transition-transform duration-500 ${isMobileMenuOpen ? "rotate-45 translate-y-[9px]" : ""}`} />
+          <div className={`h-[1px] w-6 ml-auto bg-current transition-opacity duration-500 ${isMobileMenuOpen ? "opacity-0" : "opacity-100"}`} />
+          <div className={`h-[1px] w-8 bg-current transition-transform duration-500 ${isMobileMenuOpen ? "-rotate-45 -translate-y-[9px]" : ""}`} />
+        </button>
       </div>
 
       {/* Mobile Menu Overlay */}
