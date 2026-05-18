@@ -84,7 +84,7 @@ const Hero = () => {
         <img 
           src={hero.imagePlaceholder} 
           alt="Siomay Babah Sapi Background" 
-          className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.4] scale-100"
+          className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.4] scale-100"
           loading="eager"
         />
 
@@ -97,7 +97,7 @@ const Hero = () => {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.55]"
+          className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55]"
         />
 
         {/* Video Layer 2: Next Video (Fading In above Layer 1) */}
@@ -110,7 +110,7 @@ const Hero = () => {
             loop
             playsInline
             preload="auto"
-            className={`absolute inset-0 w-full h-full object-cover brightness-[0.55] transition-opacity ease-out`}
+            className={`absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out`}
             style={{ 
               opacity: fadeNext ? 1 : 0,
               transitionDuration: "1200ms"
@@ -118,17 +118,15 @@ const Hero = () => {
           />
         )}
 
-        {/* Refined Luxury Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35 pointer-events-none" />
-        
-        {/* Bottom Left radial focus gradient to ensure extreme text legibility */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_75%,rgba(0,0,0,0.5),transparent_55%)] pointer-events-none" />
       </div>
 
+      {/* Refined Luxury Multi-Stop Gradient Overlay */}
+      <div className="absolute inset-0 hero-gradient-overlay pointer-events-none z-10" />
+
       {/* --- ABSOLUTE HEADER NAVIGATION (Savor-Style) --- */}
-      <header className="absolute top-0 left-0 right-0 z-30 hero-navbar-forced select-none w-full flex justify-center">
+      <header className="absolute top-0 left-0 right-0 z-30 select-none w-full flex justify-center">
         <div 
-          className="px-6 md:px-10 lg:px-16 flex items-center justify-between w-full"
+          className="hero-navbar-container flex items-center justify-between w-full"
           style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}
         >
           {/* Logo */}
@@ -162,50 +160,55 @@ const Hero = () => {
         </div>
       </header>
 
-      {/* --- CONTENT CONTAINER (Savor-Style Grid - Bottom Aligned with Forced safe padding) --- */}
+      {/* --- CONTENT CONTAINER (Savor-Style Responsive Absolute Wrapper) --- */}
       <div 
-        className="relative z-20 flex min-h-screen w-full flex-col justify-end px-6 md:px-10 lg:px-16 hero-content-forced pointer-events-none"
+        className="relative z-20 flex min-h-screen w-full flex-col justify-end hero-content-forced pointer-events-none"
         style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}
       >
         
-        <div className="grid grid-cols-12 items-end gap-8 w-full pointer-events-auto">
+        <div className="hero-content-container pointer-events-auto">
           
           {/* Left Column: Headline (col-span-12 lg:col-span-7) */}
-          <div className="col-span-12 lg:col-span-7 flex flex-col items-start">
+          <div className="col-span-12 lg:col-span-7 flex flex-col items-start w-full">
             <motion.h1 
               initial={{ opacity: 0, filter: "blur(8px)" }}
               animate={{ opacity: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-editorial text-white text-[15vw] sm:text-[12vw] md:text-[9.5vw] lg:text-[7.8vw] leading-[0.82] tracking-[-0.06em] font-normal text-left"
+              className="font-editorial text-white hero-headline-responsive text-left"
             >
-              Siomay sapi<br />
-              resep<br />
-              warisan
+              <span className="block md:hidden">
+                Siomay Sapi<br />
+                Resep Warisan
+              </span>
+              <span className="hidden md:block">
+                Siomay sapi<br />
+                resep<br />
+                warisan
+              </span>
             </motion.h1>
           </div>
 
           {/* Right Column: Subtitle & Large CTA Button (col-span-12 lg:col-span-4 lg:col-start-9) */}
-          <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col items-start">
+          <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col items-start w-full hero-subtitle-cta-block">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
               className="flex flex-col items-start w-full"
             >
-              <p className="font-sans text-lg md:text-xl font-semibold leading-snug text-white max-w-[280px] text-left">
-                Gurih, lembut,<br />
-                dan bumbu kacang autentik.
+              <p className="font-sans text-white text-left hero-subheadline-spacing">
+                Gurih, lembut, dengan bumbu kacang autentik.
               </p>
 
               <Link
                 href="/#menu"
                 className="hero-premium-btn group"
               >
-                <span className="relative z-10 transition-colors duration-500 group-hover:text-white flex items-center gap-3">
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907] flex items-center gap-3">
                   Pesan Sekarang
                   <span className="transform transition-transform duration-500 group-hover:translate-x-2">→</span>
                 </span>
-                <span className="absolute inset-0 bg-[#4a0907] transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
+                <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
               </Link>
             </motion.div>
           </div>

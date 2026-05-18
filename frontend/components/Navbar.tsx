@@ -94,12 +94,12 @@ const Navbar = () => {
     } ${
       isScrolled 
         ? isLight 
-          ? "bg-[#f4eadc]/98 backdrop-blur-md py-6 md:py-7 shadow-md border-b border-[#24110b]/10" 
-          : "bg-black/50 backdrop-blur-md py-6 md:py-7 border-b border-white/10"
-        : "bg-transparent py-12 md:py-16 border-transparent"
+          ? "bg-[#f4eadc]/98 backdrop-blur-md py-0 lg:py-7 shadow-md border-b border-[#24110b]/10" 
+          : "bg-black/50 backdrop-blur-md py-0 lg:py-7 border-b border-white/10"
+        : "bg-transparent py-0 lg:py-16 border-transparent"
     }`}>
       <div 
-        className="px-6 md:px-10 lg:px-16 flex items-center justify-between w-full"
+        className="hero-navbar-container flex items-center justify-between w-full"
         style={{ maxWidth: "1280px", marginLeft: "auto", marginRight: "auto" }}
       >
         {/* Logo - Left (Matches Hero.tsx exactly in font and styling) */}

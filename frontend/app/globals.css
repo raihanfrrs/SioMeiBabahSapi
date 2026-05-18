@@ -221,42 +221,212 @@ body::after {
     padding-top: clamp(1rem, 2vw, 2rem) !important;
   }
 
-  /* Luxury Hero Spacing System - Forced with !important to bypass compiler caching anomalies */
-  .hero-navbar-forced {
-    padding-top: clamp(0.5rem, 1vw, 1.5rem) !important;
+  /* ==========================================================================
+     ULTRA-LUXURY RESPONSIVE HERO SYSTEM (SAVOR ELEGANCE OVERHAUL)
+     ========================================================================== */
+  html, body, main {
+    overflow-x: hidden !important;
+  }
+
+  /* 1. Video & Fallback Image object alignment */
+  .hero-bg-media {
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .hero-bg-media {
+      object-position: center 45% !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-bg-media {
+      object-position: center 35% !important;
+    }
+  }
+
+  /* 2. Refined Multi-Stop Cinematic Contrast Overlay */
+  .hero-gradient-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.15) 50%,
+      rgba(0, 0, 0, 0.55) 100%
+    ) !important;
+  }
+
+  /* 3. Rock-Solid Consistent Navbar Height Wrapper */
+  .hero-navbar-container {
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  @media (min-width: 768px) {
+    .hero-navbar-container {
+      height: 72px !important;
+      padding-left: 40px !important;
+      padding-right: 40px !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-navbar-container {
+      height: auto !important;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+    }
   }
 
   .hero-content-forced {
-    padding-bottom: clamp(1rem, 2vw, 3rem) !important;
+    padding-bottom: 0px !important;
+  }
+  @media (min-width: 1024px) {
+    .hero-content-forced {
+      padding-bottom: 25px !important; /* Pristine safety bottom padding on desktop */
+    }
   }
 
-  /* Ultra-Luxury Hero CTA Button - Forced with !important to bypass compiler caching anomalies */
+  /* 4. Absolute Content Layout for Mobile & Tablet */
+  .hero-content-container {
+    position: absolute !important;
+    left: 70px !important;
+    right: 24px !important;
+    bottom: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    max-width: calc(100% - 48px) !important;
+    pointer-events: auto !important;
+  }
+  @media (min-width: 768px) {
+    .hero-content-container {
+      left: 40px !important;
+      right: 40px !important;
+      bottom: 190px !important;
+      max-width: calc(100% - 80px) !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-content-container {
+      position: relative !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      display: grid !important;
+      grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+      gap: 2rem !important;
+      align-items: flex-end !important;
+      width: 100% !important;
+      max-width: none !important;
+    }
+  }
+
+  /* 5. Fluid Responsive Headline Typography (Savor Clamps) */
+  .hero-headline-responsive {
+    font-size: clamp(48px, 14vw, 72px) !important;
+    line-height: 0.92 !important;
+    letter-spacing: -0.04em !important;
+    max-width: 92vw !important;
+  }
+  @media (min-width: 768px) {
+    .hero-headline-responsive {
+      font-size: clamp(72px, 10vw, 110px) !important;
+      line-height: 0.92 !important;
+      letter-spacing: -0.04em !important;
+      max-width: 90vw !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-headline-responsive {
+      font-size: 7.8vw !important;
+      line-height: 0.82 !important;
+      letter-spacing: -0.06em !important;
+      max-width: none !important;
+    }
+  }
+
+  /* 6. Subheadline and Block Spacing */
+  .hero-subtitle-cta-block {
+    margin-top: 20px !important; /* Mobile/tablet gap between headline and subtitle block */
+    width: 100% !important;
+  }
+  @media (min-width: 768px) {
+    .hero-subtitle-cta-block {
+      margin-top: 24px !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-subtitle-cta-block {
+      margin-top: 0px !important;
+      margin-bottom: 10px !important;
+      width: auto !important;
+    }
+  }
+
+  .hero-subheadline-spacing {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    max-width: 320px !important;
+  }
+  @media (min-width: 768px) {
+    .hero-subheadline-spacing {
+      font-size: 20px !important;
+      max-width: 380px !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-subheadline-spacing {
+      font-size: 20px !important;
+      line-height: 1.3 !important;
+      max-width: 280px !important;
+    }
+  }
+
+  /* 7. Ultra-Luxury CTA Button - Optimized for Mobile & Tablet */
   .hero-premium-btn {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     position: relative !important;
     overflow: hidden !important;
-    background-color: #f3eadc !important;
-    color: #4a0907 !important;
-    border: 1px solid rgba(243, 234, 220, 0.2) !important;
-    border-radius: 4px !important;
-    padding: 22px 54px !important; /* Extremely generous luxury padding: 22px top/bottom, 54px left/right */
-    font-size: 13px !important; /* Beautiful readable text size */
-    font-weight: 800 !important;
+    background-color: #f6ebdd !important; /* Premium Cream Light */
+    color: #4a0907 !important; /* Dark Maroon */
+    border: none !important;
+    border-radius: 8px !important; /* Elegant 8px Rounded Corners */
+    height: 60px !important; /* 60px Minimum Height */
+    padding: 0 36px !important; /* Spacious Horizontal Padding */
+    font-size: 14px !important;
+    font-weight: 700 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.35em !important;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3) !important;
+    letter-spacing: 0.18em !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
     transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
-    margin-top: 40px !important;
+    margin-top: 28px !important; /* 28px margin top */
     cursor: pointer !important;
     pointer-events: auto !important;
-    width: auto !important;
+    width: 100% !important; /* Full-width on mobile */
+    max-width: 326px !important; /* Restricted maximum width */
+  }
+  @media (min-width: 768px) {
+    .hero-premium-btn {
+      width: auto !important; /* Fit-content on tablet */
+      max-width: none !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-premium-btn {
+      width: auto !important;
+      max-width: none !important;
+      height: 62px !important;
+      padding: 0 44px !important;
+      margin-top: 36px !important;
+    }
   }
 
   .hero-premium-btn:hover {
-    transform: scale(1.05) !important;
-    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.4) !important;
+    transform: scale(1.03) !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35) !important;
   }
 
   .hero-premium-btn:active {
