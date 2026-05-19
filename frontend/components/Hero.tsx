@@ -170,7 +170,7 @@ const Hero = () => {
         <video
           ref={video1Ref}
           src={video1Src}
-          autoPlay
+          autoPlay={activeBuffer === 1}
           muted
           playsInline
           preload="auto"
