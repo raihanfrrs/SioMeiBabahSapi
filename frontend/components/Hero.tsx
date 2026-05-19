@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteContent } from "@/data/siteContent";
@@ -27,10 +27,16 @@ const Hero = () => {
   const { hero } = siteContent;
   const containerRef = useRef<HTMLElement>(null);
 
-  // Video Carousel State
+  // Video Refs (double-buffering)
+  const video1Ref = useRef<HTMLVideoElement>(null);
+  const video2Ref = useRef<HTMLVideoElement>(null);
+
+  // Double-buffer Carousel State
+  const [activeBuffer, setActiveBuffer] = useState<1 | 2>(1);
+  const [video1Src, setVideo1Src] = useState(activeVideos[0]);
+  const [video2Src, setVideo2Src] = useState(activeVideos[1]);
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [nextIdx, setNextIdx] = useState<number | null>(null);
-  const [fadeNext, setFadeNext] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // GSAP Pinning
@@ -94,24 +100,51 @@ const Hero = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // Video Carousel Interval
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const next = (currentIdx + 1) % activeVideos.length;
-      setNextIdx(next);
-      setFadeNext(true);
+  // Advance to next video when current video finishes playing
+  // Double-buffer transition logic to prevent cuts/resets
+  const handleVideoEnded = useCallback((bufferIndex: 1 | 2) => {
+    if (isTransitioning) return;
+    if (bufferIndex !== activeBuffer) return; // Only listen to active video
 
-      const timer = setTimeout(() => {
-        setCurrentIdx(next);
-        setNextIdx(null);
-        setFadeNext(false);
-      }, 1200); // 1200ms crossfade transition duration
+    setIsTransitioning(true);
+    const nextIdx = (currentIdx + 1) % activeVideos.length;
 
-      return () => clearTimeout(timer);
-    }, 6000); // Rotate video every 6 seconds
+    if (activeBuffer === 1) {
+      // Buffer 1 finished, play Buffer 2 and transition to it
+      if (video2Ref.current) {
+        video2Ref.current.play().catch(() => {});
+      }
+      setActiveBuffer(2);
+      setCurrentIdx(nextIdx);
 
-    return () => clearInterval(interval);
-  }, [currentIdx, activeVideos.length]);
+      setTimeout(() => {
+        if (video1Ref.current) {
+          video1Ref.current.pause();
+        }
+        // Load next next video into Buffer 1
+        const nextNextIdx = (nextIdx + 1) % activeVideos.length;
+        setVideo1Src(activeVideos[nextNextIdx]);
+        setIsTransitioning(false);
+      }, 1200);
+    } else {
+      // Buffer 2 finished, play Buffer 1 and transition to it
+      if (video1Ref.current) {
+        video1Ref.current.play().catch(() => {});
+      }
+      setActiveBuffer(1);
+      setCurrentIdx(nextIdx);
+
+      setTimeout(() => {
+        if (video2Ref.current) {
+          video2Ref.current.pause();
+        }
+        // Load next next video into Buffer 2
+        const nextNextIdx = (nextIdx + 1) % activeVideos.length;
+        setVideo2Src(activeVideos[nextNextIdx]);
+        setIsTransitioning(false);
+      }, 1200);
+    }
+  }, [activeBuffer, currentIdx, isTransitioning]);
 
   return (
     <section 
@@ -132,35 +165,39 @@ const Hero = () => {
           loading="eager"
         />
 
-        {/* Video Layer 1: Current Active Video */}
+        {/* Video Buffer 1 */}
         <video
-          key={`current-${currentIdx}`}
-          src={activeVideos[currentIdx]}
-          autoPlay
+          ref={video1Ref}
+          src={video1Src}
+          autoPlay={activeBuffer === 1}
           muted
-          loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55]"
+          onEnded={() => handleVideoEnded(1)}
+          className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
+          style={{
+            opacity: activeBuffer === 1 ? 1 : 0,
+            transitionDuration: "1200ms",
+            zIndex: activeBuffer === 1 ? 2 : 1
+          }}
         />
 
-        {/* Video Layer 2: Next Video (Fading In above Layer 1) */}
-        {nextIdx !== null && (
-          <video
-            key={`next-${nextIdx}`}
-            src={activeVideos[nextIdx]}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className={`absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out`}
-            style={{ 
-              opacity: fadeNext ? 1 : 0,
-              transitionDuration: "1200ms"
-            }}
-          />
-        )}
+        {/* Video Buffer 2 */}
+        <video
+          ref={video2Ref}
+          src={video2Src}
+          autoPlay={activeBuffer === 2}
+          muted
+          playsInline
+          preload="auto"
+          onEnded={() => handleVideoEnded(2)}
+          className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
+          style={{
+            opacity: activeBuffer === 2 ? 1 : 0,
+            transitionDuration: "1200ms",
+            zIndex: activeBuffer === 2 ? 2 : 1
+          }}
+        />
 
       </div>
 
