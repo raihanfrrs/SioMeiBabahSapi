@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import MacroTexture from "@/components/MacroTexture";
@@ -8,10 +10,15 @@ import FoodShowcase from "@/components/FoodShowcase";
 import ClosingCTA from "@/components/ClosingCTA";
 import FooterLuxury from "@/components/FooterLuxury";
 import SmoothScroll from "@/components/SmoothScroll";
+import { useInitialPreload } from "@/hooks/useInitialPreload";
+import BrandedPreloader from "@/components/BrandedPreloader";
 
 export default function Home() {
+  const { progress, isReady } = useInitialPreload();
+
   return (
     <SmoothScroll>
+      <BrandedPreloader progress={progress} isReady={isReady} />
       <main className="min-h-screen bg-brand-cream relative overflow-hidden noise-overlay">
         <Navbar />
         

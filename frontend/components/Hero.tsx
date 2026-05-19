@@ -7,22 +7,35 @@ import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const localVideos = [
-  "/videos/hero-1.mp4",
-  "/videos/hero-2.mp4",
-  "/videos/hero-3.mp4",
-  "/videos/hero-4.mp4",
-  "/videos/hero-5.mp4",
+const heroVideos = [
+  {
+    desktop: "/videos/hero-1.mp4",
+    mobile: "/videos/hero-1.mp4",
+    fallback: "/videos/hero-1.mp4"
+  },
+  {
+    desktop: "/videos/hero-2.mp4",
+    mobile: "/videos/hero-2.mp4",
+    fallback: "/videos/hero-2.mp4"
+  },
+  {
+    desktop: "/videos/hero-3.mp4",
+    mobile: "/videos/hero-3.mp4",
+    fallback: "/videos/hero-3.mp4"
+  },
+  {
+    desktop: "/videos/hero-4.mp4",
+    mobile: "/videos/hero-4.mp4",
+    fallback: "/videos/hero-4.mp4"
+  },
+  {
+    desktop: "/videos/hero-5.mp4",
+    mobile: "/videos/hero-5.mp4",
+    fallback: "/videos/hero-5.mp4"
+  }
 ];
 
-const cdnVideos = [
-  "https://player.vimeo.com/external/435674703.sd.mp4?s=7fdf21ed7e96b1b22e1b12b596f2e825a07c1328&profile_id=165&oauth2_token_id=57447761",
-  "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c02cba73e1dd1d0fd2e70b18c2424b34&profile_id=165&oauth2_token_id=57447761",
-  "https://player.vimeo.com/external/430023405.sd.mp4?s=d0046522c09c2ef361955b23d902d207f2bd5f4a&profile_id=165&oauth2_token_id=57447761",
-  "https://player.vimeo.com/external/554988775.sd.mp4?s=08ab066d8b9d311fa5c4d0a1b65e23cc28e3b5e4&profile_id=165&oauth2_token_id=57447761",
-];
-
-const activeVideos = localVideos;
+const activeVideos = heroVideos;
 
 const Hero = () => {
   const { hero } = siteContent;
@@ -39,6 +52,65 @@ const Hero = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Performance / Reduced Motion Settings
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [saveData, setSaveData] = useState(false);
+  const [hasDispatchedReady, setHasDispatchedReady] = useState(false);
+
+  // Direct video URL hooks to ensure absolute rendering reliability (bypassing React nested <source> delays)
+  const [resolvedVideo1, setResolvedVideo1] = useState(activeVideos[0].fallback);
+  const [resolvedVideo2, setResolvedVideo2] = useState(activeVideos[1].fallback);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // 1. Check prefers-reduced-motion
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+    const listener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener("change", listener);
+
+    // 2. Check saveData API
+    // @ts-ignore
+    const hasSaveData = !!navigator.connection?.saveData;
+    setSaveData(hasSaveData);
+
+    return () => {
+      mediaQuery.removeEventListener("change", listener);
+    };
+  }, []);
+
+  // Sync resolved sources responsively
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isDesktop = window.innerWidth >= 1024;
+    setResolvedVideo1(isDesktop ? video1Src.desktop : video1Src.mobile);
+    setResolvedVideo2(isDesktop ? video2Src.desktop : video2Src.mobile);
+  }, [video1Src, video2Src]);
+
+  // Force play active video on changes
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    if (activeBuffer === 1) {
+      if (video1Ref.current) {
+        video1Ref.current.play().catch(() => {});
+      }
+    } else {
+      if (video2Ref.current) {
+        video2Ref.current.play().catch(() => {});
+      }
+    }
+  }, [activeBuffer, resolvedVideo1, resolvedVideo2, prefersReducedMotion]);
+
+  const handleVideoCanPlay = useCallback((bufferIndex: number) => {
+    if (bufferIndex === 1 && !hasDispatchedReady) {
+      setHasDispatchedReady(true);
+      // Dispatch preloader success signal
+      window.dispatchEvent(new CustomEvent("hero-first-video-ready"));
+    }
+  }, [hasDispatchedReady]);
 
   // GSAP Pinning
   useEffect(() => {
@@ -104,6 +176,8 @@ const Hero = () => {
   // Advance to next video when current video finishes playing
   // Double-buffer transition logic to prevent cuts/resets
   const handleVideoEnded = useCallback((bufferIndex: 1 | 2) => {
+    if (prefersReducedMotion) return; // Freeze carousel under reduced motion accessibility requests
+    
     const nextIdx = (currentIdx + 1) % activeVideos.length;
 
     if (isTransitioning) return;
@@ -146,7 +220,7 @@ const Hero = () => {
         setIsTransitioning(false);
       }, 400); // 400ms fast crossfade
     }
-  }, [activeBuffer, currentIdx, isTransitioning]);
+  }, [activeBuffer, currentIdx, isTransitioning, prefersReducedMotion]);
 
   return (
     <section 
@@ -170,12 +244,14 @@ const Hero = () => {
         {/* Video Buffer 1 */}
         <video
           ref={video1Ref}
-          src={video1Src}
-          autoPlay={activeBuffer === 1}
+          src={resolvedVideo1}
+          autoPlay={activeBuffer === 1 && !prefersReducedMotion}
           muted
           playsInline
           preload="auto"
           onEnded={() => handleVideoEnded(1)}
+          onCanPlay={() => handleVideoCanPlay(1)}
+          onLoadedData={() => handleVideoCanPlay(1)}
           className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
           style={{
             opacity: activeBuffer === 1 ? 1 : 0,
@@ -187,11 +263,11 @@ const Hero = () => {
         {/* Video Buffer 2 */}
         <video
           ref={video2Ref}
-          src={video2Src}
-          autoPlay={activeBuffer === 2}
+          src={resolvedVideo2}
+          autoPlay={activeBuffer === 2 && !prefersReducedMotion}
           muted
           playsInline
-          preload="auto"
+          preload={saveData ? "none" : "auto"} // Standard lazy preloading under Save Data settings
           onEnded={() => handleVideoEnded(2)}
           className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
           style={{
