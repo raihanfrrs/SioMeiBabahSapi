@@ -57,6 +57,7 @@ const Hero = () => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [saveData, setSaveData] = useState(false);
   const [hasDispatchedReady, setHasDispatchedReady] = useState(false);
+  const [pendingBuffer, setPendingBuffer] = useState<1 | 2 | null>(null);
 
   // Direct video URL hooks to ensure absolute rendering reliability (bypassing React nested <source> delays)
   const [resolvedVideo1, setResolvedVideo1] = useState(activeVideos[0].fallback);
@@ -173,54 +174,73 @@ const Hero = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // Advance to next video when current video finishes playing
-  // Double-buffer transition logic to prevent cuts/resets
-  const handleVideoEnded = useCallback((bufferIndex: 1 | 2) => {
-    if (prefersReducedMotion) return; // Freeze carousel under reduced motion accessibility requests
-    
-    const nextIdx = (currentIdx + 1) % activeVideos.length;
+  // Synchronized Crossfade: Trigger transition only when the pending buffer starts playing natively
+  const handleVideoPlaying = useCallback((bufferIndex: number) => {
+    if (pendingBuffer === bufferIndex) {
+      const nextIdx = (currentIdx + 1) % activeVideos.length;
+      
+      setActiveBuffer(bufferIndex as 1 | 2);
+      setCurrentIdx(nextIdx);
+      setPendingBuffer(null);
 
+      // Finalize transition parameters after crossfade completes (400ms)
+      setTimeout(() => {
+        if (bufferIndex === 2) {
+          if (video1Ref.current) {
+            video1Ref.current.pause();
+          }
+          const nextNextIdx = (nextIdx + 1) % activeVideos.length;
+          setVideo1Src(activeVideos[nextNextIdx]);
+        } else {
+          if (video2Ref.current) {
+            video2Ref.current.pause();
+          }
+          const nextNextIdx = (nextIdx + 1) % activeVideos.length;
+          setVideo2Src(activeVideos[nextNextIdx]);
+        }
+        setIsTransitioning(false);
+      }, 400);
+    }
+  }, [pendingBuffer, currentIdx, activeVideos.length]);
+
+  // Advance to next video when current video finishes playing
+  // Delay active buffer switch to keep current playing frame visible during background buffering
+  const handleVideoEnded = useCallback((bufferIndex: 1 | 2) => {
+    if (prefersReducedMotion) return;
+    
     if (isTransitioning) return;
     if (bufferIndex !== activeBuffer) return; // Only listen to active video
 
     setIsTransitioning(true);
 
     if (activeBuffer === 1) {
-      // Buffer 1 finished, play Buffer 2 and transition to it
+      // Buffer 1 finished, launch Buffer 2 in background and wait for its onPlaying event
+      setPendingBuffer(2);
       if (video2Ref.current) {
-        video2Ref.current.play().catch(() => {});
+        video2Ref.current.play().catch(() => {
+          // If browser completely blocks background play, force transition immediately as safety fallback
+          console.log("Play failed for buffer 2, forcing active switch.");
+          setActiveBuffer(2);
+          setCurrentIdx((currentIdx + 1) % activeVideos.length);
+          setIsTransitioning(false);
+          setPendingBuffer(null);
+        });
       }
-      setActiveBuffer(2);
-      setCurrentIdx(nextIdx);
-
-      setTimeout(() => {
-        if (video1Ref.current) {
-          video1Ref.current.pause();
-        }
-        // Load next next video into Buffer 1
-        const nextNextIdx = (nextIdx + 1) % activeVideos.length;
-        setVideo1Src(activeVideos[nextNextIdx]);
-        setIsTransitioning(false);
-      }, 400); // 400ms fast crossfade
     } else {
-      // Buffer 2 finished, play Buffer 1 and transition to it
+      // Buffer 2 finished, launch Buffer 1 in background and wait for its onPlaying event
+      setPendingBuffer(1);
       if (video1Ref.current) {
-        video1Ref.current.play().catch(() => {});
+        video1Ref.current.play().catch(() => {
+          // If browser completely blocks background play, force transition immediately as safety fallback
+          console.log("Play failed for buffer 1, forcing active switch.");
+          setActiveBuffer(1);
+          setCurrentIdx((currentIdx + 1) % activeVideos.length);
+          setIsTransitioning(false);
+          setPendingBuffer(null);
+        });
       }
-      setActiveBuffer(1);
-      setCurrentIdx(nextIdx);
-
-      setTimeout(() => {
-        if (video2Ref.current) {
-          video2Ref.current.pause();
-        }
-        // Load next next video into Buffer 2
-        const nextNextIdx = (nextIdx + 1) % activeVideos.length;
-        setVideo2Src(activeVideos[nextNextIdx]);
-        setIsTransitioning(false);
-      }, 400); // 400ms fast crossfade
     }
-  }, [activeBuffer, currentIdx, isTransitioning, prefersReducedMotion]);
+  }, [activeBuffer, currentIdx, isTransitioning, prefersReducedMotion, activeVideos.length]);
 
   return (
     <section 
@@ -252,6 +272,7 @@ const Hero = () => {
           playsInline
           preload="auto"
           onEnded={() => handleVideoEnded(1)}
+          onPlaying={() => handleVideoPlaying(1)}
           onCanPlay={() => handleVideoCanPlay(1)}
           onLoadedData={() => handleVideoCanPlay(1)}
           className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
@@ -271,6 +292,7 @@ const Hero = () => {
           playsInline
           preload={saveData ? "none" : "auto"} // Standard lazy preloading under Save Data settings
           onEnded={() => handleVideoEnded(2)}
+          onPlaying={() => handleVideoPlaying(2)}
           className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
           style={{
             opacity: activeBuffer === 2 ? 1 : 0,
