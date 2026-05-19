@@ -72,10 +72,6 @@ const ProcessStory = () => {
       ref={containerRef} 
       id="process" 
       data-nav-theme="light"
-      style={{
-        paddingTop: "var(--process-pt, 112px)",
-        paddingBottom: "var(--process-pb, 128px)"
-      }}
       className="relative bg-[#f4eadc] overflow-hidden z-20"
     >
       
@@ -159,8 +155,7 @@ const ProcessStory = () => {
               <div 
                 key={step.number} 
                 style={idx === 0 ? {
-                  paddingTop: "var(--step-01-pt, 128px)",
-                  paddingBottom: "var(--step-01-pb, 48px)"
+                  
                 } : undefined}
                 className={`process-step flex w-full max-w-[1050px] mx-auto items-center justify-center min-h-[72vh] gap-10 lg:gap-14 md:grid md:grid-cols-[minmax(0,420px)_72px_minmax(0,460px)] ${
                   isTextLeft ? "flex-col-reverse" : "flex-col"

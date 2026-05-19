@@ -64,8 +64,8 @@ const GalleryStack = () => {
       data-nav-theme="light"
       className="w-full bg-[#f4eadc] overflow-hidden flex justify-center"
       style={{
-        paddingTop: "clamp(80px, 10vw, 140px)",
-        paddingBottom: "clamp(80px, 10vw, 140px)"
+        paddingTop: "clamp(20px, 10vw, 20px)",
+        paddingBottom: "clamp(20px, 10vw, 20px)"
       }}
     >
       <div 

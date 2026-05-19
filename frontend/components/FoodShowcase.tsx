@@ -18,8 +18,8 @@ const FoodShowcase = () => {
       data-nav-theme="light"
       className="bg-brand-cream border-t border-brand-dark/10 w-full flex justify-center"
       style={{
-        paddingTop: "max(56px, 8vw)", // scales nicely to ~96px on desktop
-        paddingBottom: "max(64px, 9vw)" // scales nicely to ~112px on desktop
+        paddingTop: "max(20px, 2vw)", // scales nicely to ~96px on desktop
+        paddingBottom: "max(20px, 2vw)" // scales nicely to ~112px on desktop
       }}
     >
       <div 
