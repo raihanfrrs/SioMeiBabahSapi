@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LazyImage } from "@/components/LazyImage";
 
 const ProcessStory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -88,11 +89,10 @@ const ProcessStory = () => {
             const imageBlock = (
               <div className="w-full max-w-[460px] mx-auto">
                 <div className="process-img-container relative aspect-[4/5] w-full overflow-hidden shadow-xl rounded-sm">
-                  <img 
+                  <LazyImage 
                     src={step.image} 
                     alt={step.title} 
                     className="absolute w-full h-full object-cover"
-                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-brand-dark/5" />
                 </div>

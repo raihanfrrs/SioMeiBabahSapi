@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LazyImage } from "@/components/LazyImage";
 
 const MEDIA_ITEMS = [
   "/images/macro-sauce.png",
@@ -160,10 +161,11 @@ const MacroTexture = () => {
           className="absolute overflow-hidden z-20"
         >
           {MEDIA_ITEMS.map((src, idx) => (
-            <img 
+            <LazyImage 
               key={idx}
               src={src}
               alt={`Texture ${idx + 1}`}
+              priority={true}
               className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
               style={{ 
                 opacity: activeIdx === idx ? 1 : 0,

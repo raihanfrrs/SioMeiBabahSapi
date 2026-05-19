@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { siteContent } from "@/data/siteContent";
+import { LazyImage } from "@/components/LazyImage";
 
 const FoodShowcase = () => {
   const { foods } = siteContent;
@@ -103,11 +104,10 @@ const FoodShowcase = () => {
                 >
                   {badges[i % badges.length]}
                 </div>
-                <img
+                 <LazyImage
                   src={food.image}
                   alt={food.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  loading="lazy"
                 />
               </div>
               

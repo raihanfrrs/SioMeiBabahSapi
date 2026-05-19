@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LazyImage } from "@/components/LazyImage";
 
 const EditorialStory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -67,11 +68,10 @@ const EditorialStory = () => {
           {/* Middle: Elevated Artisan Portrait Image (col-span-full md:col-span-6 lg:col-span-3) */}
           <div className="col-span-full md:col-span-6 lg:col-span-3 flex justify-center lg:justify-center editorial-reveal w-full mb-8 md:mb-0">
             <div className="editorial-img-reveal relative aspect-[3/4] w-full max-w-[320px] md:max-w-[280px] lg:max-w-full overflow-hidden shadow-md rounded-sm border border-brand-dark/10 transition-transform duration-500 ease-out hover:scale-[1.02] cursor-pointer">
-              <img 
+              <LazyImage 
                 src="/images/editorial-artisan.png" 
                 alt="Artisan making siomay" 
                 className="w-full h-full object-cover brightness-[0.95]"
-                loading="lazy"
               />
               <div className="absolute inset-0 bg-brand-dark/5" />
             </div>

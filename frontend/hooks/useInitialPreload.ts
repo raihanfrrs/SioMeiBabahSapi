@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
  * 1. React hydration completion
  * 2. Font loading ready check (document.fonts.ready)
  * 3. Listening to the active first video ready signal ("hero-first-video-ready")
- * 4. Safety timeouts (4s desktop / 5s mobile) to guarantee the user is never stuck
+ * 4. Safety timeouts (1.8s desktop / 2.2s mobile) to guarantee the user is never stuck
  */
 export function useInitialPreload() {
   const [progress, setProgress] = useState(0);
@@ -14,22 +14,23 @@ export function useInitialPreload() {
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
+    console.log("preloader start");
     setIsHydrated(true);
     setProgress(25); // Set progress to 25% immediately upon hydration
 
-    // Define safety timeout duration depending on device viewport
+    // Define safety timeout duration depending on device viewport (1.8s desktop / 2.2s mobile)
     const isMobile = window.innerWidth < 1024;
-    const timeoutDuration = isMobile ? 5000 : 4000;
+    const timeoutDuration = isMobile ? 2200 : 1800;
 
     // Simulate progress ticks up to 90% while assets load
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev < 90) {
-          return prev + (90 - prev) * 0.15; // Slow down asymptotically as it approaches 90%
+          return prev + (90 - prev) * 0.2; // Smooth asymptotic progress curve
         }
         return prev;
       });
-    }, 150);
+    }, 100);
 
     let safetyTimeout: NodeJS.Timeout;
 
@@ -42,19 +43,21 @@ export function useInitialPreload() {
       
       // Delay completion slightly so the user sees the progress bar reach 100% beautifully
       setTimeout(() => {
+        console.log("preloader hide");
         setIsReady(true);
       }, 400);
     };
 
     // Fallback safety timeout in case assets take too long
     safetyTimeout = setTimeout(() => {
-      console.log("Preloader: Safety timeout triggered.");
+      console.log("preloader timeout");
       completePreload();
     }, timeoutDuration);
 
     // 1. Listen for standard document font rendering
     if (typeof document !== "undefined" && document.fonts) {
       document.fonts.ready.then(() => {
+        console.log("font ready");
         setProgress((prev) => Math.max(prev, 60));
       }).catch(() => {});
     }
@@ -69,7 +72,9 @@ export function useInitialPreload() {
 
     return () => {
       clearInterval(progressInterval);
-      clearTimeout(safetyTimeout);
+      if (safetyTimeout) {
+        clearTimeout(safetyTimeout);
+      }
       window.removeEventListener("hero-first-video-ready", handleFirstVideoReady);
     };
   }, []);

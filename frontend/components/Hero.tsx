@@ -47,11 +47,13 @@ const Hero = () => {
 
   // Double-buffer Carousel State
   const [activeBuffer, setActiveBuffer] = useState<1 | 2>(1);
-  const [video1Src, setVideo1Src] = useState(activeVideos[0]);
-  const [video2Src, setVideo2Src] = useState(activeVideos[1]);
+  const [video1Src, setVideo1Src] = useState<any>(activeVideos[0]);
+  const [video2Src, setVideo2Src] = useState<any>(null); // Start empty to prevent initial concurrent download
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const video1ReadyRef = useRef(false);
+  const video2ReadyRef = useRef(false);
 
   // Performance / Reduced Motion Settings
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -61,7 +63,7 @@ const Hero = () => {
 
   // Direct video URL hooks to ensure absolute rendering reliability (bypassing React nested <source> delays)
   const [resolvedVideo1, setResolvedVideo1] = useState(activeVideos[0].fallback);
-  const [resolvedVideo2, setResolvedVideo2] = useState(activeVideos[1].fallback);
+  const [resolvedVideo2, setResolvedVideo2] = useState(""); // Start blank
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -86,8 +88,16 @@ const Hero = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const isDesktop = window.innerWidth >= 1024;
-    setResolvedVideo1(isDesktop ? video1Src.desktop : video1Src.mobile);
-    setResolvedVideo2(isDesktop ? video2Src.desktop : video2Src.mobile);
+    if (video1Src) {
+      setResolvedVideo1(isDesktop ? video1Src.desktop : video1Src.mobile);
+    } else {
+      setResolvedVideo1("");
+    }
+    if (video2Src) {
+      setResolvedVideo2(isDesktop ? video2Src.desktop : video2Src.mobile);
+    } else {
+      setResolvedVideo2("");
+    }
   }, [video1Src, video2Src]);
 
   // Force play active video on changes
@@ -105,13 +115,7 @@ const Hero = () => {
     }
   }, [activeBuffer, resolvedVideo1, resolvedVideo2, prefersReducedMotion]);
 
-  const handleVideoCanPlay = useCallback((bufferIndex: number) => {
-    if (bufferIndex === 1 && !hasDispatchedReady) {
-      setHasDispatchedReady(true);
-      // Dispatch preloader success signal
-      window.dispatchEvent(new CustomEvent("hero-first-video-ready"));
-    }
-  }, [hasDispatchedReady]);
+
 
   // GSAP Pinning
   useEffect(() => {
@@ -174,8 +178,21 @@ const Hero = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // Synchronized Crossfade: Trigger transition only when the pending buffer starts playing natively
-  const handleVideoPlaying = useCallback((bufferIndex: number) => {
+  // Track background buffer readiness independent of browser visibility / opacity constraints
+  const handleVideoCanPlay = useCallback((bufferIndex: number) => {
+    if (bufferIndex === 1) {
+      video1ReadyRef.current = true;
+      if (!hasDispatchedReady) {
+        setHasDispatchedReady(true);
+        console.log("hero video loadeddata");
+        window.dispatchEvent(new CustomEvent("hero-first-video-ready"));
+      }
+    } else {
+      video2ReadyRef.current = true;
+      console.log("next video ready");
+    }
+
+    // Dynamic transition: if we were waiting for this specific buffer, trigger transition immediately
     if (pendingBuffer === bufferIndex) {
       const nextIdx = (currentIdx + 1) % activeVideos.length;
       
@@ -183,25 +200,72 @@ const Hero = () => {
       setCurrentIdx(nextIdx);
       setPendingBuffer(null);
 
-      // Finalize transition parameters after crossfade completes (400ms)
+      // Force immediate playback on the incoming video buffer to prevent any silent pauses
+      if (bufferIndex === 1) {
+        if (video1Ref.current) {
+          video1Ref.current.play().catch(() => {});
+        }
+      } else {
+        if (video2Ref.current) {
+          video2Ref.current.play().catch(() => {});
+        }
+      }
+
+      // Transition completes after 800ms
       setTimeout(() => {
         if (bufferIndex === 2) {
           if (video1Ref.current) {
             video1Ref.current.pause();
           }
+          // Safely preload next-next video ONLY after transition completes and Buffer 1 is completely hidden
           const nextNextIdx = (nextIdx + 1) % activeVideos.length;
+          console.log(`preload next video: hero-${nextNextIdx + 1}`);
           setVideo1Src(activeVideos[nextNextIdx]);
+          video1ReadyRef.current = false;
         } else {
           if (video2Ref.current) {
             video2Ref.current.pause();
           }
+          // Safely preload next-next video ONLY after transition completes and Buffer 2 is completely hidden
           const nextNextIdx = (nextIdx + 1) % activeVideos.length;
+          console.log(`preload next video: hero-${nextNextIdx + 1}`);
           setVideo2Src(activeVideos[nextNextIdx]);
+          video2ReadyRef.current = false;
         }
         setIsTransitioning(false);
-      }, 400);
+      }, 800); // 800ms luxurious crossfade
     }
-  }, [pendingBuffer, currentIdx, activeVideos.length]);
+  }, [pendingBuffer, currentIdx, hasDispatchedReady, activeVideos]);
+
+  // Synchronized Playback triggers
+  const handleVideoPlaying = useCallback((bufferIndex: number) => {
+    // 1. Initial play of Buffer 1: dispatch first ready signal
+    if (bufferIndex === 1 && !hasDispatchedReady) {
+      setHasDispatchedReady(true);
+      console.log("hero video loadeddata");
+      window.dispatchEvent(new CustomEvent("hero-first-video-ready"));
+    }
+
+    // 2. Sequential Preloading: Preload the next video in background once active video starts playing
+    if (bufferIndex === activeBuffer) {
+      const nextNextIdx = (currentIdx + 1) % activeVideos.length;
+      const nextNextVideo = activeVideos[nextNextIdx];
+      
+      if (activeBuffer === 1) {
+        if (!video2Src || video2Src.fallback !== nextNextVideo.fallback) {
+          console.log(`preload next video: hero-${nextNextIdx + 1}`);
+          setVideo2Src(nextNextVideo);
+          video2ReadyRef.current = false;
+        }
+      } else {
+        if (!video1Src || video1Src.fallback !== nextNextVideo.fallback) {
+          console.log(`preload next video: hero-${nextNextIdx + 1}`);
+          setVideo1Src(nextNextVideo);
+          video1ReadyRef.current = false;
+        }
+      }
+    }
+  }, [activeBuffer, currentIdx, hasDispatchedReady, video1Src, video2Src, activeVideos]);
 
   // Advance to next video when current video finishes playing
   // Delay active buffer switch to keep current playing frame visible during background buffering
@@ -214,33 +278,97 @@ const Hero = () => {
     setIsTransitioning(true);
 
     if (activeBuffer === 1) {
-      // Buffer 1 finished, launch Buffer 2 in background and wait for its onPlaying event
-      setPendingBuffer(2);
-      if (video2Ref.current) {
-        video2Ref.current.play().catch(() => {
-          // If browser completely blocks background play, force transition immediately as safety fallback
-          console.log("Play failed for buffer 2, forcing active switch.");
-          setActiveBuffer(2);
-          setCurrentIdx((currentIdx + 1) % activeVideos.length);
+      // Buffer 1 finished. If Buffer 2 is already loaded and ready, transition instantly!
+      if (video2ReadyRef.current) {
+        console.log("next video ready (instant transition)");
+        const nextIdx = (currentIdx + 1) % activeVideos.length;
+        
+        setActiveBuffer(2);
+        setCurrentIdx(nextIdx);
+
+        // Force immediate play of incoming Buffer 2 to ensure zero pauses
+        if (video2Ref.current) {
+          video2Ref.current.play().catch(() => {});
+        }
+        
+        setTimeout(() => {
+          if (video1Ref.current) {
+            video1Ref.current.pause();
+          }
+          // Safely preload next-next video ONLY after transition completes and Buffer 1 is completely hidden
+          const nextNextIdx = (nextIdx + 1) % activeVideos.length;
+          console.log(`preload next video: hero-${nextNextIdx + 1}`);
+          setVideo1Src(activeVideos[nextNextIdx]);
+          video1ReadyRef.current = false;
           setIsTransitioning(false);
-          setPendingBuffer(null);
-        });
+        }, 800);
+      } else {
+        // Buffer 2 not ready yet. Loop current video and wait for canplay
+        console.log("Buffer 2 not ready, waiting and looping Video 1");
+        setPendingBuffer(2);
+        
+        if (video1Ref.current) {
+          video1Ref.current.currentTime = 0;
+          video1Ref.current.play().catch(() => {});
+        }
+
+        if (video2Ref.current) {
+          video2Ref.current.play().catch(() => {
+            console.log("Play failed for buffer 2, forcing active switch.");
+            setActiveBuffer(2);
+            setCurrentIdx((currentIdx + 1) % activeVideos.length);
+            setIsTransitioning(false);
+            setPendingBuffer(null);
+          });
+        }
       }
     } else {
-      // Buffer 2 finished, launch Buffer 1 in background and wait for its onPlaying event
-      setPendingBuffer(1);
-      if (video1Ref.current) {
-        video1Ref.current.play().catch(() => {
-          // If browser completely blocks background play, force transition immediately as safety fallback
-          console.log("Play failed for buffer 1, forcing active switch.");
-          setActiveBuffer(1);
-          setCurrentIdx((currentIdx + 1) % activeVideos.length);
+      // Buffer 2 finished. If Buffer 1 is already loaded and ready, transition instantly!
+      if (video1ReadyRef.current) {
+        console.log("next video ready (instant transition)");
+        const nextIdx = (currentIdx + 1) % activeVideos.length;
+        
+        setActiveBuffer(1);
+        setCurrentIdx(nextIdx);
+
+        // Force immediate play of incoming Buffer 1 to ensure zero pauses
+        if (video1Ref.current) {
+          video1Ref.current.play().catch(() => {});
+        }
+
+        setTimeout(() => {
+          if (video2Ref.current) {
+            video2Ref.current.pause();
+          }
+          // Safely preload next-next video ONLY after transition completes and Buffer 2 is completely hidden
+          const nextNextIdx = (nextIdx + 1) % activeVideos.length;
+          console.log(`preload next video: hero-${nextNextIdx + 1}`);
+          setVideo2Src(activeVideos[nextNextIdx]);
+          video2ReadyRef.current = false;
           setIsTransitioning(false);
-          setPendingBuffer(null);
-        });
+        }, 800);
+      } else {
+        // Buffer 1 not ready yet. Loop current video and wait for canplay
+        console.log("Buffer 1 not ready, waiting and looping Video 2");
+        setPendingBuffer(1);
+
+        if (video2Ref.current) {
+          video2Ref.current.currentTime = 0;
+          video2Ref.current.play().catch(() => {});
+        }
+
+        if (video1Ref.current) {
+          video1Ref.current.play().catch(() => {
+            console.log("Play failed for buffer 1, forcing active switch.");
+            setActiveBuffer(1);
+            setCurrentIdx((currentIdx + 1) % activeVideos.length);
+            setIsTransitioning(false);
+            setPendingBuffer(null);
+          });
+        }
       }
     }
-  }, [activeBuffer, currentIdx, isTransitioning, prefersReducedMotion, activeVideos.length]);
+  }, [activeBuffer, currentIdx, isTransitioning, prefersReducedMotion, activeVideos]);
 
   return (
     <section 
@@ -278,28 +406,32 @@ const Hero = () => {
           className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
           style={{
             opacity: activeBuffer === 1 ? 1 : 0,
-            transitionDuration: "400ms",
+            transitionDuration: "800ms",
             zIndex: activeBuffer === 1 ? 2 : 1
           }}
         />
 
         {/* Video Buffer 2 */}
-        <video
-          ref={video2Ref}
-          src={resolvedVideo2}
-          autoPlay={activeBuffer === 2 && !prefersReducedMotion}
-          muted
-          playsInline
-          preload={saveData ? "none" : "auto"} // Standard lazy preloading under Save Data settings
-          onEnded={() => handleVideoEnded(2)}
-          onPlaying={() => handleVideoPlaying(2)}
-          className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
-          style={{
-            opacity: activeBuffer === 2 ? 1 : 0,
-            transitionDuration: "400ms",
-            zIndex: activeBuffer === 2 ? 2 : 1
-          }}
-        />
+        {resolvedVideo2 && (
+          <video
+            ref={video2Ref}
+            src={resolvedVideo2}
+            autoPlay={activeBuffer === 2 && !prefersReducedMotion}
+            muted
+            playsInline
+            preload={saveData ? "none" : "auto"} // Standard lazy preloading under Save Data settings
+            onEnded={() => handleVideoEnded(2)}
+            onPlaying={() => handleVideoPlaying(2)}
+            onCanPlay={() => handleVideoCanPlay(2)}
+            onLoadedData={() => handleVideoCanPlay(2)}
+            className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
+            style={{
+              opacity: activeBuffer === 2 ? 1 : 0,
+              transitionDuration: "800ms",
+              zIndex: activeBuffer === 2 ? 2 : 1
+            }}
+          />
+        )}
 
       </div>
 

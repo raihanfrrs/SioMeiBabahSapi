@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LazyImage } from "@/components/LazyImage";
 
 const GalleryStack = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -112,11 +113,10 @@ const GalleryStack = () => {
                 border: "1px solid rgba(60,35,20,0.08)"
               }}
             >
-              <img 
+              <LazyImage 
                 src={gallery[0]?.image} 
                 alt={gallery[0]?.caption} 
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
-                loading="lazy" 
               />
               <div 
                 className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
@@ -143,11 +143,10 @@ const GalleryStack = () => {
                   border: "1px solid rgba(60,35,20,0.08)"
                 }}
               >
-                <img 
+                <LazyImage 
                   src={gallery[1]?.image} 
                   alt={gallery[1]?.caption} 
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
-                  loading="lazy" 
                 />
                 <div 
                   className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
@@ -168,11 +167,10 @@ const GalleryStack = () => {
                   border: "1px solid rgba(60,35,20,0.08)"
                 }}
               >
-                <img 
+                <LazyImage 
                   src={gallery[2]?.image} 
                   alt={gallery[2]?.caption} 
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
-                  loading="lazy" 
                 />
                 <div 
                   className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
@@ -195,11 +193,10 @@ const GalleryStack = () => {
                 border: "1px solid rgba(60,35,20,0.08)"
               }}
             >
-              <img 
+              <LazyImage 
                 src={gallery[3]?.image} 
                 alt={gallery[3]?.caption} 
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
-                loading="lazy" 
               />
               <div 
                 className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"

@@ -5,6 +5,7 @@ import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import { LazyImage } from "@/components/LazyImage";
 
 const ClosingCTA = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -62,12 +63,11 @@ const ClosingCTA = () => {
       }}
     >
       <div className="absolute inset-0 z-0 bg-[#1a0b08]">
-        <img 
+        <LazyImage 
           src={closingCta.image} 
           alt="Closing Food Visual" 
           className="closing-bg w-full h-full object-cover"
           style={{ objectPosition: "center", opacity: 0.95 }}
-          loading="lazy"
         />
         {/* Layer 1: Linear gradient overall darkening */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(rgba(0,0,0,0.38), rgba(0,0,0,0.38))" }} />
