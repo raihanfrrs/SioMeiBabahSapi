@@ -8,9 +8,8 @@ import { siteContent } from "@/data/siteContent";
 const FoodShowcase = () => {
   const { foods } = siteContent;
 
-  const badges = ["Best Seller", "Favorit", "Saus Rahasia"];
-  const microInfos = ["Dibuat harian", "Pesan via WhatsApp", "Stok terbatas"];
-  const prices = ["Rp45.000 / 5 pcs", "Rp48.000 / 5 pcs", "Rp25.000 / 250ml"];
+  const badges = ["Best Seller", "Favorit"];
+  const microInfos = ["Dibuat harian", "Pesan via WhatsApp"];
 
   return (
     <section 
@@ -74,13 +73,13 @@ const FoodShowcase = () => {
           style={{ paddingTop: "16px", paddingBottom: "16px", marginTop: "8px", marginBottom: "28px" }}
         >
           <span className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#4b0705]/70 text-center">
-            Dibuat terbatas setiap hari • Pesan sebelum habis
+            Dibuat Setiap Hari • Menerima Pesanan Banyak Sesuai Permintaan
           </span>
         </div>
  
         {/* Product Grid */}
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full"
+          className="flex flex-col md:flex-row justify-center items-stretch w-full"
           style={{ gap: "32px", marginTop: "24px" }}
         >
           {foods.map((food, i) => (
@@ -90,7 +89,7 @@ const FoodShowcase = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
-              className="group flex flex-col bg-[#FDF8EE] border border-[#4b0705]/10 rounded-[8px] hover:-translate-y-1 hover:shadow-xl hover:border-[#4b0705]/25 transition-all duration-300 h-full overflow-hidden"
+              className="group flex flex-col bg-[#FDF8EE] border border-[#4b0705]/10 rounded-[8px] hover:-translate-y-1 hover:shadow-xl hover:border-[#4b0705]/25 transition-all duration-300 overflow-hidden w-full md:w-[360px]"
               style={{ padding: "clamp(18px, 2.5vw, 24px)" }}
             >
               {/* Product Image with Badge */}
@@ -123,7 +122,7 @@ const FoodShowcase = () => {
               {/* Product Price */}
               <div className="flex items-center" style={{ marginBottom: "16px" }}>
                 <p className="text-[#C7923E] font-bold text-[16px] md:text-[18px] tracking-wide">
-                  {prices[i % prices.length]}
+                  {food.price}
                 </p>
               </div>
               

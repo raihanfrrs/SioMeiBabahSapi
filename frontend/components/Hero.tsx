@@ -12,6 +12,7 @@ const localVideos = [
   "/videos/hero-2.mp4",
   "/videos/hero-3.mp4",
   "/videos/hero-4.mp4",
+  "/videos/hero-5.mp4",
 ];
 
 const cdnVideos = [

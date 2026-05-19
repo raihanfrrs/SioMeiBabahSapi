@@ -17,23 +17,16 @@ export const siteContent = {
     {
       id: 1,
       name: "Siomay Sapi Original",
-      price: "Rp 45.000 — 5 Pcs",
+      price: "Rp 45.000 / 5 pcs",
       image: "/images/siomay-steamed.png",
       description: "Siomay sapi murni dengan tekstur lembut dan rasa gurih alami.",
     },
     {
       id: 2,
       name: "Siomay Sapi Goreng",
-      price: "Rp 48.000 — 5 Pcs",
+      price: "Rp 48.000 / 5 pcs",
       image: "/images/siomay-fried-gold.png",
       description: "Varian goreng yang krispi di luar namun tetap juicy di dalam.",
-    },
-    {
-      id: 3,
-      name: "Bumbu Kacang Spesial",
-      price: "Rp 25.000 — 250ml",
-      image: "/images/macro-sauce.png",
-      description: "Bumbu kacang rahasia Babah Sapi dengan rempah pilihan.",
     },
   ],
   processSteps: [
