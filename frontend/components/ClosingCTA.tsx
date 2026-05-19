@@ -110,7 +110,7 @@ const ClosingCTA = () => {
           }}
         >
           Rasa warisan, <br />
-          <span className="italic opacity-90">dibuat untuk hari ini</span>
+          <span className="italic opacity-90">dibuat hangat untuk hari ini</span>
         </h2>
         
         {/* Subheadline */}
@@ -123,7 +123,7 @@ const ClosingCTA = () => {
             marginBottom: "32px"
           }}
         >
-          Siomay sapi premium dengan saus kacang khas Babah Sapi, siap dipesan dan dikirim hangat ke lokasi Anda.
+          Siomay sapi premium yang dibuat harian dari bahan pilihan, siap dipesan dan dikirim hangat ke lokasi Anda.
         </p>
         
         {/* CTA Button */}

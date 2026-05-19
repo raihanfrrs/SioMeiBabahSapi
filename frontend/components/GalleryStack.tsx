@@ -55,8 +55,8 @@ const GalleryStack = () => {
   const galleryLabels = [
     "THE ART OF FOLDING",
     "PREMIUM BEEF SELECTION",
-    "THREE WAYS TO ENJOY",
-    "HANDCRAFTED HERITAGE"
+    "HANDCRAFTED DAILY",
+    "STEAMED TO PERFECTION"
   ];
 
   return (

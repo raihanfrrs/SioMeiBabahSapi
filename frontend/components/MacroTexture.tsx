@@ -194,8 +194,8 @@ const MacroTexture = () => {
             </span>
           </div>
           <h2 className="text-white font-editorial text-4xl md:text-6xl lg:text-[72px] tracking-tighter leading-[1.0] drop-shadow-2xl">
-            Saus kacang kental, siomay hangat, <br className="hidden lg:block" />
-            <span className="italic text-brand-cream/90 font-normal lg:inline block mt-2 lg:mt-0">dan aroma dapur harian.</span>
+            Tekstur lembut, isian sapi gurih, <br className="hidden lg:block" />
+            <span className="italic text-brand-cream/90 font-normal lg:inline block mt-2 lg:mt-0">dan aroma kukusan harian.</span>
           </h2>
         </div>
 
@@ -225,7 +225,7 @@ const MacroTexture = () => {
             </span>
           </div>
 
-          {/* Headline Line 2: "tekstur rasa" — one line BELOW "Terinspirasi dari", left-aligned with card's left edge */}
+          {/* Headline Line 2: "tekstur siomay hangat" — one line BELOW "Terinspirasi dari", left-aligned with card's left edge */}
           <div 
             className="hidden lg:block absolute pointer-events-auto"
             style={{ 
@@ -237,7 +237,7 @@ const MacroTexture = () => {
               className="italic text-brand-accent font-editorial font-normal tracking-tighter leading-[1.0] block"
               style={{ fontSize: "clamp(36px, 3.8vw, 62px)", whiteSpace: "nowrap" }}
             >
-              tekstur rasa
+              tekstur siomay hangat
             </span>
           </div>
 
@@ -252,7 +252,7 @@ const MacroTexture = () => {
           >
             <div className="max-w-[240px] flex flex-col gap-4 text-left">
               <p className="text-[#3A1712]/70 font-body text-[13px] leading-relaxed">
-                Dari tekstur saus kacang yang kental sangrai hingga siomay sapi hangat yang dikukus perlahan, setiap detail dirancang untuk mendekatkan cita rasa warisan autentik ke hati Anda.
+                Dari isian sapi yang gurih hingga tekstur kulit yang lembut, setiap siomay dibuat untuk menghadirkan rasa rumahan yang premium, hangat, dan mudah dinikmati kapan saja.
               </p>
               <a 
                 href="#foods" 
@@ -273,7 +273,7 @@ const MacroTexture = () => {
                 className="text-[#2A1712] font-editorial text-[38px] leading-[1.0] tracking-tight"
               >
                 Terinspirasi dari <br />
-                <span className="italic text-brand-accent font-normal">tekstur rasa</span>
+                <span className="italic text-brand-accent font-normal">tekstur siomay hangat</span>
               </h3>
             </div>
 
@@ -283,7 +283,7 @@ const MacroTexture = () => {
               className="w-full px-6 flex flex-col gap-5 text-center items-center"
             >
               <p className="text-[#3A1712]/80 font-body text-[14px] leading-relaxed">
-                Dari tekstur saus kacang yang kental sangrai hingga siomay sapi hangat yang dikukus perlahan, setiap detail dirancang untuk mendekatkan cita rasa warisan autentik ke hati Anda.
+                Dari isian sapi yang gurih hingga tekstur kulit yang lembut, setiap siomay dibuat untuk menghadirkan rasa rumahan yang premium, hangat, dan mudah dinikmati kapan saja.
               </p>
               <a 
                 href="#foods" 

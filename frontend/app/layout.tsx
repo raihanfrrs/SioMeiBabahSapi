@@ -23,7 +23,7 @@ const gloock = Gloock({
 
 export const metadata: Metadata = {
   title: "Sio Mei Babah Sapi | Siomay Sapi Premium",
-  description: "Siomay sapi premium dengan rasa gurih, lembut, dan bumbu kacang khas. Hangat, gurih, dan selalu bikin balik lagi.",
+  description: "Siomay sapi premium handmade dengan rasa gurih alami, tekstur juicy yang lembut, dan dibuat harian secara higienis.",
   keywords: ["siomay sapi", "siomay premium", "kuliner indonesia", "babah sapi"],
 };
 

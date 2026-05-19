@@ -8,8 +8,8 @@ export const siteContent = {
     { label: "Kontak", href: "/#contact" },
   ],
   hero: {
-    headline: "Siomay Sapi Premium dari Resep Warisan",
-    subheadline: "Gurih, lembut, dan bumbu kacang yang autentik.",
+    headline: "Siomay Sapi Premium yang Lembut, Gurih, dan Siap Dikirim Hangat",
+    subheadline: "Dibuat harian dari daging sapi pilihan, cocok untuk camilan, keluarga, atau hidangan praktis.",
     cta: "PESAN SEKARANG",
     imagePlaceholder: "/images/siomay-hero-premium.png",
   },
@@ -19,51 +19,51 @@ export const siteContent = {
       name: "Siomay Sapi Original",
       price: "Rp 45.000 / 5 pcs",
       image: "/images/siomay-steamed.png",
-      description: "Siomay sapi murni dengan tekstur lembut dan rasa gurih alami.",
+      description: "Siomay sapi handmade dengan tekstur lembut, isian gurih, dan aroma kukusan hangat.",
     },
     {
       id: 2,
       name: "Siomay Sapi Goreng",
       price: "Rp 48.000 / 5 pcs",
       image: "/images/siomay-fried-gold.png",
-      description: "Varian goreng yang krispi di luar namun tetap juicy di dalam.",
+      description: "Varian goreng dengan bagian luar renyah dan isian sapi yang tetap juicy di dalam.",
     },
   ],
   processSteps: [
     {
       number: "01",
       title: "Dari Daging Sapi Pilihan",
-      text: "Hanya menggunakan daging sapi premium dengan proporsi lemak yang tepat untuk tekstur juicy.",
+      text: "Menggunakan daging sapi pilihan dengan komposisi yang tepat agar menghasilkan rasa gurih dan tekstur juicy.",
       image: "/images/process-beef.png",
-      annotation: "Daging sapi pilihan ─ tekstur lembut"
+      annotation: "Daging sapi pilihan ─ tekstur juicy"
     },
     {
       number: "02",
-      title: "Ke Adonan Lembut",
-      text: "Diolah dan diuleni secara hati-hati untuk menghasilkan kekenyalan yang pas tanpa menghilangkan serat daging.",
+      title: "Diracik Menjadi Isian Gurih",
+      text: "Daging diolah bersama racikan bumbu keluarga untuk menciptakan rasa yang dalam, lembut, dan tidak berlebihan.",
       image: "/images/process-dough.png",
-      annotation: "Adonan kalis ─ kenyal & juicy"
+      annotation: "Isian sapi gurih ─ resep keluarga"
     },
     {
       number: "03",
-      title: "Dikukus Perlahan",
-      text: "Proses pengukusan dilakukan dengan suhu terkontrol untuk menjaga kelembutan dan kesegaran daging.",
+      title: "Dibentuk Handmade Setiap Hari",
+      text: "Setiap butir siomay dibentuk secara teliti agar teksturnya tetap rapi, padat, dan nyaman saat disantap.",
       image: "/images/macro-steamer.png",
-      annotation: "Suhu stabil ─ aroma khas"
+      annotation: "Handmade harian ─ bentuk presisi"
     },
     {
       number: "04",
-      title: "Disajikan Autentik",
-      text: "Kombinasi rempah dan bumbu kacang rahasia yang disiram kental, menyempurnakan rasa warisan.",
+      title: "Dikukus Hingga Matang Sempurna",
+      text: "Proses pengukusan menjaga kelembutan siomay dan membuat aromanya tetap hangat saat disajikan.",
       image: "/images/process-plating.png",
-      annotation: "Bumbu kacang ─ racikan autentik"
+      annotation: "Kukusan hangat ─ matang sempurna"
     },
   ],
   macroTextures: [
     {
       id: 1,
       image: "/images/macro-sauce.png", // Using the generated artifact placeholder
-      label: "From perfectly roasted peanuts"
+      label: "Dibuat harian dari daging pilihan"
     },
     {
       id: 2,
@@ -74,11 +74,11 @@ export const siteContent = {
   gallery: [
     { id: 1, image: "/images/editorial-artisan.png", caption: "The art of folding" },
     { id: 2, image: "/images/process-beef.png", caption: "Premium beef selection" },
-    { id: 3, image: "/images/macro-sauce.png", caption: "Authentic peanut sauce" },
+    { id: 3, image: "/images/macro-sauce.png", caption: "Steamed to perfection" },
     { id: 4, image: "/images/process-dough.png", caption: "Heritage recipe" },
   ],
   closingCta: {
-    headline: "Rasa warisan, dibuat untuk hari ini",
+    headline: "Rasa warisan, dibuat hangat untuk hari ini",
     image: "/images/siomay-closing.png",
     ctaText: "Pesan Sekarang"
   },
@@ -96,11 +96,11 @@ export const siteContent = {
       },
       {
         id: 2,
-        title: "Rahasia di Balik Saus Kacang yang Autentik",
-        excerpt: "Mengapa kacang tanah sangrai dan rempah pilihan adalah kunci dari kelezatan saus kami.",
+        title: "Rahasia Cita Rasa Sapi Gurih yang Juicy",
+        excerpt: "Mengapa komposisi daging pilihan dan teknik pengukusan harian menjadi kunci kelezatan siomay kami.",
         date: "10 MEI 2026",
         image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=800",
-        alt: "Saus kacang tradisional",
+        alt: "Siomay sapi premium",
       },
       {
         id: 3,

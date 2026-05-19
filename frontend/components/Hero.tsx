@@ -606,7 +606,7 @@ const Hero = () => {
               className="flex flex-col items-start w-full"
             >
               <p className="font-sans text-white text-left hero-subheadline-spacing">
-                Gurih, lembut, dengan bumbu kacang autentik.
+                Lembut, gurih alami, dibuat harian dari daging sapi pilihan.
               </p>
 
               <Link

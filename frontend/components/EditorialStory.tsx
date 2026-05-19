@@ -81,7 +81,7 @@ const EditorialStory = () => {
         {/* Right: Small text block */}
         <div className="philosophy-copy col-span-1 md:col-span-1 lg:col-span-4 flex flex-col justify-center items-start text-left editorial-reveal max-w-[380px] w-full self-center gap-6">
           <p className="text-[#2b1a16] text-[18px] font-sans leading-[1.75] max-w-[360px]">
-            Setiap butir dibuat harian dari bahan pilihan, diracik dengan resep keluarga, dan disajikan dengan saus kacang khas Babah Sapi yang gurih, kental, dan hangat.
+            Setiap butir dibuat harian dari daging sapi pilihan, diracik dengan resep keluarga, dan dikukus untuk menjaga tekstur lembut, rasa gurih, serta aroma hangat khas Babah Sapi.
           </p>
           
           {/* Benefit Badges */}
@@ -95,7 +95,7 @@ const EditorialStory = () => {
             <div className="flex flex-col items-start">
               <div className="w-12 h-[1px] bg-[#5b0b07]/30 mb-2.5" />
               <span className="text-[11px] tracking-[0.14em] uppercase text-[#5b0b07] font-bold leading-[1.35] font-sans">
-                Tanpa Pengawet
+                Daging Sapi Pilihan
               </span>
             </div>
             <div className="flex flex-col items-start">
