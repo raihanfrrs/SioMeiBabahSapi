@@ -196,9 +196,65 @@ body::after {
   }
 
   /* Global Editorial Spacing Utilities - Forced with !important to bypass Next.js dynamic compilation/caching issues */
+  /* Global Editorial Spacing Utilities - Forced with !important to bypass Next.js dynamic compilation/caching issues */
   .section-editorial-philosophy {
-    padding-top: clamp(2rem, 10vw, 2rem) !important;
-    padding-bottom: clamp(2rem, 10vw, 2rem) !important;
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+    background: radial-gradient(circle at center, rgba(253, 250, 246, 0.8) 0%, rgba(245, 242, 234, 1) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E") !important;
+    background-blend-mode: multiply !important;
+    border-top: 1px solid rgba(31, 20, 15, 0.08) !important;
+    border-bottom: 1px solid rgba(31, 20, 15, 0.08) !important;
+    position: relative;
+  }
+
+  @media (min-width: 769px) {
+    .section-editorial-philosophy {
+      padding-top: 72px !important;
+      padding-bottom: 72px !important;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .section-editorial-philosophy {
+      padding-top: 96px !important;
+      padding-bottom: 96px !important;
+      min-height: clamp(560px, 60vh, 640px) !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+  }
+
+  .philosophy-container {
+    width: 100% !important;
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    align-items: center !important;
+  }
+
+  @media (min-width: 769px) {
+    .philosophy-container {
+      grid-template-columns: repeat(2, 1fr) !important;
+      padding-left: clamp(24px, 5vw, 80px) !important;
+      padding-right: clamp(24px, 5vw, 80px) !important;
+      column-gap: 48px !important;
+      row-gap: 48px !important;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .philosophy-container {
+      grid-template-columns: repeat(12, 1fr) !important;
+      padding-left: clamp(24px, 5vw, 80px) !important;
+      padding-right: clamp(24px, 5vw, 80px) !important;
+      column-gap: clamp(56px, 5vw, 72px) !important;
+      row-gap: 0 !important;
+    }
   }
 
   .section-editorial-making {

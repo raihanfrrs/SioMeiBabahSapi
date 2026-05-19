@@ -49,52 +49,74 @@ const EditorialStory = () => {
     <section 
       ref={containerRef} 
       data-nav-theme="light"
-      className="w-full bg-[#f4eadc] border-y border-brand-dark/10 section-editorial-philosophy overflow-hidden flex justify-center"
+      className="w-full section-editorial-philosophy overflow-hidden flex justify-center"
     >
-      <div className="section-inner px-6 md:px-10 lg:px-16 w-full flex flex-col justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 lg:gap-20 xl:gap-24 items-center w-full">
-          
-          {/* Left: Large Editorial Heading (col-span-full lg:col-span-4) */}
-          <div className="col-span-full lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left editorial-reveal mb-8 lg:mb-0">
-            <span className="text-brand-accent tracking-[0.35em] uppercase text-xs font-bold mb-4">
-              OUR PHILOSOPHY
-            </span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] xl:text-[72px] leading-[0.95] font-editorial text-brand-dark tracking-tight">
-              Terinspirasi <br /> dari <br />
-              <span className="italic text-brand-accent font-normal">resep warisan</span>
-            </h2>
-          </div>
+      <div className="philosophy-container relative z-10">
+        
+        {/* Left: Large Editorial Heading */}
+        <div className="philosophy-title-block col-span-1 md:col-span-2 lg:col-span-4 flex flex-col items-start text-left editorial-reveal">
+          <p className="section-kicker text-brand-accent tracking-[0.35em] uppercase text-[11px] font-bold block mb-[20px]">
+            OUR PHILOSOPHY
+          </p>
+          <h2 className="text-[clamp(48px,14vw,72px)] lg:text-[clamp(56px,5vw,82px)] leading-[0.95] lg:leading-[1.05] font-editorial text-brand-dark tracking-tight font-light">
+            Terinspirasi<br />
+            dari<br />
+            <span className="text-brand-accent italic font-normal">resep</span><br />
+            <span className="text-brand-accent italic font-normal">warisan</span>
+          </h2>
+        </div>
 
-          {/* Middle: Elevated Artisan Portrait Image (col-span-full md:col-span-6 lg:col-span-3) */}
-          <div className="col-span-full md:col-span-6 lg:col-span-3 flex justify-center lg:justify-center editorial-reveal w-full mb-8 md:mb-0">
-            <div className="editorial-img-reveal relative aspect-[3/4] w-full max-w-[320px] md:max-w-[280px] lg:max-w-full overflow-hidden shadow-md rounded-sm border border-brand-dark/10 transition-transform duration-500 ease-out hover:scale-[1.02] cursor-pointer">
-              <LazyImage 
-                src="/images/editorial-artisan.png" 
-                alt="Artisan making siomay" 
-                className="w-full h-full object-cover brightness-[0.95]"
-              />
-              <div className="absolute inset-0 bg-brand-dark/5" />
+        {/* Middle: Elevated Artisan Portrait Image */}
+        <figure className="philosophy-image col-span-1 md:col-span-1 lg:col-span-4 flex justify-center items-center w-full editorial-reveal">
+          <div className="editorial-img-reveal relative w-full max-w-[340px] lg:max-w-[360px] aspect-[4/5] lg:aspect-auto lg:h-[450px] overflow-hidden shadow-[0_18px_45px_rgba(0,0,0,0.12)] rounded-[3px] border border-[rgba(95,19,15,0.08)] transition-transform duration-500 ease-out hover:scale-[1.02] cursor-pointer">
+            <LazyImage 
+              src="/images/editorial-artisan.png" 
+              alt="Artisan making siomay" 
+              className="w-full h-full object-cover brightness-[0.95]"
+            />
+            <div className="absolute inset-0 bg-brand-dark/5" />
+          </div>
+        </figure>
+
+        {/* Right: Small text block */}
+        <div className="philosophy-copy col-span-1 md:col-span-1 lg:col-span-4 flex flex-col justify-center items-start text-left editorial-reveal max-w-[380px] w-full self-center gap-6">
+          <p className="text-[#2b1a16] text-[18px] font-sans leading-[1.75] max-w-[360px]">
+            Setiap butir dibuat harian dari bahan pilihan, diracik dengan resep keluarga, dan disajikan dengan saus kacang khas Babah Sapi yang gurih, kental, dan hangat.
+          </p>
+          
+          {/* Benefit Badges */}
+          <div className="philosophy-benefits grid grid-cols-3 gap-6 w-full mt-1">
+            <div className="flex flex-col items-start">
+              <div className="w-12 h-[1px] bg-[#5b0b07]/30 mb-2.5" />
+              <span className="text-[11px] tracking-[0.14em] uppercase text-[#5b0b07] font-bold leading-[1.35] font-sans">
+                Dibuat Harian
+              </span>
+            </div>
+            <div className="flex flex-col items-start">
+              <div className="w-12 h-[1px] bg-[#5b0b07]/30 mb-2.5" />
+              <span className="text-[11px] tracking-[0.14em] uppercase text-[#5b0b07] font-bold leading-[1.35] font-sans">
+                Tanpa Pengawet
+              </span>
+            </div>
+            <div className="flex flex-col items-start">
+              <div className="w-12 h-[1px] bg-[#5b0b07]/30 mb-2.5" />
+              <span className="text-[11px] tracking-[0.14em] uppercase text-[#5b0b07] font-bold leading-[1.35] font-sans">
+                Resep Keluarga
+              </span>
             </div>
           </div>
 
-          {/* Right: Small text block (col-span-full md:col-span-6 lg:col-span-4 lg:col-start-9) */}
-          <div className="col-span-full md:col-span-6 lg:col-span-4 lg:col-start-9 flex flex-col items-center lg:items-start text-center lg:text-left justify-center editorial-reveal">
-            <p className="text-brand-dark/80 text-base md:text-[17px] font-sans leading-relaxed max-w-[320px] mx-auto lg:mx-0">
-              Setiap butir adalah janji kualitas, dibuat dari bahan pilihan dan racikan autentik untuk menjaga kehangatan rasa warisan leluhur.
-            </p>
+          {/* Premium CTA Link */}
+          <div className="philosophy-cta-wrapper w-full">
             <a
-              href="/#process"
-              className="group relative inline-flex items-center text-xs font-bold uppercase tracking-[0.25em] text-[#4a0907] transition-all py-3 px-1 mt-6"
+              href="https://wa.me/628123456789"
+              className="philosophy-cta inline-flex items-center gap-3 w-fit mt-1 pb-[4px] border-b border-[#5b0b07] text-[13px] tracking-[0.18em] font-extrabold uppercase text-[#5b0b07] transition-all duration-300 hover:opacity-80"
             >
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#c48b58]">
-                Lihat Proses
-              </span>
-              <span className="absolute bottom-0 left-0 h-[1.5px] bg-[#c48b58] w-full transform origin-left transition-transform duration-500 scale-x-100 group-hover:scale-x-0" />
-              <span className="absolute bottom-0 left-0 h-[1.5px] bg-[#4a0907] w-full transform origin-right transition-transform duration-500 scale-x-0 group-hover:scale-x-100" />
+              Pesan Siomay Hari Ini →
             </a>
           </div>
-
         </div>
+
       </div>
     </section>
   );
