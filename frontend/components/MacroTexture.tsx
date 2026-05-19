@@ -164,8 +164,13 @@ const MacroTexture = () => {
               key={idx}
               src={src}
               alt={`Texture ${idx + 1}`}
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
-              style={{ opacity: activeIdx === idx ? 1 : 0 }}
+              className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+              style={{ 
+                opacity: activeIdx === idx ? 1 : 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover"
+              }}
             />
           ))}
           {/* Dark Overlay for intro text readability */}

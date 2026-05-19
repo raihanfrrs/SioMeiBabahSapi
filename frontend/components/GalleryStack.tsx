@@ -54,7 +54,7 @@ const GalleryStack = () => {
   const galleryLabels = [
     "THE ART OF FOLDING",
     "PREMIUM BEEF SELECTION",
-    "AUTHENTIC PEANUT SAUCE",
+    "THREE WAYS TO ENJOY",
     "HANDCRAFTED HERITAGE"
   ];
 
