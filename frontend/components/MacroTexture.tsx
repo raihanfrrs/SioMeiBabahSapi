@@ -17,8 +17,12 @@ const MacroTexture = () => {
   const mediaWrapperRef = useRef<HTMLDivElement>(null);
   const introTextRef = useRef<HTMLDivElement>(null);
   const finalLayoutRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const descRef = useRef<HTMLDivElement>(null);
+  // Desktop-specific refs
+  const headlineDesktopRef = useRef<HTMLHeadingElement>(null);
+  const descDesktopRef = useRef<HTMLDivElement>(null);
+  // Mobile-specific refs
+  const headlineMobileRef = useRef<HTMLHeadingElement>(null);
+  const descMobileRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const [activeIdx, setActiveIdx] = useState(0);
@@ -60,8 +64,13 @@ const MacroTexture = () => {
         gsap.set(overlayRef.current, { opacity: 0.45 });
         gsap.set(introTextRef.current, { opacity: 1, y: 0 });
         gsap.set(finalLayoutRef.current, { opacity: 0, pointerEvents: "none" });
-        gsap.set(headlineRef.current, { opacity: 0, y: isDesktop ? 20 : 15 });
-        gsap.set(descRef.current, { opacity: 0, y: isDesktop ? 20 : 15 });
+        if (isDesktop) {
+          gsap.set(headlineDesktopRef.current, { opacity: 0, y: 20 });
+          gsap.set(descDesktopRef.current, { opacity: 0, y: 20 });
+        } else {
+          gsap.set(headlineMobileRef.current, { opacity: 0, y: 15 });
+          gsap.set(descMobileRef.current, { opacity: 0, y: 15 });
+        }
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -114,14 +123,14 @@ const MacroTexture = () => {
           duration: 0.6,
         }, 1.2);
 
-        // 4. Progress 75% - 100%: Headline slides in on left, description on right
-        tl.to(headlineRef.current, {
+        // 4. Progress 75% - 100%: Headline slides in, description fades in
+        tl.to(isDesktop ? headlineDesktopRef.current : headlineMobileRef.current, {
           opacity: 1,
           y: 0,
           duration: 0.8,
           ease: "power2.out",
         }, 1.6)
-        .to(descRef.current, {
+        .to(isDesktop ? descDesktopRef.current : descMobileRef.current, {
           opacity: 1,
           y: 0,
           duration: 0.8,
@@ -183,45 +192,99 @@ const MacroTexture = () => {
           </h2>
         </div>
 
-        {/* Phase 4: Symmetrical Final Layout */}
+        {/* Phase 4: Final Layout - Desktop: Savor-style asymmetric | Mobile: stacked column */}
         <div 
           ref={finalLayoutRef}
-          className="absolute inset-0 w-full h-full flex flex-col lg:grid lg:grid-cols-[1fr_320px_1fr] lg:gap-16 justify-between lg:justify-center items-center pointer-events-none z-30 py-[12vh] lg:py-0"
+          className="absolute inset-0 w-full h-full pointer-events-none z-30"
         >
-          {/* Left Column / Top Row: Headline */}
-          <div className="w-full flex lg:justify-end justify-center lg:pr-4 px-6 pointer-events-auto">
-            <div className="max-w-[400px] text-center lg:text-left w-full">
+          {/* ── DESKTOP LAYOUT (lg+): Savor-style ── */}
+
+          {/* Headline Line 1: "Terinspirasi dari" — BELOW the card, right-aligned to card's left edge */}
+          <div 
+            className="hidden lg:block absolute pointer-events-auto"
+            style={{ 
+              top: "calc(50% + 100px)",
+              left: "300px",
+              right: "calc(50% + 175px)",
+              textAlign: "right"
+            }}
+          >
+            <span 
+              ref={headlineDesktopRef}
+              className="text-[#2A1712] font-editorial tracking-tighter leading-[1.0] inline-block"
+              style={{ fontSize: "clamp(36px, 3.8vw, 62px)", whiteSpace: "nowrap" }}
+            >
+              Terinspirasi dari
+            </span>
+          </div>
+
+          {/* Headline Line 2: "tekstur rasa" — one line BELOW "Terinspirasi dari", left-aligned with card's left edge */}
+          <div 
+            className="hidden lg:block absolute pointer-events-auto"
+            style={{ 
+              top: "calc(50% + 160px)",
+              left: "calc(50% - 160px)"
+            }}
+          >
+            <span 
+              className="italic text-brand-accent font-editorial font-normal tracking-tighter leading-[1.0] block"
+              style={{ fontSize: "clamp(36px, 3.8vw, 62px)", whiteSpace: "nowrap" }}
+            >
+              tekstur rasa
+            </span>
+          </div>
+
+          {/* Description + CTA: snapped immediately to the right of the card, at card's upper-center */}
+          <div 
+            ref={descDesktopRef}
+            className="hidden lg:block absolute pointer-events-auto"
+            style={{ 
+              left: "calc(50% + 175px)",
+              top: "calc(50% - 60px)"
+            }}
+          >
+            <div className="max-w-[240px] flex flex-col gap-4 text-left">
+              <p className="text-[#3A1712]/70 font-body text-[13px] leading-relaxed">
+                Dari tekstur saus kacang yang kental sangrai hingga siomay sapi hangat yang dikukus perlahan, setiap detail dirancang untuk mendekatkan cita rasa warisan autentik ke hati Anda.
+              </p>
+              <a 
+                href="#foods" 
+                className="inline-flex items-center gap-2 group text-brand-accent font-body font-bold text-[11px] uppercase tracking-widest hover:text-[#2A1712] transition-colors"
+              >
+                Lihat Menu
+                <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+
+          {/* ── MOBILE/TABLET LAYOUT (<lg): stacked column around card ── */}
+          <div className="lg:hidden absolute inset-0 flex flex-col items-center justify-center gap-[340px] pointer-events-auto">
+            {/* Top: Headline */}
+            <div className="w-full px-6 text-center">
               <h3 
-                ref={headlineRef}
-                className="text-[#2A1712] font-editorial text-[38px] lg:text-[54px] leading-[1.0] tracking-tight"
+                ref={headlineMobileRef}
+                className="text-[#2A1712] font-editorial text-[38px] leading-[1.0] tracking-tight"
               >
                 Terinspirasi dari <br />
                 <span className="italic text-brand-accent font-normal">tekstur rasa</span>
               </h3>
             </div>
-          </div>
 
-          {/* Center Column: Empty Spacer of same width as scaled media wrapper (320px) */}
-          <div className="hidden lg:block w-[320px] shrink-0 h-[320px] pointer-events-none" />
-
-          {/* Right Column / Bottom Row: Narrative Description & CTA */}
-          <div className="w-full flex lg:justify-start justify-center lg:pl-4 px-6 pointer-events-auto">
+            {/* Bottom: Description + CTA */}
             <div 
-              ref={descRef}
-              className="max-w-[400px] flex flex-col gap-6 text-center lg:text-left items-center lg:items-start w-full"
+              ref={descMobileRef}
+              className="w-full px-6 flex flex-col gap-5 text-center items-center"
             >
-              <p className="text-[#3A1712]/80 font-body text-[14px] lg:text-[15px] leading-relaxed">
+              <p className="text-[#3A1712]/80 font-body text-[14px] leading-relaxed">
                 Dari tekstur saus kacang yang kental sangrai hingga siomay sapi hangat yang dikukus perlahan, setiap detail dirancang untuk mendekatkan cita rasa warisan autentik ke hati Anda.
               </p>
-              <div>
-                <a 
-                  href="#foods" 
-                  className="inline-flex items-center gap-2 group text-brand-accent font-body font-bold text-xs uppercase tracking-widest hover:text-[#2A1712] transition-colors"
-                >
-                  Lihat Menu
-                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-              </div>
+              <a 
+                href="#foods" 
+                className="inline-flex items-center gap-2 text-brand-accent font-body font-bold text-xs uppercase tracking-widest"
+              >
+                Lihat Menu
+                <span>→</span>
+              </a>
             </div>
           </div>
         </div>
