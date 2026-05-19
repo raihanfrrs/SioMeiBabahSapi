@@ -44,6 +44,7 @@ const Hero = () => {
   // Video Refs (double-buffering)
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
+  const preloadTimerRef = useRef<any>(null);
 
   // Double-buffer Carousel State
   const [activeBuffer, setActiveBuffer] = useState<1 | 2>(1);
@@ -81,24 +82,39 @@ const Hero = () => {
 
     return () => {
       mediaQuery.removeEventListener("change", listener);
+      if (preloadTimerRef.current) {
+        clearTimeout(preloadTimerRef.current);
+      }
     };
   }, []);
 
-  // Sync resolved sources responsively
+  // Sync resolved sources responsively (with strict change guard to prevent hydration playback resets)
   useEffect(() => {
     if (typeof window === "undefined") return;
     const isDesktop = window.innerWidth >= 1024;
+    
     if (video1Src) {
-      setResolvedVideo1(isDesktop ? video1Src.desktop : video1Src.mobile);
+      const nextUrl = isDesktop ? video1Src.desktop : video1Src.mobile;
+      if (resolvedVideo1 !== nextUrl) {
+        setResolvedVideo1(nextUrl);
+      }
     } else {
-      setResolvedVideo1("");
+      if (resolvedVideo1 !== "") {
+        setResolvedVideo1("");
+      }
     }
+    
     if (video2Src) {
-      setResolvedVideo2(isDesktop ? video2Src.desktop : video2Src.mobile);
+      const nextUrl = isDesktop ? video2Src.desktop : video2Src.mobile;
+      if (resolvedVideo2 !== nextUrl) {
+        setResolvedVideo2(nextUrl);
+      }
     } else {
-      setResolvedVideo2("");
+      if (resolvedVideo2 !== "") {
+        setResolvedVideo2("");
+      }
     }
-  }, [video1Src, video2Src]);
+  }, [video1Src, video2Src, resolvedVideo1, resolvedVideo2]);
 
   // Force play active video on changes
   useEffect(() => {
@@ -194,6 +210,9 @@ const Hero = () => {
 
     // Dynamic transition: if we were waiting for this specific buffer, trigger transition immediately
     if (pendingBuffer === bufferIndex) {
+      if (preloadTimerRef.current) {
+        clearTimeout(preloadTimerRef.current);
+      }
       const nextIdx = (currentIdx + 1) % activeVideos.length;
       
       setActiveBuffer(bufferIndex as 1 | 2);
@@ -246,24 +265,34 @@ const Hero = () => {
       window.dispatchEvent(new CustomEvent("hero-first-video-ready"));
     }
 
-    // 2. Sequential Preloading: Preload the next video in background once active video starts playing
+    // 2. Sequential Preloading with Bandwidth Starvation Guard:
+    // Preload the next video after a delay (2s on desktop, 4s on mobile/tablet).
+    // This allows the active video to fully download its buffer before we hit the network again.
     if (bufferIndex === activeBuffer) {
-      const nextNextIdx = (currentIdx + 1) % activeVideos.length;
-      const nextNextVideo = activeVideos[nextNextIdx];
-      
-      if (activeBuffer === 1) {
-        if (!video2Src || video2Src.fallback !== nextNextVideo.fallback) {
-          console.log(`preload next video: hero-${nextNextIdx + 1}`);
-          setVideo2Src(nextNextVideo);
-          video2ReadyRef.current = false;
-        }
-      } else {
-        if (!video1Src || video1Src.fallback !== nextNextVideo.fallback) {
-          console.log(`preload next video: hero-${nextNextIdx + 1}`);
-          setVideo1Src(nextNextVideo);
-          video1ReadyRef.current = false;
-        }
+      if (preloadTimerRef.current) {
+        clearTimeout(preloadTimerRef.current);
       }
+
+      const delay = window.innerWidth < 1024 ? 4000 : 2000;
+
+      preloadTimerRef.current = setTimeout(() => {
+        const nextNextIdx = (currentIdx + 1) % activeVideos.length;
+        const nextNextVideo = activeVideos[nextNextIdx];
+        
+        if (activeBuffer === 1) {
+          if (!video2Src || video2Src.fallback !== nextNextVideo.fallback) {
+            console.log(`preload next video: hero-${nextNextIdx + 1}`);
+            setVideo2Src(nextNextVideo);
+            video2ReadyRef.current = false;
+          }
+        } else {
+          if (!video1Src || video1Src.fallback !== nextNextVideo.fallback) {
+            console.log(`preload next video: hero-${nextNextIdx + 1}`);
+            setVideo1Src(nextNextVideo);
+            video1ReadyRef.current = false;
+          }
+        }
+      }, delay);
     }
   }, [activeBuffer, currentIdx, hasDispatchedReady, video1Src, video2Src, activeVideos]);
 
@@ -280,6 +309,9 @@ const Hero = () => {
     if (activeBuffer === 1) {
       // Buffer 1 finished. If Buffer 2 is already loaded and ready, transition instantly!
       if (video2ReadyRef.current) {
+        if (preloadTimerRef.current) {
+          clearTimeout(preloadTimerRef.current);
+        }
         console.log("next video ready (instant transition)");
         const nextIdx = (currentIdx + 1) % activeVideos.length;
         
@@ -325,6 +357,9 @@ const Hero = () => {
     } else {
       // Buffer 2 finished. If Buffer 1 is already loaded and ready, transition instantly!
       if (video1ReadyRef.current) {
+        if (preloadTimerRef.current) {
+          clearTimeout(preloadTimerRef.current);
+        }
         console.log("next video ready (instant transition)");
         const nextIdx = (currentIdx + 1) % activeVideos.length;
         
