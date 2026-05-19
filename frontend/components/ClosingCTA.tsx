@@ -109,8 +109,8 @@ const ClosingCTA = () => {
             marginBottom: "28px"
           }}
         >
-          Rasa warisan, <br />
-          <span className="italic opacity-90">dibuat hangat untuk hari ini</span>
+          Sio Mei hangat, <br />
+          <span className="italic opacity-90">siap dipesan hari ini</span>
         </h2>
         
         {/* Subheadline */}
@@ -123,7 +123,7 @@ const ClosingCTA = () => {
             marginBottom: "32px"
           }}
         >
-          Siomay sapi premium yang dibuat harian dari bahan pilihan, siap dipesan dan dikirim hangat ke lokasi Anda.
+          Siomay sapi premium handmade dari Babah Sapi, dibuat harian dan dikirim hangat ke lokasi Anda.
         </p>
         
         {/* CTA Button */}
@@ -142,7 +142,7 @@ const ClosingCTA = () => {
               gap: "10px"
             }}
           >
-            Pesan via WhatsApp
+            Pesan Sio Mei via WhatsApp
             <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
           </Link>
         </div>

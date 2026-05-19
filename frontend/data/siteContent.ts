@@ -4,70 +4,77 @@ export const siteContent = {
     { label: "Menu", href: "/#foods" },
     { label: "Kualitas", href: "/#core" },
     { label: "Misi", href: "/#mission" },
-    { label: "Jurnal", href: "/#journal" },
+    { label: "Apa Kata Mereka", href: "/#journal" },
     { label: "Kontak", href: "/#contact" },
   ],
   hero: {
-    headline: "Siomay Sapi Premium yang Lembut, Gurih, dan Siap Dikirim Hangat",
-    subheadline: "Dibuat harian dari daging sapi pilihan, cocok untuk camilan, keluarga, atau hidangan praktis.",
-    cta: "PESAN SEKARANG",
+    headline: "Sio Mei Sapi Premium, Lembut dan Gurih Dibuat Harian",
+    subheadline: "Siomay sapi handmade khas Babah Sapi, dibuat dari daging pilihan dan dikirim hangat melalui WhatsApp.",
+    cta: "Pesan Sio Mei via WhatsApp",
     imagePlaceholder: "/images/siomay-hero-premium.png",
   },
   foods: [
     {
       id: 1,
-      name: "Siomay Sapi Original",
+      name: "Sio Mei Original",
       price: "Rp 45.000 / 5 pcs",
       image: "/images/siomay-steamed.png",
       description: "Siomay sapi handmade dengan tekstur lembut, isian gurih, dan aroma kukusan hangat.",
     },
     {
       id: 2,
-      name: "Siomay Sapi Goreng",
+      name: "Sio Mei Goreng",
       price: "Rp 48.000 / 5 pcs",
       image: "/images/siomay-fried-gold.png",
       description: "Varian goreng dengan bagian luar renyah dan isian sapi yang tetap juicy di dalam.",
+    },
+    {
+      id: 3,
+      name: "Paket Sio Mei Mix",
+      price: "Rp 85.000 / 10 pcs",
+      image: "/images/siomay-closing.png",
+      description: "Kombinasi Sio Mei original dan goreng untuk menikmati dua tekstur dalam satu pesanan.",
     },
   ],
   processSteps: [
     {
       number: "01",
-      title: "Dari Daging Sapi Pilihan",
-      text: "Menggunakan daging sapi pilihan dengan komposisi yang tepat agar menghasilkan rasa gurih dan tekstur juicy.",
+      title: "Daging Sapi Pilihan",
+      text: "Diracik untuk menghasilkan rasa gurih alami dan tekstur juicy.",
       image: "/images/process-beef.png",
       annotation: "Daging sapi pilihan ─ tekstur juicy"
     },
     {
       number: "02",
-      title: "Diracik Menjadi Isian Gurih",
-      text: "Daging diolah bersama racikan bumbu keluarga untuk menciptakan rasa yang dalam, lembut, dan tidak berlebihan.",
+      title: "Dibentuk Handmade",
+      text: "Setiap butir Sio Mei dibuat teliti agar padat, rapi, dan lembut saat disantap.",
       image: "/images/process-dough.png",
-      annotation: "Isian sapi gurih ─ resep keluarga"
-    },
-    {
-      number: "03",
-      title: "Dibentuk Handmade Setiap Hari",
-      text: "Setiap butir siomay dibentuk secara teliti agar teksturnya tetap rapi, padat, dan nyaman saat disantap.",
-      image: "/images/macro-steamer.png",
       annotation: "Handmade harian ─ bentuk presisi"
     },
     {
-      number: "04",
-      title: "Dikukus Hingga Matang Sempurna",
-      text: "Proses pengukusan menjaga kelembutan siomay dan membuat aromanya tetap hangat saat disajikan.",
-      image: "/images/process-plating.png",
+      number: "03",
+      title: "Dikukus Harian",
+      text: "Dikukus untuk menjaga aroma hangat dan kelembutan khas siomay premium.",
+      image: "/images/macro-steamer.png",
       annotation: "Kukusan hangat ─ matang sempurna"
+    },
+    {
+      number: "04",
+      title: "Siap Dikirim Hangat",
+      text: "Pesanan disiapkan saat masuk agar sampai dalam kondisi terbaik.",
+      image: "/images/process-plating.png",
+      annotation: "Pesanan masuk ─ dikirim hangat"
     },
   ],
   macroTextures: [
     {
       id: 1,
-      image: "/images/macro-sauce.png", // Using the generated artifact placeholder
+      image: "/images/macro-sauce.png",
       label: "Dibuat harian dari daging pilihan"
     },
     {
       id: 2,
-      image: "/images/macro-steamer.png", // Using the generated artifact placeholder
+      image: "/images/macro-steamer.png",
       label: "Steamed to tender perfection"
     }
   ],
@@ -78,49 +85,49 @@ export const siteContent = {
     { id: 4, image: "/images/process-dough.png", caption: "Heritage recipe" },
   ],
   closingCta: {
-    headline: "Rasa warisan, dibuat hangat untuk hari ini",
+    headline: "Sio Mei hangat, siap dipesan hari ini",
     image: "/images/siomay-closing.png",
-    ctaText: "Pesan Sekarang"
+    ctaText: "Pesan Sio Mei via WhatsApp"
   },
   journal: {
-    title: "Jurnal Babah Sapi",
-    subtitle: "Cerita tentang dedikasi, warisan rasa, dan filosofi di balik setiap butir siomay kami.",
+    title: "Apa Kata Mereka Tentang Sio Mei",
+    subtitle: "Cerita singkat dari pelanggan yang sudah mencoba Sio Mei Babah Sapi.",
     posts: [
       {
         id: 1,
-        title: "Perjalanan Menemukan Tekstur Sempurna",
-        excerpt: "Bagaimana kami bereksperimen selama berbulan-bulan untuk mendapatkan kekenyalan yang pas.",
-        date: "15 MEI 2026",
+        title: "“Tekstur Juicy yang Mengesankan”",
+        excerpt: "“Siomay sapi dengan rasa daging yang sangat terasa dan juicy. Kulitnya tipis dan lembut. Sangat direkomendasikan untuk keluarga.” — Ibu Amalia, Jakarta",
+        date: "PELANGGAN SETIA",
         image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=800",
-        alt: "Proses pembuatan siomay",
+        alt: "Pelanggan menikmati siomay",
       },
       {
         id: 2,
-        title: "Rahasia Cita Rasa Sapi Gurih yang Juicy",
-        excerpt: "Mengapa komposisi daging pilihan dan teknik pengukusan harian menjadi kunci kelezatan siomay kami.",
-        date: "10 MEI 2026",
+        title: "“Cita Rasa Rumahan yang Premium”",
+        excerpt: "“Kami memesan Sio Mei original dan goreng untuk acara keluarga. Semua memuji rasa gurih alaminya yang pas tanpa penyedap berlebihan.” — Bpk. Rian, Bandung",
+        date: "ACARA KELUARGA",
         image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=800",
-        alt: "Siomay sapi premium",
+        alt: "Sio Mei sajian keluarga",
       },
       {
         id: 3,
-        title: "Warisan Resep dari Generasi ke Generasi",
-        excerpt: "Menjaga keaslian rasa di tengah gempuran tren kuliner modern.",
-        date: "05 MEI 2026",
+        title: "“Pengiriman Hangat & Higienis”",
+        excerpt: "“Dipesan pagi hari, sampai di rumah dalam kondisi masih hangat terbungkus rapi. Sangat praktis untuk sarapan atau camilan sore.” — dr. Sarah, Tangerang",
+        date: "PESANAN HARIAN",
         image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=800",
-        alt: "Resep warisan keluarga",
+        alt: "Pengiriman siomay sapi hangat",
       },
     ],
   },
   footer: {
     social: [
       { label: "Instagram", href: "#" },
-      { label: "WhatsApp", href: "#" },
+      { label: "WhatsApp", href: "https://wa.me/628123456789" },
     ],
     legal: ["Kebijakan Privasi", "Syarat & Ketentuan"],
     support: ["Pengiriman", "Reseller"],
-    navigation: ["Proses", "Menu", "Jurnal"],
-    statement: "Menghadirkan kelezatan siomay sapi premium melalui keahlian tangan dan bahan-bahan terbaik.",
+    navigation: ["Proses", "Menu", "Apa Kata Mereka"],
+    statement: "Babah Sapi menghadirkan Sio Mei, siomay sapi premium handmade dengan rasa gurih, lembut, dan dibuat harian.",
     copyright: "© 2026 Sio Mei Babah Sapi. Hak Cipta Dilindungi."
   },
 };

@@ -18,7 +18,7 @@ const JournalGrid = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-48 gap-12">
           <div className="max-w-4xl">
-            <span className="ui-label mb-10 block">Cerita Kami</span>
+            <span className="ui-label mb-10 block">Apa Kata Mereka</span>
             <h2 className="editorial-xl text-brand-dark mb-10">
               {journal.title}
             </h2>
@@ -26,13 +26,15 @@ const JournalGrid = () => {
               {journal.subtitle}
             </p>
           </div>
-          <Link
-            href="/journal"
+          <a
+            href="https://wa.me/628123456789"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-peanut hover:text-brand-brown transition-colors group"
           >
-            Baca Semua Cerita 
+            Kirim Ulasan Anda
             <ArrowRight size={16} className="transform group-hover:translate-x-2 transition-transform" />
-          </Link>
+          </a>
         </div>
 
         <motion.div
@@ -64,9 +66,14 @@ const JournalGrid = () => {
               <p className="text-brand-dark/60 font-light mb-8 line-clamp-2 leading-relaxed">
                 {post.excerpt}
               </p>
-              <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-brown group-hover:gap-4 transition-all duration-300">
-                Baca Cerita <ArrowRight size={14} />
-              </span>
+              <a
+                href="https://wa.me/628123456789"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-brown hover:text-[#5A0B08] group-hover:gap-4 transition-all duration-300"
+              >
+                Hubungi Kami <ArrowRight size={14} />
+              </a>
             </motion.div>
           ))}
         </motion.div>

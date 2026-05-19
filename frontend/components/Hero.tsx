@@ -579,6 +579,12 @@ const Hero = () => {
           
           {/* Left Column: Headline (col-span-12 lg:col-span-7) */}
           <div className="col-span-12 lg:col-span-7 flex flex-col items-start w-full">
+            <span 
+              className="text-[#c99745] font-sans font-bold uppercase tracking-[0.35em] mb-4 text-[11px] block"
+              style={{ textShadow: "0 2px 4px rgba(0,0,0,0.2)" }}
+            >
+              SIO MEI BY BABAH SAPI
+            </span>
             <motion.h1 
               initial={{ opacity: 0, filter: "blur(8px)" }}
               animate={{ opacity: 1, filter: "blur(0px)" }}
@@ -586,13 +592,14 @@ const Hero = () => {
               className="font-editorial text-white hero-headline-responsive text-left"
             >
               <span className="block md:hidden">
-                Siomay Sapi<br />
-                Resep Warisan
+                Sio Mei<br />
+                Sapi Premium,<br />
+                Lembut & Gurih
               </span>
               <span className="hidden md:block">
-                Siomay sapi<br />
-                resep<br />
-                warisan
+                Sio Mei Sapi Premium,<br />
+                Lembut dan Gurih<br />
+                Dibuat Harian
               </span>
             </motion.h1>
           </div>
@@ -606,19 +613,30 @@ const Hero = () => {
               className="flex flex-col items-start w-full"
             >
               <p className="font-sans text-white text-left hero-subheadline-spacing">
-                Lembut, gurih alami, dibuat harian dari daging sapi pilihan.
+                Siomay sapi handmade khas Babah Sapi, dibuat dari daging pilihan dan dikirim hangat melalui WhatsApp.
               </p>
 
-              <Link
-                href="/#menu"
+              <a
+                href="https://wa.me/628123456789"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hero-premium-btn group"
               >
                 <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907] flex items-center gap-3">
-                  Pesan Sekarang
+                  Pesan Sio Mei via WhatsApp
                   <span className="transform transition-transform duration-500 group-hover:translate-x-2">→</span>
                 </span>
                 <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
-              </Link>
+              </a>
+
+              {/* Benefit kecil di bawah CTA */}
+              <div className="flex items-center gap-3.5 mt-8 text-white/80 font-sans uppercase tracking-[0.18em] text-[10px] font-bold">
+                <span>Dibuat harian</span>
+                <span className="opacity-45 text-[8px]">•</span>
+                <span>Daging sapi pilihan</span>
+                <span className="opacity-45 text-[8px]">•</span>
+                <span>Dikirim hangat</span>
+              </div>
             </motion.div>
           </div>
 

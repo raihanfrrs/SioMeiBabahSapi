@@ -189,13 +189,13 @@ const MacroTexture = () => {
         >
           <div className="flex flex-col items-center gap-3">
             <div className="h-[1px] w-12 bg-brand-accent/60" />
-            <span className="ui-label text-brand-accent tracking-[0.6em] uppercase text-[11px] font-bold">
-              TEKSTUR RASA
+            <span className="ui-label text-brand-accent tracking-[0.35em] uppercase text-[11px] font-bold">
+              TEKSTUR YANG BIKIN NAGIH
             </span>
           </div>
           <h2 className="text-white font-editorial text-4xl md:text-6xl lg:text-[72px] tracking-tighter leading-[1.0] drop-shadow-2xl">
-            Tekstur lembut, isian sapi gurih, <br className="hidden lg:block" />
-            <span className="italic text-brand-cream/90 font-normal lg:inline block mt-2 lg:mt-0">dan aroma kukusan harian.</span>
+            Lembut di luar, <br className="hidden lg:block" />
+            <span className="italic text-brand-cream/90 font-normal lg:inline block mt-2 lg:mt-0">gurih di dalam.</span>
           </h2>
         </div>
 
@@ -206,7 +206,7 @@ const MacroTexture = () => {
         >
           {/* ── DESKTOP LAYOUT (lg+): Savor-style ── */}
 
-          {/* Headline Line 1: "Terinspirasi dari" — BELOW the card, right-aligned to card's left edge */}
+          {/* Headline Line 1: "Lembut di luar," — BELOW the card, right-aligned to card's left edge */}
           <div 
             className="hidden lg:block absolute pointer-events-auto"
             style={{ 
@@ -221,11 +221,11 @@ const MacroTexture = () => {
               className="text-[#2A1712] font-editorial tracking-tighter leading-[1.0] inline-block"
               style={{ fontSize: "clamp(36px, 3.8vw, 62px)", whiteSpace: "nowrap" }}
             >
-              Terinspirasi dari
+              Lembut di luar,
             </span>
           </div>
 
-          {/* Headline Line 2: "tekstur siomay hangat" — one line BELOW "Terinspirasi dari", left-aligned with card's left edge */}
+          {/* Headline Line 2: "gurih di dalam" — one line BELOW "Lembut di luar,", left-aligned with card's left edge */}
           <div 
             className="hidden lg:block absolute pointer-events-auto"
             style={{ 
@@ -237,7 +237,7 @@ const MacroTexture = () => {
               className="italic text-brand-accent font-editorial font-normal tracking-tighter leading-[1.0] block"
               style={{ fontSize: "clamp(36px, 3.8vw, 62px)", whiteSpace: "nowrap" }}
             >
-              tekstur siomay hangat
+              gurih di dalam
             </span>
           </div>
 
@@ -252,7 +252,7 @@ const MacroTexture = () => {
           >
             <div className="max-w-[240px] flex flex-col gap-4 text-left">
               <p className="text-[#3A1712]/70 font-body text-[13px] leading-relaxed">
-                Dari isian sapi yang gurih hingga tekstur kulit yang lembut, setiap siomay dibuat untuk menghadirkan rasa rumahan yang premium, hangat, dan mudah dinikmati kapan saja.
+                Sio Mei dibuat untuk menghadirkan tekstur siomay sapi yang lembut, padat, dan gurih dalam setiap gigitan.
               </p>
               <a 
                 href="#foods" 
@@ -272,8 +272,8 @@ const MacroTexture = () => {
                 ref={headlineMobileRef}
                 className="text-[#2A1712] font-editorial text-[38px] leading-[1.0] tracking-tight"
               >
-                Terinspirasi dari <br />
-                <span className="italic text-brand-accent font-normal">tekstur siomay hangat</span>
+                Lembut di luar, <br />
+                <span className="italic text-brand-accent font-normal">gurih di dalam</span>
               </h3>
             </div>
 
@@ -283,7 +283,7 @@ const MacroTexture = () => {
               className="w-full px-6 flex flex-col gap-5 text-center items-center"
             >
               <p className="text-[#3A1712]/80 font-body text-[14px] leading-relaxed">
-                Dari isian sapi yang gurih hingga tekstur kulit yang lembut, setiap siomay dibuat untuk menghadirkan rasa rumahan yang premium, hangat, dan mudah dinikmati kapan saja.
+                Sio Mei dibuat untuk menghadirkan tekstur siomay sapi yang lembut, padat, dan gurih dalam setiap gigitan.
               </p>
               <a 
                 href="#foods" 

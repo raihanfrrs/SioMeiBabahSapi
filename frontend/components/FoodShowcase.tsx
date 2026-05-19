@@ -47,14 +47,14 @@ const FoodShowcase = () => {
                 className="text-5xl md:text-7xl lg:text-[80px] font-editorial text-brand-dark tracking-tighter leading-[0.85]"
                 style={{ marginBottom: "20px" }}
               >
-                The Babah Sapi <br className="hidden md:block" />
+                The Sio Mei <br className="hidden md:block" />
                 <span className="italic text-brand-accent font-normal">Collection</span>
               </h2>
               <p 
                 className="text-[#4b0705]/80 font-medium text-[15px] md:text-[16px] max-w-md leading-relaxed"
                 style={{ marginBottom: "24px" }}
               >
-                Dipilih dari bahan terbaik, dibuat harian, dan siap dipesan hangat melalui WhatsApp.
+                Pilihan siomay sapi premium handmade, dibuat harian dan siap dipesan hangat melalui WhatsApp.
               </p>
             </div>
             
