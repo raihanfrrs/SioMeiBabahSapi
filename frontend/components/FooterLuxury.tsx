@@ -23,7 +23,7 @@ const FooterLuxury = () => {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.035
+        staggerChildren: 0.5
       }
     }
   };
@@ -172,7 +172,7 @@ const FooterLuxury = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
             className={`${gloock.className} md:hidden text-[#5A0906] text-center flex flex-col items-center w-full break-normal`}
             style={{ fontSize: "clamp(86px, 28vw, 150px)", lineHeight: 0.78, letterSpacing: "-0.045em" }}
           >
@@ -197,7 +197,7 @@ const FooterLuxury = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
             className={`${gloock.className} hidden md:flex flex-wrap justify-center text-[#5A0906] text-center w-full`}
             style={{ fontSize: "clamp(140px, 18vw, 260px)", lineHeight: 0.82, letterSpacing: "-0.06em" }}
           >

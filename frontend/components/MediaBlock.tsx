@@ -23,7 +23,7 @@ const MediaBlock: React.FC<MediaBlockProps> = ({
     <motion.div
       initial="initial"
       whileInView="animate"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: false, margin: "-100px" }}
       variants={imageFadeIn}
       className={`relative overflow-hidden rounded-3xl ${className}`}
     >

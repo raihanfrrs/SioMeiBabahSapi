@@ -88,7 +88,7 @@ const FoodShowcase = () => {
               key={food.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
               className="group flex flex-col bg-[#FDF8EE] border border-[#4b0705]/10 rounded-[8px] hover:-translate-y-1 hover:shadow-xl hover:border-[#4b0705]/25 transition-all duration-300 h-full overflow-hidden"
               style={{ padding: "clamp(18px, 2.5vw, 24px)" }}

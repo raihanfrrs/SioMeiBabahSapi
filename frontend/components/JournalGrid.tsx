@@ -38,7 +38,7 @@ const JournalGrid = () => {
         <motion.div
           initial="initial"
           whileInView="animate"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-3 gap-24"
         >

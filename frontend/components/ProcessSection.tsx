@@ -18,7 +18,7 @@ const ProcessSection = () => {
           <motion.div
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             variants={fadeInUp}
             className="w-full md:w-1/2"
           >
@@ -37,7 +37,7 @@ const ProcessSection = () => {
           <motion.div
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             variants={staggerContainer}
             className="w-full md:w-1/2 space-y-10"
           >

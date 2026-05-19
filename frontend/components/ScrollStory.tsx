@@ -128,6 +128,7 @@ const ScrollStory = () => {
                 className="absolute inset-0 bg-brand-peanut"
                 initial={{ x: "-100%" }}
                 whileInView={{ x: "0%" }}
+                viewport={{ once: false }}
                 transition={{ duration: 1 }}
               />
             </div>

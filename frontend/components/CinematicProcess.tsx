@@ -110,6 +110,7 @@ const CinematicProcess = () => {
                     <motion.div 
                       initial={{ width: 0 }}
                       whileInView={{ width: "80px" }}
+                      viewport={{ once: false }}
                       className="h-[1px] bg-brand-peanut/40 mx-auto md:mx-0" 
                     />
                   </div>

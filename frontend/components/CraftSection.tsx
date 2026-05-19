@@ -12,7 +12,7 @@ const CraftSection = () => {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col gap-6 md:gap-10"
         >
@@ -36,7 +36,7 @@ const CraftSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="relative aspect-square md:aspect-[4/5] rounded-[40px] md:rounded-none overflow-hidden"
         >
