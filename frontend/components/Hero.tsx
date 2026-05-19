@@ -233,13 +233,15 @@ const Hero = () => {
       {/* --- BACKGROUND VIDEO CAROUSEL WITH IMAGE FALLBACK --- */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none">
         
-        {/* Ground Fallback Image (always underneath) */}
-        <img 
-          src={hero.imagePlaceholder} 
-          alt="Siomay Babah Sapi Background" 
-          className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.4] scale-100"
-          loading="eager"
-        />
+        {/* Ground Fallback Image (Only visible if videos are disabled or network saving is active) */}
+        {(prefersReducedMotion || saveData) && (
+          <img 
+            src={hero.imagePlaceholder} 
+            alt="Siomay Babah Sapi Background" 
+            className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.4] scale-100"
+            loading="eager"
+          />
+        )}
 
         {/* Video Buffer 1 */}
         <video
