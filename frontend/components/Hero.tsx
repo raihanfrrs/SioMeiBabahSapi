@@ -103,11 +103,12 @@ const Hero = () => {
   // Advance to next video when current video finishes playing
   // Double-buffer transition logic to prevent cuts/resets
   const handleVideoEnded = useCallback((bufferIndex: 1 | 2) => {
+    const nextIdx = (currentIdx + 1) % activeVideos.length;
+
     if (isTransitioning) return;
     if (bufferIndex !== activeBuffer) return; // Only listen to active video
 
     setIsTransitioning(true);
-    const nextIdx = (currentIdx + 1) % activeVideos.length;
 
     if (activeBuffer === 1) {
       // Buffer 1 finished, play Buffer 2 and transition to it
@@ -125,7 +126,7 @@ const Hero = () => {
         const nextNextIdx = (nextIdx + 1) % activeVideos.length;
         setVideo1Src(activeVideos[nextNextIdx]);
         setIsTransitioning(false);
-      }, 1200);
+      }, 400); // 400ms fast crossfade
     } else {
       // Buffer 2 finished, play Buffer 1 and transition to it
       if (video1Ref.current) {
@@ -142,7 +143,7 @@ const Hero = () => {
         const nextNextIdx = (nextIdx + 1) % activeVideos.length;
         setVideo2Src(activeVideos[nextNextIdx]);
         setIsTransitioning(false);
-      }, 1200);
+      }, 400); // 400ms fast crossfade
     }
   }, [activeBuffer, currentIdx, isTransitioning]);
 
@@ -169,7 +170,7 @@ const Hero = () => {
         <video
           ref={video1Ref}
           src={video1Src}
-          autoPlay={activeBuffer === 1}
+          autoPlay
           muted
           playsInline
           preload="auto"
@@ -177,7 +178,7 @@ const Hero = () => {
           className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
           style={{
             opacity: activeBuffer === 1 ? 1 : 0,
-            transitionDuration: "1200ms",
+            transitionDuration: "400ms",
             zIndex: activeBuffer === 1 ? 2 : 1
           }}
         />
@@ -194,7 +195,7 @@ const Hero = () => {
           className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.55] transition-opacity ease-out"
           style={{
             opacity: activeBuffer === 2 ? 1 : 0,
-            transitionDuration: "1200ms",
+            transitionDuration: "400ms",
             zIndex: activeBuffer === 2 ? 2 : 1
           }}
         />
