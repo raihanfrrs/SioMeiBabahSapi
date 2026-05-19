@@ -69,19 +69,11 @@ const Hero = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // 1. Check prefers-reduced-motion
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
-    const listener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener("change", listener);
-
-    // 2. Check saveData API
-    // @ts-ignore
-    const hasSaveData = !!navigator.connection?.saveData;
-    setSaveData(hasSaveData);
+    // Force video playback by disabling reduced motion and save data overrides
+    setPrefersReducedMotion(false);
+    setSaveData(false);
 
     return () => {
-      mediaQuery.removeEventListener("change", listener);
       if (preloadTimerRef.current) {
         clearTimeout(preloadTimerRef.current);
       }
@@ -118,7 +110,19 @@ const Hero = () => {
 
   // Force play active video on changes
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || saveData) return;
+
+    // Explicitly set muted attributes to bypass React hydration property limitations
+    if (video1Ref.current) {
+      video1Ref.current.muted = true;
+      video1Ref.current.defaultMuted = true;
+      video1Ref.current.setAttribute("muted", "true");
+    }
+    if (video2Ref.current) {
+      video2Ref.current.muted = true;
+      video2Ref.current.defaultMuted = true;
+      video2Ref.current.setAttribute("muted", "true");
+    }
 
     if (activeBuffer === 1) {
       if (video1Ref.current) {
@@ -129,7 +133,40 @@ const Hero = () => {
         video2Ref.current.play().catch(() => {});
       }
     }
-  }, [activeBuffer, resolvedVideo1, resolvedVideo2, prefersReducedMotion]);
+  }, [activeBuffer, resolvedVideo1, resolvedVideo2, prefersReducedMotion, saveData]);
+
+  // User interaction fallback to bypass strict browser autoplay policies
+  useEffect(() => {
+    if (prefersReducedMotion || saveData) return;
+
+    const resumePlayback = () => {
+      const activeVideo = activeBuffer === 1 ? video1Ref.current : video2Ref.current;
+      if (activeVideo && activeVideo.paused) {
+        // Double-check muting properties to be absolutely safe
+        activeVideo.muted = true;
+        activeVideo.defaultMuted = true;
+        activeVideo.setAttribute("muted", "true");
+        activeVideo.play()
+          .then(() => {
+            // Once successfully playing, remove listeners
+            cleanupListeners();
+          })
+          .catch(() => {});
+      }
+    };
+
+    const cleanupListeners = () => {
+      window.removeEventListener("click", resumePlayback);
+      window.removeEventListener("touchstart", resumePlayback);
+      window.removeEventListener("keydown", resumePlayback);
+    };
+
+    window.addEventListener("click", resumePlayback);
+    window.addEventListener("touchstart", resumePlayback);
+    window.addEventListener("keydown", resumePlayback);
+
+    return cleanupListeners;
+  }, [activeBuffer, prefersReducedMotion, saveData]);
 
 
 
@@ -213,6 +250,7 @@ const Hero = () => {
       if (preloadTimerRef.current) {
         clearTimeout(preloadTimerRef.current);
       }
+      setIsTransitioning(true); // Ensure transition guard is active during dynamic transition crossfade
       const nextIdx = (currentIdx + 1) % activeVideos.length;
       
       setActiveBuffer(bufferIndex as 1 | 2);
@@ -339,10 +377,21 @@ const Hero = () => {
         console.log("Buffer 2 not ready, waiting and looping Video 1");
         setPendingBuffer(2);
         
+        // Force preloading Buffer 2 immediately so we don't get stuck forever
+        if (!video2Src) {
+          const nextIdx = (currentIdx + 1) % activeVideos.length;
+          console.log(`Force preloading next video on end: hero-${nextIdx + 1}`);
+          setVideo2Src(activeVideos[nextIdx]);
+          video2ReadyRef.current = false;
+        }
+
         if (video1Ref.current) {
           video1Ref.current.currentTime = 0;
           video1Ref.current.play().catch(() => {});
         }
+
+        // Reset isTransitioning to false since we did not transition and are just waiting/looping
+        setIsTransitioning(false);
 
         if (video2Ref.current) {
           video2Ref.current.play().catch(() => {
@@ -387,10 +436,21 @@ const Hero = () => {
         console.log("Buffer 1 not ready, waiting and looping Video 2");
         setPendingBuffer(1);
 
+        // Force preloading Buffer 1 immediately so we don't get stuck forever
+        if (!video1Src) {
+          const nextIdx = (currentIdx + 1) % activeVideos.length;
+          console.log(`Force preloading next video on end: hero-${nextIdx + 1}`);
+          setVideo1Src(activeVideos[nextIdx]);
+          video1ReadyRef.current = false;
+        }
+
         if (video2Ref.current) {
           video2Ref.current.currentTime = 0;
           video2Ref.current.play().catch(() => {});
         }
+
+        // Reset isTransitioning to false since we did not transition and are just waiting/looping
+        setIsTransitioning(false);
 
         if (video1Ref.current) {
           video1Ref.current.play().catch(() => {
@@ -403,7 +463,7 @@ const Hero = () => {
         }
       }
     }
-  }, [activeBuffer, currentIdx, isTransitioning, prefersReducedMotion, activeVideos]);
+  }, [activeBuffer, currentIdx, isTransitioning, prefersReducedMotion, activeVideos, video1Src, video2Src]);
 
   return (
     <section 
@@ -416,21 +476,20 @@ const Hero = () => {
       {/* --- BACKGROUND VIDEO CAROUSEL WITH IMAGE FALLBACK --- */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none">
         
-        {/* Ground Fallback Image (Only visible if videos are disabled or network saving is active) */}
-        {(prefersReducedMotion || saveData) && (
-          <img 
-            src={hero.imagePlaceholder} 
-            alt="Siomay Babah Sapi Background" 
-            className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.4] scale-100"
-            loading="eager"
-          />
-        )}
+        {/* Ground Fallback Image (Acts as a loading placeholder/poster under the video) */}
+        <img 
+          src={hero.imagePlaceholder} 
+          alt="Siomay Babah Sapi Background" 
+          className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.4] scale-100"
+          style={{ zIndex: 0 }}
+          loading="eager"
+        />
 
         {/* Video Buffer 1 */}
         <video
           ref={video1Ref}
           src={resolvedVideo1}
-          autoPlay={activeBuffer === 1 && !prefersReducedMotion}
+          autoPlay={activeBuffer === 1}
           muted
           playsInline
           preload="auto"
@@ -451,10 +510,10 @@ const Hero = () => {
           <video
             ref={video2Ref}
             src={resolvedVideo2}
-            autoPlay={activeBuffer === 2 && !prefersReducedMotion}
+            autoPlay={activeBuffer === 2}
             muted
             playsInline
-            preload={saveData ? "none" : "auto"} // Standard lazy preloading under Save Data settings
+            preload="auto"
             onEnded={() => handleVideoEnded(2)}
             onPlaying={() => handleVideoPlaying(2)}
             onCanPlay={() => handleVideoCanPlay(2)}
