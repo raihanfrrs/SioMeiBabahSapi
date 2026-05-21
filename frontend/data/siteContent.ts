@@ -41,29 +41,35 @@ export const siteContent = {
       number: "01",
       title: "Daging Sapi Pilihan",
       text: "Diracik untuk menghasilkan rasa gurih alami dan tekstur juicy.",
-      image: "/images/process-beef.png",
+      image: "/images/ground-beef.png",
       annotation: "Daging sapi pilihan ─ tekstur juicy"
     },
     {
       number: "02",
-      title: "Dibentuk Handmade",
-      text: "Setiap butir Sio Mei dibuat teliti agar padat, rapi, dan lembut saat disantap.",
-      image: "/images/process-dough.png",
-      annotation: "Handmade harian ─ bentuk presisi"
+      title: "Diracik Hingga Menyatu",
+      text: "Setiap adonan Sio Mei diolah perlahan agar daging sapi, bumbu, dan teksturnya menyatu sempurna sebelum dibentuk satu per satu.",
+      image: "/images/process-dough-2.png",
+      annotation: "ADONAN SEGAR ─ Diaduk perlahan untuk menjaga tekstur padat, lembut, dan gurih.",
+      labelLeft: "ADONAN SEGAR",
+      labelRight: "TEXTURE CONTROL"
     },
     {
       number: "03",
-      title: "Dikukus Harian",
-      text: "Dikukus untuk menjaga aroma hangat dan kelembutan khas siomay premium.",
-      image: "/images/macro-steamer.png",
-      annotation: "Kukusan hangat ─ matang sempurna"
+      title: "Dikukus Hangat",
+      text: "Disajikan dengan cara dikukus agar aroma gurihnya keluar perlahan, teksturnya tetap lembut, dan rasa sapi premium terasa lebih utuh.",
+      image: "/images/macro-steamer-2.png",
+      annotation: "KUKUSAN HANGAT ─ Matang sempurna dengan uap panas terjaga.",
+      labelLeft: "STEAMED SERVING",
+      labelRight: "KUKUS HANGAT"
     },
     {
       number: "04",
-      title: "Siap Dikirim Hangat",
-      text: "Pesanan disiapkan saat masuk agar sampai dalam kondisi terbaik.",
-      image: "/images/process-plating.png",
-      annotation: "Pesanan masuk ─ dikirim hangat"
+      title: "Digoreng Renyah",
+      text: "Siap digoreng hingga keemasan untuk menghadirkan tekstur renyah di luar dan rasa daging yang tetap lembut serta kaya di dalam.",
+      image: "/images/siomay-fried.png",
+      annotation: "GORENG HANGAT ─ Keemasan renyah dengan rasa daging tetap juicy.",
+      labelLeft: "FRIED SERVING",
+      labelRight: "GORENG RENYAH"
     },
   ],
   macroTextures: [

@@ -142,8 +142,12 @@ const ProcessStory = () => {
                     </p>
                     <div className="flex flex-col gap-4 pt-4 border-t border-brand-dark/5">
                       <div className="flex items-center justify-between">
-                        <span className="ui-label text-[9px] text-brand-accent uppercase font-bold">Traditional Method</span>
-                        <span className="ui-label text-[9px] text-brand-dark/40 italic font-bold">Handcrafted</span>
+                        <span className="ui-label text-[9px] text-brand-accent uppercase font-bold">
+                          {step.labelLeft || "Traditional Method"}
+                        </span>
+                        <span className="ui-label text-[9px] text-brand-dark/40 italic font-bold">
+                          {step.labelRight || "Handcrafted"}
+                        </span>
                       </div>
                     </div>
                   </div>
