@@ -30,7 +30,7 @@ export const siteContent = {
     },
     {
       id: 3,
-      name: "",
+      name: "Paket Sio Mei Frozen",
       price: "Rp 40.000 / 5 pcs",
       image: "/images/siomay-frozen.png",
       description: "Sio Mei sapi premium beku (frozen) yang praktis, siap dikukus atau digoreng kapan saja dengan cita rasa yang tetap terjaga.",
@@ -79,10 +79,10 @@ export const siteContent = {
     }
   ],
   gallery: [
-    { id: 1, image: "/images/editorial-artisan.png", caption: "The art of folding" },
-    { id: 2, image: "/images/process-beef.png", caption: "Premium beef selection" },
-    { id: 3, image: "/images/macro-sauce.png", caption: "Steamed to perfection" },
-    { id: 4, image: "/images/process-dough.png", caption: "Heritage recipe" },
+    { id: 1, image: "/images/bts-hygiene.png", label: "HIGIENIS DARI AWAL", caption: "Diproses dengan area bersih dan sarung tangan." },
+    { id: 2, image: "/images/bts-beef.png", label: "DAGING SAPI PILIHAN", caption: "Dipilih untuk rasa gurih dan tekstur padat." },
+    { id: 3, image: "/images/bts-folded.png", label: "DIBENTUK SATU PER SATU", caption: "Dibuat manual agar setiap bentuk tetap konsisten." },
+    { id: 4, image: "/images/bts-quality.png", label: "CEK TEKSTUR SETIAP BATCH", caption: "Diperiksa sebelum dikemas dan dikirim." },
   ],
   closingCta: {
     headline: "Sio Mei hangat, siap dipesan hari ini",

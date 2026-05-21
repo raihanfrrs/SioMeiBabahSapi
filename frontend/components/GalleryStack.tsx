@@ -52,65 +52,52 @@ const GalleryStack = () => {
     return () => ctx.revert();
   }, []);
 
-  const galleryLabels = [
-    "THE ART OF FOLDING",
-    "PREMIUM BEEF SELECTION",
-    "HANDCRAFTED DAILY",
-    "STEAMED TO PERFECTION"
-  ];
-
   return (
     <section 
       ref={containerRef} 
       data-nav-theme="light"
-      className="w-full bg-[#f4eadc] overflow-hidden flex justify-center"
-      style={{
-        paddingTop: "clamp(20px, 10vw, 20px)",
-        paddingBottom: "clamp(20px, 10vw, 20px)"
-      }}
+      className="w-full bg-[#f4eadc] overflow-hidden flex justify-center pt-[56px] pb-[68px] md:pt-[72px] md:pb-[84px] lg:pt-[88px] lg:pb-[96px]"
+      style={{ height: "auto" }}
     >
       <div 
-        className="w-full mx-auto flex flex-col items-center" 
-        style={{ 
-          maxWidth: "1280px", 
-          paddingLeft: "clamp(20px, 4vw, 32px)", 
-          paddingRight: "clamp(20px, 4vw, 32px)" 
-        }}
+        className="w-full mx-auto flex flex-col items-center max-w-[1240px] px-5 md:px-8"
       >
         
         {/* Header Container */}
         <div 
-          className="gallery-title w-full flex flex-col items-center text-center" 
-          style={{ marginBottom: "clamp(48px, 6vw, 64px)" }}
+          className="gallery-title w-full flex flex-col items-center text-center mb-[42px]"
         >
           <span 
-            className="text-[#4a0907]/70 uppercase font-bold"
-            style={{ fontSize: "11px", letterSpacing: "0.4em", marginBottom: "18px" }}
+            className="text-[#3c2314]/70 uppercase font-bold text-[11px] tracking-[0.4em] mb-[14px]"
           >
             BEHIND THE SCENE
           </span>
           <h2 
-            className="font-editorial text-brand-dark tracking-tight max-w-4xl"
-            style={{ fontSize: "clamp(42px, 6vw, 76px)", lineHeight: 1.02 }}
+            className="font-editorial text-[#3c2314] tracking-tight max-w-[980px] leading-[0.98]"
+            style={{ fontSize: "clamp(36px, 8vw, 72px)" }}
           >
-            The Making of <span className="italic text-[#C7923E] font-normal">Babah Sapi</span>
+            The Making of <span className="italic font-normal text-[#3c2314]">Babah Sapi</span>
           </h2>
+          <p 
+            className="text-center text-[#3e2019]/72 mx-auto font-sans text-sm md:text-[15px] leading-[1.7] max-w-[760px] mt-[22px]"
+          >
+            Setiap Sio Mei dibuat dalam batch terbatas, dari daging sapi pilihan, proses higienis, dan lipatan manual agar teksturnya tetap lembut, padat, dan gurih di setiap gigitan.
+          </p>
         </div>
 
         {/* Editorial Asymmetric Collage */}
         <div 
-          className="flex flex-col md:flex-row items-center md:items-center justify-between w-full" 
-          style={{ gap: "clamp(24px, 3vw, 48px)" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.15fr_0.92fr_1.05fr] w-full gap-[28px] items-start"
         >
           
           {/* Left Column (Main Hero Image) */}
-          <div className="gallery-item w-full md:w-[40%]">
+          <div className="gallery-item w-full flex flex-col">
             <div 
-              className="relative aspect-[3/4] w-full overflow-hidden group transition-transform duration-500 hover:-translate-y-1"
+              className="relative w-full overflow-hidden group transition-transform duration-500 aspect-[3/4] lg:max-h-[520px]"
               style={{ 
-                borderRadius: "6px", 
-                boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
-                border: "1px solid rgba(60,35,20,0.08)"
+                borderRadius: "8px", 
+                boxShadow: "0 8px 24px rgba(60,35,20,0.04)",
+                border: "1px solid rgba(60,35,20,0.06)"
               }}
             >
               <LazyImage 
@@ -119,28 +106,38 @@ const GalleryStack = () => {
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
               />
               <div 
-                className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
-                style={{ top: "16px", left: "16px", fontSize: "9px", letterSpacing: "0.25em", padding: "6px 12px", borderRadius: "4px", border: "1px solid rgba(60,35,20,0.05)" }}
+                className="absolute bg-[#FDF8EE] text-[#800020] font-bold uppercase z-20"
+                style={{ 
+                  top: "16px", 
+                  left: "16px", 
+                  fontSize: "11px", 
+                  letterSpacing: "0.14em", 
+                  padding: "8px 14px", 
+                  borderRadius: "6px", 
+                  border: "1px solid rgba(60,35,20,0.05)" 
+                }}
               >
-                {galleryLabels[0]}
+                {gallery[0]?.label}
               </div>
             </div>
+            <p className="mt-[12px] text-[#3e2019]/72 text-[14px] leading-[1.5] font-sans italic text-left pl-1">
+              “{gallery[0]?.caption}”
+            </p>
           </div>
 
           {/* Center Column (Floating Stacked Images) */}
           <div 
-            className="w-full md:w-[26%] flex flex-col justify-center relative z-10" 
-            style={{ gap: "clamp(20px, 3vw, 36px)" }}
+            className="w-full flex flex-col gap-[24px]"
           >
             
             {/* Top Center Image */}
-            <div className="gallery-item w-full md:-translate-y-6">
+            <div className="gallery-item w-full flex flex-col">
               <div 
-                className="relative aspect-[4/3] w-full overflow-hidden group transition-transform duration-500 hover:-translate-y-1"
+                className="relative w-full overflow-hidden group transition-transform duration-500 aspect-[3/2] lg:max-h-[200px]"
                 style={{ 
-                  borderRadius: "6px", 
-                  boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
-                  border: "1px solid rgba(60,35,20,0.08)"
+                  borderRadius: "8px", 
+                  boxShadow: "0 8px 24px rgba(60,35,20,0.04)",
+                  border: "1px solid rgba(60,35,20,0.06)"
                 }}
               >
                 <LazyImage 
@@ -149,22 +146,33 @@ const GalleryStack = () => {
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
                 />
                 <div 
-                  className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
-                  style={{ top: "12px", left: "12px", fontSize: "9px", letterSpacing: "0.25em", padding: "6px 12px", borderRadius: "4px", border: "1px solid rgba(60,35,20,0.05)" }}
+                  className="absolute bg-[#FDF8EE] text-[#800020] font-bold uppercase z-20"
+                  style={{ 
+                    top: "16px", 
+                    left: "16px", 
+                    fontSize: "11px", 
+                    letterSpacing: "0.14em", 
+                    padding: "8px 14px", 
+                    borderRadius: "6px", 
+                    border: "1px solid rgba(60,35,20,0.05)" 
+                  }}
                 >
-                  {galleryLabels[1]}
+                  {gallery[1]?.label}
                 </div>
               </div>
+              <p className="mt-[12px] text-[#3e2019]/72 text-[14px] leading-[1.5] font-sans italic text-left pl-1">
+                “{gallery[1]?.caption}”
+              </p>
             </div>
 
-            {/* Bottom Center Image (Overlap Offset) */}
-            <div className="gallery-item w-full md:-mt-8 md:-ml-5 relative z-20">
+            {/* Bottom Center Image */}
+            <div className="gallery-item w-full flex flex-col">
               <div 
-                className="relative aspect-[4/3] md:aspect-[1/1] w-full overflow-hidden group transition-transform duration-500 hover:-translate-y-1"
+                className="relative w-full overflow-hidden group transition-transform duration-500 aspect-[3/2] lg:max-h-[200px]"
                 style={{ 
-                  borderRadius: "6px", 
-                  boxShadow: "0 16px 40px rgba(0,0,0,0.12)",
-                  border: "1px solid rgba(60,35,20,0.08)"
+                  borderRadius: "8px", 
+                  boxShadow: "0 8px 24px rgba(60,35,20,0.04)",
+                  border: "1px solid rgba(60,35,20,0.06)"
                 }}
               >
                 <LazyImage 
@@ -173,24 +181,35 @@ const GalleryStack = () => {
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
                 />
                 <div 
-                  className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
-                  style={{ top: "12px", left: "12px", fontSize: "9px", letterSpacing: "0.25em", padding: "6px 12px", borderRadius: "4px", border: "1px solid rgba(60,35,20,0.05)" }}
+                  className="absolute bg-[#FDF8EE] text-[#800020] font-bold uppercase z-20"
+                  style={{ 
+                    top: "16px", 
+                    left: "16px", 
+                    fontSize: "11px", 
+                    letterSpacing: "0.14em", 
+                    padding: "8px 14px", 
+                    borderRadius: "6px", 
+                    border: "1px solid rgba(60,35,20,0.05)" 
+                  }}
                 >
-                  {galleryLabels[2]}
+                  {gallery[2]?.label}
                 </div>
               </div>
+              <p className="mt-[12px] text-[#3e2019]/72 text-[14px] leading-[1.5] font-sans italic text-left pl-1">
+                “{gallery[2]?.caption}”
+              </p>
             </div>
 
           </div>
 
           {/* Right Column (Secondary Tall Image) */}
-          <div className="gallery-item w-full md:w-[34%]">
+          <div className="gallery-item w-full md:col-span-2 lg:col-span-1 flex flex-col md:mt-4 lg:mt-0">
             <div 
-              className="relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden group transition-transform duration-500 hover:-translate-y-1"
+              className="relative w-full overflow-hidden group transition-transform duration-500 aspect-[3/4] lg:max-h-[460px]"
               style={{ 
-                borderRadius: "6px", 
-                boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
-                border: "1px solid rgba(60,35,20,0.08)"
+                borderRadius: "8px", 
+                boxShadow: "0 8px 24px rgba(60,35,20,0.04)",
+                border: "1px solid rgba(60,35,20,0.06)"
               }}
             >
               <LazyImage 
@@ -199,15 +218,54 @@ const GalleryStack = () => {
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
               />
               <div 
-                className="absolute bg-[#FDF8EE]/95 backdrop-blur-sm text-[#4a0907] font-bold uppercase z-20"
-                style={{ top: "16px", left: "16px", fontSize: "9px", letterSpacing: "0.25em", padding: "6px 12px", borderRadius: "4px", border: "1px solid rgba(60,35,20,0.05)" }}
+                className="absolute bg-[#FDF8EE] text-[#800020] font-bold uppercase z-20"
+                style={{ 
+                  top: "16px", 
+                  left: "16px", 
+                  fontSize: "11px", 
+                  letterSpacing: "0.14em", 
+                  padding: "8px 14px", 
+                  borderRadius: "6px", 
+                  border: "1px solid rgba(60,35,20,0.05)" 
+                }}
               >
-                {galleryLabels[3]}
+                {gallery[3]?.label}
               </div>
             </div>
+            <p className="mt-[12px] text-[#3e2019]/72 text-[14px] leading-[1.5] font-sans italic text-left pl-1">
+              “{gallery[3]?.caption}”
+            </p>
           </div>
 
         </div>
+
+        {/* CTA Section */}
+        <div className="w-full flex flex-col items-center text-center mt-[28px] gap-0">
+          <p className="text-xs md:text-sm font-sans text-[#3e2019]/72 italic">
+            Dibuat terbatas setiap hari. Pesan sebelum batch hari ini habis.
+          </p>
+          
+          {/* Benefit Divider Row */}
+          <div className="flex items-center justify-center gap-3 text-xs md:text-sm text-[#3c2314]/80 mt-[10px] font-sans tracking-wide">
+            <span>Higienis</span>
+            <span className="text-[#3c2314]/30">•</span>
+            <span>Daging sapi pilihan</span>
+            <span className="text-[#3c2314]/30">•</span>
+            <span>Lipatan manual</span>
+          </div>
+
+          <div className="mt-[18px] mb-[24px]">
+            <a 
+              href="https://wa.me/628123456789" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#800020] to-[#4a0907] hover:from-[#6b1110] hover:to-[#320605] text-[#f4eadc] font-bold px-[38px] min-w-[320px] h-[56px] rounded-full transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-xl text-[18px] border border-[#C7923E]/20"
+            >
+              Pesan Sio Mei via WhatsApp <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
   );
