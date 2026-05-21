@@ -66,7 +66,7 @@ const GalleryStack = () => {
         {/* Header Container */}
         <div 
           className="gallery-title w-full flex flex-col items-center text-center"
-          style={{ marginBottom: "clamp(48px, 6vw, 72px)" }}
+          style={{ marginBottom: "clamp(12px, 3vw, 30px)" }}
         >
           <span 
             className="text-[#3c2314]/70 uppercase font-bold text-[11px] tracking-[0.4em] mb-[14px]"
@@ -243,7 +243,7 @@ const GalleryStack = () => {
         {/* CTA Section */}
         <div 
           className="w-full flex flex-col items-center text-center gap-0"
-          style={{ marginTop: "clamp(54px, 5vw, 76px)" }}
+          style={{ marginTop: "clamp(12px, 3vw, 30px)" }}
         >
           <p className="text-xs md:text-sm font-sans text-[#3e2019]/72 italic">
             Dibuat terbatas setiap hari. Pesan sebelum batch hari ini habis.

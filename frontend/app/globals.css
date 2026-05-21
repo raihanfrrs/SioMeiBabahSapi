@@ -274,8 +274,8 @@ body::after {
   }
   @media (min-width: 1024px) {
     .section-gallery-spacious {
-      padding-top: 180px !important;
-      padding-bottom: 140px !important;
+      padding-top: 80px !important;
+      padding-bottom: 30px !important;
     }
   }
 
