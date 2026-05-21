@@ -85,28 +85,39 @@ const Hero = () => {
     if (typeof window === "undefined") return;
     const isDesktop = window.innerWidth >= 1024;
     
-    if (video1Src) {
-      const nextUrl = isDesktop ? video1Src.desktop : video1Src.mobile;
+    if (isDesktop) {
+      if (video1Src) {
+        const nextUrl = video1Src.desktop;
+        if (resolvedVideo1 !== nextUrl) {
+          setResolvedVideo1(nextUrl);
+        }
+      } else {
+        if (resolvedVideo1 !== "") {
+          setResolvedVideo1("");
+        }
+      }
+      
+      if (video2Src) {
+        const nextUrl = video2Src.desktop;
+        if (resolvedVideo2 !== nextUrl) {
+          setResolvedVideo2(nextUrl);
+        }
+      } else {
+        if (resolvedVideo2 !== "") {
+          setResolvedVideo2("");
+        }
+      }
+    } else {
+      // Mobile/Tablet mode: Only use Buffer 1, directly set to the active video at currentIdx
+      const nextUrl = activeVideos[currentIdx].mobile;
       if (resolvedVideo1 !== nextUrl) {
         setResolvedVideo1(nextUrl);
       }
-    } else {
-      if (resolvedVideo1 !== "") {
-        setResolvedVideo1("");
-      }
-    }
-    
-    if (video2Src) {
-      const nextUrl = isDesktop ? video2Src.desktop : video2Src.mobile;
-      if (resolvedVideo2 !== nextUrl) {
-        setResolvedVideo2(nextUrl);
-      }
-    } else {
       if (resolvedVideo2 !== "") {
         setResolvedVideo2("");
       }
     }
-  }, [video1Src, video2Src, resolvedVideo1, resolvedVideo2]);
+  }, [video1Src, video2Src, resolvedVideo1, resolvedVideo2, currentIdx]);
 
   // Force play active video on changes
   useEffect(() => {
@@ -233,6 +244,14 @@ const Hero = () => {
 
   // Track background buffer readiness independent of browser visibility / opacity constraints
   const handleVideoCanPlay = useCallback((bufferIndex: number) => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) {
+      if (bufferIndex === 1 && !hasDispatchedReady) {
+        setHasDispatchedReady(true);
+        window.dispatchEvent(new CustomEvent("hero-first-video-ready"));
+      }
+      return;
+    }
+
     if (bufferIndex === 1) {
       video1ReadyRef.current = true;
       if (!hasDispatchedReady) {
@@ -296,6 +315,14 @@ const Hero = () => {
 
   // Synchronized Playback triggers
   const handleVideoPlaying = useCallback((bufferIndex: number) => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) {
+      if (bufferIndex === 1 && !hasDispatchedReady) {
+        setHasDispatchedReady(true);
+        window.dispatchEvent(new CustomEvent("hero-first-video-ready"));
+      }
+      return;
+    }
+
     // 1. Initial play of Buffer 1: dispatch first ready signal
     if (bufferIndex === 1 && !hasDispatchedReady) {
       setHasDispatchedReady(true);
@@ -339,6 +366,12 @@ const Hero = () => {
   const handleVideoEnded = useCallback((bufferIndex: 1 | 2) => {
     if (prefersReducedMotion) return;
     
+    if (typeof window !== "undefined" && window.innerWidth < 1024) {
+      const nextIdx = (currentIdx + 1) % activeVideos.length;
+      setCurrentIdx(nextIdx);
+      return;
+    }
+
     if (isTransitioning) return;
     if (bufferIndex !== activeBuffer) return; // Only listen to active video
 
