@@ -56,7 +56,7 @@ const GalleryStack = () => {
     <section 
       ref={containerRef} 
       data-nav-theme="light"
-      className="w-full bg-[#f4eadc] overflow-hidden flex justify-center pt-[56px] pb-[68px] md:pt-[72px] md:pb-[84px] lg:pt-[88px] lg:pb-[96px]"
+      className="w-full bg-[#f4eadc] overflow-hidden flex justify-center section-gallery-spacious"
       style={{ height: "auto" }}
     >
       <div 
@@ -65,7 +65,8 @@ const GalleryStack = () => {
         
         {/* Header Container */}
         <div 
-          className="gallery-title w-full flex flex-col items-center text-center mb-[42px]"
+          className="gallery-title w-full flex flex-col items-center text-center"
+          style={{ marginBottom: "clamp(48px, 6vw, 72px)" }}
         >
           <span 
             className="text-[#3c2314]/70 uppercase font-bold text-[11px] tracking-[0.4em] mb-[14px]"
@@ -240,13 +241,19 @@ const GalleryStack = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="w-full flex flex-col items-center text-center mt-[28px] gap-0">
+        <div 
+          className="w-full flex flex-col items-center text-center gap-0"
+          style={{ marginTop: "clamp(54px, 5vw, 76px)" }}
+        >
           <p className="text-xs md:text-sm font-sans text-[#3e2019]/72 italic">
             Dibuat terbatas setiap hari. Pesan sebelum batch hari ini habis.
           </p>
           
           {/* Benefit Divider Row */}
-          <div className="flex items-center justify-center gap-3 text-xs md:text-sm text-[#3c2314]/80 mt-[10px] font-sans tracking-wide">
+          <div 
+            className="flex items-center justify-center gap-3 text-xs md:text-sm text-[#3c2314]/80 font-sans tracking-wide"
+            style={{ marginTop: "14px" }}
+          >
             <span>Higienis</span>
             <span className="text-[#3c2314]/30">•</span>
             <span>Daging sapi pilihan</span>
@@ -254,7 +261,9 @@ const GalleryStack = () => {
             <span>Lipatan manual</span>
           </div>
 
-          <div className="mt-[18px] mb-[24px]">
+          <div 
+            style={{ marginTop: "clamp(28px, 3vw, 40px)", marginBottom: "24px" }}
+          >
             <a 
               href="https://wa.me/628123456789" 
               target="_blank" 
