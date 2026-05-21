@@ -30,10 +30,10 @@ export const siteContent = {
     },
     {
       id: 3,
-      name: "Paket Sio Mei Mix",
-      price: "Rp 85.000 / 10 pcs",
-      image: "/images/siomay-closing.png",
-      description: "Kombinasi Sio Mei original dan goreng untuk menikmati dua tekstur dalam satu pesanan.",
+      name: "",
+      price: "Rp 40.000 / 5 pcs",
+      image: "/images/siomay-frozen.png",
+      description: "Sio Mei sapi premium beku (frozen) yang praktis, siap dikukus atau digoreng kapan saja dengan cita rasa yang tetap terjaga.",
     },
   ],
   processSteps: [
