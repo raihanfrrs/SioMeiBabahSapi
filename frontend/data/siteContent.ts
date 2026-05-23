@@ -97,7 +97,7 @@ export const siteContent = {
     { id: 1, image: "/images/bts-hygiene.png", label: "HIGIENIS DARI AWAL", caption: "Diproses dengan area bersih dan sarung tangan." },
     { id: 2, image: "/images/process-beef.png", label: "DAGING SAPI PILIHAN", caption: "Dipilih untuk rasa gurih dan tekstur padat." },
     { id: 3, image: "/images/bts-folded.png", label: "DIBENTUK SATU PER SATU", caption: "Dibuat manual agar setiap bentuk tetap konsisten." },
-    { id: 4, image: "/images/bts-quality.png", label: "CEK TEKSTUR SETIAP BATCH", caption: "Diperiksa sebelum dikemas dan dikirim." },
+    { id: 4, image: "/images/bts-quality.png", label: "KEMATANGAN SEMPURNA", caption: "Sempurna dikukus hangat, digoreng renyah, maupun disimpan frozen untuk dinikmati kapan saja." },
   ],
   closingCta: {
     headline: "Sio Mei hangat, siap dipesan hari ini",
