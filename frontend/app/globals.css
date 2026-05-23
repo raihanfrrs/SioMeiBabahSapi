@@ -627,3 +627,15 @@ nextjs-portal,
     align-items: flex-end !important;
   }
 }
+
+/* Protected Image Styles */
+.protected-image {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+.protected-image * {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+

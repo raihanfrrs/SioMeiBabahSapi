@@ -4,7 +4,7 @@ import React, { useRef, useEffect } from "react";
 import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { LazyImage } from "@/components/LazyImage";
+import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
 
 const GalleryStack = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -58,6 +58,7 @@ const GalleryStack = () => {
       data-nav-theme="light"
       className="w-full bg-[#f4eadc] overflow-hidden flex justify-center section-gallery-spacious"
       style={{ height: "auto" }}
+      onContextMenu={(e) => e.preventDefault()}
     >
       <div 
         className="w-full mx-auto flex flex-col items-center max-w-[1240px] px-5 md:px-8"
@@ -101,10 +102,10 @@ const GalleryStack = () => {
                 border: "1px solid rgba(60,35,20,0.06)"
               }}
             >
-              <LazyImage 
+              <ProtectedBackgroundImage 
                 src={gallery[0]?.image} 
                 alt={gallery[0]?.caption} 
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                className="w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" 
               />
               <div 
                 className="absolute bg-[#FDF8EE] text-[#800020] font-bold uppercase z-20"
@@ -141,10 +142,10 @@ const GalleryStack = () => {
                   border: "1px solid rgba(60,35,20,0.06)"
                 }}
               >
-                <LazyImage 
+                <ProtectedBackgroundImage 
                   src={gallery[1]?.image} 
                   alt={gallery[1]?.caption} 
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                  className="w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" 
                 />
                 <div 
                   className="absolute bg-[#FDF8EE] text-[#800020] font-bold uppercase z-20"
@@ -176,10 +177,10 @@ const GalleryStack = () => {
                   border: "1px solid rgba(60,35,20,0.06)"
                 }}
               >
-                <LazyImage 
+                <ProtectedBackgroundImage 
                   src={gallery[2]?.image} 
                   alt={gallery[2]?.caption} 
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                  className="w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" 
                 />
                 <div 
                   className="absolute bg-[#FDF8EE] text-[#800020] font-bold uppercase z-20"
@@ -213,10 +214,10 @@ const GalleryStack = () => {
                 border: "1px solid rgba(60,35,20,0.06)"
               }}
             >
-              <LazyImage 
+              <ProtectedBackgroundImage 
                 src={gallery[3]?.image} 
                 alt={gallery[3]?.caption} 
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                className="w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" 
               />
               <div 
                 className="absolute bg-[#FDF8EE] text-[#800020] font-bold uppercase z-20"

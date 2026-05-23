@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { siteContent } from "@/data/siteContent";
-import { LazyImage } from "@/components/LazyImage";
+import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
 
 const FoodShowcase = () => {
   const { foods } = siteContent;
@@ -17,6 +17,7 @@ const FoodShowcase = () => {
       id="foods" 
       data-nav-theme="light"
       className="bg-brand-cream border-t border-brand-dark/10 w-full flex justify-center"
+      onContextMenu={(e) => e.preventDefault()}
       style={{
         paddingTop: "max(20px, 2vw)", // scales nicely to ~96px on desktop
         paddingBottom: "max(20px, 2vw)" // scales nicely to ~112px on desktop
@@ -104,10 +105,10 @@ const FoodShowcase = () => {
                 >
                   {badges[i % badges.length]}
                 </div>
-                 <LazyImage
+                 <ProtectedBackgroundImage
                   src={food.image}
                   alt={food.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  className="w-full h-full transition-transform duration-500 group-hover:scale-[1.04]"
                 />
               </div>
               

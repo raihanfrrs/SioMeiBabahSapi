@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { LazyImage } from "@/components/LazyImage";
+import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
 
 const EditorialStory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -50,6 +50,7 @@ const EditorialStory = () => {
       ref={containerRef} 
       data-nav-theme="light"
       className="w-full section-editorial-philosophy overflow-hidden flex justify-center"
+      onContextMenu={(e) => e.preventDefault()}
     >
       <div className="philosophy-container relative z-10">
         
@@ -69,12 +70,12 @@ const EditorialStory = () => {
         {/* Middle: Elevated Artisan Portrait Image */}
         <figure className="philosophy-image col-span-1 md:col-span-1 lg:col-span-4 flex justify-center items-center w-full editorial-reveal">
           <div className="editorial-img-reveal relative w-full max-w-[340px] lg:max-w-[360px] aspect-[4/5] lg:aspect-auto lg:h-[450px] overflow-hidden shadow-[0_18px_45px_rgba(0,0,0,0.12)] rounded-[3px] border border-[rgba(95,19,15,0.08)] transition-transform duration-500 ease-out hover:scale-[1.02] cursor-pointer">
-            <LazyImage 
+            <ProtectedBackgroundImage 
               src="/images/editorial-artisan.png" 
               alt="Artisan making siomay" 
-              className="w-full h-full object-cover brightness-[0.95]"
+              className="w-full h-full brightness-[0.95]"
             />
-            <div className="absolute inset-0 bg-brand-dark/5" />
+            <div className="absolute inset-0 bg-brand-dark/5 z-20 pointer-events-none" />
           </div>
         </figure>
 

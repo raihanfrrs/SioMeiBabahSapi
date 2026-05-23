@@ -5,7 +5,7 @@ import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import { LazyImage } from "@/components/LazyImage";
+import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
 
 const ClosingCTA = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -56,6 +56,7 @@ const ClosingCTA = () => {
       ref={containerRef} 
       data-nav-theme="dark"
       className="relative w-full overflow-hidden flex items-center justify-center"
+      onContextMenu={(e) => e.preventDefault()}
       style={{
         minHeight: "clamp(78svh, 85vh, 90vh)",
         paddingTop: "clamp(72px, 10vw, 120px)",
@@ -63,11 +64,11 @@ const ClosingCTA = () => {
       }}
     >
       <div className="absolute inset-0 z-0 bg-[#1a0b08]">
-        <LazyImage 
+        <ProtectedBackgroundImage 
           src={closingCta.image} 
           alt="Closing Food Visual" 
-          className="closing-bg w-full h-full object-cover"
-          style={{ objectPosition: "center", opacity: 0.95 }}
+          className="closing-bg w-full h-full"
+          style={{ opacity: 0.95 }}
         />
         {/* Layer 1: Linear gradient overall darkening */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(rgba(0,0,0,0.38), rgba(0,0,0,0.38))" }} />

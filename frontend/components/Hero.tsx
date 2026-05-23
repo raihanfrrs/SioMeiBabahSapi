@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
 
 const heroVideos = [
   {
@@ -504,18 +505,18 @@ const Hero = () => {
       id="hero"
       data-nav-theme="dark"
       className="relative min-h-screen w-full overflow-hidden bg-black text-white flex justify-center"
+      onContextMenu={(e) => e.preventDefault()}
     >
       
       {/* --- BACKGROUND VIDEO CAROUSEL WITH IMAGE FALLBACK --- */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none">
         
         {/* Ground Fallback Image (Acts as a loading placeholder/poster under the video) */}
-        <img 
+        <ProtectedBackgroundImage 
           src={hero.imagePlaceholder} 
           alt="Siomay Babah Sapi Background" 
-          className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.4] scale-100"
+          className="absolute inset-0 w-full h-full hero-bg-media brightness-[0.4]"
           style={{ zIndex: 0 }}
-          loading="eager"
         />
 
         {/* Video Buffer 1 */}

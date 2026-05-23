@@ -51,6 +51,7 @@ const FooterLuxury = () => {
       id="footer"
       data-nav-theme="light"
       style={{ backgroundColor: "#F4EBDD", color: "#5A0906", overflowX: "hidden", width: "100%" }}
+      onContextMenu={(e) => e.preventDefault()}
     >
       <div 
         style={{ 

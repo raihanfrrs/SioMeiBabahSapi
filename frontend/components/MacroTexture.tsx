@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { LazyImage } from "@/components/LazyImage";
+import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
 
 const MEDIA_ITEMS = [
   "/images/macro-sauce.png",
@@ -149,7 +149,7 @@ const MacroTexture = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen bg-brand-dark">
+    <div ref={containerRef} className="relative w-full h-screen bg-brand-dark" onContextMenu={(e) => e.preventDefault()}>
       {/* Universal Sticky Pinned Section */}
       <div 
         ref={stickyRef} 
@@ -161,17 +161,15 @@ const MacroTexture = () => {
           className="absolute overflow-hidden z-20"
         >
           {MEDIA_ITEMS.map((src, idx) => (
-            <LazyImage 
+            <ProtectedBackgroundImage 
               key={idx}
               src={src}
               alt={`Texture ${idx + 1}`}
-              priority={true}
               className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
               style={{ 
                 opacity: activeIdx === idx ? 1 : 0,
                 width: "100%",
-                height: "100%",
-                objectFit: "cover"
+                height: "100%"
               }}
             />
           ))}

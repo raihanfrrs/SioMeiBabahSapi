@@ -4,7 +4,7 @@ import React, { useRef, useEffect } from "react";
 import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { LazyImage } from "@/components/LazyImage";
+import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
 
 const ProcessStory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -74,6 +74,7 @@ const ProcessStory = () => {
       id="process" 
       data-nav-theme="light"
       className="relative bg-[#f4eadc] overflow-hidden z-20"
+      onContextMenu={(e) => e.preventDefault()}
     >
       
       {/* Background Section Label */}
@@ -89,12 +90,12 @@ const ProcessStory = () => {
             const imageBlock = (
               <div className="w-full max-w-[460px] mx-auto">
                 <div className="process-img-container relative aspect-[4/5] w-full overflow-hidden shadow-xl rounded-sm">
-                  <LazyImage 
+                  <ProtectedBackgroundImage 
                     src={step.image} 
                     alt={step.title} 
-                    className="absolute w-full h-full object-cover"
+                    className="absolute w-full h-full"
                   />
-                  <div className="absolute inset-0 bg-brand-dark/5" />
+                  <div className="absolute inset-0 bg-brand-dark/5 z-20 pointer-events-none" />
                 </div>
                 <p className="mt-4 ui-label text-[9px] opacity-40 text-brand-dark tracking-[0.2em] uppercase font-bold text-center md:text-left">
                   {step.annotation.split('─')[1]?.trim() || step.annotation}
