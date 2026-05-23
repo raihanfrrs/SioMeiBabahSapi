@@ -71,6 +71,15 @@ export const siteContent = {
       labelLeft: "FRIED SERVING",
       labelRight: "GORENG RENYAH"
     },
+    {
+      number: "05",
+      title: "Praktis Frozen",
+      text: "Sio Mei dikemas higienis dalam kondisi frozen agar kualitas, tekstur, dan rasa tetap terjaga. Praktis disimpan dan siap dimasak kapan saja sesuai kebutuhan Anda.",
+      image: "/images/siomay-frozen-2.png",
+      annotation: "FROZEN PRODUCT ─ Dikemas beku secara higienis untuk menjaga kualitas dan kelezatan tetap optimal.",
+      labelLeft: "FROZEN PRODUCT",
+      labelRight: "SIAP SIMPAN"
+    },
   ],
   macroTextures: [
     {
@@ -86,8 +95,8 @@ export const siteContent = {
   ],
   gallery: [
     { id: 1, image: "/images/bts-hygiene.png", label: "HIGIENIS DARI AWAL", caption: "Diproses dengan area bersih dan sarung tangan." },
-    { id: 2, image: "/images/bts-beef.png", label: "DAGING SAPI PILIHAN", caption: "Dipilih untuk rasa gurih dan tekstur padat." },
-    { id: 3, image: "/images/bts-folded.png", label: "DIBENTUK SATU PER SATU", caption: "Dibuat manual agar setiap bentuk tetap konsisten." },
+    { id: 2, image: "/images/process-beef.png", label: "DAGING SAPI PILIHAN", caption: "Dipilih untuk rasa gurih dan tekstur padat." },
+    { id: 3, image: "/images/bts-hygiene.png", label: "DIBENTUK SATU PER SATU", caption: "Dibuat manual agar setiap bentuk tetap konsisten." },
     { id: 4, image: "/images/bts-quality.png", label: "CEK TEKSTUR SETIAP BATCH", caption: "Diperiksa sebelum dikemas dan dikirim." },
   ],
   closingCta: {
