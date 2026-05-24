@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
+import { createGeneralWhatsAppLink } from "@/utils/whatsapp";
 
 const EditorialStory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -113,7 +114,9 @@ const EditorialStory = () => {
           {/* Premium CTA Link */}
           <div className="philosophy-cta-wrapper w-full">
             <a
-              href="https://wa.me/6281333903187"
+              href={createGeneralWhatsAppLink()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="philosophy-cta inline-flex items-center gap-3 w-fit mt-1 pb-[4px] border-b border-[#5b0b07] text-[13px] tracking-[0.18em] font-extrabold uppercase text-[#5b0b07] transition-all duration-300 hover:opacity-80"
             >
               PESAN SIO MEI HARI INI →

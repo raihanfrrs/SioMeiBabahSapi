@@ -5,6 +5,7 @@ import { siteContent } from "@/data/siteContent";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { Gloock } from "next/font/google";
+import { createGeneralWhatsAppLink } from "@/utils/whatsapp";
 
 const gloock = Gloock({
   subsets: ["latin"],
@@ -106,17 +107,20 @@ const FooterLuxury = () => {
                 style={{ display: "flex", flexDirection: "column", gap: "8px" }}
                 className="text-[14px] md:text-[15px] leading-[1.65] font-sans font-medium text-left"
               >
-                {footer.social.map((link, idx) => (
-                  <a 
-                    key={idx} 
-                    href={link.href} 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#5A0906] hover:opacity-60 focus-visible:outline-none focus-visible:underline transition-opacity block w-fit"
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {footer.social.map((link, idx) => {
+                  const href = link.label === "WhatsApp" ? createGeneralWhatsAppLink() : link.href;
+                  return (
+                    <a 
+                      key={idx} 
+                      href={href} 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#5A0906] hover:opacity-60 focus-visible:outline-none focus-visible:underline transition-opacity block w-fit"
+                    >
+                      {link.label}
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
@@ -124,8 +128,7 @@ const FooterLuxury = () => {
 
           {/* Column 3: Mailing List */}
           <div 
-            className="flex flex-col w-full md:col-span-1 md:items-start"
-            style={{ marginTop: "36px" }}
+            className="flex flex-col w-full md:col-span-1 md:items-start mt-[36px] md:mt-0"
           >
             <h5 
               className="hidden md:block font-sans uppercase text-[#5A0906]"

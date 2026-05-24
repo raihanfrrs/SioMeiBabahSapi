@@ -137,7 +137,7 @@ export const siteContent = {
   footer: {
     social: [
       { label: "Instagram", href: "#" },
-      { label: "WhatsApp", href: "https://wa.me/6281333903187" },
+      { label: "WhatsApp", href: "https://wa.me/6281333903187?text=Halo%20Babah%20Sapi%2C%20saya%20ingin%20pesan%20Sio%20Mei.%0ABoleh%20dibantu%20info%20menu%2C%20harga%2C%20dan%20cara%20pemesanannya%3F%0A%0ANama%3A%0AAlamat%20pengiriman%3A%0ACatatan%3A%0A%0ATerima%20kasih." },
     ],
     legal: ["Kebijakan Privasi", "Syarat & Ketentuan"],
     support: ["Pengiriman", "Reseller"],

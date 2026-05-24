@@ -6,6 +6,7 @@ import { siteContent } from "@/data/siteContent";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { createGeneralWhatsAppLink } from "@/utils/whatsapp";
 
 const JournalGrid = () => {
   const { journal } = siteContent;
@@ -27,7 +28,7 @@ const JournalGrid = () => {
             </p>
           </div>
           <a
-            href="https://wa.me/6281333903187"
+            href={createGeneralWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-peanut hover:text-brand-brown transition-colors group"
@@ -67,7 +68,7 @@ const JournalGrid = () => {
                 {post.excerpt}
               </p>
               <a
-                href="https://wa.me/6281333903187"
+                href={createGeneralWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-brown hover:text-[#5A0B08] group-hover:gap-4 transition-all duration-300"

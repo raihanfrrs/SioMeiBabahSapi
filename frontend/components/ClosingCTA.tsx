@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
+import { createGeneralWhatsAppLink } from "@/utils/whatsapp";
 
 const ClosingCTA = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -129,8 +130,8 @@ const ClosingCTA = () => {
         
         {/* CTA Button */}
         <div className="closing-item flex w-full justify-center" style={{ marginBottom: "24px" }}>
-          <Link
-            href="https://wa.me/6281333903187"
+          <a
+            href={createGeneralWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center justify-center bg-[#F4E9D8] text-[#5A0B08] font-bold transition-all duration-300 hover:bg-white hover:-translate-y-[2px] shadow-lg hover:shadow-xl w-full max-w-[320px] md:max-w-none md:w-auto"
@@ -145,7 +146,7 @@ const ClosingCTA = () => {
           >
             Pesan Sio Mei via WhatsApp
             <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
-          </Link>
+          </a>
         </div>
 
         {/* Trust Signals */}

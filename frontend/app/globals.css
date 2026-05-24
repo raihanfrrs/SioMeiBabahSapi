@@ -431,6 +431,7 @@ body::after {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
     transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
     margin-top: 28px !important; /* 28px margin top */
+    margin-bottom: 28px !important; /* 28px margin top */
     cursor: pointer !important;
     pointer-events: auto !important;
     width: 100% !important; /* Full-width on mobile */
@@ -440,6 +441,7 @@ body::after {
     .hero-premium-btn {
       width: auto !important; /* Fit-content on tablet */
       max-width: none !important;
+      margin-bottom: 28px !important; /* 28px margin top */
     }
   }
   @media (min-width: 1024px) {
