@@ -83,13 +83,23 @@ const FooterLuxury = () => {
                 style={{ display: "flex", flexDirection: "column", gap: "8px" }}
                 className="text-[14px] md:text-[15px] leading-[1.65] font-sans font-medium text-left"
               >
-                {["Home", "Proses", "Menu", "Kualitas", "Misi", "Jurnal", "Kontak"].map((link, idx) => (
+                {siteContent.navigation.map((item, idx) => (
                   <Link 
                     key={idx} 
-                    href={link === "Home" ? "/" : `/#${link.toLowerCase()}`} 
+                    href={item.href} 
+                    onClick={(e) => {
+                      if (item.href.startsWith("/#")) {
+                        const targetId = item.href.substring(2);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                          e.preventDefault();
+                          targetElement.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }
+                    }}
                     className="text-[#5A0906] hover:opacity-60 focus-visible:outline-none focus-visible:underline transition-opacity block w-fit"
                   >
-                    {link}
+                    {item.label}
                   </Link>
                 ))}
               </div>

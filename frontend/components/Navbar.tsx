@@ -358,18 +358,6 @@ const Navbar = () => {
                   className="flex justify-center items-center font-sans text-[#f7ead7]"
                   style={{ marginTop: "22px" }}
                 >
-                  <a href="#" className="flex items-center gap-2 hover:text-white transition-colors">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "clamp(20px, 5vw, 24px)", height: "clamp(20px, 5vw, 24px)" }}>
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                    <span style={{ fontSize: "16px" }}>Instagram</span>
-                  </a>
-                  
-                  {/* Subtle Separator */}
-                  <div className="w-[1px] h-[14px] mx-[clamp(20px,5vw,28px)]" style={{ background: "rgba(201,151,69,0.4)" }} />
-
                   <a 
                     href={createGeneralWhatsAppLink()} 
                     target="_blank" 
