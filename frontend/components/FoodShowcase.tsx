@@ -10,7 +10,7 @@ const FoodShowcase = () => {
   const { foods } = siteContent;
 
   const badges = ["Best Seller", "Favorit"];
-  const microInfos = ["Dibuat harian", "Pesan via WhatsApp"];
+  const microInfos = ["Dibuat Segar", "Pesan via WhatsApp"];
 
   return (
     <section 
@@ -55,7 +55,7 @@ const FoodShowcase = () => {
                 className="text-[#4b0705]/80 font-medium text-[15px] md:text-[16px] max-w-md leading-relaxed"
                 style={{ marginBottom: "24px" }}
               >
-                Pilihan siomay sapi premium handmade, dibuat harian dan siap dipesan hangat melalui WhatsApp.
+                Pilihan Sio Mei sapi premium handmade, diracik dari bahan pilihan dan siap dipesan hangat melalui WhatsApp.
               </p>
             </div>
             

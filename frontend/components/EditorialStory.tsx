@@ -82,10 +82,10 @@ const EditorialStory = () => {
         {/* Right: Small text block */}
         <div className="philosophy-copy col-span-1 md:col-span-1 lg:col-span-4 flex flex-col justify-center items-start text-left editorial-reveal max-w-[380px] w-full self-center gap-6">
           <p className="text-[#2b1a16] text-[18px] font-sans leading-[1.75] max-w-[360px]">
-            Sio Mei dibuat harian dari daging sapi pilihan, diracik dengan resep keluarga, dan dikukus untuk menjaga tekstur lembut, rasa gurih, serta aroma hangat khas Babah Sapi.
+            Sio Mei dibuat dari daging sapi pilihan, diracik dengan resep keluarga, lalu dikukus perlahan untuk menjaga tekstur lembut, rasa gurih, dan aroma hangat khas Babah Sapi.
           </p>
           <p className="text-[#2b1a16]/65 text-[13px] font-sans italic mt-[-10px] leading-relaxed max-w-[360px]">
-            "Nama Sio Mei kami maknai sebagai kelezatan sederhana yang dibuat dengan tangan setiap hari."
+            “Nama Sio Mei kami maknai sebagai kelezatan sederhana yang dibuat dengan tangan dan dijaga rasanya dari waktu ke waktu.”
           </p>
           
           {/* Benefit Badges */}
@@ -93,7 +93,7 @@ const EditorialStory = () => {
             <div className="flex flex-col items-start">
               <div className="w-12 h-[1px] bg-[#5b0b07]/30 mb-2.5" />
               <span className="text-[11px] tracking-[0.14em] uppercase text-[#5b0b07] font-bold leading-[1.35] font-sans">
-                Dibuat Harian
+                Dibuat Segar
               </span>
             </div>
             <div className="flex flex-col items-start">

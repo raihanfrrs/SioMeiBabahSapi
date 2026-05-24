@@ -83,7 +83,7 @@ const GalleryStack = () => {
           <p 
             className="text-center text-[#3e2019]/72 mx-auto font-sans text-sm md:text-[15px] leading-[1.7] max-w-[760px] mt-[22px]"
           >
-            Setiap Sio Mei dibuat dalam batch terbatas, dari daging sapi pilihan, proses higienis, dan lipatan manual agar teksturnya tetap lembut, padat, dan gurih di setiap gigitan.
+           Setiap Sio Mei dibuat melalui proses produksi yang higienis dan terukur, menggunakan daging sapi pilihan serta lipatan manual agar teksturnya tetap lembut, padat, dan gurih di setiap gigitan.
           </p>
         </div>
 
@@ -247,7 +247,7 @@ const GalleryStack = () => {
           style={{ marginTop: "clamp(12px, 3vw, 30px)" }}
         >
           <p className="text-xs md:text-sm font-sans text-[#3e2019]/72 italic">
-            Dibuat terbatas setiap hari. Pesan sebelum batch hari ini habis.
+            Produksi fleksibel setiap hari, siap memenuhi pesanan satuan hingga jumlah besar.
           </p>
           
           {/* Benefit Divider Row */}

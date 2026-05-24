@@ -95,7 +95,7 @@ const ClosingCTA = () => {
             className="text-[#F4E9D8] uppercase font-bold"
             style={{ fontSize: "11px", letterSpacing: "0.3em" }}
           >
-            DIBUAT HARIAN • DIKIRIM HANGAT
+            DIBUAT SEGAR • SIAP DIPESAN
           </span>
         </div>
 
@@ -110,8 +110,8 @@ const ClosingCTA = () => {
             marginBottom: "28px"
           }}
         >
-          Sio Mei hangat, <br />
-          <span className="italic opacity-90">siap dipesan hari ini</span>
+          Sio Mei sapi premium, <br />
+          <span className="italic opacity-90">lembut dan gurih di setiap gigitan</span>
         </h2>
         
         {/* Subheadline */}
@@ -124,7 +124,7 @@ const ClosingCTA = () => {
             marginBottom: "32px"
           }}
         >
-          Siomay sapi premium handmade dari Babah Sapi, dibuat harian dan dikirim hangat ke lokasi Anda.
+          Dibuat dari daging sapi pilihan dengan proses higienis dan tekstur yang dijaga konsisten. Cocok untuk santapan keluarga, acara, hingga pesanan dalam jumlah besar.
         </p>
         
         {/* CTA Button */}
@@ -156,11 +156,11 @@ const ClosingCTA = () => {
             gap: "8px 24px",
           }}
         >
-          <span>Dibuat terbatas setiap hari</span>
+          <span>Daging sapi pilihan</span>
           <span className="opacity-50 text-[10px] hidden md:inline-block">•</span>
-          <span>Tanpa pengawet</span>
+          <span>Proses higienis</span>
           <span className="opacity-50 text-[10px] hidden md:inline-block">•</span>
-          <span>Pesan langsung via WhatsApp</span>
+          <span>Siap untuk berbagai kebutuhan</span>
         </div>
       </div>
       

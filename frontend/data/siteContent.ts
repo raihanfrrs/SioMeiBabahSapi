@@ -8,7 +8,7 @@ export const siteContent = {
     { label: "Kontak", href: "/#contact" },
   ],
   hero: {
-    headline: "Sio Mei Sapi Premium, Lembut dan Gurih Dibuat Harian",
+    headline: "Sio Mei Sapi Premium, Lembut dan Gurih di Setiap Gigitan",
     subheadline: "Siomay sapi handmade khas Babah Sapi, dibuat dari daging pilihan dan dikirim hangat melalui WhatsApp.",
     cta: "Pesan Sio Mei via WhatsApp",
     imagePlaceholder: "/images/siomay-hero-premium.png",
@@ -85,7 +85,7 @@ export const siteContent = {
     {
       id: 1,
       image: "/images/macro-sauce.png",
-      label: "Dibuat harian dari daging pilihan"
+      label: "Dibuat segar dari daging pilihan"
     },
     {
       id: 2,
@@ -128,7 +128,7 @@ export const siteContent = {
         id: 3,
         title: "“Pengiriman Hangat & Higienis”",
         excerpt: "“Dipesan pagi hari, sampai di rumah dalam kondisi masih hangat terbungkus rapi. Sangat praktis untuk sarapan atau camilan sore.” — dr. Sarah, Tangerang",
-        date: "PESANAN HARIAN",
+        date: "PESANAN SEGAR",
         image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=800",
         alt: "Pengiriman siomay sapi hangat",
       },
@@ -142,7 +142,7 @@ export const siteContent = {
     legal: ["Kebijakan Privasi", "Syarat & Ketentuan"],
     support: ["Pengiriman", "Reseller"],
     navigation: ["Proses", "Menu", "Apa Kata Mereka"],
-    statement: "Babah Sapi menghadirkan Sio Mei, siomay sapi premium handmade dengan rasa gurih, lembut, dan dibuat harian.",
+    statement: "Babah Sapi menghadirkan Sio Mei, siomay sapi premium handmade dengan rasa gurih, lembut, dan kualitas yang dijaga konsisten.",
     copyright: "© 2026 Sio Mei Babah Sapi. Hak Cipta Dilindungi."
   },
 };

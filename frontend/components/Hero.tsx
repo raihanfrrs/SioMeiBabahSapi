@@ -633,7 +633,7 @@ const Hero = () => {
               <span className="hidden md:block">
                 Sio Mei Sapi Premium,<br />
                 Lembut dan Gurih<br />
-                Dibuat Harian
+                di Setiap Gigitan
               </span>
             </motion.h1>
           </div>
@@ -665,7 +665,7 @@ const Hero = () => {
 
               {/* Benefit kecil di bawah CTA */}
               <div className="flex items-center gap-3.5 mt-8 text-white/80 font-sans uppercase tracking-[0.18em] text-[10px] font-bold">
-                <span>Dibuat harian</span>
+                <span>Dibuat segar</span>
                 <span className="opacity-45 text-[8px]">•</span>
                 <span>Daging sapi pilihan</span>
                 <span className="opacity-45 text-[8px]">•</span>
