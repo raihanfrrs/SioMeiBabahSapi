@@ -7,7 +7,7 @@ export const siteContent = {
   ],
   hero: {
     headline: "Sio Mei Sapi Premium, Lembut dan Gurih di Setiap Gigitan",
-    subheadline: "Siomay sapi handmade khas Babah Sapi, dibuat dari daging pilihan dan dikirim hangat melalui WhatsApp.",
+    subheadline: "Nikmati Sio Mei sapi premium khas Babah Sapi, dibuat dengan bahan pilihan dan dapat dipesan hangat maupun frozen sesuai kebutuhan Anda.",
     cta: "Pesan Sio Mei via WhatsApp",
     imagePlaceholder: "/images/siomay-hero-premium.png",
   },
