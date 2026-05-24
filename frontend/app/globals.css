@@ -449,6 +449,7 @@ body::after {
       height: 62px !important;
       padding: 0 44px !important;
       margin-top: 36px !important;
+      margin-bottom: 36px !important;
     }
   }
 
