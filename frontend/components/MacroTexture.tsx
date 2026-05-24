@@ -254,6 +254,13 @@ const MacroTexture = () => {
               </p>
               <a 
                 href="#foods" 
+                onClick={(e) => {
+                  const targetElement = document.getElementById("foods");
+                  if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
                 className="inline-flex items-center gap-2 group text-brand-accent font-body font-bold text-[11px] uppercase tracking-widest hover:text-[#2A1712] transition-colors"
               >
                 Lihat Menu
@@ -285,6 +292,13 @@ const MacroTexture = () => {
               </p>
               <a 
                 href="#foods" 
+                onClick={(e) => {
+                  const targetElement = document.getElementById("foods");
+                  if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
                 className="inline-flex items-center gap-2 text-brand-accent font-body font-bold text-xs uppercase tracking-widest"
               >
                 Lihat Menu
