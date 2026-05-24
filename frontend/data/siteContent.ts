@@ -4,8 +4,6 @@ export const siteContent = {
     { label: "Menu", href: "/#foods" },
     { label: "Kualitas", href: "/#core" },
     { label: "Misi", href: "/#mission" },
-    { label: "Apa Kata Mereka", href: "/#journal" },
-    { label: "Kontak", href: "/#contact" },
   ],
   hero: {
     headline: "Sio Mei Sapi Premium, Lembut dan Gurih di Setiap Gigitan",

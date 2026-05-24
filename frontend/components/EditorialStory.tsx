@@ -49,6 +49,7 @@ const EditorialStory = () => {
   return (
     <section 
       ref={containerRef} 
+      id="mission"
       data-nav-theme="light"
       className="w-full section-editorial-philosophy overflow-hidden flex justify-center"
       onContextMenu={(e) => e.preventDefault()}

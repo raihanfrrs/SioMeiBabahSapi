@@ -164,6 +164,16 @@ const Navbar = () => {
             <Link
               key={item.label}
               href={item.href}
+              onClick={(e) => {
+                if (item.href.startsWith("/#")) {
+                  const targetId = item.href.substring(2);
+                  const targetElement = document.getElementById(targetId);
+                  if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
+              }}
               className={`transition-all duration-500 ease-out ${
                 isLight 
                   ? "!text-[#24110b] hover:opacity-70" 
@@ -294,7 +304,19 @@ const Navbar = () => {
                     >
                       <Link
                         href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={(e) => {
+                          setIsMobileMenuOpen(false);
+                          if (item.href.startsWith("/#")) {
+                            const targetId = item.href.substring(2);
+                            const targetElement = document.getElementById(targetId);
+                            if (targetElement) {
+                              e.preventDefault();
+                              setTimeout(() => {
+                                targetElement.scrollIntoView({ behavior: "smooth" });
+                              }, 300);
+                            }
+                          }
+                        }}
                         className="grid w-full transition-transform duration-300 ease-out hover:translate-x-1"
                         style={{
                           gridTemplateColumns: "38px 1fr",

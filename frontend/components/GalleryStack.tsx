@@ -56,6 +56,7 @@ const GalleryStack = () => {
   return (
     <section 
       ref={containerRef} 
+      id="core"
       data-nav-theme="light"
       className="w-full bg-[#f4eadc] overflow-hidden flex justify-center section-gallery-spacious"
       style={{ height: "auto" }}
