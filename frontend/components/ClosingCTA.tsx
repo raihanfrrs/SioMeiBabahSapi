@@ -130,7 +130,7 @@ const ClosingCTA = () => {
         {/* CTA Button */}
         <div className="closing-item flex w-full justify-center" style={{ marginBottom: "24px" }}>
           <Link
-            href="https://wa.me/628123456789"
+            href="https://wa.me/6281333903187"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center justify-center bg-[#F4E9D8] text-[#5A0B08] font-bold transition-all duration-300 hover:bg-white hover:-translate-y-[2px] shadow-lg hover:shadow-xl w-full max-w-[320px] md:max-w-none md:w-auto"

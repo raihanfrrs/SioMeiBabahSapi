@@ -137,7 +137,7 @@ export const siteContent = {
   footer: {
     social: [
       { label: "Instagram", href: "#" },
-      { label: "WhatsApp", href: "https://wa.me/628123456789" },
+      { label: "WhatsApp", href: "https://wa.me/6281333903187" },
     ],
     legal: ["Kebijakan Privasi", "Syarat & Ketentuan"],
     support: ["Pengiriman", "Reseller"],

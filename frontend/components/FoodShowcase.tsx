@@ -146,7 +146,7 @@ const FoodShowcase = () => {
                 </div>
                 
                 <a 
-                  href="https://wa.me/628123456789" 
+                  href="https://wa.me/6281333903187" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center bg-[#4b0705] text-[#F4EBDD] font-bold tracking-wide rounded-[8px] transition-colors duration-300 hover:bg-[#3a0504]"

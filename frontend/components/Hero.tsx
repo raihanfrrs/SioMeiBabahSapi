@@ -651,7 +651,7 @@ const Hero = () => {
               </p>
 
               <a
-                href="https://wa.me/628123456789"
+                href="https://wa.me/6281333903187"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hero-premium-btn group"
@@ -837,7 +837,7 @@ const Hero = () => {
                   {/* Subtle Separator */}
                   <div className="w-[1px] h-[14px] mx-[clamp(20px,5vw,28px)]" style={{ background: "rgba(201,151,69,0.4)" }} />
 
-                  <a href="https://wa.me/628123456789" className="flex items-center gap-2 hover:text-white transition-colors">
+                  <a href="https://wa.me/6281333903187" className="flex items-center gap-2 hover:text-white transition-colors">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "clamp(20px, 5vw, 24px)", height: "clamp(20px, 5vw, 24px)" }}>
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                     </svg>
@@ -854,7 +854,7 @@ const Hero = () => {
                   style={{ marginTop: "24px" }}
                 >
                   <Link
-                    href="https://wa.me/628123456789"
+                    href="https://wa.me/6281333903187"
                     target="_blank"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-center justify-between mx-auto text-[#fff4e8] transition-all duration-300 hover:brightness-110 shadow-lg"
