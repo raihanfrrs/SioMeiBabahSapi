@@ -23,7 +23,7 @@ export const siteContent = {
     {
       id: 1,
       name: "Sio Mei Original",
-      price: "Rp 45.000 / 5 pcs",
+      price: "Rp 35.000 / 5 pcs",
       image: "/images/siomay-steamed.png",
       description: "Versi klasik dengan kulit lembut and isian sapi gurih, cocok disantap hangat.",
       meta: "Kukus klasik",
@@ -32,7 +32,7 @@ export const siteContent = {
     {
       id: 2,
       name: "Sio Mei Goreng",
-      price: "Rp 48.000 / 5 pcs",
+      price: "Rp 38.000 / 5 pcs",
       image: "/images/siomay-fried-gold.png",
       description: "Bagian luar lebih renyah dengan isian sapi yang tetap lembut di dalam.",
       meta: "Goreng renyah",
@@ -41,7 +41,7 @@ export const siteContent = {
     {
       id: 3,
       name: "Paket Sio Mei Frozen",
-      price: "Rp 40.000 / 5 pcs",
+      price: "Rp 30.000 / 5 pcs",
       image: "/images/siomay-frozen.png",
       description: "Kemasan beku praktis untuk disimpan, siap dikukus atau digoreng kapan saja.",
       meta: "Stok frozen",
