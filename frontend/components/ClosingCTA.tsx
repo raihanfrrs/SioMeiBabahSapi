@@ -96,7 +96,7 @@ const ClosingCTA = () => {
             className="text-[#F4E9D8] uppercase font-bold"
             style={{ fontSize: "11px", letterSpacing: "0.3em" }}
           >
-            DIBUAT SEGAR • SIAP DIPESAN
+            {(closingCta as any).label}
           </span>
         </div>
 
@@ -111,8 +111,8 @@ const ClosingCTA = () => {
             marginBottom: "28px"
           }}
         >
-          Sio Mei sapi premium, <br />
-          <span className="italic opacity-90">lembut dan gurih di setiap gigitan</span>
+          {closingCta.headline.split(', ')[0] + ','} <br />
+          <span className="italic opacity-90">{closingCta.headline.split(', ')[1]}</span>
         </h2>
         
         {/* Subheadline */}
@@ -125,7 +125,7 @@ const ClosingCTA = () => {
             marginBottom: "32px"
           }}
         >
-          Dibuat dari daging sapi pilihan dengan proses higienis dan tekstur yang dijaga konsisten. Cocok untuk santapan keluarga, acara, hingga pesanan dalam jumlah besar.
+          {closingCta.subheadline}
         </p>
         
         {/* CTA Button */}
@@ -144,7 +144,7 @@ const ClosingCTA = () => {
               gap: "10px"
             }}
           >
-            Pesan Sio Mei via WhatsApp
+            {closingCta.ctaText}
             <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
           </a>
         </div>
@@ -157,11 +157,12 @@ const ClosingCTA = () => {
             gap: "8px 24px",
           }}
         >
-          <span>Daging sapi pilihan</span>
-          <span className="opacity-50 text-[10px] hidden md:inline-block">•</span>
-          <span>Proses higienis</span>
-          <span className="opacity-50 text-[10px] hidden md:inline-block">•</span>
-          <span>Siap untuk berbagai kebutuhan</span>
+          {((closingCta as any).signals || []).map((signal: string, idx: number, arr: string[]) => (
+            <React.Fragment key={idx}>
+              <span>{signal}</span>
+              {idx < arr.length - 1 && <span className="opacity-50 text-[10px] hidden md:inline-block">•</span>}
+            </React.Fragment>
+          ))}
         </div>
       </div>
       

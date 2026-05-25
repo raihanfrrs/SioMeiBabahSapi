@@ -9,7 +9,7 @@ import { createGeneralWhatsAppLink } from "@/utils/whatsapp";
 
 const GalleryStack = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { gallery } = siteContent;
+  const { gallery, galleryIntro } = siteContent as any;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -74,18 +74,18 @@ const GalleryStack = () => {
           <span 
             className="text-[#3c2314]/70 uppercase font-bold text-[11px] tracking-[0.4em] mb-[14px]"
           >
-            BEHIND THE SCENE
+            {galleryIntro.label}
           </span>
           <h2 
             className="font-editorial text-[#3c2314] tracking-tight max-w-[980px] leading-[0.98]"
             style={{ fontSize: "clamp(36px, 8vw, 72px)" }}
           >
-            The Making of <span className="italic font-normal text-[#3c2314]">Babah Sapi</span>
+            {galleryIntro.headline.replace("Babah Sapi", "")}<span className="italic font-normal text-[#3c2314]">Babah Sapi</span>
           </h2>
           <p 
             className="text-center text-[#3e2019]/72 mx-auto font-sans text-sm md:text-[15px] leading-[1.7] max-w-[760px] mt-[22px]"
           >
-           Setiap Sio Mei dibuat melalui proses produksi yang higienis dan terukur, menggunakan daging sapi pilihan serta lipatan manual agar teksturnya tetap lembut, padat, dan gurih di setiap gigitan.
+           {galleryIntro.subheadline}
           </p>
         </div>
 
@@ -249,20 +249,8 @@ const GalleryStack = () => {
           style={{ marginTop: "clamp(12px, 3vw, 30px)" }}
         >
           <p className="text-xs md:text-sm font-sans text-[#3e2019]/72 italic">
-            Produksi fleksibel setiap hari, siap memenuhi pesanan satuan hingga jumlah besar.
+            {galleryIntro.footerNote}
           </p>
-          
-          {/* Benefit Divider Row */}
-          <div 
-            className="flex items-center justify-center gap-3 text-xs md:text-sm text-[#3c2314]/80 font-sans tracking-wide"
-            style={{ marginTop: "14px" }}
-          >
-            <span>Higienis</span>
-            <span className="text-[#3c2314]/30">•</span>
-            <span>Daging sapi pilihan</span>
-            <span className="text-[#3c2314]/30">•</span>
-            <span>Lipatan manual</span>
-          </div>
 
           <div 
             style={{ marginTop: "clamp(28px, 3vw, 40px)", marginBottom: "24px" }}
@@ -273,7 +261,7 @@ const GalleryStack = () => {
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#800020] to-[#4a0907] hover:from-[#6b1110] hover:to-[#320605] text-[#f4eadc] font-bold px-[38px] min-w-[320px] h-[56px] rounded-full transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-xl text-[18px] border border-[#C7923E]/20"
             >
-              Pesan Sio Mei via WhatsApp <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              {galleryIntro.cta} <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
           </div>
         </div>

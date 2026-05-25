@@ -628,7 +628,7 @@ const Hero = () => {
               className="text-[#c99745] font-sans font-bold uppercase tracking-[0.35em] mb-4 text-[11px] block"
               style={{ textShadow: "0 2px 4px rgba(0,0,0,0.2)" }}
             >
-              SIO MEI BY BABAH SAPI
+              {(hero as any).label || "SIO MEI BY BABAH SAPI"}
             </span>
             <motion.h1 
               initial={{ opacity: 0, filter: "blur(8px)" }}
@@ -636,16 +636,7 @@ const Hero = () => {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="font-editorial text-white hero-headline-responsive text-left"
             >
-              <span className="block md:hidden">
-                Sio Mei<br />
-                Sapi Premium,<br />
-                Lembut & Gurih
-              </span>
-              <span className="hidden md:block">
-                Sio Mei Sapi Premium,<br />
-                Lembut dan Gurih<br />
-                di Setiap Gigitan
-              </span>
+              {hero.headline}
             </motion.h1>
           </div>
 
@@ -658,7 +649,7 @@ const Hero = () => {
               className="flex flex-col items-start w-full"
             >
               <p className="font-sans text-white text-left hero-subheadline-spacing">
-                Nikmati Sio Mei sapi premium khas Babah Sapi, dibuat dengan bahan pilihan dan dapat dipesan hangat maupun frozen sesuai kebutuhan Anda.
+                {hero.subheadline}
               </p>
 
               <a
@@ -668,19 +659,20 @@ const Hero = () => {
                 className="hero-premium-btn group"
               >
                 <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907] flex items-center gap-3">
-                  Pesan Sio Mei via WhatsApp
+                  {hero.cta}
                   <span className="transform transition-transform duration-500 group-hover:translate-x-2">→</span>
                 </span>
                 <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
               </a>
 
               {/* Benefit kecil di bawah CTA */}
-              <div className="flex items-center gap-3.5 mt-8 text-white/80 font-sans uppercase tracking-[0.18em] text-[10px] font-bold">
-                <span>Dibuat segar</span>
-                <span className="opacity-45 text-[8px]">•</span>
-                <span>Daging sapi pilihan</span>
-                <span className="opacity-45 text-[8px]">•</span>
-                <span>Dikirim hangat</span>
+              <div className="flex flex-wrap items-center gap-3 mt-8 text-white/80 font-sans uppercase tracking-[0.18em] text-[10px] font-bold">
+                {((hero as any).highlight || "Original siap santap • Goreng renyah • Frozen praktis").split(" • ").map((item: string, idx: number, arr: string[]) => (
+                  <React.Fragment key={idx}>
+                    <span>{item}</span>
+                    {idx < arr.length - 1 && <span className="opacity-45 text-[8px]">•</span>}
+                  </React.Fragment>
+                ))}
               </div>
             </motion.div>
           </div>

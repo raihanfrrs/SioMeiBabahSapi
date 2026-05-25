@@ -148,10 +148,13 @@ const FooterLuxury = () => {
             </h5>
             <h4 
               className={`${gloock.className} text-[#5A0906] text-left`}
-              style={{ fontSize: "clamp(28px, 8vw, 40px)", lineHeight: 1.05, maxWidth: "430px", marginBottom: "16px" }}
+              style={{ fontSize: "clamp(28px, 8vw, 40px)", lineHeight: 1.05, maxWidth: "430px", marginBottom: "8px" }}
             >
-              Dapatkan kabar menu musiman dan cerita dapur Babah Sapi.
+              {(footer as any).newsletterTitle}
             </h4>
+            <p className="text-[#5A0906]/75 font-sans text-xs text-left mb-4 max-w-[430px]">
+              {(footer as any).newsletterCopy}
+            </p>
             
             <a 
               href="/#contact" 
@@ -170,7 +173,7 @@ const FooterLuxury = () => {
               }}
               className="transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#5A0906] w-fit"
             >
-              Gabung — Sekarang
+              {(footer as any).newsletterCta}
             </a>
           </div>
 
@@ -238,34 +241,34 @@ const FooterLuxury = () => {
             className="md:justify-between md:items-center"
           >
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px 18px" }}>
-              <a href="#" className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>Press Kit</a>
-              <a href="#" className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>Kebijakan Privasi</a>
-              <a href="#" className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>Syarat & Ketentuan</a>
+              {footer.legal.map((item: string, idx: number) => (
+                <a key={idx} href="#" className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>{item}</a>
+              ))}
             </div>
 
             {/* Tablet/Desktop Only Side Meta */}
             <div className="hidden md:flex items-center gap-6">
-              <a href="mailto:hello@babahsapi.com" className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
-                hello@babahsapi.com
+              <a href={`mailto:${(footer as any).email}`} className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
+                {(footer as any).email}
               </a>
-              <span className="uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>© Babah Sapi 2026</span>
+              <span className="uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>{footer.copyright}</span>
             </div>
           </div>
 
           {/* Mobile Only Center Meta */}
           <div className="flex flex-col items-center md:hidden w-full text-center">
             <a 
-              href="mailto:hello@babahsapi.com" 
+              href={`mailto:${(footer as any).email}`} 
               className="hover:opacity-60 transition-opacity uppercase" 
               style={{ fontSize: "10px", letterSpacing: "0.08em", marginTop: "18px" }}
             >
-              hello@babahsapi.com
+              {(footer as any).email}
             </a>
             <span 
               className="uppercase" 
               style={{ fontSize: "10px", letterSpacing: "0.08em", marginTop: "10px" }}
             >
-              © Babah Sapi 2026
+              {footer.copyright}
             </span>
           </div>
           

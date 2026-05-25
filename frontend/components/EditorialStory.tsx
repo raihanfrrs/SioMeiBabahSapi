@@ -5,8 +5,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
 import { createGeneralWhatsAppLink } from "@/utils/whatsapp";
+import { siteContent } from "@/data/siteContent";
+
 
 const EditorialStory = () => {
+  const { philosophy } = siteContent as any;
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -59,13 +62,20 @@ const EditorialStory = () => {
         {/* Left: Large Editorial Heading */}
         <div className="philosophy-title-block col-span-1 md:col-span-2 lg:col-span-4 flex flex-col items-start text-left editorial-reveal">
           <p className="section-kicker text-brand-accent tracking-[0.35em] uppercase text-[11px] font-bold block mb-[20px]">
-            OUR PHILOSOPHY
+            {philosophy.label}
           </p>
           <h2 className="text-[clamp(48px,14vw,72px)] lg:text-[clamp(56px,5vw,82px)] leading-[0.95] lg:leading-[1.05] font-editorial text-brand-dark tracking-tight font-light">
-            Terinspirasi<br />
-            dari<br />
-            <span className="text-brand-accent italic font-normal">resep</span><br />
-            <span className="text-brand-accent italic font-normal">warisan</span>
+            {philosophy.headline.split(' ').map((word: string, i: number, arr: string[]) => {
+              const isItalic = i >= arr.length - 2;
+              return (
+                <React.Fragment key={i}>
+                  <span className={isItalic ? "text-brand-accent italic font-normal inline-block" : "inline-block"}>
+                    {word}
+                  </span>
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              );
+            })}
           </h2>
         </div>
 
@@ -84,32 +94,22 @@ const EditorialStory = () => {
         {/* Right: Small text block */}
         <div className="philosophy-copy col-span-1 md:col-span-1 lg:col-span-4 flex flex-col justify-center items-start text-left editorial-reveal max-w-[380px] w-full self-center gap-6">
           <p className="text-[#2b1a16] text-[18px] font-sans leading-[1.75] max-w-[360px]">
-            Sio Mei dibuat dari daging sapi pilihan, diracik dengan resep keluarga, lalu dikukus perlahan untuk menjaga tekstur lembut, rasa gurih, dan aroma hangat khas Babah Sapi.
+            {philosophy.description}
           </p>
           <p className="text-[#2b1a16]/65 text-[13px] font-sans italic mt-[-10px] leading-relaxed max-w-[360px]">
-            “Nama Sio Mei kami maknai sebagai kelezatan sederhana yang dibuat dengan tangan dan dijaga rasanya dari waktu ke waktu.”
+            {philosophy.quote}
           </p>
           
           {/* Benefit Badges */}
           <div className="philosophy-benefits grid grid-cols-3 gap-6 w-full mt-1">
-            <div className="flex flex-col items-start">
-              <div className="w-12 h-[1px] bg-[#5b0b07]/30 mb-2.5" />
-              <span className="text-[11px] tracking-[0.14em] uppercase text-[#5b0b07] font-bold leading-[1.35] font-sans">
-                Dibuat Segar
-              </span>
-            </div>
-            <div className="flex flex-col items-start">
-              <div className="w-12 h-[1px] bg-[#5b0b07]/30 mb-2.5" />
-              <span className="text-[11px] tracking-[0.14em] uppercase text-[#5b0b07] font-bold leading-[1.35] font-sans">
-                Daging Sapi Pilihan
-              </span>
-            </div>
-            <div className="flex flex-col items-start">
-              <div className="w-12 h-[1px] bg-[#5b0b07]/30 mb-2.5" />
-              <span className="text-[11px] tracking-[0.14em] uppercase text-[#5b0b07] font-bold leading-[1.35] font-sans">
-                Resep Keluarga
-              </span>
-            </div>
+            {philosophy.badges.map((badge: string, index: number) => (
+              <div key={index} className="flex flex-col items-start">
+                <div className="w-12 h-[1px] bg-[#5b0b07]/30 mb-2.5" />
+                <span className="text-[11px] tracking-[0.14em] uppercase text-[#5b0b07] font-bold leading-[1.35] font-sans">
+                  {badge}
+                </span>
+              </div>
+            ))}
           </div>
 
           {/* Premium CTA Link */}
@@ -120,7 +120,7 @@ const EditorialStory = () => {
               rel="noopener noreferrer"
               className="philosophy-cta inline-flex items-center gap-3 w-fit mt-1 pb-[4px] border-b border-[#5b0b07] text-[13px] tracking-[0.18em] font-extrabold uppercase text-[#5b0b07] transition-all duration-300 hover:opacity-80"
             >
-              PESAN SIO MEI HARI INI →
+              {philosophy.cta} →
             </a>
           </div>
         </div>

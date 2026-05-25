@@ -8,10 +8,9 @@ import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
 import { createWhatsAppLink } from "@/utils/whatsapp";
 
 const FoodShowcase = () => {
-  const { foods } = siteContent;
+  const { foods, menuIntro } = siteContent as any;
 
   const badges = ["Best Seller", "Favorit"];
-  const microInfos = ["Dibuat Segar", "Pesan via WhatsApp"];
 
   return (
     <section 
@@ -35,12 +34,12 @@ const FoodShowcase = () => {
         
         {/* Header Section */}
         <div className="flex flex-col w-full" style={{ marginBottom: "20px" }}>
-          {/* Label PREMIUM MENU */}
+          {/* Label MENU PILIHAN */}
           <span 
             className="text-brand-accent uppercase text-xs font-bold"
             style={{ letterSpacing: "0.35em", marginBottom: "14px" }}
           >
-            PREMIUM MENU
+            {menuIntro.label}
           </span>
           
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 w-full">
@@ -49,14 +48,14 @@ const FoodShowcase = () => {
                 className="text-5xl md:text-7xl lg:text-[80px] font-editorial text-brand-dark tracking-tighter leading-[0.85]"
                 style={{ marginBottom: "20px" }}
               >
-                The Sio Mei <br className="hidden md:block" />
+                {menuIntro.headline.replace("Collection", "")} <br className="hidden md:block" />
                 <span className="italic text-brand-accent font-normal">Collection</span>
               </h2>
               <p 
                 className="text-[#4b0705]/80 font-medium text-[15px] md:text-[16px] max-w-md leading-relaxed"
                 style={{ marginBottom: "24px" }}
               >
-                Pilihan Sio Mei sapi premium handmade, diracik dari bahan pilihan dan siap dipesan hangat melalui WhatsApp.
+                {menuIntro.subheadline}
               </p>
             </div>
             
@@ -84,7 +83,7 @@ const FoodShowcase = () => {
           style={{ paddingTop: "16px", paddingBottom: "16px", marginTop: "8px", marginBottom: "28px" }}
         >
           <span className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#4b0705]/70 text-center">
-            Dibuat Setiap Hari • Menerima Pesanan Banyak Sesuai Permintaan
+            {menuIntro.banner}
           </span>
         </div>
  
@@ -93,7 +92,7 @@ const FoodShowcase = () => {
           className="flex flex-col md:flex-row justify-center items-stretch w-full"
           style={{ gap: "32px", marginTop: "24px" }}
         >
-          {foods.map((food, i) => {
+          {foods.map((food: any, i: number) => {
             const [pricePart, qtyPart] = food.price.split(" / ");
             const waLink = createWhatsAppLink({
               name: food.name,
@@ -158,7 +157,7 @@ const FoodShowcase = () => {
                     style={{ gap: "8px", fontSize: "11px", marginBottom: "16px" }}
                   >
                     <span className="rounded-full bg-[#4b0705]/40" style={{ width: "6px", height: "6px" }} />
-                    {microInfos[i % microInfos.length]}
+                    {food.meta}
                   </div>
                   
                   <a 
@@ -168,7 +167,7 @@ const FoodShowcase = () => {
                     className="w-full inline-flex items-center justify-center bg-[#4b0705] text-[#F4EBDD] font-bold tracking-wide rounded-[8px] transition-colors duration-300 hover:bg-[#3a0504]"
                     style={{ fontSize: "13px", padding: "14px 18px", minHeight: "48px" }}
                   >
-                    Pesan via WhatsApp
+                    {food.buttonText}
                   </a>
                 </div>
               </motion.div>
