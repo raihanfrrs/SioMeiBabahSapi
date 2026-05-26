@@ -662,3 +662,10 @@ nextjs-portal,
 }
 
 
+/* Protected Legal Modals */
+[data-protected-modal="true"] {
+  -webkit-touch-callout: none;
+}
+[data-protected-modal="true"] * {
+  -webkit-touch-callout: none;
+}

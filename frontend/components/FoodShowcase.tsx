@@ -144,13 +144,14 @@ export default function FoodShowcase() {
                       {food.label}
                     </div>
                     
-                    <button 
-                      onClick={() => setSelectedProduct(food)}
+                    <a 
+                      href={`/produk/sio-mei-${food.id}`}
+                      onClick={(e) => { e.preventDefault(); setSelectedProduct(food); }}
                       className="w-full inline-flex items-center justify-center border border-[#4b0705]/20 text-[#4b0705] font-bold tracking-wide rounded-[8px] transition-colors duration-300 hover:bg-[#4b0705]/5"
                       style={{ fontSize: "13px", padding: "12px 18px", minHeight: "44px", marginBottom: "12px" }}
                     >
                       Lihat Detail
-                    </button>
+                    </a>
 
                     <a 
                       href={waLink} 
