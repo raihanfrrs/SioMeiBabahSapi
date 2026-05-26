@@ -24,16 +24,16 @@ export const siteContent = {
       { key: "Varian", value: "Original/Kukus, Goreng, Frozen" },
       { key: "Isi Pack", value: "5 pcs per pack" },
       { key: "Cara Penyajian", value: "Kukus, goreng, atau diolah kembali oleh partner" },
-      { key: "Target Konsumen", value: "Keluarga, acara, reseller, restoran, cafe, bar, club" },
+      { key: "Target Konsumen", value: "Keluarga, acara, reseller, cafe, restoran, bar & club, event catering" },
       { key: "Sistem Pemesanan", value: "WhatsApp, pre-order, atau B2B supply" },
-      { key: "Berat per pcs", value: "[Isi nanti]" },
-      { key: "Berat per pack", value: "[Isi nanti]" },
-      { key: "Shelf life frozen", value: "[Isi nanti]" },
-      { key: "Suhu penyimpanan", value: "[Isi nanti]" },
-      { key: "MOQ B2B", value: "[Isi nanti]" },
-      { key: "Lead time produksi", value: "[Isi nanti]" },
-      { key: "Kapasitas produksi", value: "[Isi nanti]" },
-      { key: "Legalitas pangan", value: "[Isi nanti]" }
+      { key: "Berat per pcs", value: "±40–50 gram" },
+      { key: "Berat per pack", value: "±200–250 gram" },
+      { key: "Suhu penyimpanan", value: "-18°C (Freezer)" },
+      { key: "Shelf life frozen", value: "1-2 bulan (suhu beku ideal)" },
+      { key: "MOQ B2B", value: "Mulai dari 50 / 100 pack (dapat disesuaikan)" },
+      { key: "Lead time produksi", value: "1–3 hari kerja (tergantung volume)" },
+      { key: "Kapasitas produksi", value: "Sesuai permintaan supply rutin" },
+      { key: "Legalitas pangan", value: "NIB terdaftar (PIRT & Halal dalam proses)" }
     ]
   },
   whyUs: {
@@ -152,17 +152,17 @@ export const siteContent = {
   },
   b2bSupply: {
     label: "B2B SUPPLY",
-    headline: "Sio Mei Frozen untuk Partner F&B",
-    subheadline: "Siap disuplai dalam format frozen untuk kebutuhan restoran, cafe, bar, club, event, dan dapur operasional.",
+    headline: "Sio Mei Frozen untuk Menu Snack, Sharing Platter, dan Supply Outlet F&B",
+    subheadline: "Produk siomay sapi frozen yang praktis diolah kembali oleh dapur partner, cocok untuk menu kukus, goreng, platter, maupun menu signature sesuai konsep outlet.",
     leftCard: {
-      title: "Keunggulan Operasional",
-      description: "Sio Mei Babah Sapi dirancang agar mudah masuk ke alur dapur partner: praktis disimpan, fleksibel diolah, dan konsisten saat disajikan.",
+      title: "Keunggulan untuk Partner F&B",
+      description: "Sio Mei Babah Sapi dirancang agar mudah masuk ke alur dapur partner dan memberikan nilai tambah pada bisnis Anda.",
       bullets: [
-        "Format frozen memudahkan penyimpanan stok dapur.",
-        "Bisa dikukus, digoreng, atau dikembangkan menjadi menu signature.",
-        "Cocok untuk snack, appetizer, sharing platter, bar bites, maupun menu event.",
-        "Rasa dan tekstur dibuat konsisten untuk kebutuhan operasional.",
-        "Dapat disesuaikan untuk kebutuhan pemesanan dalam jumlah besar."
+        "Praktis untuk operasional dapur (mudah disimpan & distandarkan).",
+        "Bisa diolah dengan cepat (kukus atau goreng).",
+        "Cocok untuk sharing menu, camilan, atau bar bites.",
+        "Rasa dan kualitas konsisten antar batch.",
+        "Bisa disesuaikan untuk kebutuhan outlet (menu signature)."
       ],
       menuLabel: "Ide Menu Kolaborasi",
       menuIdeas: [
@@ -175,11 +175,11 @@ export const siteContent = {
     rightCard: {
       title: "Detail Supply",
       details: [
-        { key: "MOQ B2B", value: "[Isi nanti]" },
-        { key: "Lead time", value: "[Isi nanti]" },
-        { key: "Kapasitas produksi", value: "[Isi nanti]" },
-        { key: "Area pengiriman", value: "[Isi nanti]" },
-        { key: "Sistem pembayaran", value: "[Isi nanti]" },
+        { key: "MOQ B2B", value: "Mulai dari 50 pack" },
+        { key: "Lead time", value: "1–3 hari kerja" },
+        { key: "Kapasitas produksi", value: "Sesuai jadwal supply rutin" },
+        { key: "Area pengiriman", value: "Diskusikan via WhatsApp" },
+        { key: "Sistem pembayaran", value: "Sesuai kesepakatan B2B" },
         { key: "Format produk", value: "Frozen / 5 pcs per pack" }
       ]
     },
