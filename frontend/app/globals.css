@@ -414,45 +414,44 @@ body::after {
 
   /* 7. Ultra-Luxury CTA Button - Optimized for Mobile & Tablet */
   .hero-premium-btn {
-    display: inline-flex !important;
+    display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
     position: relative !important;
     overflow: hidden !important;
     background-color: #f6ebdd !important; /* Premium Cream Light */
     color: #4a0907 !important; /* Dark Maroon */
     border: none !important;
-    border-radius: 8px !important; /* Elegant 8px Rounded Corners */
-    height: 60px !important; /* 60px Minimum Height */
-    padding: 0 36px !important; /* Spacious Horizontal Padding */
+    border-radius: 12px !important; 
+    min-height: 56px !important; /* 56px Minimum Height */
+    padding: 14px 20px !important; /* 14px vertical, 20px horizontal */
     font-size: 14px !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.18em !important;
+    letter-spacing: 0.04em !important; /* smaller letter-spacing for mobile */
+    line-height: normal !important;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
     transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
-    margin-top: 28px !important; /* 28px margin top */
-    margin-bottom: 28px !important; /* 28px margin top */
     cursor: pointer !important;
     pointer-events: auto !important;
     width: 100% !important; /* Full-width on mobile */
-    max-width: 326px !important; /* Restricted maximum width */
+    max-width: 360px !important; /* Restricted maximum width on mobile */
   }
   @media (min-width: 768px) {
     .hero-premium-btn {
       width: auto !important; /* Fit-content on tablet */
-      max-width: none !important;
-      margin-bottom: 28px !important; /* 28px margin top */
+      max-width: 520px !important;
+      letter-spacing: 0.08em !important;
     }
   }
   @media (min-width: 1024px) {
     .hero-premium-btn {
       width: auto !important;
       max-width: none !important;
-      height: 62px !important;
-      padding: 0 44px !important;
-      margin-top: 36px !important;
-      margin-bottom: 36px !important;
+      min-height: 62px !important;
+      padding: 14px 36px !important;
+      border-radius: 16px !important;
     }
   }
 

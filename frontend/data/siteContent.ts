@@ -11,7 +11,7 @@ export const siteContent = {
     headline: "Sio Mei Sapi Premium untuk Sajian Kukus, Goreng, dan Frozen",
     subheadline: "Siomay sapi premium dengan tekstur padat-lembut, rasa gurih, dan proses produksi higienis. Cocok untuk pesanan keluarga, acara, reseller, hingga kebutuhan restoran dan outlet F&B.",
     ctaPrimary: "Pesan via WhatsApp",
-    ctaSecondary: "Ajukan Kerja Sama B2B",
+    ctaSecondary: "Kerja Sama B2B",
     highlight: "Original siap santap • Goreng renyah • Frozen praktis",
     imagePlaceholder: "/images/siomay-hero-premium.png",
   },

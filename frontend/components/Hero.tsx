@@ -652,17 +652,17 @@ const Hero = () => {
                 {hero.subheadline}
               </p>
 
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full mt-7 mb-7">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full mt-7 mb-7">
                 <a
                   href={buildWhatsAppLink(generalOrderMessage())}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hero-premium-btn group !mt-0 !mb-0"
+                  className="hero-premium-btn group"
                 >
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907] flex items-center gap-3">
-                    {(hero as any).ctaPrimary}
-                    <span className="transform transition-transform duration-500 group-hover:translate-x-2">→</span>
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907]">
+                    {(hero as any).ctaPrimary || "Pesan via WhatsApp"}
                   </span>
+                  <span className="relative z-10 transform transition-transform duration-500 group-hover:translate-x-1">→</span>
                   <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
                 </a>
 
@@ -670,11 +670,12 @@ const Hero = () => {
                   href={buildWhatsAppLink(b2bInquiryMessage())}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hero-premium-btn group !mt-0 !mb-0 !bg-transparent !border !border-white/30 !text-white hover:!border-white/80"
+                  className="hero-premium-btn group !bg-transparent !border !border-white/30 !text-white hover:!border-white/80"
                 >
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907] flex items-center gap-3">
-                    {(hero as any).ctaSecondary}
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907]">
+                    <span className="hidden sm:inline">Ajukan </span>Kerja Sama B2B
                   </span>
+                  <span className="relative z-10 transform transition-transform duration-500 group-hover:translate-x-1">→</span>
                   <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
                 </a>
               </div>
