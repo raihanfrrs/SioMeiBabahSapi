@@ -261,8 +261,8 @@ const FooterLuxury = () => {
               style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "16px 24px" }}
               className="w-full uppercase text-[10px] tracking-[0.08em]"
             >
-              <Link href="/kebijakan-privasi" className="hover:opacity-60 transition-opacity">Kebijakan Privasi</Link>
-              <Link href="/syarat-ketentuan" className="hover:opacity-60 transition-opacity">Syarat & Ketentuan</Link>
+              <a href="/kebijakan-privasi" onClick={(e) => { e.preventDefault(); setModalType("privacy"); }} className="hover:opacity-60 transition-opacity">Kebijakan Privasi</a>
+              <a href="/syarat-ketentuan" onClick={(e) => { e.preventDefault(); setModalType("terms"); }} className="hover:opacity-60 transition-opacity">Syarat & Ketentuan</a>
               <span>© 2026 Sio Mei Babah Sapi. Hak cipta dilindungi.</span>
             </div>
           </div>
