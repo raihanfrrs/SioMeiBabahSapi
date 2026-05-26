@@ -191,21 +191,16 @@ export const siteContent = {
     headlineBreak: "Tentang Sio Mei",
     subheadline: "Ruang untuk menampilkan ulasan pelanggan, dokumentasi pesanan, dan feedback partner yang pernah mencoba Sio Mei.",
     posts: [
-      { 
-        id: 1, 
-        title: "Ulasan Pelanggan", 
-        text: "Tempat untuk menampilkan testimoni asli dari pelanggan yang sudah mencoba Sio Mei." 
-      },
-      { 
-        id: 2, 
-        title: "Dokumentasi Pesanan", 
-        text: "Ruang untuk menampilkan screenshot order, repeat order, atau dokumentasi pengiriman." 
-      },
-      { 
-        id: 3, 
-        title: "Feedback Partner", 
-        text: "Ruang untuk ulasan reseller, cafe, restoran, atau partner B2B yang bekerja sama." 
-      }
+      { id: 1, name: "Sekar", label: "Stok Rumah", rating: 5, text: "Packaging frozen-nya rapi dan mudah disimpan. Kalau ingin camilan cepat, tinggal kukus atau goreng." },
+      { id: 2, name: "Raka", label: "Repeat Order", rating: 5, text: "Teksturnya lembut dan isiannya gurih. Sudah beberapa kali pesan karena rasanya konsisten." },
+      { id: 3, name: "Gendis", label: "Acara Keluarga", rating: 5, text: "Saya pesan untuk acara keluarga di rumah. Praktis disajikan dan banyak yang cocok dengan rasanya." },
+      { id: 4, name: "Damar", label: "Siap Goreng", rating: 5, text: "Versi gorengnya enak, bagian luarnya renyah tapi dalamnya tetap lembut. Cocok untuk camilan sore." },
+      { id: 5, name: "Kirana", label: "Kukus Hangat", rating: 5, text: "Dikukus sebentar langsung siap makan. Aromanya enak dan rasanya gurih tanpa perlu tambahan macam-macam." },
+      { id: 6, name: "Banyu", label: "Pesanan Kantor", rating: 5, text: "Pernah pesan untuk teman-teman kantor, penyajiannya mudah dan porsinya pas untuk sharing." },
+      { id: 7, name: "Laras", label: "Frozen Praktis", rating: 5, text: "Suka karena bisa disimpan di freezer. Saat butuh makanan cepat, tinggal diolah sesuai selera." },
+      { id: 8, name: "Aruna", label: "Pesanan WhatsApp", rating: 5, text: "Proses pemesanan mudah lewat WhatsApp, respons cepat, dan produk datang dalam kondisi baik." },
+      { id: 9, name: "Mahesa", label: "Camilan Keluarga", rating: 5, text: "Anak-anak suka karena teksturnya lembut. Rasanya gurih dan tidak terlalu berat untuk camilan." },
+      { id: 10, name: "Nares", label: "Siap Saji", rating: 5, text: "Sio Mei-nya praktis banget. Bisa dikukus untuk rasa klasik atau digoreng kalau ingin lebih renyah." }
     ],
     ctaText: "Ingin mencoba Sio Mei untuk acara atau kebutuhan bisnis?",
     ctaButton: "Konsultasi via WhatsApp →"
@@ -227,6 +222,10 @@ export const siteContent = {
       {
         q: "Bagaimana cara menyajikan Sio Mei?",
         a: "Sio Mei dapat disajikan dengan cara dikukus untuk tekstur lembut, digoreng untuk sensasi renyah, atau disimpan frozen untuk stok praktis."
+      },
+      {
+        q: "Resep apa yang digunakan untuk Sio Mei Babah Sapi?",
+        a: "Sio Mei Babah Sapi dibuat dari resep keluarga turun-temurun yang dijaga cita rasanya. Kami menyesuaikannya agar tetap gurih, lembut, dan cocok dinikmati dalam berbagai cara penyajian, baik dikukus, digoreng, maupun dalam format frozen."
       },
       {
         q: "Apakah tersedia harga untuk reseller atau B2B?",

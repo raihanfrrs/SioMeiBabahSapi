@@ -673,7 +673,7 @@ const Hero = () => {
                   className="hero-premium-btn group !bg-transparent !border !border-white/30 !text-white hover:!border-white/80"
                 >
                   <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907]">
-                    <span className="hidden sm:inline">Ajukan </span>Kerja Sama B2B
+                    Kerja Sama B2B
                   </span>
                   <span className="relative z-10 transform transition-transform duration-500 group-hover:translate-x-1">→</span>
                   <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />

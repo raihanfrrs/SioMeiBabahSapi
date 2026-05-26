@@ -1,4 +1,7 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { siteContent } from "@/data/siteContent";
 import RevealWrapper from "@/components/RevealWrapper";
 import { buildWhatsAppLink, generalOrderMessage } from "@/utils/whatsapp";
@@ -6,10 +9,52 @@ import { buildWhatsAppLink, generalOrderMessage } from "@/utils/whatsapp";
 export default function TestimonialSection() {
   const { label, headline, headlineBreak, subheadline, posts, ctaText, ctaButton } = siteContent.testimonials as any;
 
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    dragFree: false,
+    containScroll: "trimSnaps",
+  });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (emblaApi) emblaApi.scrollTo(index);
+    },
+    [emblaApi]
+  );
+
+  const onInit = useCallback((emblaApi: any) => {
+    setScrollSnaps(emblaApi.scrollSnapList());
+  }, []);
+
+  const onSelect = useCallback((emblaApi: any) => {
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onInit(emblaApi);
+    onSelect(emblaApi);
+    emblaApi.on("reInit", onInit);
+    emblaApi.on("reInit", onSelect);
+    emblaApi.on("select", onSelect);
+  }, [emblaApi, onInit, onSelect]);
+
   return (
     <section 
       id="testimonials"
-      className="section-shell relative w-full bg-brand-cream"
+      className="section-shell relative w-full bg-brand-cream overflow-hidden"
     >
       <div className="section-inner flex flex-col items-center">
         {/* Header Area */}
@@ -52,63 +97,105 @@ export default function TestimonialSection() {
           </div>
         </RevealWrapper>
 
-        {/* 3 Cards Grid */}
-        <div 
-          className="grid w-full mx-auto max-w-[1100px]"
-          style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "clamp(24px, 3vw, 32px)",
-            marginBottom: "clamp(48px, 6vw, 64px)",
-          }}
-        >
-          {posts.map((post: any, index: number) => (
-            <RevealWrapper 
-              key={post.id} 
-              delay={150 * index}
-              className={`flex w-full ${index === 2 ? "md:col-span-2 lg:col-span-1" : ""}`}
+        {/* Embla Carousel Wrapper */}
+        <div className="w-full max-w-[1180px] mx-auto relative px-2 md:px-8 lg:px-12" style={{ marginBottom: "48px" }}>
+          
+          <div className="relative w-full">
+            {/* Navigation Arrows */}
+            <button 
+              onClick={scrollPrev}
+              className="absolute left-1 md:left-[-20px] lg:left-[-28px] top-1/2 -translate-y-1/2 z-20 flex h-[42px] w-[42px] md:h-12 md:w-12 items-center justify-center rounded-full border border-[#d8b36a]/50 bg-[#fff8ed]/90 text-[#6b0f0f] shadow-md backdrop-blur-sm transition-all duration-300 hover:bg-[#4b0705] hover:border-[#4b0705] hover:text-[#FDF8EE]"
+              aria-label="Previous slide"
             >
-              <div 
-                className="flex flex-col w-full h-full transition-shadow duration-500 hover:shadow-xl group"
-                style={{
-                  backgroundColor: "rgba(253, 248, 238, 0.8)", // ivory semitransparent
-                  border: "1px solid rgba(199, 146, 62, 0.3)", // thin gold/maroon border
-                  borderRadius: "20px",
-                  padding: "clamp(28px, 4vw, 36px)",
-                  boxShadow: "0 8px 30px -10px rgba(75, 25, 20, 0.05)"
-                }}
-              >
-                <div 
-                  className="font-editorial text-[#C7923E] opacity-70 mb-4"
-                  style={{ fontSize: "40px", lineHeight: 1 }}
-                >
-                  “
-                </div>
-                <h3 
-                  className="font-sans font-bold text-[#4b0705]"
-                  style={{
-                    fontSize: "clamp(18px, 2vw, 20px)",
-                    marginBottom: "12px",
-                  }}
-                >
-                  {post.title}
-                </h3>
-                <p 
-                  className="font-sans text-[#4b0705]/80"
-                  style={{
-                    fontSize: "clamp(15px, 1.5vw, 16px)",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {post.text}
-                </p>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            
+            <button 
+              onClick={scrollNext}
+              className="absolute right-1 md:right-[-20px] lg:right-[-28px] top-1/2 -translate-y-1/2 z-20 flex h-[42px] w-[42px] md:h-12 md:w-12 items-center justify-center rounded-full border border-[#d8b36a]/50 bg-[#fff8ed]/90 text-[#6b0f0f] shadow-md backdrop-blur-sm transition-all duration-300 hover:bg-[#4b0705] hover:border-[#4b0705] hover:text-[#FDF8EE]"
+              aria-label="Next slide"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+
+            {/* Embla Viewport */}
+            <div className="overflow-hidden w-full cursor-grab active:cursor-grabbing rounded-2xl" ref={emblaRef}>
+              <div className="flex" style={{ touchAction: "pan-y", gap: "24px" }}>
+                {posts.map((post: any, index: number) => (
+                  <div 
+                    key={post.id} 
+                    className="flex-[0_0_100%] md:flex-[0_0_calc((100%-24px)/2)] lg:flex-[0_0_calc((100%-48px)/3)] min-w-0"
+                  >
+                    <div 
+                      className="flex flex-col w-full h-full"
+                      style={{
+                        backgroundColor: "#FDF8EE",
+                        border: "1px solid rgba(199, 146, 62, 0.3)",
+                        borderRadius: "24px",
+                        padding: "clamp(24px, 3vw, 32px)",
+                        boxShadow: "0 4px 20px -10px rgba(75, 7, 5, 0.05)"
+                      }}
+                    >
+                      {/* Header: Name, Role, Rating */}
+                      <div className="flex flex-col mb-4 pb-4 border-b border-[#4b0705]/10">
+                        <div className="flex justify-between items-start mb-2">
+                          <h3 className="font-editorial text-2xl text-[#4b0705] leading-none">
+                            {post.name}
+                          </h3>
+                          <span className="text-[#C7923E] tracking-widest text-[12px] mt-1">
+                            {"★".repeat(post.rating || 5)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          {post.label && (
+                            <span className="text-[10px] uppercase tracking-wider font-bold bg-[#4b0705]/5 text-[#4b0705] py-1.5 px-3 rounded-md">
+                              {post.label}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      
+                      {/* Text */}
+                      <p 
+                        className="font-sans text-[#4b0705]/85"
+                        style={{
+                          fontSize: "15px",
+                          lineHeight: 1.65,
+                        }}
+                      >
+                        “{post.text}”
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </RevealWrapper>
-          ))}
+            </div>
+          </div>
+          
+          {/* Dots Indicator */}
+          <div className="flex justify-center mt-10 gap-2">
+            {scrollSnaps.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  index === selectedIndex 
+                    ? "bg-[#4b0705] scale-125" 
+                    : "bg-[#C7923E]/30 hover:bg-[#C7923E]/60"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* CTA Area */}
-        <RevealWrapper delay={400}>
-          <div className="flex flex-col items-center text-center">
+        <RevealWrapper delay={200}>
+          <div className="flex flex-col items-center text-center mt-12">
             <p 
               className="font-sans font-medium mb-5"
               style={{
