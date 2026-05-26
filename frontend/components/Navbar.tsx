@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { createGeneralWhatsAppLink } from "@/utils/whatsapp";
+import { generalOrderMessage, buildWhatsAppLink } from "@/utils/whatsapp";
 
 const Navbar = () => {
   const [navTheme, setNavTheme] = useState<"light" | "dark">("dark");
@@ -359,7 +359,7 @@ const Navbar = () => {
                   style={{ marginTop: "22px" }}
                 >
                   <a 
-                    href={createGeneralWhatsAppLink()} 
+                    href={buildWhatsAppLink(generalOrderMessage())} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="flex items-center gap-2 hover:text-white transition-colors"
@@ -380,7 +380,7 @@ const Navbar = () => {
                   style={{ marginTop: "24px" }}
                 >
                   <a
-                    href={createGeneralWhatsAppLink()}
+                    href={buildWhatsAppLink(generalOrderMessage())}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}

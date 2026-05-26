@@ -2,11 +2,15 @@
 
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import ProductSummary from "@/components/ProductSummary";
 import MacroTexture from "@/components/MacroTexture";
-import ProcessStory from "@/components/ProcessStory";
-import EditorialStory from "@/components/EditorialStory";
-import GalleryStack from "@/components/GalleryStack";
+import WhySioMei from "@/components/WhySioMei";
 import FoodShowcase from "@/components/FoodShowcase";
+import HowToEnjoy from "@/components/HowToEnjoy";
+import BehindTheScene from "@/components/BehindTheScene";
+import B2BSupply from "@/components/B2BSupply";
+import TestimonialSection from "@/components/TestimonialSection";
+import FAQSection from "@/components/FAQSection";
 import ClosingCTA from "@/components/ClosingCTA";
 import FooterLuxury from "@/components/FooterLuxury";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -22,24 +26,30 @@ export default function Home() {
       <main className="min-h-screen bg-brand-cream relative overflow-hidden noise-overlay">
         <Navbar />
         
-        {/* Storytelling Sequence */}
+        {/* Sequence: Hero -> Summary -> Why Us -> Menu -> How to Enjoy -> BTS -> B2B -> Testimonials -> FAQ -> Closing -> Footer */}
         <div className="relative z-10">
           <Hero />
         </div>
         
         <div className="relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
           <MacroTexture />
-          <ProcessStory />
+          <ProductSummary />
+          <WhySioMei />
         </div>
         
         <div className="relative z-30 bg-brand-cream">
-          <EditorialStory />
-          <GalleryStack />
+          <FoodShowcase />
+          <HowToEnjoy />
         </div>
         
-        {/* Menu & Closing */}
         <div className="relative z-40 bg-brand-cream">
-          <FoodShowcase />
+          <BehindTheScene />
+          <B2BSupply />
+        </div>
+
+        <div className="relative z-40 bg-brand-cream">
+          <TestimonialSection />
+          <FAQSection />
         </div>
         
         <div className="relative z-50">
@@ -50,4 +60,3 @@ export default function Home() {
     </SmoothScroll>
   );
 }
-

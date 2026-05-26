@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { siteContent } from "@/data/siteContent";
 import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
-import { createWhatsAppLink } from "@/utils/whatsapp";
+import { productOrderMessage, buildWhatsAppLink } from "@/utils/whatsapp";
 
 const FoodShowcase = () => {
   const { foods, menuIntro } = siteContent as any;
@@ -93,12 +93,7 @@ const FoodShowcase = () => {
           style={{ gap: "32px", marginTop: "24px" }}
         >
           {foods.map((food: any, i: number) => {
-            const [pricePart, qtyPart] = food.price.split(" / ");
-            const waLink = createWhatsAppLink({
-              name: food.name,
-              price: pricePart || food.price,
-              qty: qtyPart || "5 pcs"
-            });
+            const waLink = buildWhatsAppLink(productOrderMessage(food.name, food.price));
             return (
               <motion.div
                 key={food.id}

@@ -7,7 +7,7 @@ import { siteContent } from "@/data/siteContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
-import { createGeneralWhatsAppLink } from "@/utils/whatsapp";
+import { generalOrderMessage, b2bInquiryMessage, buildWhatsAppLink } from "@/utils/whatsapp";
 
 const heroVideos = [
   {
@@ -652,18 +652,32 @@ const Hero = () => {
                 {hero.subheadline}
               </p>
 
-              <a
-                href={createGeneralWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero-premium-btn group"
-              >
-                <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907] flex items-center gap-3">
-                  {hero.cta}
-                  <span className="transform transition-transform duration-500 group-hover:translate-x-2">→</span>
-                </span>
-                <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
-              </a>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full mt-7 mb-7">
+                <a
+                  href={buildWhatsAppLink(generalOrderMessage())}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-premium-btn group !mt-0 !mb-0"
+                >
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907] flex items-center gap-3">
+                    {(hero as any).ctaPrimary}
+                    <span className="transform transition-transform duration-500 group-hover:translate-x-2">→</span>
+                  </span>
+                  <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
+                </a>
+
+                <a
+                  href={buildWhatsAppLink(b2bInquiryMessage())}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-premium-btn group !mt-0 !mb-0 !bg-transparent !border !border-white/30 !text-white hover:!border-white/80"
+                >
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907] flex items-center gap-3">
+                    {(hero as any).ctaSecondary}
+                  </span>
+                  <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
+                </a>
+              </div>
 
               {/* Benefit kecil di bawah CTA */}
               <div className="flex flex-wrap items-center gap-3 mt-8 text-white/80 font-sans uppercase tracking-[0.18em] text-[10px] font-bold">
@@ -841,7 +855,7 @@ const Hero = () => {
                   style={{ marginTop: "22px" }}
                 >
                   <a 
-                    href={createGeneralWhatsAppLink()} 
+                    href={buildWhatsAppLink(generalOrderMessage())} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="flex items-center gap-2 hover:text-white transition-colors"
@@ -862,7 +876,7 @@ const Hero = () => {
                   style={{ marginTop: "24px" }}
                 >
                   <a
-                    href={createGeneralWhatsAppLink()}
+                    href={buildWhatsAppLink(generalOrderMessage())}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}

@@ -6,6 +6,7 @@
   --color-brand-dark: #1F140F;
   --color-brand-peanut: #4A2B1F;
   --color-brand-accent: #C7923E;
+  --color-brand-maroon: #6B1C15;
   --font-editorial: "Cormorant Garamond", serif;
   --font-body: "Inter", sans-serif;
   --font-gloock: var(--font-gloock);
@@ -641,4 +642,24 @@ nextjs-portal,
   user-select: none;
   -webkit-user-drag: none;
 }
+
+/* ==========================================================================
+   GLOBAL CENTERING SHELL SYSTEM
+   ========================================================================== */
+.section-shell {
+  width: 100%;
+  padding-left: clamp(20px, 4vw, 72px);
+  padding-right: clamp(20px, 4vw, 72px);
+  padding-top: clamp(72px, 8vw, 120px);
+  padding-bottom: clamp(72px, 8vw, 120px);
+  border-top: 1px solid rgba(90, 50, 35, 0.14);
+}
+
+.section-inner {
+  width: 100%;
+  max-width: 1360px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 

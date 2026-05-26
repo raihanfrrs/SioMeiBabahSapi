@@ -5,7 +5,7 @@ import { siteContent } from "@/data/siteContent";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { Gloock } from "next/font/google";
-import { createGeneralWhatsAppLink } from "@/utils/whatsapp";
+import { generalOrderMessage, buildWhatsAppLink } from "@/utils/whatsapp";
 
 const gloock = Gloock({
   subsets: ["latin"],
@@ -105,38 +105,28 @@ const FooterLuxury = () => {
               </div>
             </div>
 
-            {/* Column 2: Social Links */}
+            {/* Column 2: Kontak */}
             <div className="flex flex-col w-full">
               <h5 
                 style={{ fontSize: "9px", letterSpacing: "0.18em", marginBottom: "10px", opacity: 0.65, fontWeight: 700 }}
                 className="font-sans uppercase text-[#5A0906]"
               >
-                Sosial
+                Kontak
               </h5>
               <div 
                 style={{ display: "flex", flexDirection: "column", gap: "8px" }}
                 className="text-[14px] md:text-[15px] leading-[1.65] font-sans font-medium text-left"
               >
-                {footer.social.map((link, idx) => {
-                  const href = link.label === "WhatsApp" ? createGeneralWhatsAppLink() : link.href;
-                  return (
-                    <a 
-                      key={idx} 
-                      href={href} 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#5A0906] hover:opacity-60 focus-visible:outline-none focus-visible:underline transition-opacity block w-fit"
-                    >
-                      {link.label}
-                    </a>
-                  );
-                })}
+                <a href={buildWhatsAppLink(generalOrderMessage())} target="_blank" rel="noopener noreferrer" className="text-[#5A0906] hover:opacity-60 transition-opacity">WhatsApp</a>
+                <span className="text-[#5A0906]">Instagram: {footer.contact.instagram}</span>
+                <span className="text-[#5A0906]">Email: {footer.contact.email}</span>
+                <span className="text-[#5A0906]">Alamat: {footer.contact.address}</span>
               </div>
             </div>
 
           </div>
 
-          {/* Column 3: Mailing List */}
+          {/* Column 3: Brand Statement */}
           <div 
             className="flex flex-col w-full md:col-span-1 md:items-start mt-[36px] md:mt-0"
           >
@@ -144,37 +134,11 @@ const FooterLuxury = () => {
               className="hidden md:block font-sans uppercase text-[#5A0906]"
               style={{ fontSize: "9px", letterSpacing: "0.18em", marginBottom: "10px", opacity: 0.65, fontWeight: 700 }}
             >
-              Newsletter
+              Tentang Kami
             </h5>
-            <h4 
-              className={`${gloock.className} text-[#5A0906] text-left`}
-              style={{ fontSize: "clamp(28px, 8vw, 40px)", lineHeight: 1.05, maxWidth: "430px", marginBottom: "8px" }}
-            >
-              {(footer as any).newsletterTitle}
-            </h4>
-            <p className="text-[#5A0906]/75 font-sans text-xs text-left mb-4 max-w-[430px]">
-              {(footer as any).newsletterCopy}
+            <p className="text-[#5A0906]/80 font-sans text-sm text-left mb-4 max-w-[430px] leading-relaxed">
+              {footer.brandStatement}
             </p>
-            
-            <a 
-              href="/#contact" 
-              style={{ 
-                display: "inline-flex", 
-                alignItems: "center", 
-                justifyContent: "center", 
-                minHeight: "44px", 
-                padding: "0 22px", 
-                borderRadius: "6px", 
-                backgroundColor: "#5A0906", 
-                color: "#F4EBDD", 
-                fontSize: "13px", 
-                fontWeight: 600,
-                marginTop: "8px" 
-              }}
-              className="transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#5A0906] w-fit"
-            >
-              {(footer as any).newsletterCta}
-            </a>
           </div>
 
         </div>
@@ -248,8 +212,8 @@ const FooterLuxury = () => {
 
             {/* Tablet/Desktop Only Side Meta */}
             <div className="hidden md:flex items-center gap-6">
-              <a href={`mailto:${(footer as any).email}`} className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
-                {(footer as any).email}
+              <a href={`mailto:${footer.contact.email}`} className="hover:opacity-60 transition-opacity uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
+                {footer.contact.email}
               </a>
               <span className="uppercase" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>{footer.copyright}</span>
             </div>
@@ -258,11 +222,11 @@ const FooterLuxury = () => {
           {/* Mobile Only Center Meta */}
           <div className="flex flex-col items-center md:hidden w-full text-center">
             <a 
-              href={`mailto:${(footer as any).email}`} 
+              href={`mailto:${footer.contact.email}`} 
               className="hover:opacity-60 transition-opacity uppercase" 
               style={{ fontSize: "10px", letterSpacing: "0.08em", marginTop: "18px" }}
             >
-              {(footer as any).email}
+              {footer.contact.email}
             </a>
             <span 
               className="uppercase" 

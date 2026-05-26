@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
-import { createGeneralWhatsAppLink } from "@/utils/whatsapp";
+import { generalOrderMessage, buildWhatsAppLink } from "@/utils/whatsapp";
 
 const ClosingCTA = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -104,15 +104,14 @@ const ClosingCTA = () => {
         <h2 
           className="closing-item font-editorial text-[#F4E9D8] drop-shadow-xl"
           style={{ 
-            fontSize: "clamp(46px, 9vw, 128px)", 
-            lineHeight: 0.92,
-            letterSpacing: "-0.03em",
+            fontSize: "clamp(36px, 6vw, 84px)", 
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
             maxWidth: "1000px",
             marginBottom: "28px"
           }}
         >
-          {closingCta.headline.split(', ')[0] + ','} <br />
-          <span className="italic opacity-90">{closingCta.headline.split(', ')[1]}</span>
+          {closingCta.headline}
         </h2>
         
         {/* Subheadline */}
@@ -131,7 +130,7 @@ const ClosingCTA = () => {
         {/* CTA Button */}
         <div className="closing-item flex w-full justify-center" style={{ marginBottom: "24px" }}>
           <a
-            href={createGeneralWhatsAppLink()}
+            href={buildWhatsAppLink(generalOrderMessage())}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center justify-center bg-[#F4E9D8] text-[#5A0B08] font-bold transition-all duration-300 hover:bg-white hover:-translate-y-[2px] shadow-lg hover:shadow-xl w-full max-w-[320px] md:max-w-none md:w-auto"
