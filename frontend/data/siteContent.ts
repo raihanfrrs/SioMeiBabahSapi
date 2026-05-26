@@ -33,7 +33,7 @@ export const siteContent = {
       { key: "MOQ B2B", value: "Mulai dari 50 / 100 pack (dapat disesuaikan)" },
       { key: "Lead time produksi", value: "1–3 hari kerja (tergantung volume)" },
       { key: "Kapasitas produksi", value: "Sesuai permintaan supply rutin" },
-      { key: "Legalitas pangan", value: "NIB terdaftar (PIRT & Halal dalam proses)" }
+      { key: "Fleksibilitas Partner", value: "Cocok untuk menu outlet, event, reseller, dan kebutuhan supply B2B." }
     ]
   },
   whyUs: {
