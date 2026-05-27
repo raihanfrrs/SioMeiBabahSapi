@@ -1,40 +1,19 @@
-import { MetadataRoute } from "next";
+import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: "*",
-        allow: "/",
-        disallow: [
-          "/admin/",
-          "/api/",
-          "/dashboard/",
-          "/login/",
-          "/private/",
-          "/server-sitemap.xml",
-        ],
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/api/', '/admin/', '/private/'],
       },
       {
-        userAgent: [
-          "Googlebot",
-          "Googlebot-Image",
-          "Googlebot-Video",
-          "GoogleOther",
-          "GoogleOther-Image",
-          "GoogleOther-Video",
-          "Google-Extended",
-          "Google-CloudVertexBot",
-          "GPTBot",
-          "OAI-SearchBot",
-          "ChatGPT-User",
-          "ClaudeBot",
-          "Claude-User",
-          "Claude-SearchBot",
-        ],
-        allow: "/",
-      },
+        userAgent: ['GPTBot', 'ChatGPT-User', 'Google-Extended', 'PerplexityBot', 'ClaudeBot', 'CCBot'],
+        allow: '/',
+      }
     ],
-    sitemap: "https://siomeibabahsapi.my.id/sitemap.xml",
-  };
+    sitemap: 'https://siomeibabahsapi.my.id/sitemap.xml',
+    host: 'https://siomeibabahsapi.my.id',
+  }
 }

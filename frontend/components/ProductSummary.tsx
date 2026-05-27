@@ -31,7 +31,7 @@ export default function ProductSummary() {
           <div 
             className="w-full mx-auto"
             style={{
-              maxWidth: "1280px",
+              maxWidth: "1120px",
               backgroundColor: "#FDF8EE", 
               border: "1px solid #e7ded2",
               borderRadius: "14px",

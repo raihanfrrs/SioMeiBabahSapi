@@ -85,12 +85,13 @@ export default function HowToEnjoy() {
 
         .ways-grid {
           width: 100%;
-          max-width: 1120px;
+          max-width: 1200px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(3, 1fr);
           gap: 32px;
           align-items: stretch;
+          justify-content: center;
         }
 
         .ways-card {

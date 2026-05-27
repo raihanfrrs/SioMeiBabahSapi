@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter, Gloock } from "next/font/google";
+import Script from "next/script";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
@@ -28,21 +29,18 @@ export const metadata: Metadata = {
     template: "%s | Sio Mei Babah Sapi",
   },
   description:
-    "Sio Mei Babah Sapi menghadirkan siomay sapi premium dengan tekstur lembut, rasa gurih, pilihan siap santap, goreng, dan frozen untuk keluarga, acara, reseller, hingga kebutuhan B2B restoran, cafe, bar, club, dan event.",
+    "Sio Mei Babah Sapi menghadirkan siomay sapi premium dengan pilihan original, goreng, dan frozen. Cocok untuk keluarga, acara, reseller, restoran, cafe, bar, club, dan kebutuhan B2B supply.",
   keywords: [
     "siomay sapi",
     "sio mei",
-    "babah sapi",
-    "siomay sapi premium",
     "siomay frozen",
-    "siomay goreng",
-    "siomay handmade",
-    "supplier siomay frozen",
-    "siomay untuk restoran",
-    "siomay untuk cafe",
-    "siomay untuk event",
-    "B2B supply makanan",
-    "frozen food siomay"
+    "siomay premium",
+    "siomay sapi premium",
+    "Babah Sapi",
+    "siomay Surabaya",
+    "frozen food",
+    "supply siomay",
+    "B2B food supply"
   ],
   authors: [{ name: "Sio Mei Babah Sapi" }],
   creator: "Sio Mei Babah Sapi",
@@ -57,7 +55,7 @@ export const metadata: Metadata = {
     siteName: "Sio Mei Babah Sapi",
     title: "Sio Mei Babah Sapi | Siomay Sapi Premium, Frozen & B2B Supply",
     description:
-      "Siomay sapi premium dengan pilihan original, goreng, dan frozen untuk keluarga, acara, reseller, restoran, cafe, bar, club, dan event.",
+      "Sio Mei Babah Sapi menghadirkan siomay sapi premium dengan pilihan original, goreng, dan frozen. Cocok untuk keluarga, acara, reseller, restoran, cafe, bar, club, dan kebutuhan B2B supply.",
     images: [
       {
         url: "/og/sio-mei-babah-sapi.jpg",
@@ -69,9 +67,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sio Mei Babah Sapi | Siomay Sapi Premium",
+    title: "Sio Mei Babah Sapi | Siomay Sapi Premium, Frozen & B2B Supply",
     description:
-      "Siomay sapi premium dalam pilihan original, goreng, dan frozen untuk kebutuhan personal, acara, reseller, dan B2B supply.",
+      "Sio Mei Babah Sapi menghadirkan siomay sapi premium dengan pilihan original, goreng, dan frozen. Cocok untuk keluarga, acara, reseller, restoran, cafe, bar, club, dan kebutuhan B2B supply.",
     images: ["/og/sio-mei-babah-sapi.jpg"],
   },
   robots: {
@@ -99,6 +97,21 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${cormorant.variable} ${inter.variable} ${gloock.variable}`} suppressHydrationWarning>
       <body className="antialiased selection:bg-brand-peanut selection:text-brand-cream" suppressHydrationWarning>
+        <Script id="json-ld" type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FoodEstablishment",
+            "name": "Sio Mei Babah Sapi",
+            "image": "https://siomeibabahsapi.my.id/og/sio-mei-babah-sapi.jpg",
+            "@id": "https://siomeibabahsapi.my.id",
+            "url": "https://siomeibabahsapi.my.id",
+            "telephone": "+6281333903187",
+            "menu": "https://siomeibabahsapi.my.id/#foods",
+            "servesCuisine": "Siomay Sapi",
+            "acceptsReservations": "False",
+            "description": "Sio Mei Babah Sapi menghadirkan siomay sapi premium dengan pilihan original, goreng, dan frozen. Cocok untuk keluarga, acara, reseller, restoran, cafe, bar, club, dan kebutuhan B2B supply."
+          })
+        }} />
         <CustomCursor />
         <SmoothScroll>
           {children}

@@ -1,45 +1,23 @@
-export const WHATSAPP_NUMBER = "6281333903187";
-
 export function buildWhatsAppLink(message: string): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  const phoneNumber = "6281333903187";
+  return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 }
 
 export function generalOrderMessage(): string {
-  return `Halo Babah Sapi, saya ingin bertanya tentang pemesanan Sio Mei.
+  return `Halo Sio Mei Babah Sapi, saya ingin bertanya mengenai Sio Mei Babah Sapi.`;
+}
 
-Nama:
-Kebutuhan pesanan:
-Alamat/lokasi:
-Catatan:
-
-Terima kasih.`;
+export function getProductOrderMessage(productType: "original" | "goreng" | "frozen"): string {
+  if (productType === "original") {
+    return `Halo Sio Mei Babah Sapi, saya ingin pesan Sio Mei Original.\nJumlah:\nNama:\nAlamat:\nCatatan:`;
+  } else if (productType === "goreng") {
+    return `Halo Sio Mei Babah Sapi, saya ingin pesan Sio Mei Goreng.\nJumlah:\nNama:\nAlamat:\nCatatan:`;
+  } else if (productType === "frozen") {
+    return `Halo Sio Mei Babah Sapi, saya ingin pesan Paket Sio Mei Frozen.\nJumlah:\nNama:\nAlamat:\nCatatan:`;
+  }
+  return generalOrderMessage();
 }
 
 export function b2bInquiryMessage(): string {
-  return `Halo Babah Sapi, saya ingin berdiskusi mengenai kerja sama B2B untuk produk Sio Mei Frozen.
-
-Nama:
-Perusahaan/Outlet:
-Kebutuhan:
-Estimasi jumlah:
-Lokasi:
-Catatan:
-
-Terima kasih.`;
-}
-
-export function productOrderMessage(productName: string, price: string): string {
-  return `Halo Babah Sapi, saya ingin pesan ${productName}.
-
-Detail pesanan:
-- Produk: ${productName}
-- Harga: ${price}
-- Jumlah: ... pack
-
-Data pemesan:
-- Nama:
-- Alamat pengiriman:
-- Catatan pesanan:
-
-Mohon info total pembayaran dan ongkirnya. Terima kasih.`;
+  return `Halo Sio Mei Babah Sapi, saya ingin diskusi kerja sama / supply B2B.\nNama usaha:\nKebutuhan:\nEstimasi jumlah:\nLokasi:\nCatatan:`;
 }

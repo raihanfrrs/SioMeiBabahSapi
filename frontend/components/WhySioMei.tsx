@@ -27,19 +27,11 @@ export default function WhySioMei() {
 
         <div className="benefit-grid">
           {points.map((point: any, index: number) => {
-            // Desk layout logic: 
-            // 0, 1, 2 = span 2
-            // 3 = col 2 span 2
-            // 4 = col 4 span 2
-            let desktopColumnClass = "desktop-span-2";
-            if (index === 3) desktopColumnClass = "desktop-col-2";
-            if (index === 4) desktopColumnClass = "desktop-col-4";
-
             return (
               <RevealWrapper 
                 key={point.id} 
                 delay={100 * index}
-                className={`flex w-full ${desktopColumnClass}`}
+                className="benefit-card-wrapper"
               >
                 <div className="benefit-card transition-shadow duration-500 hover:shadow-xl group">
                   <div className="font-editorial group-hover:text-[#C7923E] transition-colors duration-300 card-number">
@@ -93,27 +85,23 @@ export default function WhySioMei() {
         }
 
         .benefit-grid {
-          display: grid;
-          grid-template-columns: repeat(6, 1fr);
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
           gap: clamp(24px, 2.4vw, 36px);
           max-width: 1180px;
           margin: 0 auto;
           width: 100%;
         }
 
-        .desktop-span-2 {
-          grid-column: span 2;
-        }
-        .desktop-col-2 {
-          grid-column: 2 / span 2;
-        }
-        .desktop-col-4 {
-          grid-column: 4 / span 2;
+        .benefit-card-wrapper {
+          flex: 1 1 340px;
+          max-width: 380px;
+          display: flex;
         }
 
         .benefit-card {
           width: 100%;
-          height: 100%;
           padding: clamp(28px, 3vw, 44px);
           background-color: rgba(253, 248, 238, 0.85); /* ivory/cream transparan */
           border: 1px solid rgba(199, 146, 62, 0.25); /* beige/coklat muda halus */
@@ -143,41 +131,19 @@ export default function WhySioMei() {
           line-height: 1.65;
         }
 
-        @media (max-width: 1024px) {
-          .benefit-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 24px;
-          }
-          
-          .desktop-span-2,
-          .desktop-col-2,
-          .desktop-col-4 {
-            grid-column: auto;
-          }
-
-          /* Buat card ke 5 (terakhir) di tengah jika grid 2 kolom (karena ganjil) */
-          .desktop-col-4 {
-            grid-column: 1 / -1;
-            max-width: 560px;
-            justify-self: center;
-          }
-        }
-
         @media (max-width: 640px) {
           .benefit-header h2 {
             font-size: clamp(42px, 13vw, 68px);
           }
 
           .benefit-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
+            flex-direction: column;
+            align-items: center;
           }
-
-          /* Reset form card ke-5 agar full width */
-          .desktop-col-4 {
-            grid-column: auto;
-            max-width: none;
-            justify-self: stretch;
+          
+          .benefit-card-wrapper {
+            max-width: 100%;
+            width: 100%;
           }
 
           .benefit-card {

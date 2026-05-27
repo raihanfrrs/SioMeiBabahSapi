@@ -104,7 +104,7 @@ export default function TestimonialSection() {
             {/* Navigation Arrows */}
             <button 
               onClick={scrollPrev}
-              className="absolute left-1 md:left-[-20px] lg:left-[-28px] top-1/2 -translate-y-1/2 z-20 flex h-[42px] w-[42px] md:h-12 md:w-12 items-center justify-center rounded-full border border-[#d8b36a]/50 bg-[#fff8ed]/90 text-[#6b0f0f] shadow-md backdrop-blur-sm transition-all duration-300 hover:bg-[#4b0705] hover:border-[#4b0705] hover:text-[#FDF8EE]"
+              className="absolute left-1 md:left-[-20px] lg:left-[-56px] top-1/2 -translate-y-1/2 z-20 flex h-[42px] w-[42px] md:h-12 md:w-12 items-center justify-center rounded-full border border-[#d8b36a]/50 bg-[#fff8ed]/90 text-[#6b0f0f] shadow-md backdrop-blur-sm transition-all duration-300 hover:bg-[#4b0705] hover:border-[#4b0705] hover:text-[#FDF8EE]"
               aria-label="Previous slide"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -114,7 +114,7 @@ export default function TestimonialSection() {
             
             <button 
               onClick={scrollNext}
-              className="absolute right-1 md:right-[-20px] lg:right-[-28px] top-1/2 -translate-y-1/2 z-20 flex h-[42px] w-[42px] md:h-12 md:w-12 items-center justify-center rounded-full border border-[#d8b36a]/50 bg-[#fff8ed]/90 text-[#6b0f0f] shadow-md backdrop-blur-sm transition-all duration-300 hover:bg-[#4b0705] hover:border-[#4b0705] hover:text-[#FDF8EE]"
+              className="absolute right-1 md:right-[-20px] lg:right-[-56px] top-1/2 -translate-y-1/2 z-20 flex h-[42px] w-[42px] md:h-12 md:w-12 items-center justify-center rounded-full border border-[#d8b36a]/50 bg-[#fff8ed]/90 text-[#6b0f0f] shadow-md backdrop-blur-sm transition-all duration-300 hover:bg-[#4b0705] hover:border-[#4b0705] hover:text-[#FDF8EE]"
               aria-label="Next slide"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -8,11 +8,11 @@ export const siteContent = {
   ],
   hero: {
     label: "SIO MEI BY BABAH SAPI",
-    headline: "Sio Mei Sapi Premium untuk Sajian Kukus, Goreng, dan Frozen",
-    subheadline: "Siomay sapi premium dengan tekstur padat-lembut, rasa gurih, dan proses produksi higienis. Cocok untuk pesanan keluarga, acara, reseller, hingga kebutuhan restoran dan outlet F&B.",
+    headline: "Sio Mei Sapi Premium,\nLembut & Gurih",
+    subheadline: "Siomay sapi premium dengan tekstur padat-lembut, isian gurih, dan proses yang dijaga untuk kebutuhan rumah, acara, hingga partner F&B.",
     ctaPrimary: "Pesan via WhatsApp",
-    ctaSecondary: "Kerja Sama B2B",
-    highlight: "Original siap santap • Goreng renyah • Frozen praktis",
+    ctaSecondary: "Ajukan Kerja Sama",
+    highlight: "Dibuat Segar • Daging Sapi Pilihan • Siap Disajikan",
     imagePlaceholder: "/images/siomay-hero-premium.png",
   },
   productSummary: {
@@ -24,16 +24,16 @@ export const siteContent = {
       { key: "Varian", value: "Original/Kukus, Goreng, Frozen" },
       { key: "Isi Pack", value: "5 pcs per pack" },
       { key: "Cara Penyajian", value: "Kukus, goreng, atau diolah kembali oleh partner" },
-      { key: "Target Konsumen", value: "Keluarga, acara, reseller, cafe, restoran, bar & club, event catering" },
+      { key: "Target Konsumen", value: "Keluarga, acara, reseller, restoran, cafe, bar, club, dan event" },
       { key: "Sistem Pemesanan", value: "WhatsApp, pre-order, atau B2B supply" },
       { key: "Berat per pcs", value: "±40–50 gram" },
       { key: "Berat per pack", value: "±200–250 gram" },
-      { key: "Suhu penyimpanan", value: "-18°C (Freezer)" },
-      { key: "Shelf life frozen", value: "1-2 bulan (suhu beku ideal)" },
-      { key: "MOQ B2B", value: "Mulai dari 50 / 100 pack (dapat disesuaikan)" },
-      { key: "Lead time produksi", value: "1–3 hari kerja (tergantung volume)" },
-      { key: "Kapasitas produksi", value: "Sesuai permintaan supply rutin" },
-      { key: "Fleksibilitas Partner", value: "Cocok untuk menu outlet, event, reseller, dan kebutuhan supply B2B." }
+      { key: "Suhu Penyimpanan", value: "-18°C freezer untuk produk frozen" },
+      { key: "Shelf Life Frozen", value: "1–2 bulan dalam suhu beku ideal" },
+      { key: "MOQ B2B", value: "Mulai dari 50 / 100 pack, dapat disesuaikan" },
+      { key: "Lead Time Produksi", value: "1–3 hari kerja, tergantung volume" },
+      { key: "Kapasitas Produksi", value: "Dapat disesuaikan untuk pesanan rutin atau event" },
+      { key: "Administrasi Kerja Sama", value: "Detail dokumen dan kebutuhan partner dapat didiskusikan" }
     ]
   },
   whyUs: {
@@ -42,9 +42,9 @@ export const siteContent = {
     points: [
       { id: 1, title: "Isian Gurih", text: "Isian sapi gurih yang mudah diterima berbagai selera." },
       { id: 2, title: "Tekstur Konsisten", text: "Tekstur padat-lembut yang tetap nikmat untuk kukus maupun goreng." },
-      { id: 3, title: "Bentuk Rapi", text: "Dibentuk manual agar tampil rapi, menarik, dan tetap berkarakter." },
-      { id: 4, title: "Fleksibel Disajikan", text: "Tersedia dalam format frozen maupun siap santap untuk berbagai kebutuhan." },
-      { id: 5, title: "Berbagai Segmen", text: "Ideal untuk kebutuhan rumah tangga, acara, reseller, hingga outlet F&B." }
+      { id: 3, title: "Bentuk Rapi", text: "Dibentuk manual agar tampil menarik dan tetap berkarakter." },
+      { id: 4, title: "Fleksibel Disajikan", text: "Tersedia dalam format siap santap maupun frozen untuk berbagai kebutuhan." },
+      { id: 5, title: "Berbagai Segmen", text: "Cocok untuk rumah tangga, acara, reseller, hingga outlet F&B." }
     ]
   },
   macroTexture: {
@@ -57,7 +57,7 @@ export const siteContent = {
     label: "MENU PILIHAN",
     headline: "The Sio Mei Collection",
     subheadline: "Pilih varian sesuai cara menikmati Anda: original hangat, goreng renyah, atau frozen praktis untuk stok di rumah maupun kebutuhan dapur partner.",
-    banner: "Melayani pesanan satuan dan jumlah banyak sesuai kebutuhan."
+    banner: "Tersedia untuk kebutuhan satuan maupun jumlah banyak."
   },
   foods: [
     {
@@ -66,16 +66,16 @@ export const siteContent = {
       badge: "Best Seller",
       price: "Rp 35.000 / 5 pcs",
       image: "/images/sio-mei-original-siomay-sapi-premium.png",
-      shortDescription: "Versi klasik dengan kulit lembut dan isian sapi gurih, cocok disantap hangat.",
-      longDescription: "Sio Mei Original dibuat dengan isian sapi gurih dan tekstur lembut. Cocok untuk santapan keluarga, acara, maupun kebutuhan menu siap saji.",
+      shortDescription: "Versi klasik dengan kulit lembut dan isian sapi gurih, cocok dinikmati hangat.",
+      longDescription: "Versi klasik dari Sio Mei Babah Sapi. Dikukus dengan tingkat kematangan sempurna untuk menghasilkan kulit yang lembut dan isian daging sapi yang padat serta kaya rasa.",
       label: "Kukus Klasik",
       pack: "5 pcs per pack",
-      format: "Siap santap / frozen sesuai pesanan",
-      serving: "Dapat dikukus kembali hingga hangat",
-      suitableFor: "Keluarga, acara, reseller, restoran, cafe",
-      storage: "Disesuaikan dengan format pesanan",
-      b2bNote: "Dapat dipesan untuk kebutuhan jumlah banyak sesuai permintaan",
-      whatsappText: "Halo Babah Sapi, saya ingin pesan Sio Mei Original.",
+      format: "Siap santap",
+      serving: "Dapat dikukus, digoreng, atau diolah kembali oleh dapur partner",
+      suitableFor: "Rumah tangga, acara, reseller, restoran, cafe, bar, club, dan event",
+      storage: "Simpan dalam pendingin jika tidak langsung dikonsumsi",
+      b2bNote: "Cocok untuk kebutuhan supply, menu utama, dan stok operasional dapur",
+      whatsappText: "original",
       buttonText: "Pesan Original"
     },
     {
@@ -84,16 +84,16 @@ export const siteContent = {
       badge: "Favorit",
       price: "Rp 38.000 / 5 pcs",
       image: "/images/sio-mei-goreng-renyah.png",
-      shortDescription: "Bagian luar lebih renyah dengan isian sapi yang tetap lembut di dalam.",
-      longDescription: "Sio Mei Goreng cocok untuk pelanggan yang menyukai tekstur luar renyah dengan isian sapi yang tetap padat, lembut, dan gurih.",
+      shortDescription: "Bagian luar lebih renyah dengan isian sapi yang tetap padat, lembut, dan gurih.",
+      longDescription: "Digoreng hingga keemasan, menghadirkan kontras sempurna antara tekstur luar yang renyah dan isian daging sapi yang tetap lembut di dalam.",
       label: "Goreng Renyah",
       pack: "5 pcs per pack",
-      format: "Siap santap / dapat disiapkan sesuai kebutuhan",
-      serving: "Disajikan dengan cara digoreng hingga keemasan",
-      suitableFor: "Snack, sharing menu, acara, cafe, restoran",
-      storage: "Disesuaikan dengan format pesanan",
-      b2bNote: "Cocok dikembangkan sebagai menu snack atau sharing platter",
-      whatsappText: "Halo Babah Sapi, saya ingin pesan Sio Mei Goreng.",
+      format: "Siap santap",
+      serving: "Disajikan hangat untuk tekstur renyah terbaik",
+      suitableFor: "Rumah tangga, acara, reseller, restoran, cafe, bar, club, dan event",
+      storage: "Simpan dalam pendingin jika tidak langsung dikonsumsi",
+      b2bNote: "Cocok untuk kebutuhan menu snack, sharing platter, dan operasional bar",
+      whatsappText: "goreng",
       buttonText: "Pesan Goreng"
     },
     {
@@ -102,16 +102,16 @@ export const siteContent = {
       badge: "Best Seller",
       price: "Rp 30.000 / 5 pcs",
       image: "/images/paket-sio-mei-frozen.png",
-      shortDescription: "Kemasan beku praktis untuk disimpan, siap dikukus atau digoreng kapan saja.",
-      longDescription: "Paket Sio Mei Frozen dibuat untuk kebutuhan stok praktis. Produk dapat disimpan dalam kondisi beku dan diolah kembali dengan cara dikukus atau digoreng sesuai kebutuhan.",
+      shortDescription: "Kemasan frozen praktis untuk disimpan, siap dikukus atau digoreng kapan saja sesuai kebutuhan.",
+      longDescription: "Sio Mei Frozen disiapkan untuk kebutuhan stok praktis. Produk dapat disimpan dalam kondisi beku dan diolah kembali dengan cara dikukus atau digoreng sesuai kebutuhan.",
       label: "Stok Frozen",
       pack: "5 pcs per pack",
       format: "Frozen pack",
       serving: "Dapat dikukus, digoreng, atau diolah kembali oleh dapur partner",
-      suitableFor: "Rumah tangga, reseller, restoran, cafe, bar, club, event",
+      suitableFor: "Rumah tangga, acara, reseller, restoran, cafe, bar, club, dan event",
       storage: "Simpan dalam freezer",
-      b2bNote: "Cocok untuk supply restoran, cafe, bar, club, dan kebutuhan event",
-      whatsappText: "Halo Babah Sapi, saya ingin diskusi Paket Sio Mei Frozen untuk kebutuhan pesanan.",
+      b2bNote: "Cocok untuk kebutuhan supply, menu snack, sharing platter, dan stok operasional dapur",
+      whatsappText: "frozen",
       buttonText: "Pesan Frozen"
     }
   ],
@@ -140,29 +140,29 @@ export const siteContent = {
   behindTheScene: {
     label: "BEHIND THE SCENE",
     headline: "The Making of Babah Sapi",
-    subheadline: "Kami memperlihatkan proses di balik setiap Sio Mei: area kerja yang bersih, bahan yang dipilih dengan cermat, lipatan manual, dan pengecekan sebelum produk dikemas.",
+    subheadline: "Kami memperlihatkan prosesnya agar pelanggan tahu apa yang mereka pesan: bahan yang dipilih, area kerja yang dijaga bersih, adonan yang terukur, dan produk yang dicek sebelum dikemas.",
     footerNote: "Tersedia untuk kebutuhan rumah, acara, reseller, hingga suplai F&B.",
-    cta: "Pesan Sio Mei via WhatsApp",
+    cta: "Tanya Ketersediaan Pesanan",
     gallery: [
-      { id: 1, image: "/images/proses-produksi-sio-mei-higienis.png", badge: "HIGIENIS SEJAK AWAL", label: "Area Kerja Bersih", caption: "Seluruh proses diawali di area kerja yang bersih dan tertata agar kualitas produk tetap terjaga." },
-      { id: 2, image: "/images/process-beef.png", badge: "RACIKAN TERUKUR", label: "Daging Sapi Pilihan", caption: "Isian disiapkan dari daging sapi pilihan dengan komposisi terukur untuk menjaga rasa dan tekstur yang konsisten." },
-      { id: 3, image: "/images/bts-folded.png", badge: "DIBENTUK MANUAL", label: "Dilipat Satu per Satu", caption: "Setiap Sio Mei dibentuk manual agar tampil rapi, padat, dan tetap memiliki karakter khas." },
-      { id: 4, image: "/images/bts-quality.png", badge: "QUALITY CHECK", label: "Dicek Sebelum Dikemas", caption: "Setiap porsi diperiksa kembali agar tampilan, tekstur, dan kualitas tetap terjaga sebelum sampai ke pelanggan." },
+      { id: 1, image: "/images/proses-produksi-sio-mei-higienis.png", badge: "HIGIENIS SEJAK AWAL", label: "Higienis Sejak Awal", caption: "Area kerja, alat, dan tangan dijaga bersih selama proses." },
+      { id: 2, image: "/images/process-beef.png", badge: "RACIKAN TERUKUR", label: "Racikan Sapi Terukur", caption: "Adonan disiapkan untuk menjaga tekstur padat dan rasa gurih." },
+      { id: 3, image: "/images/bts-folded.png", badge: "DIBENTUK MANUAL", label: "Dilipat Satu per Satu", caption: "Setiap bentuk dibuat manual agar tampil rapi dan tetap berkarakter." },
+      { id: 4, image: "/images/bts-quality.png", badge: "QUALITY CHECK", label: "Dicek Sebelum Dikemas", caption: "Setiap porsi diperiksa agar tampilan, tekstur, dan kualitas tetap terjaga." },
     ]
   },
   b2bSupply: {
     label: "B2B SUPPLY",
-    headline: "Sio Mei Frozen untuk Menu Snack, Sharing Platter, dan Supply Outlet F&B",
-    subheadline: "Produk siomay sapi frozen yang praktis diolah kembali oleh dapur partner, cocok untuk menu kukus, goreng, platter, maupun menu signature sesuai konsep outlet.",
+    headline: "Sio Mei Frozen untuk Restoran, Cafe, Bar, Club, dan Event",
+    subheadline: "Sio Mei Babah Sapi dapat disuplai dalam bentuk frozen untuk kebutuhan dapur partner. Produk dapat diolah kembali sesuai karakter menu, baik dikukus, digoreng, maupun dikembangkan menjadi menu signature.",
     leftCard: {
-      title: "Keunggulan untuk Partner F&B",
-      description: "Sio Mei Babah Sapi dirancang agar mudah masuk ke alur dapur partner dan memberikan nilai tambah pada bisnis Anda.",
+      title: "Keunggulan Operasional",
+      description: "Format frozen membantu dapur partner menjaga stok, mempercepat penyajian, dan menjaga konsistensi rasa antar outlet.",
       bullets: [
-        "Praktis untuk operasional dapur (mudah disimpan & distandarkan).",
-        "Bisa diolah dengan cepat (kukus atau goreng).",
-        "Cocok untuk sharing menu, camilan, atau bar bites.",
-        "Rasa dan kualitas konsisten antar batch.",
-        "Bisa disesuaikan untuk kebutuhan outlet (menu signature)."
+        "Tersedia format frozen untuk operasional dapur",
+        "Mudah dipanaskan dan disajikan ulang",
+        "Cocok sebagai snack, appetizer, sharing menu, atau bar bites",
+        "Dapat disesuaikan untuk kebutuhan jumlah besar",
+        "Mendukung pengembangan menu kukus, goreng, platter, atau menu kolaborasi"
       ],
       menuLabel: "Ide Menu Kolaborasi",
       menuIdeas: [
@@ -175,32 +175,31 @@ export const siteContent = {
     rightCard: {
       title: "Detail Supply",
       details: [
-        { key: "MOQ B2B", value: "Mulai dari 50 pack" },
-        { key: "Lead time", value: "1–3 hari kerja" },
-        { key: "Kapasitas produksi", value: "Sesuai jadwal supply rutin" },
-        { key: "Area pengiriman", value: "Diskusikan via WhatsApp" },
-        { key: "Sistem pembayaran", value: "Sesuai kesepakatan B2B" },
-        { key: "Format produk", value: "Frozen / 5 pcs per pack" }
+        { key: "MOQ B2B", value: "Dapat didiskusikan" },
+        { key: "Lead Time Produksi", value: "Menyesuaikan volume" },
+        { key: "Kapasitas Produksi", value: "Menyesuaikan kebutuhan" },
+        { key: "Area Pengiriman", value: "Dapat didiskusikan" },
+        { key: "Sistem Pembayaran", value: "Dapat didiskusikan" }
       ]
     },
-    cta: "Diskusikan Kerja Sama B2B via WhatsApp →"
+    cta: "Diskusikan Supply via WhatsApp"
   },
   testimonials: {
-    label: "BUKTI SOSIAL",
-    headline: "Apa Kata Mereka",
-    headlineBreak: "Tentang Sio Mei",
-    subheadline: "Ruang untuk menampilkan ulasan pelanggan, dokumentasi pesanan, dan feedback partner yang pernah mencoba Sio Mei.",
+    label: "CERITA PELANGGAN",
+    headline: "Cerita Pelanggan Sio Mei",
+    headlineBreak: "",
+    subheadline: "Ruang untuk menampilkan ulasan pelanggan, dokumentasi pesanan, dan feedback partner setelah mencoba Sio Mei.",
     posts: [
       { id: 1, name: "Sekar", label: "Stok Rumah", rating: 5, text: "Packaging frozen-nya rapi dan mudah disimpan. Kalau ingin camilan cepat, tinggal kukus atau goreng." },
       { id: 2, name: "Raka", label: "Repeat Order", rating: 5, text: "Teksturnya lembut dan isiannya gurih. Sudah beberapa kali pesan karena rasanya konsisten." },
       { id: 3, name: "Gendis", label: "Acara Keluarga", rating: 5, text: "Saya pesan untuk acara keluarga di rumah. Praktis disajikan dan banyak yang cocok dengan rasanya." },
       { id: 4, name: "Damar", label: "Siap Goreng", rating: 5, text: "Versi gorengnya enak, bagian luarnya renyah tapi dalamnya tetap lembut. Cocok untuk camilan sore." },
-      { id: 5, name: "Kirana", label: "Kukus Hangat", rating: 5, text: "Dikukus sebentar langsung siap makan. Aromanya enak dan rasanya gurih tanpa perlu tambahan macam-macam." },
-      { id: 6, name: "Banyu", label: "Pesanan Kantor", rating: 5, text: "Pernah pesan untuk teman-teman kantor, penyajiannya mudah dan porsinya pas untuk sharing." },
-      { id: 7, name: "Laras", label: "Frozen Praktis", rating: 5, text: "Suka karena bisa disimpan di freezer. Saat butuh makanan cepat, tinggal diolah sesuai selera." },
-      { id: 8, name: "Aruna", label: "Pesanan WhatsApp", rating: 5, text: "Proses pemesanan mudah lewat WhatsApp, respons cepat, dan produk datang dalam kondisi baik." },
-      { id: 9, name: "Mahesa", label: "Camilan Keluarga", rating: 5, text: "Anak-anak suka karena teksturnya lembut. Rasanya gurih dan tidak terlalu berat untuk camilan." },
-      { id: 10, name: "Nares", label: "Siap Saji", rating: 5, text: "Sio Mei-nya praktis banget. Bisa dikukus untuk rasa klasik atau digoreng kalau ingin lebih renyah." }
+      { id: 5, name: "Laras", label: "Frozen Praktis", rating: 5, text: "Suka karena bisa disimpan di freezer. Saat butuh makanan cepat, tinggal diolah sesuai selera." },
+      { id: 6, name: "Kirana", label: "Kukus Hangat", rating: 5, text: "Dikukus sebentar langsung siap makan. Aromanya enak dan rasanya gurih tanpa perlu tambahan macam-macam." },
+      { id: 7, name: "Banyu", label: "Pesanan Kantor", rating: 5, text: "Pernah pesan untuk teman-teman kantor. Penyajiannya mudah dan porsinya pas untuk sharing." },
+      { id: 8, name: "Naya", label: "Menu Acara", rating: 5, text: "Cocok untuk acara kecil di rumah. Praktis, rapi, dan tidak ribet saat disajikan." },
+      { id: 9, name: "Arga", label: "Tekstur Konsisten", rating: 5, text: "Yang saya suka teksturnya konsisten. Tidak terlalu lembek dan isian sapinya terasa." },
+      { id: 10, name: "Satria", label: "Praktis Disimpan", rating: 5, text: "Frozen pack-nya membantu untuk stok makanan di rumah. Bisa dikukus atau digoreng kapan saja." }
     ],
     ctaText: "Ingin mencoba Sio Mei untuk acara atau kebutuhan bisnis?",
     ctaButton: "Konsultasi via WhatsApp →"
@@ -224,10 +223,6 @@ export const siteContent = {
         a: "Sio Mei dapat disajikan dengan cara dikukus untuk tekstur lembut, digoreng untuk sensasi renyah, atau disimpan frozen untuk stok praktis."
       },
       {
-        q: "Resep apa yang digunakan untuk Sio Mei Babah Sapi?",
-        a: "Sio Mei Babah Sapi dibuat dari resep keluarga turun-temurun yang dijaga cita rasanya. Kami menyesuaikannya agar tetap gurih, lembut, dan cocok dinikmati dalam berbagai cara penyajian, baik dikukus, digoreng, maupun dalam format frozen."
-      },
-      {
         q: "Apakah tersedia harga untuk reseller atau B2B?",
         a: "Tersedia. Untuk kebutuhan reseller, restoran, cafe, bar, club, atau event, harga dan skema supply dapat didiskusikan sesuai jumlah dan kebutuhan."
       },
@@ -238,6 +233,10 @@ export const siteContent = {
       {
         q: "Apakah Sio Mei menggunakan daging sapi?",
         a: "Ya. Sio Mei Babah Sapi dibuat dengan isian sapi pilihan, diracik agar memiliki tekstur padat, lembut, dan gurih saat disantap."
+      },
+      {
+        q: "Resep apa yang digunakan Sio Mei Babah Sapi?",
+        a: "Sio Mei Babah Sapi menggunakan racikan resep keluarga yang dikembangkan untuk menghadirkan rasa gurih, tekstur padat-lembut, dan karakter siomay sapi yang konsisten di setiap penyajian."
       }
     ]
   },
@@ -250,7 +249,7 @@ export const siteContent = {
     signals: ["Original, goreng, dan frozen", "Bisa pesan banyak", "Proses higienis"]
   },
   footer: {
-    brandStatement: "Babah Sapi menghadirkan Sio Mei, siomay sapi premium dengan rasa gurih, tekstur padat-lembut, dan format frozen yang praktis untuk berbagai kebutuhan.",
+    brandStatement: "Siomay sapi premium dengan tekstur padat-lembut dan rasa gurih. Sempurna untuk hidangan keluarga maupun kebutuhan supply partner.",
     links: [
       { label: "Menu", href: "/#foods" },
       { label: "Cara Menikmati", href: "/#how-to-enjoy" },
@@ -260,12 +259,10 @@ export const siteContent = {
       { label: "Kontak", href: "/#footer" }
     ],
     contact: {
-      whatsapp: "6281333903187",
-      instagram: "[Isi nanti]",
-      email: "[Isi nanti]",
-      address: "[Isi nanti]"
+      whatsapp: "0813-3390-3187",
+      email: "siomeibabahsapi@gmail.com"
     },
     legal: ["Kebijakan Privasi", "Syarat & Ketentuan"],
-    copyright: "© 2026 Sio Mei Babah Sapi. Hak Cipta Dilindungi."
+    copyright: "© 2026 Sio Mei Babah Sapi. Hak cipta dilindungi."
   }
 };

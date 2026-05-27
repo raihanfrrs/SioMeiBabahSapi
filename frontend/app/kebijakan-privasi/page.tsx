@@ -1,56 +1,75 @@
+import React from "react";
 import Navbar from "@/components/Navbar";
 import FooterLuxury from "@/components/FooterLuxury";
-import { Metadata } from "next";
-import Link from "next/link";
+import RevealWrapper from "@/components/RevealWrapper";
 
-export const metadata: Metadata = {
-  title: "Kebijakan Privasi | Sio Mei Babah Sapi",
-  description: "Kebijakan privasi Sio Mei Babah Sapi mengenai pengumpulan dan perlindungan data pelanggan.",
-  alternates: { canonical: "/kebijakan-privasi" }
-};
-
-export default function KebijakanPrivasiPage() {
+export default function KebijakanPrivasi() {
   return (
-    <main className="min-h-screen bg-[#F4EBDD] relative overflow-hidden noise-overlay flex flex-col">
+    <main className="min-h-screen bg-brand-cream text-brand-dark overflow-hidden flex flex-col">
       <Navbar />
       
-      <div className="flex-1 w-full pt-[90px] pb-[90px] md:pt-[110px] md:pb-[110px] lg:pt-[140px] lg:pb-[140px] px-4 md:px-8">
-        <div className="max-w-[900px] xl:max-w-[1040px] mx-auto flex flex-col items-center">
-          
-          <span className="text-[#C7923E] font-sans font-bold uppercase tracking-[0.3em] mb-4 text-[11px] md:text-[12px] text-center">
-            LEGAL
-          </span>
-          
-          <h1 className="font-editorial text-[#4b0705] text-4xl md:text-5xl lg:text-6xl text-center mb-6">
-            Kebijakan Privasi
-          </h1>
-          
-          <div className="w-16 md:w-24 h-px bg-[#C7923E]/40 mb-10 md:mb-12" />
+      <div className="flex-grow flex justify-center w-full pt-[120px] md:pt-[160px] pb-24 px-6">
+        <div className="w-full max-w-[720px] mx-auto bg-[#FDF8EE] border border-[#e7ded2] rounded-xl p-8 md:p-12 shadow-sm">
+          <RevealWrapper>
+            <h1 className="text-3xl md:text-5xl font-editorial text-[#4b0705] mb-4">Kebijakan Privasi</h1>
+            <p className="text-sm text-[#4b0705]/60 mb-10 pb-6 border-b border-[#4b0705]/10">Terakhir diperbarui: Mei 2026</p>
+          </RevealWrapper>
 
-          <div className="w-full bg-[#FDF8EE]/80 backdrop-blur-sm border border-[#C7923E]/20 rounded-[28px] p-[28px] px-[22px] md:p-[48px] md:px-[56px] shadow-sm flex flex-col text-left">
-            <div className="text-[15px] md:text-[16px] lg:text-[18px] leading-[1.8] text-[#4b0705]/85 font-sans space-y-6">
-              <p>
-                Sio Mei Babah Sapi menghargai privasi setiap pelanggan. Data yang diberikan melalui WhatsApp, email, atau formulir website seperti nama, nomor telepon, alamat pengiriman, dan detail pesanan hanya digunakan untuk memproses pemesanan, pengiriman, konfirmasi pembayaran, layanan pelanggan, dan komunikasi terkait produk.
-              </p>
-              <p>
-                Kami tidak menjual, menyewakan, atau membagikan data pelanggan kepada pihak lain di luar kebutuhan operasional pemesanan dan pengiriman. Data pelanggan disimpan secara wajar untuk keperluan riwayat pesanan, layanan pelanggan, dan administrasi internal.
-              </p>
-              <p>
-                Pelanggan dapat menghubungi kami melalui email <a href="mailto:siomeibabahsapi@gmail.com" className="text-[#C7923E] hover:underline font-semibold transition-all">siomeibabahsapi@gmail.com</a> untuk meminta pembaruan, koreksi, atau penghapusan data yang pernah diberikan.
-              </p>
+          <RevealWrapper delay={150}>
+            <div className="flex flex-col gap-8 text-[#4b0705]/85" style={{ lineHeight: "1.75" }}>
+              <section>
+                <h2 className="text-xl font-bold font-sans text-[#4b0705] mb-3">1. Pendahuluan</h2>
+                <p>
+                  Sio Mei Babah Sapi ("kami", "kita", atau "milik kami") menghormati privasi Anda dan berkomitmen 
+                  untuk melindungi data pribadi Anda. Kebijakan ini menjelaskan bagaimana kami mengumpulkan, menggunakan, 
+                  dan menjaga informasi Anda saat Anda menggunakan layanan dan berinteraksi dengan platform kami.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-bold font-sans text-[#4b0705] mb-3">2. Data yang Kami Kumpulkan</h2>
+                <p className="mb-2">Kami dapat mengumpulkan informasi berikut saat Anda melakukan pemesanan atau menghubungi kami:</p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Nama lengkap</li>
+                  <li>Nomor WhatsApp / telepon</li>
+                  <li>Alamat pengiriman</li>
+                  <li>Detail pesanan dan preferensi produk</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-bold font-sans text-[#4b0705] mb-3">3. Penggunaan Informasi</h2>
+                <p className="mb-2">Informasi yang kami kumpulkan digunakan semata-mata untuk:</p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Memproses dan memverifikasi pesanan Anda.</li>
+                  <li>Mengatur pengiriman produk.</li>
+                  <li>Mengkomunikasikan pembaruan status pesanan.</li>
+                  <li>Menanggapi pertanyaan terkait B2B supply atau kerja sama.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-bold font-sans text-[#4b0705] mb-3">4. Keamanan Data</h2>
+                <p>
+                  Kami menerapkan langkah-langkah keamanan internal untuk melindungi informasi pribadi Anda 
+                  dari akses yang tidak sah. Kami tidak akan pernah menjual, menyewakan, atau membagikan 
+                  data pribadi Anda kepada pihak ketiga untuk tujuan pemasaran tanpa izin eksplisit Anda.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-bold font-sans text-[#4b0705] mb-3">5. Hubungi Kami</h2>
+                <p>
+                  Jika Anda memiliki pertanyaan mengenai Kebijakan Privasi ini atau ingin memperbarui 
+                  informasi Anda, silakan hubungi kami melalui WhatsApp di <strong>0813-3390-3187</strong> 
+                  atau email di <strong>siomeibabahsapi@gmail.com</strong>.
+                </p>
+              </section>
             </div>
-          </div>
-
-          <Link 
-            href="/" 
-            className="mt-12 inline-flex items-center justify-center bg-[#4b0705] text-[#FDF8EE] px-8 py-3.5 rounded-full font-sans font-bold text-[14px] md:text-[15px] hover:-translate-y-1 hover:bg-[#3a0504] transition-all duration-300 shadow-md"
-          >
-            Kembali ke Beranda
-          </Link>
-          
+          </RevealWrapper>
         </div>
       </div>
-      
+
       <FooterLuxury />
     </main>
   );

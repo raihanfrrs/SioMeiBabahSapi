@@ -10,6 +10,7 @@ import FoodShowcase from "@/components/FoodShowcase";
 import HowToEnjoy from "@/components/HowToEnjoy";
 import BehindTheScene from "@/components/BehindTheScene";
 import B2BSupply from "@/components/B2BSupply";
+import PartnerNote from "@/components/PartnerNote";
 import TestimonialSection from "@/components/TestimonialSection";
 import FAQSection from "@/components/FAQSection";
 import ClosingCTA from "@/components/ClosingCTA";
@@ -43,6 +44,16 @@ export default function Home() {
             ]
           },
           {
+            "@type": "FoodEstablishment",
+            "name": "Sio Mei Babah Sapi",
+            "image": "https://siomeibabahsapi.my.id/images/sio-mei-original-siomay-sapi-premium.png",
+            "email": "siomeibabahsapi@gmail.com",
+            "telephone": "+6281333903187",
+            "url": "https://siomeibabahsapi.my.id",
+            "menu": "https://siomeibabahsapi.my.id/#foods",
+            "servesCuisine": "Siomay Sapi"
+          },
+          {
             "@type": "OfferCatalog",
             "name": "Menu Sio Mei Babah Sapi",
             "itemListElement": [
@@ -50,7 +61,7 @@ export default function Home() {
                 "@type": "Product",
                 "name": "Sio Mei Original",
                 "image": "https://siomeibabahsapi.my.id/images/sio-mei-original-siomay-sapi-premium.png",
-                "description": "Siomay sapi original dengan kulit lembut dan isian sapi gurih, cocok disantap hangat.",
+                "description": "Versi klasik dengan kulit lembut dan isian sapi gurih, cocok disajikan hangat.",
                 "brand": {
                   "@type": "Brand",
                   "name": "Sio Mei Babah Sapi"
@@ -60,14 +71,14 @@ export default function Home() {
                   "priceCurrency": "IDR",
                   "price": "35000",
                   "availability": "https://schema.org/InStock",
-                  "url": "https://siomeibabahsapi.my.id/produk/sio-mei-original"
+                  "url": "https://siomeibabahsapi.my.id/#foods"
                 }
               },
               {
                 "@type": "Product",
                 "name": "Sio Mei Goreng",
                 "image": "https://siomeibabahsapi.my.id/images/sio-mei-goreng-renyah.png",
-                "description": "Sio Mei goreng dengan bagian luar renyah dan isian sapi yang tetap lembut serta gurih.",
+                "description": "Bagian luar lebih renyah dengan isian sapi yang tetap lembut di dalam.",
                 "brand": {
                   "@type": "Brand",
                   "name": "Sio Mei Babah Sapi"
@@ -77,14 +88,14 @@ export default function Home() {
                   "priceCurrency": "IDR",
                   "price": "38000",
                   "availability": "https://schema.org/InStock",
-                  "url": "https://siomeibabahsapi.my.id/produk/sio-mei-goreng"
+                  "url": "https://siomeibabahsapi.my.id/#foods"
                 }
               },
               {
                 "@type": "Product",
                 "name": "Paket Sio Mei Frozen",
                 "image": "https://siomeibabahsapi.my.id/images/paket-sio-mei-frozen.png",
-                "description": "Paket Sio Mei frozen praktis untuk stok rumah, acara, reseller, restoran, cafe, bar, club, dan event.",
+                "description": "Kemasan beku praktis untuk disimpan, siap dikukus atau digoreng kapan saja.",
                 "brand": {
                   "@type": "Brand",
                   "name": "Sio Mei Babah Sapi"
@@ -94,7 +105,7 @@ export default function Home() {
                   "priceCurrency": "IDR",
                   "price": "30000",
                   "availability": "https://schema.org/InStock",
-                  "url": "https://siomeibabahsapi.my.id/produk/sio-mei-frozen"
+                  "url": "https://siomeibabahsapi.my.id/#foods"
                 }
               }
             ]
@@ -185,6 +196,7 @@ export default function Home() {
         <div className="relative z-40 bg-brand-cream">
           <BehindTheScene />
           <B2BSupply />
+          <PartnerNote />
         </div>
 
         <div className="relative z-40 bg-brand-cream">

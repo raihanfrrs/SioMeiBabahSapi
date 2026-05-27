@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { siteContent } from "@/data/siteContent";
 import ProtectedBackgroundImage from "@/components/ProtectedBackgroundImage";
+import { buildWhatsAppLink, getProductOrderMessage } from "@/utils/whatsapp";
 
 export default function FoodShowcase() {
   const { foods, menuIntro } = siteContent as any;
@@ -82,7 +83,7 @@ export default function FoodShowcase() {
             style={{ gap: "32px", marginTop: "24px" }}
           >
             {foods.map((food: any, i: number) => {
-              const waLink = `https://wa.me/6281333903187?text=${encodeURIComponent(food.whatsappText)}`;
+              const waLink = buildWhatsAppLink(getProductOrderMessage(food.whatsappText as any));
               return (
                 <motion.div
                   key={food.id}
@@ -221,15 +222,15 @@ export default function FoodShowcase() {
               </div>
 
               {/* Right: Content Container */}
-              <div className="w-full md:w-[55%] flex flex-col overflow-y-auto" style={{ padding: "clamp(32px, 5vw, 44px)" }}>
-                <div className="flex flex-col" style={{ marginBottom: "28px" }}>
-                  <h2 id="modal-title" className="text-3xl lg:text-4xl font-editorial text-brand-dark leading-tight" style={{ marginBottom: "12px" }}>
+              <div className="w-full md:w-[55%] flex flex-col overflow-y-auto" style={{ padding: "clamp(32px, 5vw, 44px) clamp(32px, 6vw, 64px) clamp(32px, 5vw, 44px) clamp(32px, 5vw, 44px)" }}>
+                <div className="flex flex-col" style={{ marginBottom: "32px" }}>
+                  <h2 id="modal-title" className="text-3xl lg:text-[40px] font-editorial text-brand-dark leading-tight" style={{ marginBottom: "12px" }}>
                     {selectedProduct.name}
                   </h2>
-                  <p className="text-[#C7923E] font-bold text-lg md:text-xl tracking-wide" style={{ marginBottom: "20px" }}>
+                  <p className="text-[#C7923E] font-bold text-lg md:text-[22px] tracking-wide" style={{ marginBottom: "24px" }}>
                     {selectedProduct.price}
                   </p>
-                  <p className="text-brand-dark/80 text-[15px] md:text-[16px]" style={{ lineHeight: "1.65" }}>
+                  <p className="text-brand-dark/85 text-[15.5px] md:text-[16px]" style={{ lineHeight: "1.7" }}>
                     {selectedProduct.longDescription}
                   </p>
                 </div>
@@ -237,35 +238,35 @@ export default function FoodShowcase() {
                 <div className="flex flex-col gap-0 mb-8">
                   <div className="flex flex-col border-b border-[#4b0705]/10 py-4">
                     <span className="text-[11px] uppercase tracking-widest font-bold text-[#4b0705]/50" style={{ marginBottom: "8px" }}>Isi Pack</span>
-                    <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65" }}>{selectedProduct.pack}</span>
+                    <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65", paddingRight: "16px" }}>{selectedProduct.pack}</span>
                   </div>
                   <div className="flex flex-col border-b border-[#4b0705]/10 py-4">
                     <span className="text-[11px] uppercase tracking-widest font-bold text-[#4b0705]/50" style={{ marginBottom: "8px" }}>Format</span>
-                    <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65" }}>{selectedProduct.format}</span>
+                    <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65", paddingRight: "16px" }}>{selectedProduct.format}</span>
                   </div>
                   <div className="flex flex-col border-b border-[#4b0705]/10 py-4">
                     <span className="text-[11px] uppercase tracking-widest font-bold text-[#4b0705]/50" style={{ marginBottom: "8px" }}>Cara Penyajian</span>
-                    <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65" }}>{selectedProduct.serving}</span>
+                    <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65", paddingRight: "16px" }}>{selectedProduct.serving}</span>
                   </div>
                   <div className="flex flex-col border-b border-[#4b0705]/10 py-4">
                     <span className="text-[11px] uppercase tracking-widest font-bold text-[#4b0705]/50" style={{ marginBottom: "8px" }}>Cocok Untuk</span>
-                    <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65" }}>{selectedProduct.suitableFor}</span>
+                    <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65", paddingRight: "16px" }}>{selectedProduct.suitableFor}</span>
                   </div>
                   <div className="flex flex-col border-b border-[#4b0705]/10 py-4">
                     <span className="text-[11px] uppercase tracking-widest font-bold text-[#4b0705]/50" style={{ marginBottom: "8px" }}>Penyimpanan</span>
-                    <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65" }}>{selectedProduct.storage}</span>
+                    <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65", paddingRight: "16px" }}>{selectedProduct.storage}</span>
                   </div>
                   {selectedProduct.b2bNote && (
                     <div className="flex flex-col py-4">
                       <span className="text-[11px] uppercase tracking-widest font-bold text-[#4b0705]/50" style={{ marginBottom: "8px" }}>Info B2B</span>
-                      <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65" }}>{selectedProduct.b2bNote}</span>
+                      <span className="font-sans text-[15px] text-[#4b0705]" style={{ lineHeight: "1.65", paddingRight: "16px" }}>{selectedProduct.b2bNote}</span>
                     </div>
                   )}
                 </div>
 
                 <div className="mt-auto w-full" style={{ paddingTop: "32px", paddingBottom: "16px" }}>
                   <a 
-                    href={`https://wa.me/6281333903187?text=${encodeURIComponent(selectedProduct.whatsappText)}`}
+                    href={buildWhatsAppLink(getProductOrderMessage(selectedProduct.whatsappText as any))}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center bg-[#4b0705] text-[#F4EBDD] font-bold tracking-widest uppercase rounded-xl transition-all duration-300 hover:bg-[#3a0504] hover:shadow-lg hover:-translate-y-0.5"

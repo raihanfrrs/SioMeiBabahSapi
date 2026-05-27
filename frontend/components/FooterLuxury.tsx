@@ -15,8 +15,28 @@ const gloock = Gloock({
 const FooterLuxury = () => {
   const { footer } = siteContent;
   const footerRef = useRef<HTMLElement>(null);
-  
-  const [modalType, setModalType] = useState<"privacy" | "terms" | null>(null);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+
+  // Focus trap & Escape key for modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setShowPrivacyModal(false);
+        setShowTermsModal(false);
+      }
+    };
+    if (showPrivacyModal || showTermsModal) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showPrivacyModal, showTermsModal]);
 
   const brandText = "babah sapi";
 
@@ -43,61 +63,6 @@ const FooterLuxury = () => {
         ease: "easeOut"
       }
     }
-  };
-
-  const closeModal = () => setModalType(null);
-
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeModal();
-    };
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, []);
-
-  useEffect(() => {
-    if (modalType) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }, [modalType]);
-
-  const renderModalContent = () => {
-    if (modalType === "privacy") {
-      return (
-        <div className="flex flex-col gap-5 font-sans text-[15px] md:text-[16px] leading-relaxed text-[#4b0705]/85 w-full">
-          <p>
-            Sio Mei Babah Sapi menghargai privasi setiap pelanggan. Data yang diberikan melalui WhatsApp, email, atau formulir website seperti nama, nomor telepon, alamat pengiriman, dan detail pesanan hanya digunakan untuk memproses pemesanan, pengiriman, konfirmasi pembayaran, layanan pelanggan, dan komunikasi terkait produk.
-          </p>
-          <p>
-            Kami tidak menjual, menyewakan, atau membagikan data pelanggan kepada pihak lain di luar kebutuhan operasional pemesanan dan pengiriman. Data pelanggan disimpan secara wajar untuk kebutuhan riwayat pesanan, layanan pelanggan, dan administrasi internal.
-          </p>
-          <p>
-            Pelanggan dapat menghubungi kami melalui email <a href="mailto:siomeibabahsapi@gmail.com" className="font-bold underline hover:opacity-70 text-[#4b0705]">siomeibabahsapi@gmail.com</a> untuk meminta pembaruan, koreksi, atau penghapusan data yang pernah diberikan.
-          </p>
-        </div>
-      );
-    }
-    if (modalType === "terms") {
-      return (
-        <div className="flex flex-col gap-5 font-sans text-[15px] md:text-[16px] leading-relaxed text-[#4b0705]/85 w-full">
-          <p>
-            Dengan melakukan pemesanan Sio Mei Babah Sapi, pelanggan dianggap telah memahami dan menyetujui ketentuan berikut:
-          </p>
-          <ul className="list-disc pl-[22px] flex flex-col gap-[12px]">
-            <li>Produk tersedia dalam pilihan siap santap dan frozen sesuai ketersediaan.</li>
-            <li>Harga, varian, dan ketersediaan produk dapat berubah sewaktu-waktu dengan konfirmasi terlebih dahulu kepada pelanggan.</li>
-            <li>Foto produk pada website digunakan sebagai representasi visual. Tampilan produk dapat sedikit berbeda karena proses produksi dan penyajian.</li>
-            <li>Pesanan diproses setelah pelanggan melakukan konfirmasi melalui WhatsApp atau email.</li>
-            <li>Untuk pesanan jumlah banyak, acara, reseller, restoran, cafe, bar, club, atau kebutuhan B2B, detail harga, jumlah minimum, lead time, dan pengiriman akan didiskusikan terlebih dahulu.</li>
-            <li>Produk frozen perlu disimpan dalam freezer agar kualitas tetap terjaga.</li>
-            <li>Komplain terkait pesanan dapat disampaikan maksimal 1x24 jam setelah produk diterima dengan menyertakan foto atau video sebagai bukti pendukung.</li>
-          </ul>
-        </div>
-      );
-    }
-    return null;
   };
 
   return (
@@ -172,7 +137,7 @@ const FooterLuxury = () => {
                   style={{ display: "flex", flexDirection: "column", gap: "8px" }}
                   className="text-[14px] md:text-[15px] leading-[1.65] font-sans font-medium text-left"
                 >
-                  <a href="https://wa.me/6281333903187?text=Halo%20Babah%20Sapi%2C%20saya%20ingin%20bertanya%20tentang%20Sio%20Mei." target="_blank" rel="noopener noreferrer" className="text-[#5A0906] hover:opacity-60 transition-opacity">
+                  <a href="https://wa.me/6281333903187" target="_blank" rel="noopener noreferrer" className="text-[#5A0906] hover:opacity-60 transition-opacity">
                     WhatsApp: 0813-3390-3187
                   </a>
                   <a href="mailto:siomeibabahsapi@gmail.com" className="text-[#5A0906] hover:opacity-60 transition-opacity">
@@ -261,58 +226,177 @@ const FooterLuxury = () => {
               style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "16px 24px" }}
               className="w-full uppercase text-[10px] tracking-[0.08em]"
             >
-              <a href="/kebijakan-privasi" onClick={(e) => { e.preventDefault(); setModalType("privacy"); }} className="hover:opacity-60 transition-opacity">Kebijakan Privasi</a>
-              <a href="/syarat-ketentuan" onClick={(e) => { e.preventDefault(); setModalType("terms"); }} className="hover:opacity-60 transition-opacity">Syarat & Ketentuan</a>
-              <span>© 2026 Sio Mei Babah Sapi. Hak cipta dilindungi.</span>
+              <button onClick={() => setShowPrivacyModal(true)} className="hover:opacity-60 transition-opacity">Kebijakan Privasi</button>
+              <button onClick={() => setShowTermsModal(true)} className="hover:opacity-60 transition-opacity">Syarat & Ketentuan</button>
+              <span>{footer.copyright}</span>
             </div>
           </div>
 
         </div>
       </footer>
 
-      {/* Modal Overlay & Content */}
+      {/* Privacy Policy Modal */}
       <AnimatePresence>
-        {modalType && (
-          <div 
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            data-protected-modal="true"
-            onContextMenu={(e) => e.preventDefault()}
-          >
+        {showPrivacyModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={closeModal}
-              className="absolute inset-0 bg-[#2D1616]/60 backdrop-blur-[2px] cursor-pointer"
-              onContextMenu={(e) => e.preventDefault()}
+              className="absolute inset-0 bg-[#1F140F]/80 backdrop-blur-sm"
+              onClick={() => setShowPrivacyModal(false)}
             />
             <motion.div 
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-[92vw] max-w-[760px] max-h-[80vh] bg-[#FDF8EE] border border-[#d8b36a]/30 rounded-3xl shadow-2xl flex flex-col !pt-6 !pb-6 !px-6 sm:!pt-8 sm:!pb-8 sm:!px-8 md:!pt-9 md:!pb-9 md:!px-11 select-none"
-              onContextMenu={(e) => e.preventDefault()}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-[720px] bg-[#FDF8EE] border border-[#e7ded2] rounded-xl shadow-2xl overflow-y-auto max-h-[90vh] text-left"
+              style={{ padding: "clamp(32px, 5vw, 48px)" }}
             >
               <button 
-                onClick={closeModal}
-                className="absolute top-[18px] right-[18px] w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center rounded-full bg-transparent text-[#4b0705] hover:bg-[#d8b36a]/20 transition-colors z-10"
+                onClick={() => setShowPrivacyModal(false)}
+                className="absolute top-5 right-5 md:top-6 md:right-6 z-20 w-11 h-11 flex items-center justify-center rounded-full bg-white/70 backdrop-blur hover:bg-white text-[#4b0705] transition-all shadow-sm hover:shadow-md"
+                aria-label="Tutup modal"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
               </button>
 
-              <h3 className="font-editorial text-[30px] md:text-[38px] text-[#4b0705] leading-tight !pr-[48px] !mb-4">
-                {modalType === "privacy" ? "Kebijakan Privasi" : "Syarat & Ketentuan"}
-              </h3>
-              
-              <div className="w-full h-px bg-[#d8b36a]/40 mb-[20px] flex-shrink-0" />
-              
-              <div className="overflow-y-auto pr-2 custom-scrollbar" onContextMenu={(e) => e.preventDefault()}>
-                {renderModalContent()}
+              <h2 className="text-3xl md:text-5xl font-editorial text-[#4b0705] mb-4 pr-10">Kebijakan Privasi</h2>
+              <p className="text-sm text-[#4b0705]/60 mb-10 pb-6 border-b border-[#4b0705]/10">Terakhir diperbarui: Mei 2026</p>
+
+              <div className="flex flex-col gap-8 text-[#4b0705]/85" style={{ lineHeight: "1.75" }}>
+                <section>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">1. Pendahuluan</h3>
+                  <p>
+                    Sio Mei Babah Sapi ("kami", "kita", atau "milik kami") menghormati privasi Anda dan berkomitmen 
+                    untuk melindungi data pribadi Anda. Kebijakan ini menjelaskan bagaimana kami mengumpulkan, menggunakan, 
+                    dan menjaga informasi Anda saat Anda menggunakan layanan dan berinteraksi dengan platform kami.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">2. Data yang Kami Kumpulkan</h3>
+                  <p className="mb-2">Kami dapat mengumpulkan informasi berikut saat Anda melakukan pemesanan atau menghubungi kami:</p>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>Nama lengkap</li>
+                    <li>Nomor WhatsApp / telepon</li>
+                    <li>Alamat pengiriman</li>
+                    <li>Detail pesanan dan preferensi produk</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">3. Penggunaan Informasi</h3>
+                  <p className="mb-2">Informasi yang kami kumpulkan digunakan semata-mata untuk:</p>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>Memproses dan memverifikasi pesanan Anda.</li>
+                    <li>Mengatur pengiriman produk.</li>
+                    <li>Mengkomunikasikan pembaruan status pesanan.</li>
+                    <li>Menanggapi pertanyaan terkait B2B supply atau kerja sama.</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">4. Keamanan Data</h3>
+                  <p>
+                    Kami menerapkan langkah-langkah keamanan internal untuk melindungi informasi pribadi Anda 
+                    dari akses yang tidak sah. Kami tidak akan pernah menjual, menyewakan, atau membagikan 
+                    data pribadi Anda kepada pihak ketiga untuk tujuan pemasaran tanpa izin eksplisit Anda.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">5. Hubungi Kami</h3>
+                  <p>
+                    Jika Anda memiliki pertanyaan mengenai Kebijakan Privasi ini atau ingin memperbarui 
+                    informasi Anda, silakan hubungi kami melalui WhatsApp di <strong>0813-3390-3187</strong> 
+                    atau email di <strong>siomeibabahsapi@gmail.com</strong>.
+                  </p>
+                </section>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Terms and Conditions Modal */}
+      <AnimatePresence>
+        {showTermsModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-[#1F140F]/80 backdrop-blur-sm"
+              onClick={() => setShowTermsModal(false)}
+            />
+            <motion.div 
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-[720px] bg-[#FDF8EE] border border-[#e7ded2] rounded-xl shadow-2xl overflow-y-auto max-h-[90vh] text-left"
+              style={{ padding: "clamp(32px, 5vw, 48px)" }}
+            >
+              <button 
+                onClick={() => setShowTermsModal(false)}
+                className="absolute top-5 right-5 md:top-6 md:right-6 z-20 w-11 h-11 flex items-center justify-center rounded-full bg-white/70 backdrop-blur hover:bg-white text-[#4b0705] transition-all shadow-sm hover:shadow-md"
+                aria-label="Tutup modal"
+              >
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+
+              <h2 className="text-3xl md:text-5xl font-editorial text-[#4b0705] mb-4 pr-10">Syarat & Ketentuan</h2>
+              <p className="text-sm text-[#4b0705]/60 mb-10 pb-6 border-b border-[#4b0705]/10">Terakhir diperbarui: Mei 2026</p>
+
+              <div className="flex flex-col gap-8 text-[#4b0705]/85" style={{ lineHeight: "1.75" }}>
+                <section>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">1. Informasi Umum</h3>
+                  <p>
+                    Dengan melakukan pemesanan di Sio Mei Babah Sapi, Anda setuju untuk terikat oleh Syarat dan Ketentuan berikut. 
+                    Layanan kami ditujukan untuk pembelian personal (B2C) maupun kebutuhan suplai partner (B2B).
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">2. Pemesanan dan Ketersediaan</h3>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>Pemesanan dapat dilakukan melalui WhatsApp atau sistem pre-order (PO).</li>
+                    <li>Untuk suplai B2B, Minimum Order Quantity (MOQ) adalah mulai dari 50 pack atau dapat disesuaikan.</li>
+                    <li>Kami berhak menolak pesanan jika kapasitas produksi telah penuh pada hari tersebut.</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">3. Harga dan Pembayaran</h3>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>Harga yang tertera dapat berubah sewaktu-waktu tanpa pemberitahuan sebelumnya.</li>
+                    <li>Pembayaran untuk pesanan ritel dilakukan 100% di muka kecuali disepakati lain.</li>
+                    <li>Ketentuan pembayaran untuk partner B2B akan diatur secara terpisah dalam kontrak atau faktur (invoice).</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">4. Pengiriman</h3>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>Risiko selama pengiriman menggunakan kurir pihak ketiga menjadi tanggung jawab pembeli, namun kami memastikan pengemasan dilakukan dengan standar keamanan tinggi.</li>
+                    <li>Untuk pesanan frozen, sangat disarankan menggunakan pengiriman instan/same-day untuk menjaga kualitas produk.</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">5. Kualitas Produk dan Komplain</h3>
+                  <p>
+                    Kami menjamin kualitas produk saat keluar dari dapur produksi kami. Jika terdapat keluhan 
+                    terkait pesanan, harap melapor kepada kami maksimal 1x24 jam setelah produk diterima 
+                    disertai bukti foto/video agar dapat kami tindak lanjuti.
+                  </p>
+                </section>
               </div>
             </motion.div>
           </div>
