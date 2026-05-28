@@ -383,18 +383,15 @@ const FooterLuxury = () => {
 
                 <section>
                   <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">4. Pengiriman</h3>
-                  <ul className="list-disc pl-5 space-y-2">
-                    <li>Risiko selama pengiriman menggunakan kurir pihak ketiga menjadi tanggung jawab pembeli, namun kami memastikan pengemasan dilakukan dengan standar keamanan tinggi.</li>
-                    <li>Untuk pesanan frozen, sangat disarankan menggunakan pengiriman instan/same-day untuk menjaga kualitas produk.</li>
-                  </ul>
+                  <p>
+                    Pengiriman produk menyesuaikan lokasi, jumlah pesanan, dan metode pengiriman yang disepakati melalui WhatsApp. Estimasi waktu dan biaya pengiriman akan dikonfirmasi terlebih dahulu sebelum pesanan diproses.
+                  </p>
                 </section>
 
                 <section>
-                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">5. Kualitas Produk dan Komplain</h3>
+                  <h3 className="text-xl font-bold font-sans text-[#4b0705] mb-3">5. Retur / Komplain Produk</h3>
                   <p>
-                    Kami menjamin kualitas produk saat keluar dari dapur produksi kami. Jika terdapat keluhan 
-                    terkait pesanan, harap melapor kepada kami maksimal 1x24 jam setelah produk diterima 
-                    disertai bukti foto/video agar dapat kami tindak lanjuti.
+                    Karena Sio Mei termasuk produk makanan, pengembalian tidak berlaku untuk alasan perubahan pikiran, salah memilih produk, atau pembatalan sepihak setelah pesanan diproses. Komplain dapat diajukan pada hari yang sama setelah produk diterima apabila terdapat kesalahan pesanan atau kendala kondisi produk saat diterima. Komplain wajib disertai foto atau video pendukung.
                   </p>
                 </section>
               </div>

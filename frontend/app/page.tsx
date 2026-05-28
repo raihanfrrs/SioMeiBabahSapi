@@ -54,61 +54,76 @@ export default function Home() {
             "servesCuisine": "Siomay Sapi"
           },
           {
-            "@type": "OfferCatalog",
-            "name": "Menu Sio Mei Babah Sapi",
-            "itemListElement": [
-              {
-                "@type": "Product",
-                "name": "Sio Mei Original",
-                "image": "https://siomeibabahsapi.my.id/images/sio-mei-original-siomay-sapi-premium.png",
-                "description": "Versi klasik dengan kulit lembut dan isian sapi gurih, cocok disajikan hangat.",
-                "brand": {
-                  "@type": "Brand",
-                  "name": "Sio Mei Babah Sapi"
-                },
-                "offers": {
-                  "@type": "Offer",
-                  "priceCurrency": "IDR",
-                  "price": "35000",
-                  "availability": "https://schema.org/InStock",
-                  "url": "https://siomeibabahsapi.my.id/#foods"
-                }
-              },
-              {
-                "@type": "Product",
-                "name": "Sio Mei Goreng",
-                "image": "https://siomeibabahsapi.my.id/images/sio-mei-goreng-renyah.png",
-                "description": "Bagian luar lebih renyah dengan isian sapi yang tetap lembut di dalam.",
-                "brand": {
-                  "@type": "Brand",
-                  "name": "Sio Mei Babah Sapi"
-                },
-                "offers": {
-                  "@type": "Offer",
-                  "priceCurrency": "IDR",
-                  "price": "38000",
-                  "availability": "https://schema.org/InStock",
-                  "url": "https://siomeibabahsapi.my.id/#foods"
-                }
-              },
-              {
-                "@type": "Product",
-                "name": "Paket Sio Mei Frozen",
-                "image": "https://siomeibabahsapi.my.id/images/paket-sio-mei-frozen.png",
-                "description": "Kemasan beku praktis untuk disimpan, siap dikukus atau digoreng kapan saja.",
-                "brand": {
-                  "@type": "Brand",
-                  "name": "Sio Mei Babah Sapi"
-                },
-                "offers": {
-                  "@type": "Offer",
-                  "priceCurrency": "IDR",
-                  "price": "30000",
-                  "availability": "https://schema.org/InStock",
-                  "url": "https://siomeibabahsapi.my.id/#foods"
-                }
+            "@type": "Product",
+            "name": "Sio Mei Original",
+            "image": "https://siomeibabahsapi.my.id/images/sio-mei-original-siomay-sapi-premium.png",
+            "description": "Versi klasik dengan kulit lembut dan isian sapi gurih, cocok disajikan hangat.",
+            "brand": {
+              "@type": "Brand",
+              "name": "Babah Sapi"
+            },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "IDR",
+              "price": "35000",
+              "priceValidUntil": "2027-12-31",
+              "availability": "https://schema.org/InStock",
+              "itemCondition": "https://schema.org/NewCondition",
+              "url": "https://siomeibabahsapi.my.id/#foods",
+              "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "ID",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
               }
-            ]
+            }
+          },
+          {
+            "@type": "Product",
+            "name": "Sio Mei Goreng",
+            "image": "https://siomeibabahsapi.my.id/images/sio-mei-goreng-renyah.png",
+            "description": "Bagian luar lebih renyah dengan isian sapi yang tetap lembut di dalam.",
+            "brand": {
+              "@type": "Brand",
+              "name": "Babah Sapi"
+            },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "IDR",
+              "price": "38000",
+              "priceValidUntil": "2027-12-31",
+              "availability": "https://schema.org/InStock",
+              "itemCondition": "https://schema.org/NewCondition",
+              "url": "https://siomeibabahsapi.my.id/#foods",
+              "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "ID",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+              }
+            }
+          },
+          {
+            "@type": "Product",
+            "name": "Paket Sio Mei Frozen",
+            "image": "https://siomeibabahsapi.my.id/images/paket-sio-mei-frozen.png",
+            "description": "Kemasan beku praktis untuk disimpan, siap dikukus atau digoreng kapan saja.",
+            "brand": {
+              "@type": "Brand",
+              "name": "Babah Sapi"
+            },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "IDR",
+              "price": "30000",
+              "priceValidUntil": "2027-12-31",
+              "availability": "https://schema.org/InStock",
+              "itemCondition": "https://schema.org/NewCondition",
+              "url": "https://siomeibabahsapi.my.id/#foods",
+              "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "ID",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+              }
+            }
           },
           {
             "@type": "FAQPage",
