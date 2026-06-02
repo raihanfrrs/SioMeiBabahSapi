@@ -74,6 +74,33 @@ export default function Home() {
                 "@type": "MerchantReturnPolicy",
                 "applicableCountry": "ID",
                 "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+              },
+              "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                  "@type": "MonetaryAmount",
+                  "currency": "IDR",
+                  "maxValue": 50000
+                },
+                "shippingDestination": {
+                  "@type": "DefinedRegion",
+                  "addressCountry": "ID"
+                },
+                "deliveryTime": {
+                  "@type": "ShippingDeliveryTime",
+                  "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 2,
+                    "unitCode": "DAY"
+                  },
+                  "transitTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 3,
+                    "unitCode": "DAY"
+                  }
+                }
               }
             }
           },
@@ -98,6 +125,33 @@ export default function Home() {
                 "@type": "MerchantReturnPolicy",
                 "applicableCountry": "ID",
                 "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+              },
+              "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                  "@type": "MonetaryAmount",
+                  "currency": "IDR",
+                  "maxValue": 50000
+                },
+                "shippingDestination": {
+                  "@type": "DefinedRegion",
+                  "addressCountry": "ID"
+                },
+                "deliveryTime": {
+                  "@type": "ShippingDeliveryTime",
+                  "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 2,
+                    "unitCode": "DAY"
+                  },
+                  "transitTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 3,
+                    "unitCode": "DAY"
+                  }
+                }
               }
             }
           },
@@ -122,6 +176,33 @@ export default function Home() {
                 "@type": "MerchantReturnPolicy",
                 "applicableCountry": "ID",
                 "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+              },
+              "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                  "@type": "MonetaryAmount",
+                  "currency": "IDR",
+                  "maxValue": 50000
+                },
+                "shippingDestination": {
+                  "@type": "DefinedRegion",
+                  "addressCountry": "ID"
+                },
+                "deliveryTime": {
+                  "@type": "ShippingDeliveryTime",
+                  "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 2,
+                    "unitCode": "DAY"
+                  },
+                  "transitTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 3,
+                    "unitCode": "DAY"
+                  }
+                }
               }
             }
           },
