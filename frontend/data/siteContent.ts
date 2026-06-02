@@ -152,37 +152,42 @@ export const siteContent = {
   },
   b2bSupply: {
     label: "B2B SUPPLY",
-    headline: "Sio Mei Frozen untuk Restoran, Cafe, Bar, Club, dan Event",
-    subheadline: "Sio Mei Babah Sapi dapat disuplai dalam bentuk frozen untuk kebutuhan dapur partner. Produk dapat diolah kembali sesuai karakter menu, baik dikukus, digoreng, maupun dikembangkan menjadi menu signature.",
+    headline: "Sio Mei Frozen untuk Partner F&B, Bar, Club, dan Event",
+    subheadline: "Sio Mei Babah Sapi dapat disuplai dalam bentuk frozen untuk kebutuhan dapur partner. Produk dapat dikukus, digoreng, atau dikembangkan sesuai karakter menu dan kebutuhan penyajian.",
     leftCard: {
       title: "Keunggulan Operasional",
-      description: "Format frozen membantu dapur partner menjaga stok, mempercepat penyajian, dan menjaga konsistensi rasa antar outlet.",
+      description: "Format frozen membantu partner menyajikan Sio Mei dengan lebih praktis, konsisten, dan fleksibel untuk berbagai konsep menu.",
       bullets: [
-        "Tersedia format frozen untuk operasional dapur",
-        "Mudah dipanaskan dan disajikan ulang",
-        "Cocok sebagai snack, appetizer, sharing menu, atau bar bites",
-        "Dapat disesuaikan untuk kebutuhan jumlah besar",
-        "Mendukung pengembangan menu kukus, goreng, platter, atau menu kolaborasi"
+        "Praktis untuk stok operasional dapur.",
+        "Mudah diolah dengan metode kukus atau goreng.",
+        "Membantu mempercepat proses penyajian.",
+        "Cocok untuk snack, appetizer, sharing menu, atau bar bites.",
+        "Dapat dikembangkan menjadi menu kukus, goreng, platter, atau menu kolaborasi.",
+        "Volume supply dapat dibahas sesuai kebutuhan rutin maupun event."
       ],
-      menuLabel: "Ide Menu Kolaborasi",
+      menuLabel: "IDE PENYAJIAN PARTNER",
       menuIdeas: [
-        "Steamed Sio Mei Premium",
-        "Crispy Fried Sio Mei",
-        "Sio Mei Sharing Platter",
-        "Frozen Supply Pack"
+        "Sio Mei Kukus",
+        "Sio Mei Goreng",
+        "Sharing Platter",
+        "Frozen Pack"
       ]
     },
     rightCard: {
-      title: "Detail Supply",
+      title: "Skema Supply B2B",
       details: [
+        { key: "Format Produk", value: "Frozen pack" },
+        { key: "Isi Pack", value: "5 pcs per pack" },
+        { key: "Cara Olah", value: "Kukus, goreng, atau dikembangkan sesuai konsep menu partner" },
+        { key: "Kemasan", value: "Frozen pack siap simpan" },
+        { key: "Suhu Penyimpanan", value: "Freezer ± -18°C" },
         { key: "MOQ B2B", value: "Dapat didiskusikan" },
-        { key: "Lead Time Produksi", value: "Menyesuaikan volume" },
-        { key: "Kapasitas Produksi", value: "Menyesuaikan kebutuhan" },
-        { key: "Area Pengiriman", value: "Dapat didiskusikan" },
-        { key: "Sistem Pembayaran", value: "Dapat didiskusikan" }
+        { key: "Lead Time Produksi", value: "Menyesuaikan volume pesanan" },
+        { key: "Kapasitas Supply", value: "Menyesuaikan volume dan jadwal produksi" },
+        { key: "Sample / Trial", value: "Dapat didiskusikan" }
       ]
     },
-    cta: "Diskusikan Supply via WhatsApp"
+    cta: "Konsultasi Supply B2B"
   },
   testimonials: {
     label: "CERITA PELANGGAN",

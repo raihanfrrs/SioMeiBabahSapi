@@ -183,6 +183,46 @@ const Hero = () => {
 
 
 
+  // Bulletproof client-side layout correction to bypass any aggressive browser/Next.js/Tailwind caching issues
+  useEffect(() => {
+    const applyFailsafeLayout = () => {
+      // 1. Spacing for the buttons container
+      const container = document.querySelector(".hero-buttons-flex-container");
+      if (container instanceof HTMLElement) {
+        const isDesktop = window.innerWidth >= 1024;
+        const isTablet = window.innerWidth >= 768;
+        const marginVal = isDesktop ? "40px" : isTablet ? "44px" : "36px";
+        container.style.setProperty("margin-top", marginVal, "important");
+        container.style.setProperty("margin-bottom", marginVal, "important");
+        container.style.setProperty("flex-direction", "column", "important");
+        container.style.setProperty("align-items", "flex-start", "important");
+        container.style.setProperty("gap", "16px", "important");
+      }
+
+      // 2. Centering the buttons content and adjusting size/padding to prevent text clipping
+      const buttons = document.querySelectorAll(".hero-premium-btn");
+      buttons.forEach((btn) => {
+        if (btn instanceof HTMLElement) {
+          const isMobile = window.innerWidth < 768;
+          btn.style.setProperty("display", "flex", "important");
+          btn.style.setProperty("justify-content", "center", "important");
+          btn.style.setProperty("align-items", "center", "important");
+          btn.style.setProperty("gap", "10px", "important");
+          btn.style.setProperty("padding", "14px 24px", "important");
+          btn.style.setProperty("font-size", isMobile ? "13px" : "14px", "important");
+          btn.style.setProperty("width", "100%", "important");
+          btn.style.setProperty("max-width", "380px", "important");
+        }
+      });
+    };
+
+    applyFailsafeLayout();
+    
+    // Run again on window resize to ensure perfect responsiveness
+    window.addEventListener("resize", applyFailsafeLayout);
+    return () => window.removeEventListener("resize", applyFailsafeLayout);
+  }, []);
+
   // GSAP Pinning
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -652,33 +692,85 @@ const Hero = () => {
                 {hero.subheadline}
               </p>
 
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full mt-7 mb-7">
-                <a
-                  href={buildWhatsAppLink(generalOrderMessage())}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hero-premium-btn group flex-1 text-center justify-center"
-                >
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907]">
-                    {(hero as any).ctaPrimary || "Pesan via WhatsApp"}
-                  </span>
-                  <span className="relative z-10 transform transition-transform duration-500 group-hover:translate-x-1">→</span>
-                  <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
-                </a>
-
-                <a
-                  href={buildWhatsAppLink(b2bInquiryMessage())}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hero-premium-btn group flex-1 text-center justify-center !bg-transparent !border !border-white/30 !text-white hover:!border-white/80"
-                >
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907]">
-                    Kerja Sama B2B
-                  </span>
-                  <span className="relative z-10 transform transition-transform duration-500 group-hover:translate-x-1">→</span>
-                  <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
-                </a>
-              </div>
+              <style>{`
+                /* Failsafe layout overrides directly injected into the HTML document to bypass stubborn caching */
+                .hero-premium-btn-failsafe {
+                  display: flex !important;
+                  justify-content: center !important;
+                  align-items: center !important;
+                  gap: 10px !important;
+                  padding: 14px 24px !important;
+                  font-size: 13px !important;
+                  width: 100% !important;
+                  max-width: 380px !important;
+                }
+                @media (min-width: 768px) {
+                  .hero-premium-btn-failsafe {
+                    font-size: 14px !important;
+                    max-width: 380px !important;
+                  }
+                }
+                @media (min-width: 1024px) {
+                  .hero-premium-btn-failsafe {
+                    max-width: 380px !important;
+                    padding: 14px 24px !important;
+                  }
+                }
+                
+                .hero-buttons-container-failsafe {
+                  display: flex !important;
+                  flex-direction: column !important;
+                  align-items: flex-start !important;
+                  width: 100% !important;
+                  margin-top: 36px !important;
+                  margin-bottom: 36px !important;
+                  gap: 14px !important;
+                }
+                @media (min-width: 768px) {
+                  .hero-buttons-container-failsafe {
+                    margin-top: 44px !important;
+                    margin-bottom: 44px !important;
+                    gap: 16px !important;
+                  }
+                }
+                @media (min-width: 1024px) {
+                  .hero-buttons-container-failsafe {
+                    flex-direction: column !important;
+                    align-items: flex-start !important;
+                    gap: 16px !important;
+                    margin-top: 40px !important;
+                    margin-bottom: 40px !important;
+                  }
+                }
+              `}</style>
+ 
+               <div className="hero-buttons-flex-container hero-buttons-container-failsafe flex flex-col items-start gap-4 w-full my-8 md:my-10">
+                 <a
+                   href={buildWhatsAppLink(generalOrderMessage())}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="hero-premium-btn hero-premium-btn-failsafe group text-center justify-center"
+                 >
+                   <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907]">
+                     {(hero as any).ctaPrimary || "Pesan via WhatsApp"}
+                   </span>
+                   <span className="relative z-10 transform transition-transform duration-500 group-hover:translate-x-1">→</span>
+                   <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
+                 </a>
+ 
+                 <a
+                   href={buildWhatsAppLink(b2bInquiryMessage())}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="hero-premium-btn hero-premium-btn-failsafe group text-center justify-center !bg-transparent !border !border-white/30 !text-white hover:!border-white/80"
+                 >
+                   <span className="relative z-10 transition-colors duration-500 group-hover:text-[#4a0907]">
+                     Kerja Sama B2B
+                   </span>
+                   <span className="relative z-10 transform transition-transform duration-500 group-hover:translate-x-1">→</span>
+                   <span className="absolute inset-0 bg-white transform origin-left scale-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1] group-hover:scale-x-100" />
+                 </a>
+               </div>
 
               {/* Benefit kecil di bawah CTA */}
               <div className="flex flex-wrap items-center gap-3 mt-8 text-white/80 font-sans uppercase tracking-[0.18em] text-[10px] font-bold">

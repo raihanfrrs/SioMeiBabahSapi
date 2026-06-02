@@ -35,22 +35,23 @@ export default function PartnerNote() {
             </div>
             <div className="flex-shrink-0 w-full md:w-auto flex justify-start md:justify-end">
               <a 
-                href={buildWhatsAppLink(b2bInquiryMessage())}
+                href="https://wa.me/6281333903187?text=Halo%20Sio%20Mei%20Babah%20Sapi%2C%20saya%20ingin%20berdiskusi%20mengenai%20supply%20B2B%20Sio%20Mei%20Frozen.%20Mohon%20informasi%20terkait%20harga%2C%20volume%2C%20sample%2C%20dan%20jadwal%20pengiriman."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center transition-all duration-300 hover:-translate-y-1 w-full md:w-auto text-center"
+                className="group inline-flex items-center justify-center transition-all duration-300 hover:-translate-y-1 w-full md:w-auto text-center hover:bg-[#520909]"
                 style={{
-                  backgroundColor: "transparent",
-                  color: "#4b0705",
-                  border: "2px solid #4b0705",
+                  backgroundColor: "#6b0f0f", // maroon
+                  color: "#ffffff", // white
                   borderRadius: "999px",
-                  padding: "14px 28px",
+                  padding: "0 36px",
+                  height: "52px",
                   fontWeight: 700,
                   fontSize: "14px",
                   letterSpacing: "0.02em",
+                  boxShadow: "0 8px 24px -6px rgba(107, 15, 15, 0.4)",
                 }}
               >
-                Konsultasi Partner F&B
+                Diskusikan Kebutuhan Supply
               </a>
             </div>
           </div>
