@@ -18,12 +18,7 @@ import FooterLuxury from "@/components/FooterLuxury";
 import SmoothScroll from "@/components/SmoothScroll";
 import { useInitialPreload } from "@/hooks/useInitialPreload";
 import BrandedPreloader from "@/components/BrandedPreloader";
-
-function cleanSchema(obj: any) {
-  return JSON.parse(JSON.stringify(obj, (key, value) => {
-    return (value === null || value === undefined) ? undefined : value;
-  }));
-}
+import { removeEmptyFields } from "@/utils/jsonLd";
 
 const productsData = [
   {
@@ -31,27 +26,27 @@ const productsData = [
     price: 35000,
     image: "https://siomeibabahsapi.my.id/images/sio-mei-original-siomay-sapi-premium.png",
     description: "Versi klasik dengan kulit lembut dan isian sapi gurih, cocok disajikan hangat.",
-    rating: null,
+    ratingValue: null,
     reviewCount: 0,
-    reviews: []
+    verifiedReviews: []
   },
   {
     name: "Sio Mei Goreng",
     price: 38000,
     image: "https://siomeibabahsapi.my.id/images/sio-mei-goreng-renyah.png",
     description: "Bagian luar lebih renyah dengan isian sapi yang tetap lembut di dalam.",
-    rating: null,
+    ratingValue: null,
     reviewCount: 0,
-    reviews: []
+    verifiedReviews: []
   },
   {
     name: "Paket Sio Mei Frozen",
     price: 30000,
     image: "https://siomeibabahsapi.my.id/images/paket-sio-mei-frozen.png",
     description: "Kemasan beku praktis untuk disimpan, siap dikukus atau digoreng kapan saja.",
-    rating: null,
+    ratingValue: null,
     reviewCount: 0,
-    reviews: []
+    verifiedReviews: []
   }
 ];
 
@@ -67,21 +62,27 @@ export default function Home() {
       "@type": "Brand",
       "name": "Babah Sapi"
     },
-    "aggregateRating": (product.rating && product.reviewCount > 0) ? {
+    // aggregateRating sengaja tidak ditampilkan sampai tersedia rating pelanggan asli.
+    "aggregateRating": (product.ratingValue && product.reviewCount > 0) ? {
       "@type": "AggregateRating",
-      "ratingValue": product.rating,
-      "reviewCount": product.reviewCount
+      "ratingValue": product.ratingValue,
+      "reviewCount": product.reviewCount,
+      "bestRating": "5",
+      "worstRating": "1"
     } : undefined,
-    "review": (product.reviews && product.reviews.length > 0) ? product.reviews.map((r: any) => ({
+    "review": (product.verifiedReviews && product.verifiedReviews.length > 0) ? product.verifiedReviews.map((r: any) => ({
       "@type": "Review",
       "reviewRating": {
         "@type": "Rating",
-        "ratingValue": r.rating
+        "ratingValue": r.ratingValue,
+        "bestRating": "5",
+        "worstRating": "1"
       },
       "author": {
         "@type": "Person",
         "name": r.author
-      }
+      },
+      "reviewBody": r.reviewBody
     })) : undefined,
     "offers": {
       "@type": "Offer",
@@ -131,7 +132,7 @@ export default function Home() {
     }
   }));
 
-  const jsonLdData = cleanSchema({
+  const jsonLdDataRaw = {
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -223,7 +224,9 @@ export default function Home() {
         ]
       }
     ]
-  });
+  };
+
+  const jsonLdData = removeEmptyFields(jsonLdDataRaw);
 
   return (
     <SmoothScroll>

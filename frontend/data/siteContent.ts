@@ -76,7 +76,10 @@ export const siteContent = {
       storage: "Simpan dalam pendingin jika tidak langsung dikonsumsi",
       b2bNote: "Cocok untuk kebutuhan supply, menu utama, dan stok operasional dapur",
       whatsappText: "original",
-      buttonText: "Pesan Original"
+      buttonText: "Pesan Original",
+      ratingValue: null,
+      reviewCount: 0,
+      verifiedReviews: []
     },
     {
       id: "goreng",
@@ -94,7 +97,10 @@ export const siteContent = {
       storage: "Simpan dalam pendingin jika tidak langsung dikonsumsi",
       b2bNote: "Cocok untuk kebutuhan menu snack, sharing platter, dan operasional bar",
       whatsappText: "goreng",
-      buttonText: "Pesan Goreng"
+      buttonText: "Pesan Goreng",
+      ratingValue: null,
+      reviewCount: 0,
+      verifiedReviews: []
     },
     {
       id: "frozen",
@@ -112,7 +118,10 @@ export const siteContent = {
       storage: "Simpan dalam freezer",
       b2bNote: "Cocok untuk kebutuhan supply, menu snack, sharing platter, dan stok operasional dapur",
       whatsappText: "frozen",
-      buttonText: "Pesan Frozen"
+      buttonText: "Pesan Frozen",
+      ratingValue: null,
+      reviewCount: 0,
+      verifiedReviews: []
     }
   ],
   howToEnjoy: {

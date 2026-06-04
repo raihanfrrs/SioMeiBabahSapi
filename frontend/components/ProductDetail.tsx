@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Script from "next/script";
+import { removeEmptyFields } from "@/utils/jsonLd";
 
 interface ProductDetailProps {
   id: string;
@@ -17,6 +18,13 @@ interface ProductDetailProps {
   suitableFor: string;
   storage: string;
   whatsappMessage: string;
+  ratingValue?: number | null;
+  reviewCount?: number;
+  verifiedReviews?: {
+    author: string;
+    ratingValue: number;
+    reviewBody: string;
+  }[];
 }
 
 export default function ProductDetail({
@@ -31,12 +39,15 @@ export default function ProductDetail({
   serving,
   suitableFor,
   storage,
-  whatsappMessage
+  whatsappMessage,
+  ratingValue,
+  reviewCount,
+  verifiedReviews
 }: ProductDetailProps) {
   const whatsappNumber = "6281333903187";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-  const jsonLd = {
+  const jsonLdRaw = {
     "@context": "https://schema.org",
     "@type": "Product",
     name,
@@ -50,10 +61,73 @@ export default function ProductDetail({
       "@type": "Offer",
       priceCurrency: "IDR",
       price: priceNumeric,
+      priceValidUntil: "2027-12-31",
       availability: "https://schema.org/InStock",
-      url: `https://siomeibabahsapi.my.id/produk/${id}`
-    }
+      itemCondition: "https://schema.org/NewCondition",
+      url: `https://siomeibabahsapi.my.id/produk/${id}`,
+      seller: {
+        "@type": "Organization",
+        name: "Sio Mei Babah Sapi"
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "ID",
+        returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
+        merchantReturnDays: 0
+      },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          currency: "IDR",
+          value: 0
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "ID"
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 1,
+            maxValue: 2,
+            unitCode: "DAY"
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 1,
+            maxValue: 3,
+            unitCode: "DAY"
+          }
+        }
+      }
+    },
+    // aggregateRating sengaja tidak ditampilkan sampai tersedia rating pelanggan asli.
+    aggregateRating: (ratingValue && reviewCount && reviewCount > 0) ? {
+      "@type": "AggregateRating",
+      ratingValue: ratingValue,
+      reviewCount: reviewCount,
+      bestRating: "5",
+      worstRating: "1"
+    } : undefined,
+    review: (verifiedReviews && verifiedReviews.length > 0) ? verifiedReviews.map((r) => ({
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: r.ratingValue,
+        bestRating: "5",
+        worstRating: "1"
+      },
+      author: {
+        "@type": "Person",
+        name: r.author
+      },
+      reviewBody: r.reviewBody
+    })) : undefined
   };
+
+  const jsonLd = removeEmptyFields(jsonLdRaw);
 
   return (
     <div className="min-h-screen bg-brand-cream relative pt-32 pb-24 px-6 md:px-12 lg:px-24">

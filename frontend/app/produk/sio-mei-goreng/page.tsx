@@ -29,6 +29,9 @@ export default function GorengProductPage() {
         suitableFor={product.suitableFor}
         storage={product.storage}
         whatsappMessage={`Halo Sio Mei Babah Sapi, saya ingin memesan ${product.name} (${product.price}). Mohon info ketersediaan dan cara pemesanannya.`}
+        ratingValue={product.ratingValue}
+        reviewCount={product.reviewCount}
+        verifiedReviews={product.verifiedReviews}
       />
       <FooterLuxury />
     </main>
